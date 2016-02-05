@@ -1,0 +1,24 @@
+{
+    "name": "@ignavia/util",
+    "description": "Some utility classes.",
+    "keywords": "utility",
+    "license": "ICS",
+    "version": "1.1.2",
+    "main": "dist/util.js",
+    "devDependencies": {
+        "jspm": "^0.17.0-beta.6"
+    },
+    "scripts": {
+        "build": "jspm build ./src/util.js ./dist/util.js --format esm --skip-source-maps --minify",
+        "prepublish": "npm run build"
+    },
+    "jspmPackage": true,
+    "registry": "npm",
+    "format": "esm",
+    "jspm": {
+        "name": "@ignavia/util",
+        "devDependencies": {
+            "plugin-babel": "systemjs-plugin-babel@^0.0.2"
+        }
+    }
+}
