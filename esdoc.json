@@ -2,7 +2,7 @@
     "source": "./src",
     "destination": "./doc",
     "access": ["public", "protected", "private"],
-    "title": "RDF-Toolkit",
+    "title": "JavaScript Utility",
     "index": "./README.md",
     "package": "./package.json"
 }

@@ -1,4 +1,5 @@
 export {default as Cloneable, cloneableMixin}   from "./Cloneable.js";
+export {instance as cloner}                     from "./Cloner.js";
 export {default as Color, predefinedColors}     from "./Color.js";
 export {default as Event}                       from "./Event.js";
 export {default as EventManager}                from "./EventManager.js";

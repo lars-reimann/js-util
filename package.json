@@ -18,8 +18,34 @@
     "format": "esm",
     "jspm": {
         "name": "@ignavia/util",
+        "dependencies": {},
         "devDependencies": {
+            "chai": "^3.5.0",
+            "chai-string": "^1.1.6",
+            "mocha": "^2.4.5",
             "plugin-babel": "systemjs-plugin-babel@^0.0.2"
+        },
+        "peerDependencies": {
+            "buffer": "github:jspm/nodelibs-buffer@^0.2.0-alpha",
+            "process": "github:jspm/nodelibs-process@^0.2.0-alpha"
+        },
+        "overrides": {
+            "npm:mocha@2.4.5": {
+                "browser": "mocha",
+                "main": "mocha",
+                "dependencies": {
+                    "css": "*"
+                },
+                "registry": "jspm",
+                "meta": {
+                    "mocha.js": {
+                        "deps": [
+                            "./mocha.css!"
+                        ],
+                        "exports": "mocha"
+                    }
+                }
+            }
         }
     }
 }

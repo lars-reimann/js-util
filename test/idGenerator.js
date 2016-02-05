@@ -5,7 +5,7 @@ import chaiString from "chai-string";
 const expect = chai.expect;
 chai.use(chaiString);
 
-import {IDGenerator} from "../../js/util/util.js";
+import {IDGenerator} from "../src/util.js";
 
 /** @test {IDGenerator} */
 describe("IDGenerator", function () {
