@@ -1,0 +1,49 @@
+{
+  "coverage": "97.56%",
+  "expectCount": 41,
+  "actualCount": 40,
+  "files": {
+    "src/Cloneable.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/Color.js": {
+      "expectCount": 11,
+      "actualCount": 10,
+      "undocumentLines": [
+        177
+      ]
+    },
+    "src/Event.js": {
+      "expectCount": 5,
+      "actualCount": 5,
+      "undocumentLines": []
+    },
+    "src/EventManager.js": {
+      "expectCount": 6,
+      "actualCount": 6,
+      "undocumentLines": []
+    },
+    "src/Extensible.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/IDGenerator.js": {
+      "expectCount": 5,
+      "actualCount": 5,
+      "undocumentLines": []
+    },
+    "src/Observable.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/Plugin.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    }
+  }
+}

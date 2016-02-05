@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/Cloneable.js | RDF-Toolkit API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Color.js~Color.html">Color</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Event.js~Event.html">Event</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/IDGenerator.js~IDGenerator.html">IDGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Cloneable.js~Cloneable.html">Cloneable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Extensible.js~Extensible.html">Extensible</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Observable.js~Observable.html">Observable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneSym">cloneSym</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/Cloneable.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * An interface for every object that can be cloned.
+ *
+ * @interface
+ */
+export default class Cloneable {
+
+    /**
+     * Returns a copy of this object.
+     *
+     * @return {*}
+     * A copy of this object.
+     */
+    [cloneSym]() {}
+}
+
+/**
+ * A symbol for the clone method in the Cloneable interface.
+ *
+ * @type {Symbol}
+ */
+export const cloneSym = Symbol(&quot;clone&quot;);
+
+/**
+ * This is a mixin for extensible behavior.
+ *
+ * @type {Object}
+ * @todo
+ */
+export const cloneableMixin = {
+    [cloneSym]() {
+        return clone(this);
+    }
+};
+
+function clone(p) {
+    if (isPrimitive(p)) {
+        return clonePrimitive(p);
+    }
+    if (isDate(p)) {
+        return cloneDate(p);
+    }
+    if (isArray(p)) {
+        return cloneArray(p);
+    }
+    if (isObject(p)) {
+        return cloneObject(p);
+    }
+
+    throw new Error(`${p} cannot be cloned.`);
+}
+
+function isPrimitive(p) {
+    return p === null || typeof p !== &quot;object&quot;;
+}
+
+function clonePrimitive(primitive) {
+    return primitive;
+}
+
+function isDate(p) {
+    return p instanceof Date;
+}
+
+function cloneDate(date) {
+    let result = new Date();
+    result.setTime(date.getTime());
+    return result;
+}
+
+function isArray(p) {
+    return Array.isArray(p);
+}
+
+function cloneArray(arr) {
+    let result = [];
+    for (let v of arr) {
+        const copy = isCloneable(v) ? cloneCloneable(v) : clone(v);
+        result.push(copy);
+    }
+    return result;
+}
+
+function isObject(p) {
+    return p instanceof Object;
+}
+
+function cloneObject(obj) {
+    let result = {};
+    for (var [k, v] of obj.entries()) {
+        const copy = isCloneable(v) ? cloneCloneable(v) : clone(v);
+        result[k] = copy;
+    }
+    return result;
+}
+
+function isCloneable(p) {
+    return typeof p[cloneSym] === &quot;function&quot;;
+}
+
+function cloneCloneable(cloneable) {
+    return cloneable[cloneSym]();
+}</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.3)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,0 +1,2304 @@
+[
+  {
+    "__docId__": 0,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/Cloneable.js",
+    "memberof": null,
+    "longname": "src/Cloneable.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "content": "/**\r\n * An interface for every object that can be cloned.\r\n *\r\n * @interface\r\n */\r\nexport default class Cloneable {\r\n\r\n    /**\r\n     * Returns a copy of this object.\r\n     *\r\n     * @return {*}\r\n     * A copy of this object.\r\n     */\r\n    [cloneSym]() {}\r\n}\r\n\r\n/**\r\n * A symbol for the clone method in the Cloneable interface.\r\n *\r\n * @type {Symbol}\r\n */\r\nexport const cloneSym = Symbol(\"clone\");\r\n\r\n/**\r\n * This is a mixin for extensible behavior.\r\n *\r\n * @type {Object}\r\n * @todo\r\n */\r\nexport const cloneableMixin = {\r\n    [cloneSym]() {\r\n        return clone(this);\r\n    }\r\n};\r\n\r\nfunction clone(p) {\r\n    if (isPrimitive(p)) {\r\n        return clonePrimitive(p);\r\n    }\r\n    if (isDate(p)) {\r\n        return cloneDate(p);\r\n    }\r\n    if (isArray(p)) {\r\n        return cloneArray(p);\r\n    }\r\n    if (isObject(p)) {\r\n        return cloneObject(p);\r\n    }\r\n\r\n    throw new Error(`${p} cannot be cloned.`);\r\n}\r\n\r\nfunction isPrimitive(p) {\r\n    return p === null || typeof p !== \"object\";\r\n}\r\n\r\nfunction clonePrimitive(primitive) {\r\n    return primitive;\r\n}\r\n\r\nfunction isDate(p) {\r\n    return p instanceof Date;\r\n}\r\n\r\nfunction cloneDate(date) {\r\n    let result = new Date();\r\n    result.setTime(date.getTime());\r\n    return result;\r\n}\r\n\r\nfunction isArray(p) {\r\n    return Array.isArray(p);\r\n}\r\n\r\nfunction cloneArray(arr) {\r\n    let result = [];\r\n    for (let v of arr) {\r\n        const copy = isCloneable(v) ? cloneCloneable(v) : clone(v);\r\n        result.push(copy);\r\n    }\r\n    return result;\r\n}\r\n\r\nfunction isObject(p) {\r\n    return p instanceof Object;\r\n}\r\n\r\nfunction cloneObject(obj) {\r\n    let result = {};\r\n    for (var [k, v] of obj.entries()) {\r\n        const copy = isCloneable(v) ? cloneCloneable(v) : clone(v);\r\n        result[k] = copy;\r\n    }\r\n    return result;\r\n}\r\n\r\nfunction isCloneable(p) {\r\n    return typeof p[cloneSym] === \"function\";\r\n}\r\n\r\nfunction cloneCloneable(cloneable) {\r\n    return cloneable[cloneSym]();\r\n}"
+  },
+  {
+    "__docId__": 1,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Cloneable",
+    "memberof": "src/Cloneable.js",
+    "longname": "src/Cloneable.js~Cloneable",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/Cloneable.js",
+    "importStyle": "Cloneable",
+    "description": "An interface for every object that can be cloned.",
+    "lineNumber": 6,
+    "interface": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "[cloneSym]",
+    "memberof": "src/Cloneable.js~Cloneable",
+    "longname": "src/Cloneable.js~Cloneable#[cloneSym]",
+    "access": null,
+    "description": "Returns a copy of this object.",
+    "lineNumber": 14,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "A copy of this object."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 3,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "cloneSym",
+    "memberof": "src/Cloneable.js",
+    "longname": "src/Cloneable.js~cloneSym",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/Cloneable.js",
+    "importStyle": "{cloneSym}",
+    "description": "A symbol for the clone method in the Cloneable interface.",
+    "lineNumber": 22,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Symbol"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 4,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "cloneableMixin",
+    "memberof": "src/Cloneable.js",
+    "longname": "src/Cloneable.js~cloneableMixin",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/Cloneable.js",
+    "importStyle": "{cloneableMixin}",
+    "description": "This is a mixin for extensible behavior.",
+    "lineNumber": 30,
+    "todo": [
+      ""
+    ],
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 5,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "clone",
+    "memberof": "src/Cloneable.js",
+    "longname": "src/Cloneable.js~clone",
+    "access": null,
+    "export": false,
+    "importPath": "@ignavia/util/src/Cloneable.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 36,
+    "undocument": true,
+    "params": [
+      {
+        "name": "p",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 6,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "isPrimitive",
+    "memberof": "src/Cloneable.js",
+    "longname": "src/Cloneable.js~isPrimitive",
+    "access": null,
+    "export": false,
+    "importPath": "@ignavia/util/src/Cloneable.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 53,
+    "undocument": true,
+    "params": [
+      {
+        "name": "p",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 7,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "clonePrimitive",
+    "memberof": "src/Cloneable.js",
+    "longname": "src/Cloneable.js~clonePrimitive",
+    "access": null,
+    "export": false,
+    "importPath": "@ignavia/util/src/Cloneable.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 57,
+    "undocument": true,
+    "params": [
+      {
+        "name": "primitive",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 8,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "isDate",
+    "memberof": "src/Cloneable.js",
+    "longname": "src/Cloneable.js~isDate",
+    "access": null,
+    "export": false,
+    "importPath": "@ignavia/util/src/Cloneable.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 61,
+    "undocument": true,
+    "params": [
+      {
+        "name": "p",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 9,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "cloneDate",
+    "memberof": "src/Cloneable.js",
+    "longname": "src/Cloneable.js~cloneDate",
+    "access": null,
+    "export": false,
+    "importPath": "@ignavia/util/src/Cloneable.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 65,
+    "undocument": true,
+    "params": [
+      {
+        "name": "date",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 10,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "isArray",
+    "memberof": "src/Cloneable.js",
+    "longname": "src/Cloneable.js~isArray",
+    "access": null,
+    "export": false,
+    "importPath": "@ignavia/util/src/Cloneable.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 71,
+    "undocument": true,
+    "params": [
+      {
+        "name": "p",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 11,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "cloneArray",
+    "memberof": "src/Cloneable.js",
+    "longname": "src/Cloneable.js~cloneArray",
+    "access": null,
+    "export": false,
+    "importPath": "@ignavia/util/src/Cloneable.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 75,
+    "undocument": true,
+    "params": [
+      {
+        "name": "arr",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 12,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "isObject",
+    "memberof": "src/Cloneable.js",
+    "longname": "src/Cloneable.js~isObject",
+    "access": null,
+    "export": false,
+    "importPath": "@ignavia/util/src/Cloneable.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 84,
+    "undocument": true,
+    "params": [
+      {
+        "name": "p",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 13,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "cloneObject",
+    "memberof": "src/Cloneable.js",
+    "longname": "src/Cloneable.js~cloneObject",
+    "access": null,
+    "export": false,
+    "importPath": "@ignavia/util/src/Cloneable.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 88,
+    "undocument": true,
+    "params": [
+      {
+        "name": "obj",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 14,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "isCloneable",
+    "memberof": "src/Cloneable.js",
+    "longname": "src/Cloneable.js~isCloneable",
+    "access": null,
+    "export": false,
+    "importPath": "@ignavia/util/src/Cloneable.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 97,
+    "undocument": true,
+    "params": [
+      {
+        "name": "p",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 15,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "cloneCloneable",
+    "memberof": "src/Cloneable.js",
+    "longname": "src/Cloneable.js~cloneCloneable",
+    "access": null,
+    "export": false,
+    "importPath": "@ignavia/util/src/Cloneable.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 101,
+    "undocument": true,
+    "params": [
+      {
+        "name": "cloneable",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 16,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/Color.js",
+    "memberof": null,
+    "longname": "src/Color.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "content": "/**\r\n * Represents a color.\r\n */\r\nexport default class Color {\r\n\r\n    /**\r\n     * Converts an RGBA color value to a Color object.\r\n     *\r\n     * @param {Number} r\r\n     * The red channel. This is an integer in the range [0, 255].\r\n     *\r\n     * @param {Number} g\r\n     * The green channel. This is an integer in the range [0, 255].\r\n     *\r\n     * @param {Number} b\r\n     * The blue channel. This is an integer in the range [0, 255].\r\n     *\r\n     * @param {Number} a\r\n     * The alpha value. This is a number in the range [0, 1]. 0 represents full\r\n     * transparency and 1 is full opacity.\r\n     *\r\n     * @return {Color}\r\n     * The generated Color object.\r\n     */\r\n    static fromRGBA(r, g, b, a = 1) {\r\n        const hex = (r << 8 | g) << 8 | b;\r\n        return new Color(hex, a);\r\n    }\r\n\r\n    /**\r\n     * Converts an HSLA color value to a Color object.\r\n     *\r\n     * @param {Number} h\r\n     * The hue. This is a number in the range [0, 360).\r\n     *\r\n     * @param {Number} s\r\n     * The saturation. This is a number in the range [0, 1].\r\n     *\r\n     * @param {Number} l\r\n     * The lightness. This is a number in the range [0, 1].\r\n     *\r\n     * @param {Number} a\r\n     * The alpha value. This is a number in the range [0, 1]. 0 represents full\r\n     * transparency and 1 is full opacity.\r\n     *\r\n     * @return {Color}\r\n     * The generated Color object.\r\n     */\r\n    static fromHSLA(h, s, l, a){\r\n        h /= 360;\r\n\r\n        let r, g, b;\r\n\r\n        if (s === 0) {\r\n            r = g = b = l;\r\n        } else {\r\n            const m2 = l <= 0.5 ? l * (s + 1) : l + s - l * s,\r\n                  m1 = l * 2 - m2;\r\n            r  = Color.hueToRGB(m1, m2, h + 1/3);\r\n            g  = Color.hueToRGB(m1, m2, h      );\r\n            b  = Color.hueToRGB(m1, m2, h - 1/3);\r\n        }\r\n\r\n        r = Math.round(r * 255);\r\n        g = Math.round(g * 255);\r\n        b = Math.round(b * 255);\r\n\r\n        const hex = (r << 8 | g) << 8 | b;\r\n        return new Color(hex, a);\r\n    }\r\n\r\n    /**\r\n     * A helper function for the conversion from HSL to RGB.\r\n     *\r\n     * @private\r\n     */\r\n    static hueToRGB(m1, m2, h) {\r\n        if (h < 0)   h += 1;\r\n        if (h > 1)   h -= 1;\r\n        if (h < 1/6) return m1 + (m2 - m1) * 6 * h;\r\n        if (h < 1/2) return m2;\r\n        if (h < 2/3) return m1 + (m2 - m1) * (2/3 - h) * 6;\r\n        return m1;\r\n    }\r\n\r\n    /**\r\n     * @param {Number} hex\r\n     * The hex value.\r\n     *\r\n     * @param  {Number} [alpha=1]\r\n     * The alpha value.\r\n     */\r\n    constructor(hex, alpha = 1) {\r\n\r\n        /**\r\n         * The hex value of this color.\r\n         *\r\n         * @type {Number}\r\n         */\r\n        this.hex = hex;\r\n\r\n        /**\r\n         * The alpha value of this color. This is a number in the range [0, 1].\r\n         * 0 represents full transparency and 1 is full opacity.\r\n         *\r\n         * @type {Number}\r\n         */\r\n        this.alpha = alpha;\r\n    }\r\n\r\n    /**\r\n     * Converts this Color object to RGBA.\r\n     *\r\n     * @return {Object}\r\n     * An RGBA representation of this color. The resulting object has the three\r\n     * properties r, g and b for the red, green and blue channel respectively.\r\n     * Those are integers in the range [0, 255]. It also has an a property for\r\n     * the alpha value. This is a number in the range [0, 1]. 0 represents full\r\n     * transparency and 1 is full opacity.\r\n     */\r\n    toRGBA() {\r\n        const r = this.hex >> 16 & 255,\r\n              g = this.hex >> 8  & 255,\r\n              b = this.hex       & 255;\r\n        return {r, g, b, a: this.alpha};\r\n    }\r\n\r\n    /**\r\n     * Converts this Color object to HSLA.\r\n     *\r\n     * @return {Object}\r\n     * An HSLA representation of this color. The resulting object has the three\r\n     * properties h, s and l for the hue, saturation and lightness respectively.\r\n     * The hue is a number in the range [0, 360) and saturation and lightness\r\n     * are in the range [0, 1]. It also has an a property for the alpha value.\r\n     * This is a number in the range [0, 1]. 0 represents full transparency and\r\n     * 1 is full opacity.\r\n     */\r\n    toHSLA() {\r\n        const r   = (this.hex >> 16 & 255) / 255,\r\n              g   = (this.hex >> 8  & 255) / 255,\r\n              b   = (this.hex       & 255) / 255,\r\n              max = Math.max(r, g, b),\r\n              min = Math.min(r, g, b);\r\n\r\n        let h, s, l;\r\n\r\n        l = (max + min) / 2;\r\n\r\n        if (max === min) {\r\n            h = s = 0;\r\n        } else {\r\n            const d = max - min;\r\n            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);\r\n            switch (max) {\r\n            case r: h = (g - b) / d + (g < b ? 6 : 0); break;\r\n            case g: h = (b - r) / d + 2;               break;\r\n            case b: h = (r - g) / d + 4;               break;\r\n            }\r\n            h /= 6;\r\n        }\r\n\r\n        return {h, s, l, a: this.alpha};\r\n    }\r\n\r\n    /**\r\n     * Returns a textual representation of this color.\r\n     *\r\n     * @return {String}\r\n     * A textual representation of this color.\r\n     */\r\n    toString() {\r\n        `#${this.hex.toString(16)}`;\r\n    }\r\n}\r\n\r\nexport const predefinedColors = {\r\n    black:                new Color(0x000000),\r\n    silver:               new Color(0xc0c0c0),\r\n    gray:                 new Color(0x808080),\r\n    white:                new Color(0xffffff),\r\n    maroon:               new Color(0x800000),\r\n    red:                  new Color(0xff0000),\r\n    purple:               new Color(0x800080),\r\n    fuchsia:              new Color(0xff00ff),\r\n    green:                new Color(0x008000),\r\n    lime:                 new Color(0x00ff00),\r\n    olive:                new Color(0x808000),\r\n    yellow:               new Color(0xffff00),\r\n    navy:                 new Color(0x000080),\r\n    blue:                 new Color(0x0000ff),\r\n    teal:                 new Color(0x008080),\r\n    aqua:                 new Color(0x00ffff),\r\n    orange:               new Color(0xffa500),\r\n    aliceblue:            new Color(0xf0f8ff),\r\n    antiquewhite:         new Color(0xfaebd7),\r\n    aquamarine:           new Color(0x7fffd4),\r\n    azure:                new Color(0xf0ffff),\r\n    beige:                new Color(0xf5f5dc),\r\n    bisque:               new Color(0xffe4c4),\r\n    blanchedalmond:       new Color(0xffe4c4),\r\n    blueviolet:           new Color(0x8a2be2),\r\n    brown:                new Color(0xa52a2a),\r\n    burlywood:            new Color(0xdeb887),\r\n    cadetblue:            new Color(0x5f9ea0),\r\n    chartreuse:           new Color(0x7fff00),\r\n    chocolate:            new Color(0xd2691e),\r\n    coral:                new Color(0xff7f50),\r\n    cornflowerblue:       new Color(0x6495ed),\r\n    cornsilk:             new Color(0xfff8dc),\r\n    crimson:              new Color(0xdc143c),\r\n    darkblue:             new Color(0x00008b),\r\n    darkcyan:             new Color(0x008b8b),\r\n    darkgoldenrod:        new Color(0xb8860b),\r\n    darkgray:             new Color(0xa9a9a9),\r\n    darkgreen:            new Color(0x006400),\r\n    darkgrey:             new Color(0xa9a9a9),\r\n    darkkhaki:            new Color(0xbdb76b),\r\n    darkmagenta:          new Color(0x8b008b),\r\n    darkolivegreen:       new Color(0x556b2f),\r\n    darkorange:           new Color(0xff8c00),\r\n    darkorchid:           new Color(0x9932cc),\r\n    darkred:              new Color(0x8b0000),\r\n    darksalmon:           new Color(0xe9967a),\r\n    darkseagreen:         new Color(0x8fbc8f),\r\n    darkslateblue:        new Color(0x483d8b),\r\n    darkslategray:        new Color(0x2f4f4f),\r\n    darkslategrey:        new Color(0x2f4f4f),\r\n    darkturquoise:        new Color(0x00ced1),\r\n    darkviolet:           new Color(0x9400d3),\r\n    deeppink:             new Color(0xff1493),\r\n    deepskyblue:          new Color(0x00bfff),\r\n    dimgray:              new Color(0x696969),\r\n    dimgrey:              new Color(0x696969),\r\n    dodgerblue:           new Color(0x1e90ff),\r\n    firebrick:            new Color(0xb22222),\r\n    floralwhite:          new Color(0xfffaf0),\r\n    forestgreen:          new Color(0x228b22),\r\n    gainsboro:            new Color(0xdcdcdc),\r\n    ghostwhite:           new Color(0xf8f8ff),\r\n    gold:                 new Color(0xffd700),\r\n    goldenrod:            new Color(0xdaa520),\r\n    greenyellow:          new Color(0xadff2f),\r\n    grey:                 new Color(0x808080),\r\n    honeydew:             new Color(0xf0fff0),\r\n    hotpink:              new Color(0xff69b4),\r\n    indianred:            new Color(0xcd5c5c),\r\n    indigo:               new Color(0x4b0082),\r\n    ivory:                new Color(0xfffff0),\r\n    khaki:                new Color(0xf0e68c),\r\n    lavender:             new Color(0xe6e6fa),\r\n    lavenderblush:        new Color(0xfff0f5),\r\n    lawngreen:            new Color(0x7cfc00),\r\n    lemonchiffon:         new Color(0xfffacd),\r\n    lightblue:            new Color(0xadd8e6),\r\n    lightcoral:           new Color(0xf08080),\r\n    lightcyan:            new Color(0xe0ffff),\r\n    lightgoldenrodyellow: new Color(0xfafad2),\r\n    lightgray:            new Color(0xd3d3d3),\r\n    lightgreen:           new Color(0x90ee90),\r\n    lightgrey:            new Color(0xd3d3d3),\r\n    lightpink:            new Color(0xffb6c1),\r\n    lightsalmon:          new Color(0xffa07a),\r\n    lightseagreen:        new Color(0x20b2aa),\r\n    lightskyblue:         new Color(0x87cefa),\r\n    lightslategray:       new Color(0x778899),\r\n    lightslategrey:       new Color(0x778899),\r\n    lightsteelblue:       new Color(0xb0c4de),\r\n    lightyellow:          new Color(0xffffe0),\r\n    limegreen:            new Color(0x32cd32),\r\n    linen:                new Color(0xfaf0e6),\r\n    mediumaquamarine:     new Color(0x66cdaa),\r\n    mediumblue:           new Color(0x0000cd),\r\n    mediumorchid:         new Color(0xba55d3),\r\n    mediumpurple:         new Color(0x9370db),\r\n    mediumseagreen:       new Color(0x3cb371),\r\n    mediumslateblue:      new Color(0x7b68ee),\r\n    mediumspringgreen:    new Color(0x00fa9a),\r\n    mediumturquoise:      new Color(0x48d1cc),\r\n    mediumvioletred:      new Color(0xc71585),\r\n    midnightblue:         new Color(0x191970),\r\n    mintcream:            new Color(0xf5fffa),\r\n    mistyrose:            new Color(0xffe4e1),\r\n    moccasin:             new Color(0xffe4b5),\r\n    navajowhite:          new Color(0xffdead),\r\n    oldlace:              new Color(0xfdf5e6),\r\n    olivedrab:            new Color(0x6b8e23),\r\n    orangered:            new Color(0xff4500),\r\n    orchid:               new Color(0xda70d6),\r\n    palegoldenrod:        new Color(0xeee8aa),\r\n    palegreen:            new Color(0x98fb98),\r\n    paleturquoise:        new Color(0xafeeee),\r\n    palevioletred:        new Color(0xdb7093),\r\n    papayawhip:           new Color(0xffefd5),\r\n    peachpuff:            new Color(0xffdab9),\r\n    peru:                 new Color(0xcd853f),\r\n    pink:                 new Color(0xffc0cb),\r\n    plum:                 new Color(0xdda0dd),\r\n    powderblue:           new Color(0xb0e0e6),\r\n    rosybrown:            new Color(0xbc8f8f),\r\n    royalblue:            new Color(0x4169e1),\r\n    saddlebrown:          new Color(0x8b4513),\r\n    salmon:               new Color(0xfa8072),\r\n    sandybrown:           new Color(0xf4a460),\r\n    seagreen:             new Color(0x2e8b57),\r\n    seashell:             new Color(0xfff5ee),\r\n    sienna:               new Color(0xa0522d),\r\n    skyblue:              new Color(0x87ceeb),\r\n    slateblue:            new Color(0x6a5acd),\r\n    slategray:            new Color(0x708090),\r\n    slategrey:            new Color(0x708090),\r\n    snow:                 new Color(0xfffafa),\r\n    springgreen:          new Color(0x00ff7f),\r\n    steelblue:            new Color(0x4682b4),\r\n    tan:                  new Color(0xd2b48c),\r\n    thistle:              new Color(0xd8bfd8),\r\n    tomato:               new Color(0xff6347),\r\n    turquoise:            new Color(0x40e0d0),\r\n    violet:               new Color(0xee82ee),\r\n    wheat:                new Color(0xf5deb3),\r\n    whitesmoke:           new Color(0xf5f5f5),\r\n    yellowgreen:          new Color(0x9acd32),\r\n    transparent:          new Color(0x000000, 0)\r\n};\r\n"
+  },
+  {
+    "__docId__": 17,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Color",
+    "memberof": "src/Color.js",
+    "longname": "src/Color.js~Color",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/Color.js",
+    "importStyle": "Color",
+    "description": "Represents a color.",
+    "lineNumber": 4,
+    "interface": false
+  },
+  {
+    "__docId__": 18,
+    "kind": "method",
+    "static": true,
+    "variation": null,
+    "name": "fromRGBA",
+    "memberof": "src/Color.js~Color",
+    "longname": "src/Color.js~Color.fromRGBA",
+    "access": null,
+    "description": "Converts an RGBA color value to a Color object.",
+    "lineNumber": 25,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "r",
+        "description": "The red channel. This is an integer in the range [0, 255]."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "g",
+        "description": "The green channel. This is an integer in the range [0, 255]."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "b",
+        "description": "The blue channel. This is an integer in the range [0, 255]."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "a",
+        "description": "The alpha value. This is a number in the range [0, 1]. 0 represents full\ntransparency and 1 is full opacity."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Color"
+      ],
+      "spread": false,
+      "description": "The generated Color object."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 19,
+    "kind": "method",
+    "static": true,
+    "variation": null,
+    "name": "fromHSLA",
+    "memberof": "src/Color.js~Color",
+    "longname": "src/Color.js~Color.fromHSLA",
+    "access": null,
+    "description": "Converts an HSLA color value to a Color object.",
+    "lineNumber": 49,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "h",
+        "description": "The hue. This is a number in the range [0, 360)."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "s",
+        "description": "The saturation. This is a number in the range [0, 1]."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "l",
+        "description": "The lightness. This is a number in the range [0, 1]."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "a",
+        "description": "The alpha value. This is a number in the range [0, 1]. 0 represents full\ntransparency and 1 is full opacity."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Color"
+      ],
+      "spread": false,
+      "description": "The generated Color object."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 20,
+    "kind": "method",
+    "static": true,
+    "variation": null,
+    "name": "hueToRGB",
+    "memberof": "src/Color.js~Color",
+    "longname": "src/Color.js~Color.hueToRGB",
+    "access": "private",
+    "description": "A helper function for the conversion from HSL to RGB.",
+    "lineNumber": 77,
+    "params": [
+      {
+        "name": "m1",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "m2",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "h",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 21,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/Color.js~Color",
+    "longname": "src/Color.js~Color#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 93,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hex",
+        "description": "The hex value."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "1",
+        "defaultRaw": 1,
+        "name": "alpha",
+        "description": "The alpha value."
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 22,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "hex",
+    "memberof": "src/Color.js~Color",
+    "longname": "src/Color.js~Color#hex",
+    "access": null,
+    "description": "The hex value of this color.",
+    "lineNumber": 100,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 23,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "alpha",
+    "memberof": "src/Color.js~Color",
+    "longname": "src/Color.js~Color#alpha",
+    "access": null,
+    "description": "The alpha value of this color. This is a number in the range [0, 1].\n0 represents full transparency and 1 is full opacity.",
+    "lineNumber": 108,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 24,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "toRGBA",
+    "memberof": "src/Color.js~Color",
+    "longname": "src/Color.js~Color#toRGBA",
+    "access": null,
+    "description": "Converts this Color object to RGBA.",
+    "lineNumber": 121,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": "An RGBA representation of this color. The resulting object has the three\nproperties r, g and b for the red, green and blue channel respectively.\nThose are integers in the range [0, 255]. It also has an a property for\nthe alpha value. This is a number in the range [0, 1]. 0 represents full\ntransparency and 1 is full opacity."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 25,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "toHSLA",
+    "memberof": "src/Color.js~Color",
+    "longname": "src/Color.js~Color#toHSLA",
+    "access": null,
+    "description": "Converts this Color object to HSLA.",
+    "lineNumber": 139,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": "An HSLA representation of this color. The resulting object has the three\nproperties h, s and l for the hue, saturation and lightness respectively.\nThe hue is a number in the range [0, 360) and saturation and lightness\nare in the range [0, 1]. It also has an a property for the alpha value.\nThis is a number in the range [0, 1]. 0 represents full transparency and\n1 is full opacity."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 26,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "toString",
+    "memberof": "src/Color.js~Color",
+    "longname": "src/Color.js~Color#toString",
+    "access": null,
+    "description": "Returns a textual representation of this color.",
+    "lineNumber": 172,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": "A textual representation of this color."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 27,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "predefinedColors",
+    "memberof": "src/Color.js",
+    "longname": "src/Color.js~predefinedColors",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/Color.js",
+    "importStyle": "{predefinedColors}",
+    "description": null,
+    "lineNumber": 177,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 28,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/Event.js",
+    "memberof": null,
+    "longname": "src/Event.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "content": "/**\r\n * An event that can be fired and then catched by listeners.\r\n */\r\nexport default class Event {\r\n\r\n    /**\r\n     * @param {Object} source\r\n     * The object firing this event.\r\n     *\r\n     * @param {String} type\r\n     * The type of this event.\r\n     *\r\n     * @param {*} [data]\r\n     * Any additional data to associate with this event.\r\n     */\r\n    constructor(source, type, data) {\r\n\r\n        /**\r\n         * The object firing this event.\r\n         *\r\n         * @type {Object}\r\n         */\r\n        this.source = source;\r\n\r\n        /**\r\n         * The type of this event.\r\n         *\r\n         * @type {String}\r\n         */\r\n        this.type = type;\r\n\r\n        /**\r\n         * Any additional data to associate with this event.\r\n         *\r\n         * @type {*}\r\n         */\r\n        this.data = data;\r\n    }\r\n}\r\n"
+  },
+  {
+    "__docId__": 29,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Event",
+    "memberof": "src/Event.js",
+    "longname": "src/Event.js~Event",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/Event.js",
+    "importStyle": "Event",
+    "description": "An event that can be fired and then catched by listeners.",
+    "lineNumber": 4,
+    "interface": false
+  },
+  {
+    "__docId__": 30,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/Event.js~Event",
+    "longname": "src/Event.js~Event#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "source",
+        "description": "The object firing this event."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "type",
+        "description": "The type of this event."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "data",
+        "description": "Any additional data to associate with this event."
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 31,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "source",
+    "memberof": "src/Event.js~Event",
+    "longname": "src/Event.js~Event#source",
+    "access": null,
+    "description": "The object firing this event.",
+    "lineNumber": 23,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 32,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "type",
+    "memberof": "src/Event.js~Event",
+    "longname": "src/Event.js~Event#type",
+    "access": null,
+    "description": "The type of this event.",
+    "lineNumber": 30,
+    "type": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 33,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "data",
+    "memberof": "src/Event.js~Event",
+    "longname": "src/Event.js~Event#data",
+    "access": null,
+    "description": "Any additional data to associate with this event.",
+    "lineNumber": 37,
+    "type": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 34,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/EventManager.js",
+    "memberof": null,
+    "longname": "src/EventManager.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Event from \"./Event.js\";\r\n\r\n/**\r\n * A helper class that can manage events and event listeners for other objects.\r\n * If you want to hide that you are using this class, you can use the provided\r\n * {@link observableMixin}.\r\n *\r\n * @implements {Observable}\r\n */\r\nexport default class EventManager {\r\n\r\n    /**\r\n     * A factory method for {@link Event} objects.\r\n     *\r\n     * @param {Object} source\r\n     * The object firing this event.\r\n     *\r\n     * @param {String} type\r\n     * The type of this event.\r\n     *\r\n     * @param {*} data\r\n     * Any additional data to associate with this event.\r\n     *\r\n     * @return {Event}\r\n     * The new Event object.\r\n     */\r\n    static makeEvent(source, type, data) {\r\n        return new Event(source, type, data);\r\n    }\r\n\r\n    /**\r\n     *\r\n     */\r\n    constructor() {\r\n\r\n        /**\r\n         * The registered listeners ordered by event type.\r\n         *\r\n         * @type {Map<String, Function[]>}\r\n         */\r\n        this.listeners = new Map();\r\n    }\r\n\r\n    /**\r\n     * Adds an event listener to this event manager.\r\n     *\r\n     * @param {String|Iterator<String>} types\r\n     * The types of events the function should listen to.\r\n     *\r\n     * @param {Function} f\r\n     * The function that should be executed when the event fires.\r\n     *\r\n     * @param {Object} [context]\r\n     * The object this should refer to inside f.\r\n     *\r\n     * @return {EventManager}\r\n     * This event manager to make the method chainable.\r\n     */\r\n    addListener(types, f, context) {\r\n        if (typeof types === \"string\") {\r\n            types = [types];\r\n        }\r\n        if (context) {\r\n            f = f.bind(context);\r\n        }\r\n\r\n        for (let type of types) {\r\n            if (!this.listeners.has(type)) {\r\n                this.listeners.set(type, []);\r\n            }\r\n            this.listeners.get(type).push(f);\r\n        }\r\n\r\n        return this;\r\n    }\r\n\r\n    /**\r\n     * Notifies all listeners that are interested in the given event.\r\n     *\r\n     * @param {Event} e\r\n     * The event to fire.\r\n     *\r\n     * @return {EventManager}\r\n     * This event manager to make the method chainable.\r\n     */\r\n    fireEvent(e) {\r\n        const listeners = this.listeners.get(e.type) || [];\r\n        for (let f of listeners) {\r\n            f(e);\r\n        }\r\n        return this;\r\n    }\r\n}\r\n"
+  },
+  {
+    "__docId__": 35,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "EventManager",
+    "memberof": "src/EventManager.js",
+    "longname": "src/EventManager.js~EventManager",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/EventManager.js",
+    "importStyle": "EventManager",
+    "description": "A helper class that can manage events and event listeners for other objects.\nIf you want to hide that you are using this class, you can use the provided\n{@link observableMixin}.",
+    "lineNumber": 10,
+    "interface": false,
+    "implements": [
+      "Observable"
+    ]
+  },
+  {
+    "__docId__": 36,
+    "kind": "method",
+    "static": true,
+    "variation": null,
+    "name": "makeEvent",
+    "memberof": "src/EventManager.js~EventManager",
+    "longname": "src/EventManager.js~EventManager.makeEvent",
+    "access": null,
+    "description": "A factory method for {@link Event} objects.",
+    "lineNumber": 27,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "source",
+        "description": "The object firing this event."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "type",
+        "description": "The type of this event."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": "Any additional data to associate with this event."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Event"
+      ],
+      "spread": false,
+      "description": "The new Event object."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 37,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/EventManager.js~EventManager",
+    "longname": "src/EventManager.js~EventManager#constructor",
+    "access": null,
+    "description": "",
+    "lineNumber": 34,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 38,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "listeners",
+    "memberof": "src/EventManager.js~EventManager",
+    "longname": "src/EventManager.js~EventManager#listeners",
+    "access": null,
+    "description": "The registered listeners ordered by event type.",
+    "lineNumber": 41,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Map<String, Function[]>"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 39,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addListener",
+    "memberof": "src/EventManager.js~EventManager",
+    "longname": "src/EventManager.js~EventManager#addListener",
+    "access": null,
+    "description": "Adds an event listener to this event manager.",
+    "lineNumber": 59,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String",
+          "Iterator<String>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "types",
+        "description": "The types of events the function should listen to."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "f",
+        "description": "The function that should be executed when the event fires."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "context",
+        "description": "The object this should refer to inside f."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "EventManager"
+      ],
+      "spread": false,
+      "description": "This event manager to make the method chainable."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 40,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "fireEvent",
+    "memberof": "src/EventManager.js~EventManager",
+    "longname": "src/EventManager.js~EventManager#fireEvent",
+    "access": null,
+    "description": "Notifies all listeners that are interested in the given event.",
+    "lineNumber": 86,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "e",
+        "description": "The event to fire."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "EventManager"
+      ],
+      "spread": false,
+      "description": "This event manager to make the method chainable."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 41,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/Extensible.js",
+    "memberof": null,
+    "longname": "src/Extensible.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "content": "/**\r\n * An interface for every object that can be extended by plugins.\r\n *\r\n * @interface\r\n */\r\nexport default class Extensible {\r\n\r\n    /**\r\n     * Adds the given method to this object.\r\n     *\r\n     * @param {String|Symbol} name\r\n     * The name of the new method.\r\n     *\r\n     * @param {Function} f\r\n     * The method to add.\r\n     *\r\n     * @param {Object} [context]\r\n     * The object this should refer to inside f.\r\n     *\r\n     * @return {Object}\r\n     * This object to make the method chainable.\r\n     *\r\n     * @abstract\r\n     */\r\n    addMethod(name, f, context) {}\r\n\r\n    /**\r\n     * Adds the given plugins to this object by calling the register method on\r\n     * each plugin and passing this object as an argument.\r\n     *\r\n     * @param {Plugin|Iterator<Plugin>} plugins\r\n     * The plugins to add.\r\n     *\r\n     * @return {Object}\r\n     * This object to make the method chainable.\r\n     *\r\n     * @abstract\r\n     */\r\n    addPlugins(plugins) {}\r\n}\r\n\r\n/**\r\n * This is a mixin for extensible behavior.\r\n *\r\n * @type {Object}\r\n */\r\nexport const extensibleMixin = {\r\n    addMethod(name, f, context, override = false) {\r\n        if (context) {\r\n            f = f.bind(context);\r\n        }\r\n\r\n        if (!override && this[name]) {\r\n            throw new Error(`A property ${name} exists already on ${this}.`);\r\n        }\r\n        this[name] = f;\r\n        return this;\r\n    },\r\n\r\n    addPlugins(plugins) {\r\n        if (plugins instanceof Plugin) {\r\n            plugins = [plugins];\r\n        }\r\n\r\n        for (let plugin of plugins) {\r\n            plugin.register(this);\r\n        }\r\n\r\n        return this;\r\n    }\r\n};\r\n"
+  },
+  {
+    "__docId__": 42,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Extensible",
+    "memberof": "src/Extensible.js",
+    "longname": "src/Extensible.js~Extensible",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/Extensible.js",
+    "importStyle": "Extensible",
+    "description": "An interface for every object that can be extended by plugins.",
+    "lineNumber": 6,
+    "interface": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addMethod",
+    "memberof": "src/Extensible.js~Extensible",
+    "longname": "src/Extensible.js~Extensible#addMethod",
+    "access": null,
+    "description": "Adds the given method to this object.",
+    "lineNumber": 25,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String",
+          "Symbol"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "The name of the new method."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "f",
+        "description": "The method to add."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "context",
+        "description": "The object this should refer to inside f."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": "This object to make the method chainable."
+    },
+    "abstract": true,
+    "generator": false
+  },
+  {
+    "__docId__": 44,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addPlugins",
+    "memberof": "src/Extensible.js~Extensible",
+    "longname": "src/Extensible.js~Extensible#addPlugins",
+    "access": null,
+    "description": "Adds the given plugins to this object by calling the register method on\neach plugin and passing this object as an argument.",
+    "lineNumber": 39,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Plugin",
+          "Iterator<Plugin>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "plugins",
+        "description": "The plugins to add."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": "This object to make the method chainable."
+    },
+    "abstract": true,
+    "generator": false
+  },
+  {
+    "__docId__": 45,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "extensibleMixin",
+    "memberof": "src/Extensible.js",
+    "longname": "src/Extensible.js~extensibleMixin",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/Extensible.js",
+    "importStyle": "{extensibleMixin}",
+    "description": "This is a mixin for extensible behavior.",
+    "lineNumber": 47,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 46,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/IDGenerator.js",
+    "memberof": null,
+    "longname": "src/IDGenerator.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "content": "/**\r\n * A class to generate IDs.\r\n */\r\nexport default class IDGenerator {\r\n\r\n    /**\r\n     * @param {String} [prefix=\"\"]\r\n     * The prefix IDs should use.\r\n     */\r\n    constructor(prefix = \"\") {\r\n\r\n        /**\r\n         * The prefix IDs should use.\r\n         *\r\n         * @type {String}\r\n         */\r\n        this.prefix = prefix;\r\n\r\n        /**\r\n         * An automatically incremented counter used to generate IDs.\r\n         *\r\n         * @type {Number}\r\n         * @private\r\n         */\r\n        this.counter = 0;\r\n    }\r\n\r\n    /**\r\n     * Returns an ID.\r\n     *\r\n     * @return {String}\r\n     * An ID.\r\n     */\r\n    next() {\r\n        return this.prefix + (this.counter++);\r\n    }\r\n}\r\n"
+  },
+  {
+    "__docId__": 47,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "IDGenerator",
+    "memberof": "src/IDGenerator.js",
+    "longname": "src/IDGenerator.js~IDGenerator",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/IDGenerator.js",
+    "importStyle": "IDGenerator",
+    "description": "A class to generate IDs.",
+    "lineNumber": 4,
+    "interface": false
+  },
+  {
+    "__docId__": 48,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/IDGenerator.js~IDGenerator",
+    "longname": "src/IDGenerator.js~IDGenerator#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "\"\"",
+        "defaultRaw": "",
+        "name": "prefix",
+        "description": "The prefix IDs should use."
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 49,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "prefix",
+    "memberof": "src/IDGenerator.js~IDGenerator",
+    "longname": "src/IDGenerator.js~IDGenerator#prefix",
+    "access": null,
+    "description": "The prefix IDs should use.",
+    "lineNumber": 17,
+    "type": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 50,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "counter",
+    "memberof": "src/IDGenerator.js~IDGenerator",
+    "longname": "src/IDGenerator.js~IDGenerator#counter",
+    "access": "private",
+    "description": "An automatically incremented counter used to generate IDs.",
+    "lineNumber": 25,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 51,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "next",
+    "memberof": "src/IDGenerator.js~IDGenerator",
+    "longname": "src/IDGenerator.js~IDGenerator#next",
+    "access": null,
+    "description": "Returns an ID.",
+    "lineNumber": 34,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": "An ID."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 52,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/Observable.js",
+    "memberof": null,
+    "longname": "src/Observable.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import EventManager from \"./EventManager.js\";\r\n\r\n/**\r\n * An interface for every object that allows listeners to be attached to it.\r\n *\r\n * @interface\r\n */\r\nexport default class Observable {\r\n\r\n    /**\r\n     * Adds an event listener to this object.\r\n     *\r\n     * @param {String|Iterator<String>} types\r\n     * The types of events the function should listen to.\r\n     *\r\n     * @param {Function} f\r\n     * The function that should be executed when the event fires.\r\n     *\r\n     * @param {Object} [context]\r\n     * The object this should refer to inside f.\r\n     *\r\n     * @return {Object}\r\n     * This object to make the method chainable.\r\n     *\r\n     * @abstract\r\n     */\r\n    addListener(types, f, context) {}\r\n}\r\n\r\n/**\r\n * This is a mixin for observable behavior if an {@link EventManager} is used.\r\n * Several assumptions are made: The event manager must be reachable by\r\n * this.eventManager and the EventManager class must be imported under this\r\n * exact name. This mixin can be used to facade the use of an EventManager.\r\n *\r\n * @type {Object}\r\n */\r\nexport const observableMixin = {\r\n    addListener(types, f, context) {\r\n        this.eventManager.addListener(types, f, context);\r\n        return this;\r\n    },\r\n\r\n    fireEvent(type, data) {\r\n        const e = EventManager.makeEvent(this, type, data);\r\n        this.eventManager.fireEvent(e);\r\n    },\r\n\r\n    bubbleEvent(e, newType) {\r\n        if (newType) {\r\n            e = EventManager.makeEvent(e.source, newType, e.data);\r\n        }\r\n        this.eventManager.fireEvent(e);\r\n    }\r\n};\r\n"
+  },
+  {
+    "__docId__": 53,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Observable",
+    "memberof": "src/Observable.js",
+    "longname": "src/Observable.js~Observable",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/Observable.js",
+    "importStyle": "Observable",
+    "description": "An interface for every object that allows listeners to be attached to it.",
+    "lineNumber": 8,
+    "interface": true
+  },
+  {
+    "__docId__": 54,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addListener",
+    "memberof": "src/Observable.js~Observable",
+    "longname": "src/Observable.js~Observable#addListener",
+    "access": null,
+    "description": "Adds an event listener to this object.",
+    "lineNumber": 27,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String",
+          "Iterator<String>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "types",
+        "description": "The types of events the function should listen to."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "f",
+        "description": "The function that should be executed when the event fires."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "context",
+        "description": "The object this should refer to inside f."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": "This object to make the method chainable."
+    },
+    "abstract": true,
+    "generator": false
+  },
+  {
+    "__docId__": 55,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "observableMixin",
+    "memberof": "src/Observable.js",
+    "longname": "src/Observable.js~observableMixin",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/Observable.js",
+    "importStyle": "{observableMixin}",
+    "description": "This is a mixin for observable behavior if an {@link EventManager} is used.\nSeveral assumptions are made: The event manager must be reachable by\nthis.eventManager and the EventManager class must be imported under this\nexact name. This mixin can be used to facade the use of an EventManager.",
+    "lineNumber": 38,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/Plugin.js",
+    "memberof": null,
+    "longname": "src/Plugin.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "content": "/**\r\n * A base class for plugins.\r\n *\r\n * @implements {Cloneable}\r\n */\r\nexport default class Plugin {\r\n\r\n    /**\r\n     * Adds this plugin to the given object.\r\n     *\r\n     * @param {Object} o\r\n     * The object this plugin should be added to.\r\n     *\r\n     * @abstract\r\n     */\r\n    register(o) {}\r\n\r\n    /**\r\n     * Returns a copy of this plugin. For indexes you usually do not want to\r\n     * copy its internal data structures but just the configuration so it can be\r\n     * added to a new object. By default this method returns this plugin.\r\n     *\r\n     * @return {Plugin}\r\n     * This object.\r\n     */\r\n    clone() {\r\n        return this;\r\n    }\r\n}\r\n"
+  },
+  {
+    "__docId__": 57,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Plugin",
+    "memberof": "src/Plugin.js",
+    "longname": "src/Plugin.js~Plugin",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/Plugin.js",
+    "importStyle": "Plugin",
+    "description": "A base class for plugins.",
+    "lineNumber": 6,
+    "interface": false,
+    "implements": [
+      "Cloneable"
+    ]
+  },
+  {
+    "__docId__": 58,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "register",
+    "memberof": "src/Plugin.js~Plugin",
+    "longname": "src/Plugin.js~Plugin#register",
+    "access": null,
+    "description": "Adds this plugin to the given object.",
+    "lineNumber": 16,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "o",
+        "description": "The object this plugin should be added to."
+      }
+    ],
+    "abstract": true,
+    "generator": false
+  },
+  {
+    "__docId__": 59,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clone",
+    "memberof": "src/Plugin.js~Plugin",
+    "longname": "src/Plugin.js~Plugin#clone",
+    "access": null,
+    "description": "Returns a copy of this plugin. For indexes you usually do not want to\ncopy its internal data structures but just the configuration so it can be\nadded to a new object. By default this method returns this plugin.",
+    "lineNumber": 26,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Plugin"
+      ],
+      "spread": false,
+      "description": "This object."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 60,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/util.js",
+    "memberof": null,
+    "longname": "src/util.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export {default as Cloneable, cloneableMixin}   from \"./Cloneable.js\";\r\nexport {default as Color, predefinedColors}     from \"./Color.js\";\r\nexport {default as Event}                       from \"./Event.js\";\r\nexport {default as EventManager}                from \"./EventManager.js\";\r\nexport {default as Extensible, extensibleMixin} from \"./Extensible.js\";\r\nexport {default as IDGenerator}                 from \"./IDGenerator.js\";\r\nexport {default as Observable, observableMixin} from \"./Observable.js\";\r\nexport {default as Plugin}                      from \"./Plugin.js\";\r\n"
+  },
+  {
+    "__docId__": 62,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 63,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 64,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 65,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 66,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 67,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 68,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 69,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 70,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 71,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 72,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 73,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 74,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 75,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 76,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 77,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 78,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 79,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 80,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 81,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 82,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 83,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 84,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 85,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 86,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 87,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 88,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 89,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 90,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 91,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 92,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 93,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 94,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 95,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 96,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 97,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 98,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 99,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 100,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 101,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 102,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 103,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 104,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 105,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 106,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 107,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 108,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 110,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "CanvasRenderingContext2D",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 111,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DocumentFragment",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 112,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Element",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Element",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 113,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Event",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Event",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 114,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Node",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Node",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 115,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NodeList",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 116,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "XMLHttpRequest",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 117,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "AudioContext",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~AudioContext",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  }
+]

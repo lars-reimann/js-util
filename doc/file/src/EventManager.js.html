@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/EventManager.js | RDF-Toolkit API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Color.js~Color.html">Color</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Event.js~Event.html">Event</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/IDGenerator.js~IDGenerator.html">IDGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Cloneable.js~Cloneable.html">Cloneable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Extensible.js~Extensible.html">Extensible</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Observable.js~Observable.html">Observable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneSym">cloneSym</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/EventManager.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Event from &quot;./Event.js&quot;;
+
+/**
+ * A helper class that can manage events and event listeners for other objects.
+ * If you want to hide that you are using this class, you can use the provided
+ * {@link observableMixin}.
+ *
+ * @implements {Observable}
+ */
+export default class EventManager {
+
+    /**
+     * A factory method for {@link Event} objects.
+     *
+     * @param {Object} source
+     * The object firing this event.
+     *
+     * @param {String} type
+     * The type of this event.
+     *
+     * @param {*} data
+     * Any additional data to associate with this event.
+     *
+     * @return {Event}
+     * The new Event object.
+     */
+    static makeEvent(source, type, data) {
+        return new Event(source, type, data);
+    }
+
+    /**
+     *
+     */
+    constructor() {
+
+        /**
+         * The registered listeners ordered by event type.
+         *
+         * @type {Map&lt;String, Function[]&gt;}
+         */
+        this.listeners = new Map();
+    }
+
+    /**
+     * Adds an event listener to this event manager.
+     *
+     * @param {String|Iterator&lt;String&gt;} types
+     * The types of events the function should listen to.
+     *
+     * @param {Function} f
+     * The function that should be executed when the event fires.
+     *
+     * @param {Object} [context]
+     * The object this should refer to inside f.
+     *
+     * @return {EventManager}
+     * This event manager to make the method chainable.
+     */
+    addListener(types, f, context) {
+        if (typeof types === &quot;string&quot;) {
+            types = [types];
+        }
+        if (context) {
+            f = f.bind(context);
+        }
+
+        for (let type of types) {
+            if (!this.listeners.has(type)) {
+                this.listeners.set(type, []);
+            }
+            this.listeners.get(type).push(f);
+        }
+
+        return this;
+    }
+
+    /**
+     * Notifies all listeners that are interested in the given event.
+     *
+     * @param {Event} e
+     * The event to fire.
+     *
+     * @return {EventManager}
+     * This event manager to make the method chainable.
+     */
+    fireEvent(e) {
+        const listeners = this.listeners.get(e.type) || [];
+        for (let f of listeners) {
+            f(e);
+        }
+        return this;
+    }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.3)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

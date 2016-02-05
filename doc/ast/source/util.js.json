@@ -1,0 +1,969 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Cloneable",
+            "range": [
+              19,
+              28
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 19
+              },
+              "end": {
+                "line": 1,
+                "column": 28
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "default",
+            "range": [
+              8,
+              15
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 8
+              },
+              "end": {
+                "line": 1,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            8,
+            28
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 8
+            },
+            "end": {
+              "line": 1,
+              "column": 28
+            }
+          }
+        },
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "cloneableMixin",
+            "range": [
+              30,
+              44
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 30
+              },
+              "end": {
+                "line": 1,
+                "column": 44
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "cloneableMixin",
+            "range": [
+              30,
+              44
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 30
+              },
+              "end": {
+                "line": 1,
+                "column": 44
+              }
+            }
+          },
+          "range": [
+            30,
+            44
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 30
+            },
+            "end": {
+              "line": 1,
+              "column": 44
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Cloneable.js",
+        "raw": "\"./Cloneable.js\"",
+        "range": [
+          53,
+          69
+        ],
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 53
+          },
+          "end": {
+            "line": 1,
+            "column": 69
+          }
+        }
+      },
+      "range": [
+        0,
+        70
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 70
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Color",
+            "range": [
+              91,
+              96
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 19
+              },
+              "end": {
+                "line": 2,
+                "column": 24
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "default",
+            "range": [
+              80,
+              87
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 8
+              },
+              "end": {
+                "line": 2,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            80,
+            96
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 8
+            },
+            "end": {
+              "line": 2,
+              "column": 24
+            }
+          }
+        },
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "predefinedColors",
+            "range": [
+              98,
+              114
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 26
+              },
+              "end": {
+                "line": 2,
+                "column": 42
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "predefinedColors",
+            "range": [
+              98,
+              114
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 26
+              },
+              "end": {
+                "line": 2,
+                "column": 42
+              }
+            }
+          },
+          "range": [
+            98,
+            114
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 26
+            },
+            "end": {
+              "line": 2,
+              "column": 42
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Color.js",
+        "raw": "\"./Color.js\"",
+        "range": [
+          125,
+          137
+        ],
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 53
+          },
+          "end": {
+            "line": 2,
+            "column": 65
+          }
+        }
+      },
+      "range": [
+        72,
+        138
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 66
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Event",
+            "range": [
+              159,
+              164
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 19
+              },
+              "end": {
+                "line": 3,
+                "column": 24
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "default",
+            "range": [
+              148,
+              155
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 8
+              },
+              "end": {
+                "line": 3,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            148,
+            164
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 8
+            },
+            "end": {
+              "line": 3,
+              "column": 24
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Event.js",
+        "raw": "\"./Event.js\"",
+        "range": [
+          193,
+          205
+        ],
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 53
+          },
+          "end": {
+            "line": 3,
+            "column": 65
+          }
+        }
+      },
+      "range": [
+        140,
+        206
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 66
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "EventManager",
+            "range": [
+              227,
+              239
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 19
+              },
+              "end": {
+                "line": 4,
+                "column": 31
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "default",
+            "range": [
+              216,
+              223
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 8
+              },
+              "end": {
+                "line": 4,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            216,
+            239
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 8
+            },
+            "end": {
+              "line": 4,
+              "column": 31
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./EventManager.js",
+        "raw": "\"./EventManager.js\"",
+        "range": [
+          261,
+          280
+        ],
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 53
+          },
+          "end": {
+            "line": 4,
+            "column": 72
+          }
+        }
+      },
+      "range": [
+        208,
+        281
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 73
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Extensible",
+            "range": [
+              302,
+              312
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 19
+              },
+              "end": {
+                "line": 5,
+                "column": 29
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "default",
+            "range": [
+              291,
+              298
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 8
+              },
+              "end": {
+                "line": 5,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            291,
+            312
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 8
+            },
+            "end": {
+              "line": 5,
+              "column": 29
+            }
+          }
+        },
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "extensibleMixin",
+            "range": [
+              314,
+              329
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 31
+              },
+              "end": {
+                "line": 5,
+                "column": 46
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "extensibleMixin",
+            "range": [
+              314,
+              329
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 31
+              },
+              "end": {
+                "line": 5,
+                "column": 46
+              }
+            }
+          },
+          "range": [
+            314,
+            329
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 31
+            },
+            "end": {
+              "line": 5,
+              "column": 46
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Extensible.js",
+        "raw": "\"./Extensible.js\"",
+        "range": [
+          336,
+          353
+        ],
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 53
+          },
+          "end": {
+            "line": 5,
+            "column": 70
+          }
+        }
+      },
+      "range": [
+        283,
+        354
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 71
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "IDGenerator",
+            "range": [
+              375,
+              386
+            ],
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 19
+              },
+              "end": {
+                "line": 6,
+                "column": 30
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "default",
+            "range": [
+              364,
+              371
+            ],
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 8
+              },
+              "end": {
+                "line": 6,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            364,
+            386
+          ],
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 8
+            },
+            "end": {
+              "line": 6,
+              "column": 30
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./IDGenerator.js",
+        "raw": "\"./IDGenerator.js\"",
+        "range": [
+          409,
+          427
+        ],
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 53
+          },
+          "end": {
+            "line": 6,
+            "column": 71
+          }
+        }
+      },
+      "range": [
+        356,
+        428
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 72
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Observable",
+            "range": [
+              449,
+              459
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 19
+              },
+              "end": {
+                "line": 7,
+                "column": 29
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "default",
+            "range": [
+              438,
+              445
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "line": 7,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            438,
+            459
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 8
+            },
+            "end": {
+              "line": 7,
+              "column": 29
+            }
+          }
+        },
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "observableMixin",
+            "range": [
+              461,
+              476
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 31
+              },
+              "end": {
+                "line": 7,
+                "column": 46
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "observableMixin",
+            "range": [
+              461,
+              476
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 31
+              },
+              "end": {
+                "line": 7,
+                "column": 46
+              }
+            }
+          },
+          "range": [
+            461,
+            476
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 31
+            },
+            "end": {
+              "line": 7,
+              "column": 46
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Observable.js",
+        "raw": "\"./Observable.js\"",
+        "range": [
+          483,
+          500
+        ],
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 53
+          },
+          "end": {
+            "line": 7,
+            "column": 70
+          }
+        }
+      },
+      "range": [
+        430,
+        501
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 71
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Plugin",
+            "range": [
+              522,
+              528
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 19
+              },
+              "end": {
+                "line": 8,
+                "column": 25
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "default",
+            "range": [
+              511,
+              518
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 8
+              },
+              "end": {
+                "line": 8,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            511,
+            528
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 8
+            },
+            "end": {
+              "line": 8,
+              "column": 25
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Plugin.js",
+        "raw": "\"./Plugin.js\"",
+        "range": [
+          556,
+          569
+        ],
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 53
+          },
+          "end": {
+            "line": 8,
+            "column": 66
+          }
+        }
+      },
+      "range": [
+        503,
+        570
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 67
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    570
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 8,
+      "column": 67
+    }
+  },
+  "comments": []
+}
