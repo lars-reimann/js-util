@@ -16,12 +16,12 @@
   "jspm": {
     "name": "@ignavia/util",
     "devDependencies": {
+      "babel-preset-stage-0": "^6.3.13",
       "chai": "^3.5.0",
       "clean-css": "^3.4.9",
-      "jquery": "^2.2.0",
+      "core-js": "^2.0.3",
       "mocha": "^2.4.5",
-      "plugin-babel": "systemjs-plugin-babel@^0.0.2",
-      "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@^0.5.5"
+      "plugin-babel": "systemjs-plugin-babel@^0.0.2"
     },
     "peerDependencies": {
       "assert": "github:jspm/nodelibs-assert@^0.2.0-alpha",
@@ -42,13 +42,17 @@
       "util": "github:jspm/nodelibs-util@^0.2.0-alpha"
     },
     "overrides": {
+      "npm:babel-runtime@5.8.35": {
+        "main": false,
+        "dependencies": {},
+        "optionalDependencies": {
+          "core-js": "^1.2.0"
+        }
+      },
       "npm:inherits@2.0.1": {
         "ignore": [
           "test.js"
         ]
-      },
-      "npm:jquery@2.2.0": {
-        "format": "amd"
       },
       "npm:mocha@2.4.5": {
         "browser": "mocha",

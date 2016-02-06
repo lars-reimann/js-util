@@ -3,7 +3,7 @@ import {expect} from "chai";
 import {IDGenerator} from "@ignavia/util";
 
 export default function() {
-    
+
     /** @test {IDGenerator} */
     describe("IDGenerator", function () {
 

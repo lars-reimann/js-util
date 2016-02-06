@@ -194,7 +194,7 @@ class Cloner {
 
         let result = {};
         this.clonedObjects.set(obj, result);
-        for (var [k, v] of obj.entries()) {
+        for (var [k, v] of Object.entries(obj)) {
             result[k] = this.cloneChild(v);
         }
         return result;

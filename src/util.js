@@ -1,3 +1,5 @@
+import "core-js"; // TODO remove once no longer needed
+
 export {default as Cloneable, cloneableMixin}   from "./Cloneable.js";
 export {instance as cloner}                     from "./Cloner.js";
 export {default as Color, predefinedColors}     from "./Color.js";
