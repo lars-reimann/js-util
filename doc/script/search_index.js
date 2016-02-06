@@ -72,12 +72,6 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "@ignavia/util/src/cloner.js~instance",
-    "variable/index.html#static-variable-instance",
-    "<span>instance</span> <span class=\"search-result-import-path\">@ignavia/util/src/Cloner.js</span>",
-    "variable"
-  ],
-  [
     "@ignavia/util/src/observable.js~observablemixin",
     "variable/index.html#static-variable-observableMixin",
     "<span>observableMixin</span> <span class=\"search-result-import-path\">@ignavia/util/src/Observable.js</span>",
@@ -438,6 +432,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/cloner.js~cloner#cleanup",
+    "class/src/Cloner.js~Cloner.html#instance-method-cleanup",
+    "src/Cloner.js~Cloner#cleanup",
+    "method"
+  ],
+  [
     "src/cloner.js~cloner#clone",
     "class/src/Cloner.js~Cloner.html#instance-method-clone",
     "src/Cloner.js~Cloner#clone",
@@ -474,28 +474,22 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/cloner.js~cloner#cloneprimitive",
-    "class/src/Cloner.js~Cloner.html#instance-method-clonePrimitive",
-    "src/Cloner.js~Cloner#clonePrimitive",
-    "method"
-  ],
-  [
     "src/cloner.js~cloner#cloneregexp",
     "class/src/Cloner.js~Cloner.html#instance-method-cloneRegExp",
     "src/Cloner.js~Cloner#cloneRegExp",
     "method"
   ],
   [
-    "src/cloner.js~cloner#clonedobjects",
-    "class/src/Cloner.js~Cloner.html#instance-member-clonedObjects",
-    "src/Cloner.js~Cloner#clonedObjects",
-    "member"
-  ],
-  [
     "src/cloner.js~cloner#constructor",
     "class/src/Cloner.js~Cloner.html#instance-constructor-constructor",
     "src/Cloner.js~Cloner#constructor",
     "method"
+  ],
+  [
+    "src/cloner.js~cloner#context",
+    "class/src/Cloner.js~Cloner.html#instance-member-context",
+    "src/Cloner.js~Cloner#context",
+    "member"
   ],
   [
     "src/cloner.js~cloner#isarray",

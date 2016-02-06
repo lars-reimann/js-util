@@ -43,7 +43,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Observable.js~Observable.html">Observable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneSym">cloneSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-instance">instance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
@@ -54,23 +53,55 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/Cloner.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {cloneSym} from &quot;./Cloneable.js&quot;;
 
-class Cloner {
+/**
+ * A class to clone primitive values (type undefined, boolean, number, string,
+ * symbol of function) and acyclic or cyclic arrays and objects. There is some
+ * special support for Date and RegExp objects.
+ */
+export default class Cloner {
 
+    /**
+     *
+     */
     constructor() {
+
+        /**
+         * How deep calls to the clone method are nested.
+         *
+         * @type {Number}
+         * @private
+         */
         this.recursionLevel = 0;
-        this.clonedObjects = new Map();
+
+        /**
+         * A mapping from original objects to their clones.
+         *
+         * @type {Map&lt;Object, Object&gt;}
+         * @private
+         */
+        this.context = new Map();
     }
 
+    /**
+     * Tries to clone the given parameter.
+     *
+     * @param {*} p
+     * The value to clone.
+     *
+     * @return {*}
+     * A clone of the value.
+     *
+     * @throws {Error}
+     * If the cloning fails because a type was not supported.
+     */
     clone(p) {
-        if (this.recursionLevel === 0) {
-            this.clonedObjects.clear();
-        }
-
         let result;
 
         this.recursionLevel++;
         if (this.isPrimitive(p)) {
-            result = this.clonePrimitive(p);
+            result = p;
+        } else if (this.context.has(p)) {
+            result = this.context.get(p);
         } else if (this.isDate(p)) {
             result = this.cloneDate(p);
         } else if (this.isRegExp(p)) {
@@ -83,6 +114,7 @@ class Cloner {
             throw new Error(`${p} cannot be cloned.`);
         }
         this.recursionLevel--;
+        this.cleanup();
 
         return result;
     }
@@ -101,21 +133,6 @@ class Cloner {
      */
     isPrimitive(p) {
         return p === null || typeof p !== &quot;object&quot;;
-    }
-
-    /**
-     * Clones a primitive value.
-     *
-     * @param {*} primitive
-     * The value to clone.
-     *
-     * @return {*}
-     * The value itself.
-     *
-     * @private
-     */
-    clonePrimitive(primitive) {
-        return primitive;
     }
 
     /**
@@ -145,7 +162,9 @@ class Cloner {
      * @private
      */
     cloneDate(date) {
-        return new Date(date.getTime());
+        let result = new Date(date.getTime());
+        this.context.set(date, result);
+        return result;
     }
 
     /**
@@ -175,7 +194,9 @@ class Cloner {
      * @private
      */
     cloneRegExp(regExp) {
-        return new RegExp(regExp);
+        let result = new RegExp(regExp);
+        this.context.set(regExp, result);
+        return result;
     }
 
     /**
@@ -205,12 +226,8 @@ class Cloner {
      * @private
      */
     cloneArray(arr) {
-        if (this.clonedObjects.has(arr)) {
-            return this.clonedObjects.get(arr);
-        }
-
         let result = [];
-        this.clonedObjects.set(arr, result);
+        this.context.set(arr, result);
         for (let v of arr) {
             result.push(this.cloneChild(v));
         }
@@ -240,15 +257,13 @@ class Cloner {
      *
      * @return {Object}
      * A clone of the object.
+     *
+     * @private
      */
     cloneObject(obj) {
-        if (this.clonedObjects.has(obj)) {
-            return this.clonedObjects.get(obj);
-        }
-
         let result = {};
-        this.clonedObjects.set(obj, result);
-        for (var [k, v] of obj.entries()) {
+        this.context.set(obj, result);
+        for (var [k, v] of Object.entries(obj)) {
             result[k] = this.cloneChild(v);
         }
         return result;
@@ -262,6 +277,8 @@ class Cloner {
      *
      * @return {*}
      * A clone of the value.
+     *
+     * @private
      */
     cloneChild(child) {
         return this.isCloneable(child) ? this.cloneCloneable(child) : this.clone(child);
@@ -275,6 +292,8 @@ class Cloner {
      *
      * @return {Boolean}
      * If the given parameter is Cloneable.
+     *
+     * @private
      */
     isCloneable(p) {
         return typeof p === &quot;object&quot; &amp;&amp; typeof p[cloneSym] === &quot;function&quot;;
@@ -288,19 +307,24 @@ class Cloner {
      *
      * @return {Object}
      * A clone of the object.
+     *
+     * @private
      */
     cloneCloneable(cloneable) {
-        return cloneable[cloneSym]();
+        return cloneable[cloneSym](this);
     }
-}
 
-/**
- * The single instance of the Cloner class. Note that only one object must be
- * cloned at any given time.
- *
- * @type {Cloner}
- */
-export const instance = new Cloner();</code></pre>
+    /**
+     * Clears the context once the cloning is completed.
+     *
+     * @private
+     */
+    cleanup() {
+        if (this.recursionLevel === 0) {
+            this.context.clear();
+        }
+    }
+}</code></pre>
 
 </div>
 

@@ -43,7 +43,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Observable.js~Observable.html">Observable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneSym">cloneSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-instance">instance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
@@ -99,7 +98,7 @@
       <div>
         
         
-        <div data-ice="description"><p>This is a mixin for extensible behavior.</p>
+        <div data-ice="description"><p>This is a mixin for Cloneable behavior.</p>
 </div>
       </div>
     </td>
@@ -125,33 +124,7 @@
       <div>
         
         
-        <div data-ice="description"><p>This is a mixin for extensible behavior.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-instance">instance</a></span></span><span data-ice="signature">: <span><a href="class/src/Cloner.js~Cloner.html">Cloner</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>The single instance of the Cloner class.</p>
+        <div data-ice="description"><p>This is a mixin for Extensible behavior.</p>
 </div>
       </div>
     </td>
@@ -177,7 +150,7 @@
       <div>
         
         
-        <div data-ice="description"><p>This is a mixin for observable behavior if an <span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span> is used.</p>
+        <div data-ice="description"><p>This is a mixin for Observable behavior if an <span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span> is used.</p>
 </div>
       </div>
     </td>
@@ -275,7 +248,7 @@
   <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {cloneableMixin} from &apos;<span><a href="file/src/Cloneable.js.html#lineNumber31">@ignavia/util/src/Cloneable.js</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>This is a mixin for extensible behavior.</p>
+  <div data-ice="description"><p>This is a mixin for Cloneable behavior.</p>
 </div>
 
   
@@ -316,49 +289,7 @@
   <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extensibleMixin} from &apos;<span><a href="file/src/Extensible.js.html#lineNumber47">@ignavia/util/src/Extensible.js</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>This is a mixin for extensible behavior.</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-variable-instance">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">instance</span><span data-ice="signature">: <span><a href="class/src/Cloner.js~Cloner.html">Cloner</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/Cloner.js.html#lineNumber249">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {instance} from &apos;<span><a href="file/src/Cloner.js.html#lineNumber249">@ignavia/util/src/Cloner.js</a></span>&apos;</code></pre></div>
-  
-  
-  <div data-ice="description"><p>The single instance of the Cloner class. Note that only one object must be
-cloned at any given time.</p>
+  <div data-ice="description"><p>This is a mixin for Extensible behavior.</p>
 </div>
 
   
@@ -399,7 +330,7 @@ cloned at any given time.</p>
   <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {observableMixin} from &apos;<span><a href="file/src/Observable.js.html#lineNumber38">@ignavia/util/src/Observable.js</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>This is a mixin for observable behavior if an <span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span> is used.
+  <div data-ice="description"><p>This is a mixin for Observable behavior if an <span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span> is used.
 Several assumptions are made: The event manager must be reachable by
 this.eventManager and the EventManager class must be imported under this
 exact name. This mixin can be used to facade the use of an EventManager.</p>
@@ -436,11 +367,11 @@ exact name. This mixin can be used to facade the use of an EventManager.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Color.js.html#lineNumber177">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Color.js.html#lineNumber178">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {predefinedColors} from &apos;<span><a href="file/src/Color.js.html#lineNumber177">@ignavia/util/src/Color.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {predefinedColors} from &apos;<span><a href="file/src/Color.js.html#lineNumber178">@ignavia/util/src/Color.js</a></span>&apos;</code></pre></div>
   
   
   

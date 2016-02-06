@@ -7,69 +7,69 @@ export default function() {
 
     /** @test {Cloner} */
     describe("Cloner", function () {
-        let cloner = new Cloner();
+        const cloner = new Cloner();
 
         /** @test {Cloner#clone} */
         describe("#clone", function() {
             it("should clone undefined", function () {
-                let v = undefined,
-                    r = cloner.clone(v);
+                const v = undefined,
+                      r = cloner.clone(v);
                 expect(r).to.equal(v);
             });
 
             it("should clone null", function () {
-                let v = null,
-                    r = cloner.clone(v);
+                const v = null,
+                      r = cloner.clone(v);
                 expect(r).to.equal(v);
             });
 
             it("should clone booleans", function () {
-                let v = true,
-                    r = cloner.clone(v);
+                const v = true,
+                      r = cloner.clone(v);
                 expect(r).to.equal(v);
             });
 
             it("should clone numbers", function () {
-                let v = 42,
-                    r = cloner.clone(v);
+                const v = 42,
+                      r = cloner.clone(v);
                 expect(r).to.equal(v);
             });
 
             it("should clone strings", function () {
-                let v = "Hi",
-                    r = cloner.clone(v);
+                const v = "Hi",
+                      r = cloner.clone(v);
                 expect(r).to.equal(v);
             });
 
             it("should clone symbols", function () {
-                let v = Symbol(),
-                    r = cloner.clone(v);
+                const v = Symbol(),
+                      r = cloner.clone(v);
                 expect(r).to.equal(v);
             });
 
             it("should clone functions", function () {
-                let v = (n) => n < 42,
-                    r = cloner.clone(v);
+                const v = (n) => n < 42,
+                      r = cloner.clone(v);
                 expect(r).to.equal(v);
             });
 
             it("should clone Date objects", function () {
-                let v = new Date(),
-                    r = cloner.clone(v);
+                const v = new Date(),
+                      r = cloner.clone(v);
                 expect(v.getTime()).to.equal(r.getTime());
                 expect(v).to.not.equal(r);
             });
 
             it("should clone RegExp objects", function () {
-                let v = new RegExp(/[a-zA-Z0-9]/),
-                    r = cloner.clone(v);
+                const v = new RegExp(/[a-zA-Z0-9]/),
+                      r = cloner.clone(v);
                 expect(v.toString()).to.equal(r.toString());
                 expect(v).to.not.equal(r);
             });
 
             it("should clone acyclic arrays", function () {
-                let v = [42, [42], {n: 42}],
-                    r = cloner.clone(v);
+                const v = [42, [42], {n: 42}],
+                      r = cloner.clone(v);
                 expect(v[0]).to.equal(r[0]);
                 expect(v[1][0]).to.equal(r[1][0]);
                 expect(v[1].length).to.equal(r[1].length);
@@ -81,16 +81,16 @@ export default function() {
             });
 
             it("should clone cyclic arrays", function () {
-                let v = [42]; v[1] = v;
-                let r = cloner.clone(v);
+                const v = [42]; v[1] = v;
+                const r = cloner.clone(v);
                 expect(v[0]).to.equal(r[0]);
                 expect(v.length).to.equal(r.length);
                 expect(r[1]).to.equal(r);
             });
 
             it("should clone acyclic objects", function () {
-                let v = {n: 42, a: [42], o: {n: 42}},
-                    r = cloner.clone(v);
+                const v = {n: 42, a: [42], o: {n: 42}},
+                      r = cloner.clone(v);
                 expect(v.n).to.equal(r.n);
                 expect(v.a[0]).to.equal(r.a[0]);
                 expect(v.a.length).to.equal(r.a.length);
@@ -101,16 +101,10 @@ export default function() {
             });
 
             it("should clone cyclic objects", function () {
-                let v = {n: 42}; v.o = v;
-                let r = cloner.clone(v);
+                const v = {n: 42}; v.o = v;
+                const r = cloner.clone(v);
                 expect(v.n).to.equal(r.n);
                 expect(r.o).to.equal(r);
-            });
-
-            it("should share equal child objects", function () {
-                let o = {}, v = {o1: o, o2: o},
-                    r = cloner.clone(v);
-                expect(r.o1).to.equal(r.o2);
             });
 
             it("should clone Cloneable childs using the [cloneSym] method", function () {
@@ -120,6 +114,12 @@ export default function() {
                let r = cloner.clone(v);
                expect(r.o).to.equal("no-clone");
                expect(v).to.not.equal(r);
+            });
+
+            it("should share equal child objects", function () {
+                let o = {}, v = {o1: o, o2: o},
+                    r = cloner.clone(v);
+                expect(r.o1).to.equal(r.o2);
             });
         });
     });

@@ -1,28 +1,16 @@
 import {expect} from "chai";
 
-import {IDGenerator} from "@ignavia/util";
+import {cloneSym, cloneableMixin} from "@ignavia/util";
 
 export default function() {
-    
-    /** @test {clone} */
-    describe("Clonea", function () {
 
-        /** @test {IDGenerator#next} */
-        describe("#next", function() {
-            const g = new IDGenerator("p");
-
-            it("should prefix IDs", function () {
-                const id0 = g.next();
-
-                expect(id0.startsWith("p")).to.equal(true);
-            });
-
-            it("should return unique IDs", function () {
-                const id0 = g.next(),
-                      id1 = g.next();
-
-                expect(id0).to.not.equal(id1);
-            });
+    /** @test {cloneableMixin} */
+    describe("cloneableMixin", function () {
+        it("should offer Cloneable behavior as a mixin", function () {
+            const o = Object.assign({s: "Hi"}, cloneableMixin),
+                  r = o[cloneSym]();
+            expect(r.s).to.equal("Hi");
+            expect(r).to.not.equal(o);
         });
     });
 }

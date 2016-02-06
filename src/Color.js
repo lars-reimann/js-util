@@ -171,10 +171,13 @@ export default class Color {
      * A textual representation of this color.
      */
     toString() {
-        `#${this.hex.toString(16)}`;
+        return `#${this.hex.toString(16).padStart(6, "0")}`;
     }
 }
 
+/**
+ * Contains the colors CSS1, CSS2 and CSS3 define.
+ */
 export const predefinedColors = {
     black:                new Color(0x000000),
     silver:               new Color(0xc0c0c0),
@@ -321,5 +324,6 @@ export const predefinedColors = {
     wheat:                new Color(0xf5deb3),
     whitesmoke:           new Color(0xf5f5f5),
     yellowgreen:          new Color(0x9acd32),
+    rebeccapurple:        new Color(0x663399),
     transparent:          new Color(0x000000, 0)
 };

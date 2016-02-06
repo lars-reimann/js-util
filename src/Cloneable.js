@@ -24,7 +24,7 @@ export default class Cloneable {
 export const cloneSym = Symbol("clone");
 
 /**
- * This is a mixin for extensible behavior.
+ * This is a mixin for Cloneable behavior.
  *
  * @type {Object}
  */

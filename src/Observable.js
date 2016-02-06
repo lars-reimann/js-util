@@ -28,7 +28,7 @@ export default class Observable {
 }
 
 /**
- * This is a mixin for observable behavior if an {@link EventManager} is used.
+ * This is a mixin for Observable behavior if an {@link EventManager} is used.
  * Several assumptions are made: The event manager must be reachable by
  * this.eventManager and the EventManager class must be imported under this
  * exact name. This mixin can be used to facade the use of an EventManager.

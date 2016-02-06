@@ -325,7 +325,7 @@
         "trailingComments": [
           {
             "type": "Block",
-            "value": "*\r\n * This is a mixin for observable behavior if an {@link EventManager} is used.\r\n * Several assumptions are made: The event manager must be reachable by\r\n * this.eventManager and the EventManager class must be imported under this\r\n * exact name. This mixin can be used to facade the use of an EventManager.\r\n *\r\n * @type {Object}\r\n ",
+            "value": "*\r\n * This is a mixin for Observable behavior if an {@link EventManager} is used.\r\n * Several assumptions are made: The event manager must be reachable by\r\n * this.eventManager and the EventManager class must be imported under this\r\n * exact name. This mixin can be used to facade the use of an EventManager.\r\n *\r\n * @type {Object}\r\n ",
             "range": [
               720,
               1058
@@ -380,7 +380,7 @@
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\r\n * This is a mixin for observable behavior if an {@link EventManager} is used.\r\n * Several assumptions are made: The event manager must be reachable by\r\n * this.eventManager and the EventManager class must be imported under this\r\n * exact name. This mixin can be used to facade the use of an EventManager.\r\n *\r\n * @type {Object}\r\n ",
+          "value": "*\r\n * This is a mixin for Observable behavior if an {@link EventManager} is used.\r\n * Several assumptions are made: The event manager must be reachable by\r\n * this.eventManager and the EventManager class must be imported under this\r\n * exact name. This mixin can be used to facade the use of an EventManager.\r\n *\r\n * @type {Object}\r\n ",
           "range": [
             720,
             1058
@@ -1829,7 +1829,7 @@
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\r\n * This is a mixin for observable behavior if an {@link EventManager} is used.\r\n * Several assumptions are made: The event manager must be reachable by\r\n * this.eventManager and the EventManager class must be imported under this\r\n * exact name. This mixin can be used to facade the use of an EventManager.\r\n *\r\n * @type {Object}\r\n ",
+            "value": "*\r\n * This is a mixin for Observable behavior if an {@link EventManager} is used.\r\n * Several assumptions are made: The event manager must be reachable by\r\n * this.eventManager and the EventManager class must be imported under this\r\n * exact name. This mixin can be used to facade the use of an EventManager.\r\n *\r\n * @type {Object}\r\n ",
             "range": [
               720,
               1058
@@ -1867,7 +1867,7 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\r\n * This is a mixin for observable behavior if an {@link EventManager} is used.\r\n * Several assumptions are made: The event manager must be reachable by\r\n * this.eventManager and the EventManager class must be imported under this\r\n * exact name. This mixin can be used to facade the use of an EventManager.\r\n *\r\n * @type {Object}\r\n ",
+          "value": "*\r\n * This is a mixin for Observable behavior if an {@link EventManager} is used.\r\n * Several assumptions are made: The event manager must be reachable by\r\n * this.eventManager and the EventManager class must be imported under this\r\n * exact name. This mixin can be used to facade the use of an EventManager.\r\n *\r\n * @type {Object}\r\n ",
           "range": [
             720,
             1058
@@ -1940,7 +1940,7 @@
     },
     {
       "type": "Block",
-      "value": "*\r\n * This is a mixin for observable behavior if an {@link EventManager} is used.\r\n * Several assumptions are made: The event manager must be reachable by\r\n * this.eventManager and the EventManager class must be imported under this\r\n * exact name. This mixin can be used to facade the use of an EventManager.\r\n *\r\n * @type {Object}\r\n ",
+      "value": "*\r\n * This is a mixin for Observable behavior if an {@link EventManager} is used.\r\n * Several assumptions are made: The event manager must be reachable by\r\n * this.eventManager and the EventManager class must be imported under this\r\n * exact name. This mixin can be used to facade the use of an EventManager.\r\n *\r\n * @type {Object}\r\n ",
       "range": [
         720,
         1058

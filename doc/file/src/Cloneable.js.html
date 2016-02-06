@@ -43,7 +43,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Observable.js~Observable.html">Observable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneSym">cloneSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-instance">instance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
@@ -52,7 +51,7 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/Cloneable.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {instance as cloner} from &quot;./Cloner.js&quot;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Cloner from &quot;./Cloner.js&quot;;
 
 /**
  * An interface for every object that can be cloned.
@@ -78,12 +77,12 @@ export default class Cloneable {
 export const cloneSym = Symbol(&quot;clone&quot;);
 
 /**
- * This is a mixin for extensible behavior.
+ * This is a mixin for Cloneable behavior.
  *
  * @type {Object}
  */
 export const cloneableMixin = {
-    [cloneSym]() {
+    [cloneSym](cloner = new Cloner()) {
         return cloner.clone(this);
     }
 };

@@ -1,12 +1,46 @@
 import {cloneSym} from "./Cloneable.js";
 
+/**
+ * A class to clone primitive values (type undefined, boolean, number, string,
+ * symbol of function) and acyclic or cyclic arrays and objects. There is some
+ * special support for Date and RegExp objects.
+ */
 export default class Cloner {
 
+    /**
+     *
+     */
     constructor() {
+
+        /**
+         * How deep calls to the clone method are nested.
+         *
+         * @type {Number}
+         * @private
+         */
         this.recursionLevel = 0;
+
+        /**
+         * A mapping from original objects to their clones.
+         *
+         * @type {Map<Object, Object>}
+         * @private
+         */
         this.context = new Map();
     }
 
+    /**
+     * Tries to clone the given parameter.
+     *
+     * @param {*} p
+     * The value to clone.
+     *
+     * @return {*}
+     * A clone of the value.
+     *
+     * @throws {Error}
+     * If the cloning fails because a type was not supported.
+     */
     clone(p) {
         let result;
 
@@ -170,6 +204,8 @@ export default class Cloner {
      *
      * @return {Object}
      * A clone of the object.
+     *
+     * @private
      */
     cloneObject(obj) {
         let result = {};
@@ -188,6 +224,8 @@ export default class Cloner {
      *
      * @return {*}
      * A clone of the value.
+     *
+     * @private
      */
     cloneChild(child) {
         return this.isCloneable(child) ? this.cloneCloneable(child) : this.clone(child);
@@ -201,6 +239,8 @@ export default class Cloner {
      *
      * @return {Boolean}
      * If the given parameter is Cloneable.
+     *
+     * @private
      */
     isCloneable(p) {
         return typeof p === "object" && typeof p[cloneSym] === "function";
@@ -214,11 +254,18 @@ export default class Cloner {
      *
      * @return {Object}
      * A clone of the object.
+     *
+     * @private
      */
     cloneCloneable(cloneable) {
         return cloneable[cloneSym](this);
     }
 
+    /**
+     * Clears the context once the cloning is completed.
+     *
+     * @private
+     */
     cleanup() {
         if (this.recursionLevel === 0) {
             this.context.clear();

@@ -368,7 +368,7 @@
         "trailingComments": [
           {
             "type": "Block",
-            "value": "*\r\n * This is a mixin for extensible behavior.\r\n *\r\n * @type {Object}\r\n ",
+            "value": "*\r\n * This is a mixin for Extensible behavior.\r\n *\r\n * @type {Object}\r\n ",
             "range": [
               964,
               1040
@@ -423,7 +423,7 @@
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\r\n * This is a mixin for extensible behavior.\r\n *\r\n * @type {Object}\r\n ",
+          "value": "*\r\n * This is a mixin for Extensible behavior.\r\n *\r\n * @type {Object}\r\n ",
           "range": [
             964,
             1040
@@ -1897,7 +1897,7 @@
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\r\n * This is a mixin for extensible behavior.\r\n *\r\n * @type {Object}\r\n ",
+            "value": "*\r\n * This is a mixin for Extensible behavior.\r\n *\r\n * @type {Object}\r\n ",
             "range": [
               964,
               1040
@@ -1935,7 +1935,7 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\r\n * This is a mixin for extensible behavior.\r\n *\r\n * @type {Object}\r\n ",
+          "value": "*\r\n * This is a mixin for Extensible behavior.\r\n *\r\n * @type {Object}\r\n ",
           "range": [
             964,
             1040
@@ -2026,7 +2026,7 @@
     },
     {
       "type": "Block",
-      "value": "*\r\n * This is a mixin for extensible behavior.\r\n *\r\n * @type {Object}\r\n ",
+      "value": "*\r\n * This is a mixin for Extensible behavior.\r\n *\r\n * @type {Object}\r\n ",
       "range": [
         964,
         1040

@@ -40,7 +40,7 @@ export default class Extensible {
 }
 
 /**
- * This is a mixin for extensible behavior.
+ * This is a mixin for Extensible behavior.
  *
  * @type {Object}
  */

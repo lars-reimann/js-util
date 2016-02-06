@@ -1,7 +1,7 @@
 {
-  "coverage": "90%",
-  "expectCount": 60,
-  "actualCount": 54,
+  "coverage": "98.3%",
+  "expectCount": 59,
+  "actualCount": 58,
   "files": {
     "src/Cloneable.js": {
       "expectCount": 4,
@@ -9,21 +9,15 @@
       "undocumentLines": []
     },
     "src/Cloner.js": {
-      "expectCount": 19,
-      "actualCount": 14,
-      "undocumentLines": [
-        3,
-        10,
-        7,
-        5,
-        6
-      ]
+      "expectCount": 18,
+      "actualCount": 18,
+      "undocumentLines": []
     },
     "src/Color.js": {
       "expectCount": 11,
       "actualCount": 10,
       "undocumentLines": [
-        177
+        178
       ]
     },
     "src/Event.js": {
