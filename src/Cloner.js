@@ -8,10 +8,6 @@ export default class Cloner {
     }
 
     clone(p) {
-        if (this.recursionLevel === 0) {
-            this.context.clear();
-        }
-
         let result;
 
         this.recursionLevel++;
@@ -29,6 +25,7 @@ export default class Cloner {
             throw new Error(`${p} cannot be cloned.`);
         }
         this.recursionLevel--;
+        this.cleanup();
 
         return result;
     }
@@ -237,5 +234,11 @@ export default class Cloner {
      */
     cloneCloneable(cloneable) {
         return cloneable[cloneSym](this);
+    }
+
+    cleanup() {
+        if (this.recursionLevel === 0) {
+            this.context.clear();
+        }
     }
 }
