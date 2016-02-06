@@ -1,4 +1,4 @@
-import {instance as cloner} from "./Cloner.js";
+import Cloner from "./Cloner.js";
 
 /**
  * An interface for every object that can be cloned.
@@ -29,7 +29,7 @@ export const cloneSym = Symbol("clone");
  * @type {Object}
  */
 export const cloneableMixin = {
-    [cloneSym]() {
+    [cloneSym](cloner = new Cloner()) {
         return cloner.clone(this);
     }
 };

@@ -1,11 +1,13 @@
 import {expect} from "chai";
 
-import {cloner} from "@ignavia/util";
+import {cloneSym} from "@ignavia/util";
+import {Cloner} from "@ignavia/util";
 
 export default function() {
 
     /** @test {Cloner} */
     describe("Cloner", function () {
+        let cloner = new Cloner();
 
         /** @test {Cloner#clone} */
         describe("#clone", function() {
@@ -100,9 +102,18 @@ export default function() {
 
             it("should clone cyclic objects", function () {
                 let v = {n: 42}; v.o = v;
-                let r = cloner.clone(v);console.log(v,r);
+                let r = cloner.clone(v);
                 expect(v.n).to.equal(r.n);
                 expect(r.o).to.equal(r);
+            });
+
+            it("should clone Cloneable childs", function () {
+               let v = {o: {
+                   [cloneSym]: () => "no-clone"
+               }};
+               let r = cloner.clone(v);
+               expect(r.o).to.equal("no-clone");
+               expect(v).to.not.equal(r);
             });
         });
     });

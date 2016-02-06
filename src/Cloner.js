@@ -1,15 +1,15 @@
 import {cloneSym} from "./Cloneable.js";
 
-class Cloner {
+export default class Cloner {
 
     constructor() {
         this.recursionLevel = 0;
-        this.clonedObjects = new Map();
+        this.context = new Map();
     }
 
     clone(p) {
         if (this.recursionLevel === 0) {
-            this.clonedObjects.clear();
+            this.context.clear();
         }
 
         let result;
@@ -151,12 +151,12 @@ class Cloner {
      * @private
      */
     cloneArray(arr) {
-        if (this.clonedObjects.has(arr)) {
-            return this.clonedObjects.get(arr);
+        if (this.context.has(arr)) {
+            return this.context.get(arr);
         }
 
         let result = [];
-        this.clonedObjects.set(arr, result);
+        this.context.set(arr, result);
         for (let v of arr) {
             result.push(this.cloneChild(v));
         }
@@ -188,12 +188,12 @@ class Cloner {
      * A clone of the object.
      */
     cloneObject(obj) {
-        if (this.clonedObjects.has(obj)) {
-            return this.clonedObjects.get(obj);
+        if (this.context.has(obj)) {
+            return this.context.get(obj);
         }
 
         let result = {};
-        this.clonedObjects.set(obj, result);
+        this.context.set(obj, result);
         for (var [k, v] of Object.entries(obj)) {
             result[k] = this.cloneChild(v);
         }
@@ -236,14 +236,6 @@ class Cloner {
      * A clone of the object.
      */
     cloneCloneable(cloneable) {
-        return cloneable[cloneSym]();
+        return cloneable[cloneSym](this);
     }
 }
-
-/**
- * The single instance of the Cloner class. Note that only one object must be
- * cloned at any given time.
- *
- * @type {Cloner}
- */
-export const instance = new Cloner();
