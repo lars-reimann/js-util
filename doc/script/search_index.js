@@ -6,6 +6,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "@ignavia/util/src/cloner.js~cloner",
+    "class/src/Cloner.js~Cloner.html",
+    "<span>Cloner</span> <span class=\"search-result-import-path\">@ignavia/util/src/Cloner.js</span>",
+    "class"
+  ],
+  [
     "@ignavia/util/src/color.js~color",
     "class/src/Color.js~Color.html",
     "<span>Color</span> <span class=\"search-result-import-path\">@ignavia/util/src/Color.js</span>",
@@ -63,6 +69,12 @@ window.esdocSearchIndex = [
     "@ignavia/util/src/extensible.js~extensiblemixin",
     "variable/index.html#static-variable-extensibleMixin",
     "<span>extensibleMixin</span> <span class=\"search-result-import-path\">@ignavia/util/src/Extensible.js</span>",
+    "variable"
+  ],
+  [
+    "@ignavia/util/src/cloner.js~instance",
+    "variable/index.html#static-variable-instance",
+    "<span>instance</span> <span class=\"search-result-import-path\">@ignavia/util/src/Cloner.js</span>",
     "variable"
   ],
   [
@@ -418,6 +430,114 @@ window.esdocSearchIndex = [
     "class/src/Cloneable.js~Cloneable.html#instance-method-[cloneSym]",
     "src/Cloneable.js~Cloneable#[cloneSym]",
     "method"
+  ],
+  [
+    "src/cloner.js",
+    "file/src/Cloner.js.html",
+    "src/Cloner.js",
+    "file"
+  ],
+  [
+    "src/cloner.js~cloner#clone",
+    "class/src/Cloner.js~Cloner.html#instance-method-clone",
+    "src/Cloner.js~Cloner#clone",
+    "method"
+  ],
+  [
+    "src/cloner.js~cloner#clonearray",
+    "class/src/Cloner.js~Cloner.html#instance-method-cloneArray",
+    "src/Cloner.js~Cloner#cloneArray",
+    "method"
+  ],
+  [
+    "src/cloner.js~cloner#clonechild",
+    "class/src/Cloner.js~Cloner.html#instance-method-cloneChild",
+    "src/Cloner.js~Cloner#cloneChild",
+    "method"
+  ],
+  [
+    "src/cloner.js~cloner#clonecloneable",
+    "class/src/Cloner.js~Cloner.html#instance-method-cloneCloneable",
+    "src/Cloner.js~Cloner#cloneCloneable",
+    "method"
+  ],
+  [
+    "src/cloner.js~cloner#clonedate",
+    "class/src/Cloner.js~Cloner.html#instance-method-cloneDate",
+    "src/Cloner.js~Cloner#cloneDate",
+    "method"
+  ],
+  [
+    "src/cloner.js~cloner#cloneobject",
+    "class/src/Cloner.js~Cloner.html#instance-method-cloneObject",
+    "src/Cloner.js~Cloner#cloneObject",
+    "method"
+  ],
+  [
+    "src/cloner.js~cloner#cloneprimitive",
+    "class/src/Cloner.js~Cloner.html#instance-method-clonePrimitive",
+    "src/Cloner.js~Cloner#clonePrimitive",
+    "method"
+  ],
+  [
+    "src/cloner.js~cloner#cloneregexp",
+    "class/src/Cloner.js~Cloner.html#instance-method-cloneRegExp",
+    "src/Cloner.js~Cloner#cloneRegExp",
+    "method"
+  ],
+  [
+    "src/cloner.js~cloner#clonedobjects",
+    "class/src/Cloner.js~Cloner.html#instance-member-clonedObjects",
+    "src/Cloner.js~Cloner#clonedObjects",
+    "member"
+  ],
+  [
+    "src/cloner.js~cloner#constructor",
+    "class/src/Cloner.js~Cloner.html#instance-constructor-constructor",
+    "src/Cloner.js~Cloner#constructor",
+    "method"
+  ],
+  [
+    "src/cloner.js~cloner#isarray",
+    "class/src/Cloner.js~Cloner.html#instance-method-isArray",
+    "src/Cloner.js~Cloner#isArray",
+    "method"
+  ],
+  [
+    "src/cloner.js~cloner#iscloneable",
+    "class/src/Cloner.js~Cloner.html#instance-method-isCloneable",
+    "src/Cloner.js~Cloner#isCloneable",
+    "method"
+  ],
+  [
+    "src/cloner.js~cloner#isdate",
+    "class/src/Cloner.js~Cloner.html#instance-method-isDate",
+    "src/Cloner.js~Cloner#isDate",
+    "method"
+  ],
+  [
+    "src/cloner.js~cloner#isobject",
+    "class/src/Cloner.js~Cloner.html#instance-method-isObject",
+    "src/Cloner.js~Cloner#isObject",
+    "method"
+  ],
+  [
+    "src/cloner.js~cloner#isprimitive",
+    "class/src/Cloner.js~Cloner.html#instance-method-isPrimitive",
+    "src/Cloner.js~Cloner#isPrimitive",
+    "method"
+  ],
+  [
+    "src/cloner.js~cloner#isregexp",
+    "class/src/Cloner.js~Cloner.html#instance-method-isRegExp",
+    "src/Cloner.js~Cloner#isRegExp",
+    "method"
+  ],
+  [
+    "src/cloner.js~cloner#recursionlevel",
+    "class/src/Cloner.js~Cloner.html#instance-member-recursionLevel",
+    "src/Cloner.js~Cloner#recursionLevel",
+    "member"
   ],
   [
     "src/color.js",

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/Cloneable.js | RDF-Toolkit API Document</title>
+  <title data-ice="title">src/Cloneable.js | JavaScript Utility API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -32,7 +32,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Color.js~Color.html">Color</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Cloner.js~Cloner.html">Cloner</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Color.js~Color.html">Color</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Event.js~Event.html">Event</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/IDGenerator.js~IDGenerator.html">IDGenerator</a></span></span></li>
@@ -42,6 +43,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Observable.js~Observable.html">Observable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneSym">cloneSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-instance">instance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
@@ -50,7 +52,9 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/Cloneable.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {instance as cloner} from &quot;./Cloner.js&quot;;
+
+/**
  * An interface for every object that can be cloned.
  *
  * @interface
@@ -77,82 +81,13 @@ export const cloneSym = Symbol(&quot;clone&quot;);
  * This is a mixin for extensible behavior.
  *
  * @type {Object}
- * @todo
  */
 export const cloneableMixin = {
     [cloneSym]() {
-        return clone(this);
+        return cloner.clone(this);
     }
 };
-
-function clone(p) {
-    if (isPrimitive(p)) {
-        return clonePrimitive(p);
-    }
-    if (isDate(p)) {
-        return cloneDate(p);
-    }
-    if (isArray(p)) {
-        return cloneArray(p);
-    }
-    if (isObject(p)) {
-        return cloneObject(p);
-    }
-
-    throw new Error(`${p} cannot be cloned.`);
-}
-
-function isPrimitive(p) {
-    return p === null || typeof p !== &quot;object&quot;;
-}
-
-function clonePrimitive(primitive) {
-    return primitive;
-}
-
-function isDate(p) {
-    return p instanceof Date;
-}
-
-function cloneDate(date) {
-    let result = new Date();
-    result.setTime(date.getTime());
-    return result;
-}
-
-function isArray(p) {
-    return Array.isArray(p);
-}
-
-function cloneArray(arr) {
-    let result = [];
-    for (let v of arr) {
-        const copy = isCloneable(v) ? cloneCloneable(v) : clone(v);
-        result.push(copy);
-    }
-    return result;
-}
-
-function isObject(p) {
-    return p instanceof Object;
-}
-
-function cloneObject(obj) {
-    let result = {};
-    for (var [k, v] of obj.entries()) {
-        const copy = isCloneable(v) ? cloneCloneable(v) : clone(v);
-        result[k] = copy;
-    }
-    return result;
-}
-
-function isCloneable(p) {
-    return typeof p[cloneSym] === &quot;function&quot;;
-}
-
-function cloneCloneable(cloneable) {
-    return cloneable[cloneSym]();
-}</code></pre>
+</code></pre>
 
 </div>
 

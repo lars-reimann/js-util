@@ -154,28 +154,28 @@
           "type": "ExportSpecifier",
           "exported": {
             "type": "Identifier",
-            "name": "Color",
+            "name": "cloner",
             "range": [
-              91,
-              96
+              92,
+              98
             ],
             "loc": {
               "start": {
                 "line": 2,
-                "column": 19
+                "column": 20
               },
               "end": {
                 "line": 2,
-                "column": 24
+                "column": 26
               }
             }
           },
           "local": {
             "type": "Identifier",
-            "name": "default",
+            "name": "instance",
             "range": [
               80,
-              87
+              88
             ],
             "loc": {
               "start": {
@@ -184,13 +184,13 @@
               },
               "end": {
                 "line": 2,
-                "column": 15
+                "column": 16
               }
             }
           },
           "range": [
             80,
-            96
+            98
           ],
           "loc": {
             "start": {
@@ -199,6 +199,98 @@
             },
             "end": {
               "line": 2,
+              "column": 26
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Cloner.js",
+        "raw": "\"./Cloner.js\"",
+        "range": [
+          125,
+          138
+        ],
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 53
+          },
+          "end": {
+            "line": 2,
+            "column": 66
+          }
+        }
+      },
+      "range": [
+        72,
+        139
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 67
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "exported": {
+            "type": "Identifier",
+            "name": "Color",
+            "range": [
+              160,
+              165
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 19
+              },
+              "end": {
+                "line": 3,
+                "column": 24
+              }
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "name": "default",
+            "range": [
+              149,
+              156
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 8
+              },
+              "end": {
+                "line": 3,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            149,
+            165
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 8
+            },
+            "end": {
+              "line": 3,
               "column": 24
             }
           }
@@ -209,16 +301,16 @@
             "type": "Identifier",
             "name": "predefinedColors",
             "range": [
-              98,
-              114
+              167,
+              183
             ],
             "loc": {
               "start": {
-                "line": 2,
+                "line": 3,
                 "column": 26
               },
               "end": {
-                "line": 2,
+                "line": 3,
                 "column": 42
               }
             }
@@ -227,31 +319,31 @@
             "type": "Identifier",
             "name": "predefinedColors",
             "range": [
-              98,
-              114
+              167,
+              183
             ],
             "loc": {
               "start": {
-                "line": 2,
+                "line": 3,
                 "column": 26
               },
               "end": {
-                "line": 2,
+                "line": 3,
                 "column": 42
               }
             }
           },
           "range": [
-            98,
-            114
+            167,
+            183
           ],
           "loc": {
             "start": {
-              "line": 2,
+              "line": 3,
               "column": 26
             },
             "end": {
-              "line": 2,
+              "line": 3,
               "column": 42
             }
           }
@@ -262,31 +354,31 @@
         "value": "./Color.js",
         "raw": "\"./Color.js\"",
         "range": [
-          125,
-          137
+          194,
+          206
         ],
         "loc": {
           "start": {
-            "line": 2,
+            "line": 3,
             "column": 53
           },
           "end": {
-            "line": 2,
+            "line": 3,
             "column": 65
           }
         }
       },
       "range": [
-        72,
-        138
+        141,
+        207
       ],
       "loc": {
         "start": {
-          "line": 2,
+          "line": 3,
           "column": 0
         },
         "end": {
-          "line": 2,
+          "line": 3,
           "column": 66
         }
       }
@@ -301,16 +393,16 @@
             "type": "Identifier",
             "name": "Event",
             "range": [
-              159,
-              164
+              228,
+              233
             ],
             "loc": {
               "start": {
-                "line": 3,
+                "line": 4,
                 "column": 19
               },
               "end": {
-                "line": 3,
+                "line": 4,
                 "column": 24
               }
             }
@@ -319,31 +411,31 @@
             "type": "Identifier",
             "name": "default",
             "range": [
-              148,
-              155
+              217,
+              224
             ],
             "loc": {
               "start": {
-                "line": 3,
+                "line": 4,
                 "column": 8
               },
               "end": {
-                "line": 3,
+                "line": 4,
                 "column": 15
               }
             }
           },
           "range": [
-            148,
-            164
+            217,
+            233
           ],
           "loc": {
             "start": {
-              "line": 3,
+              "line": 4,
               "column": 8
             },
             "end": {
-              "line": 3,
+              "line": 4,
               "column": 24
             }
           }
@@ -354,31 +446,31 @@
         "value": "./Event.js",
         "raw": "\"./Event.js\"",
         "range": [
-          193,
-          205
+          262,
+          274
         ],
         "loc": {
           "start": {
-            "line": 3,
+            "line": 4,
             "column": 53
           },
           "end": {
-            "line": 3,
+            "line": 4,
             "column": 65
           }
         }
       },
       "range": [
-        140,
-        206
+        209,
+        275
       ],
       "loc": {
         "start": {
-          "line": 3,
+          "line": 4,
           "column": 0
         },
         "end": {
-          "line": 3,
+          "line": 4,
           "column": 66
         }
       }
@@ -393,16 +485,16 @@
             "type": "Identifier",
             "name": "EventManager",
             "range": [
-              227,
-              239
+              296,
+              308
             ],
             "loc": {
               "start": {
-                "line": 4,
+                "line": 5,
                 "column": 19
               },
               "end": {
-                "line": 4,
+                "line": 5,
                 "column": 31
               }
             }
@@ -411,31 +503,31 @@
             "type": "Identifier",
             "name": "default",
             "range": [
-              216,
-              223
+              285,
+              292
             ],
             "loc": {
               "start": {
-                "line": 4,
+                "line": 5,
                 "column": 8
               },
               "end": {
-                "line": 4,
+                "line": 5,
                 "column": 15
               }
             }
           },
           "range": [
-            216,
-            239
+            285,
+            308
           ],
           "loc": {
             "start": {
-              "line": 4,
+              "line": 5,
               "column": 8
             },
             "end": {
-              "line": 4,
+              "line": 5,
               "column": 31
             }
           }
@@ -446,31 +538,31 @@
         "value": "./EventManager.js",
         "raw": "\"./EventManager.js\"",
         "range": [
-          261,
-          280
+          330,
+          349
         ],
         "loc": {
           "start": {
-            "line": 4,
+            "line": 5,
             "column": 53
           },
           "end": {
-            "line": 4,
+            "line": 5,
             "column": 72
           }
         }
       },
       "range": [
-        208,
-        281
+        277,
+        350
       ],
       "loc": {
         "start": {
-          "line": 4,
+          "line": 5,
           "column": 0
         },
         "end": {
-          "line": 4,
+          "line": 5,
           "column": 73
         }
       }
@@ -485,16 +577,16 @@
             "type": "Identifier",
             "name": "Extensible",
             "range": [
-              302,
-              312
+              371,
+              381
             ],
             "loc": {
               "start": {
-                "line": 5,
+                "line": 6,
                 "column": 19
               },
               "end": {
-                "line": 5,
+                "line": 6,
                 "column": 29
               }
             }
@@ -503,31 +595,31 @@
             "type": "Identifier",
             "name": "default",
             "range": [
-              291,
-              298
+              360,
+              367
             ],
             "loc": {
               "start": {
-                "line": 5,
+                "line": 6,
                 "column": 8
               },
               "end": {
-                "line": 5,
+                "line": 6,
                 "column": 15
               }
             }
           },
           "range": [
-            291,
-            312
+            360,
+            381
           ],
           "loc": {
             "start": {
-              "line": 5,
+              "line": 6,
               "column": 8
             },
             "end": {
-              "line": 5,
+              "line": 6,
               "column": 29
             }
           }
@@ -538,16 +630,16 @@
             "type": "Identifier",
             "name": "extensibleMixin",
             "range": [
-              314,
-              329
+              383,
+              398
             ],
             "loc": {
               "start": {
-                "line": 5,
+                "line": 6,
                 "column": 31
               },
               "end": {
-                "line": 5,
+                "line": 6,
                 "column": 46
               }
             }
@@ -556,31 +648,31 @@
             "type": "Identifier",
             "name": "extensibleMixin",
             "range": [
-              314,
-              329
+              383,
+              398
             ],
             "loc": {
               "start": {
-                "line": 5,
+                "line": 6,
                 "column": 31
               },
               "end": {
-                "line": 5,
+                "line": 6,
                 "column": 46
               }
             }
           },
           "range": [
-            314,
-            329
+            383,
+            398
           ],
           "loc": {
             "start": {
-              "line": 5,
+              "line": 6,
               "column": 31
             },
             "end": {
-              "line": 5,
+              "line": 6,
               "column": 46
             }
           }
@@ -591,31 +683,31 @@
         "value": "./Extensible.js",
         "raw": "\"./Extensible.js\"",
         "range": [
-          336,
-          353
+          405,
+          422
         ],
         "loc": {
           "start": {
-            "line": 5,
+            "line": 6,
             "column": 53
           },
           "end": {
-            "line": 5,
+            "line": 6,
             "column": 70
           }
         }
       },
       "range": [
-        283,
-        354
+        352,
+        423
       ],
       "loc": {
         "start": {
-          "line": 5,
+          "line": 6,
           "column": 0
         },
         "end": {
-          "line": 5,
+          "line": 6,
           "column": 71
         }
       }
@@ -630,16 +722,16 @@
             "type": "Identifier",
             "name": "IDGenerator",
             "range": [
-              375,
-              386
+              444,
+              455
             ],
             "loc": {
               "start": {
-                "line": 6,
+                "line": 7,
                 "column": 19
               },
               "end": {
-                "line": 6,
+                "line": 7,
                 "column": 30
               }
             }
@@ -648,31 +740,31 @@
             "type": "Identifier",
             "name": "default",
             "range": [
-              364,
-              371
+              433,
+              440
             ],
             "loc": {
               "start": {
-                "line": 6,
+                "line": 7,
                 "column": 8
               },
               "end": {
-                "line": 6,
+                "line": 7,
                 "column": 15
               }
             }
           },
           "range": [
-            364,
-            386
+            433,
+            455
           ],
           "loc": {
             "start": {
-              "line": 6,
+              "line": 7,
               "column": 8
             },
             "end": {
-              "line": 6,
+              "line": 7,
               "column": 30
             }
           }
@@ -683,31 +775,31 @@
         "value": "./IDGenerator.js",
         "raw": "\"./IDGenerator.js\"",
         "range": [
-          409,
-          427
+          478,
+          496
         ],
         "loc": {
           "start": {
-            "line": 6,
+            "line": 7,
             "column": 53
           },
           "end": {
-            "line": 6,
+            "line": 7,
             "column": 71
           }
         }
       },
       "range": [
-        356,
-        428
+        425,
+        497
       ],
       "loc": {
         "start": {
-          "line": 6,
+          "line": 7,
           "column": 0
         },
         "end": {
-          "line": 6,
+          "line": 7,
           "column": 72
         }
       }
@@ -722,16 +814,16 @@
             "type": "Identifier",
             "name": "Observable",
             "range": [
-              449,
-              459
+              518,
+              528
             ],
             "loc": {
               "start": {
-                "line": 7,
+                "line": 8,
                 "column": 19
               },
               "end": {
-                "line": 7,
+                "line": 8,
                 "column": 29
               }
             }
@@ -740,31 +832,31 @@
             "type": "Identifier",
             "name": "default",
             "range": [
-              438,
-              445
+              507,
+              514
             ],
             "loc": {
               "start": {
-                "line": 7,
+                "line": 8,
                 "column": 8
               },
               "end": {
-                "line": 7,
+                "line": 8,
                 "column": 15
               }
             }
           },
           "range": [
-            438,
-            459
+            507,
+            528
           ],
           "loc": {
             "start": {
-              "line": 7,
+              "line": 8,
               "column": 8
             },
             "end": {
-              "line": 7,
+              "line": 8,
               "column": 29
             }
           }
@@ -775,16 +867,16 @@
             "type": "Identifier",
             "name": "observableMixin",
             "range": [
-              461,
-              476
+              530,
+              545
             ],
             "loc": {
               "start": {
-                "line": 7,
+                "line": 8,
                 "column": 31
               },
               "end": {
-                "line": 7,
+                "line": 8,
                 "column": 46
               }
             }
@@ -793,31 +885,31 @@
             "type": "Identifier",
             "name": "observableMixin",
             "range": [
-              461,
-              476
+              530,
+              545
             ],
             "loc": {
               "start": {
-                "line": 7,
+                "line": 8,
                 "column": 31
               },
               "end": {
-                "line": 7,
+                "line": 8,
                 "column": 46
               }
             }
           },
           "range": [
-            461,
-            476
+            530,
+            545
           ],
           "loc": {
             "start": {
-              "line": 7,
+              "line": 8,
               "column": 31
             },
             "end": {
-              "line": 7,
+              "line": 8,
               "column": 46
             }
           }
@@ -828,31 +920,31 @@
         "value": "./Observable.js",
         "raw": "\"./Observable.js\"",
         "range": [
-          483,
-          500
+          552,
+          569
         ],
         "loc": {
           "start": {
-            "line": 7,
+            "line": 8,
             "column": 53
           },
           "end": {
-            "line": 7,
+            "line": 8,
             "column": 70
           }
         }
       },
       "range": [
-        430,
-        501
+        499,
+        570
       ],
       "loc": {
         "start": {
-          "line": 7,
+          "line": 8,
           "column": 0
         },
         "end": {
-          "line": 7,
+          "line": 8,
           "column": 71
         }
       }
@@ -867,16 +959,16 @@
             "type": "Identifier",
             "name": "Plugin",
             "range": [
-              522,
-              528
+              591,
+              597
             ],
             "loc": {
               "start": {
-                "line": 8,
+                "line": 9,
                 "column": 19
               },
               "end": {
-                "line": 8,
+                "line": 9,
                 "column": 25
               }
             }
@@ -885,31 +977,31 @@
             "type": "Identifier",
             "name": "default",
             "range": [
-              511,
-              518
+              580,
+              587
             ],
             "loc": {
               "start": {
-                "line": 8,
+                "line": 9,
                 "column": 8
               },
               "end": {
-                "line": 8,
+                "line": 9,
                 "column": 15
               }
             }
           },
           "range": [
-            511,
-            528
+            580,
+            597
           ],
           "loc": {
             "start": {
-              "line": 8,
+              "line": 9,
               "column": 8
             },
             "end": {
-              "line": 8,
+              "line": 9,
               "column": 25
             }
           }
@@ -920,31 +1012,31 @@
         "value": "./Plugin.js",
         "raw": "\"./Plugin.js\"",
         "range": [
-          556,
-          569
+          625,
+          638
         ],
         "loc": {
           "start": {
-            "line": 8,
+            "line": 9,
             "column": 53
           },
           "end": {
-            "line": 8,
+            "line": 9,
             "column": 66
           }
         }
       },
       "range": [
-        503,
-        570
+        572,
+        639
       ],
       "loc": {
         "start": {
-          "line": 8,
+          "line": 9,
           "column": 0
         },
         "end": {
-          "line": 8,
+          "line": 9,
           "column": 67
         }
       }
@@ -953,7 +1045,7 @@
   "sourceType": "module",
   "range": [
     0,
-    570
+    639
   ],
   "loc": {
     "start": {
@@ -961,7 +1053,7 @@
       "column": 0
     },
     "end": {
-      "line": 8,
+      "line": 9,
       "column": 67
     }
   },

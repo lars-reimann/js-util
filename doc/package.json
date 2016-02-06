@@ -1,25 +1,46 @@
 {
+  "name": "@ignavia/util",
+  "description": "Some utility classes.",
+  "keywords": "utility",
+  "license": "ISC",
+  "version": "1.1.2",
+  "main": "dist/util.js",
+  "scripts": {
+    "build": "jspm build ./src/util.js ./dist/util.js --format esm --skip-source-maps --minify",
+    "prepublish": "npm run build",
+    "doc": "esdoc -c esdoc.json"
+  },
+  "jspmPackage": true,
+  "registry": "npm",
+  "format": "esm",
+  "jspm": {
     "name": "@ignavia/util",
-    "description": "Some utility classes.",
-    "keywords": "utility",
-    "license": "ICS",
-    "version": "1.1.2",
-    "main": "dist/util.js",
     "devDependencies": {
-        "jspm": "^0.17.0-beta.6"
+      "chai": "^3.5.0",
+      "mocha": "^2.4.5",
+      "plugin-babel": "systemjs-plugin-babel@^0.0.2"
     },
-    "scripts": {
-        "build": "jspm build ./src/util.js ./dist/util.js --format esm --skip-source-maps --minify",
-        "prepublish": "npm run build",
-        "doc": "esdoc -c esdoc.json"
+    "peerDependencies": {
+      "buffer": "github:jspm/nodelibs-buffer@^0.2.0-alpha",
+      "process": "github:jspm/nodelibs-process@^0.2.0-alpha"
     },
-    "jspmPackage": true,
-    "registry": "npm",
-    "format": "esm",
-    "jspm": {
-        "name": "@ignavia/util",
-        "devDependencies": {
-            "plugin-babel": "systemjs-plugin-babel@^0.0.2"
+    "overrides": {
+      "npm:mocha@2.4.5": {
+        "browser": "mocha",
+        "main": "mocha",
+        "dependencies": {
+          "css": "*"
+        },
+        "registry": "jspm",
+        "meta": {
+          "mocha.js": {
+            "deps": [
+              "./mocha.css!"
+            ],
+            "exports": "mocha"
+          }
         }
+      }
     }
+  }
 }
