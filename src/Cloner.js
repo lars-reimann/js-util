@@ -12,7 +12,9 @@ export default class Cloner {
 
         this.recursionLevel++;
         if (this.isPrimitive(p)) {
-            result = this.clonePrimitive(p);
+            result = p;
+        } else if (this.context.has(p)) {
+            result = this.context.get(p);
         } else if (this.isDate(p)) {
             result = this.cloneDate(p);
         } else if (this.isRegExp(p)) {
@@ -47,21 +49,6 @@ export default class Cloner {
     }
 
     /**
-     * Clones a primitive value.
-     *
-     * @param {*} primitive
-     * The value to clone.
-     *
-     * @return {*}
-     * The value itself.
-     *
-     * @private
-     */
-    clonePrimitive(primitive) {
-        return primitive;
-    }
-
-    /**
      * Tests if the given parameter is a Date object.
      *
      * @param {*} p
@@ -88,7 +75,9 @@ export default class Cloner {
      * @private
      */
     cloneDate(date) {
-        return new Date(date.getTime());
+        let result = new Date(date.getTime());
+        this.context.set(date, result);
+        return result;
     }
 
     /**
@@ -118,7 +107,9 @@ export default class Cloner {
      * @private
      */
     cloneRegExp(regExp) {
-        return new RegExp(regExp);
+        let result = new RegExp(regExp);
+        this.context.set(regExp, result);
+        return result;
     }
 
     /**
@@ -148,10 +139,6 @@ export default class Cloner {
      * @private
      */
     cloneArray(arr) {
-        if (this.context.has(arr)) {
-            return this.context.get(arr);
-        }
-
         let result = [];
         this.context.set(arr, result);
         for (let v of arr) {
@@ -185,10 +172,6 @@ export default class Cloner {
      * A clone of the object.
      */
     cloneObject(obj) {
-        if (this.context.has(obj)) {
-            return this.context.get(obj);
-        }
-
         let result = {};
         this.context.set(obj, result);
         for (var [k, v] of Object.entries(obj)) {

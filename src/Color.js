@@ -88,7 +88,8 @@ export default class Color {
      * The hex value.
      *
      * @param  {Number} [alpha=1]
-     * The alpha value.
+     * The alpha value. This is a number in the range [0, 1]. 0 represents full
+     * transparency and 1 is full opacity.
      */
     constructor(hex, alpha = 1) {
 
@@ -160,7 +161,7 @@ export default class Color {
             h /= 6;
         }
 
-        return {h, s, l, a: this.alpha};
+        return {h: h * 360, s, l, a: this.alpha};
     }
 
     /**

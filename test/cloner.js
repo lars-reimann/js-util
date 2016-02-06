@@ -107,7 +107,13 @@ export default function() {
                 expect(r.o).to.equal(r);
             });
 
-            it("should clone Cloneable childs", function () {
+            it("should share equal child objects", function () {
+                let o = {}, v = {o1: o, o2: o},
+                    r = cloner.clone(v);
+                expect(r.o1).to.equal(r.o2);
+            });
+
+            it("should clone Cloneable childs using the [cloneSym] method", function () {
                let v = {o: {
                    [cloneSym]: () => "no-clone"
                }};
