@@ -1,4 +1,4 @@
-import Cloner from "./Cloner";
+import Cloner from "./Cloner.js";
 
 /**
  * Contains symbols for the methods of the Cloneable interface.
@@ -8,22 +8,6 @@ import Cloner from "./Cloner";
 export const cloneableSymbols = {
     clone: Symbol("clone")
 };
-
-/**
- * An interface for every object that can be cloned.
- *
- * @interface
- */
-export default class Cloneable {
-
-    /**
-     * Returns a copy of this object.
-     *
-     * @return {*}
-     * A copy of this object.
-     */
-    [cloneableSymbols.clone]() {}
-}
 
 /**
  * A mixin for Cloneable behavior.
@@ -40,3 +24,19 @@ export const cloneableMixin = {
         return cloner.clone(this);
     }
 };
+
+// /**
+//  * An interface for every object that can be cloned.
+//  *
+//  * @interface
+//  */
+// class Cloneable {
+
+//     /**
+//      * Returns a copy of this object.
+//      *
+//      * @return {*}
+//      * A copy of this object.
+//      */
+//     [cloneableSymbols.clone]() {}
+// }

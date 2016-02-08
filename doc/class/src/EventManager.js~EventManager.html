@@ -38,9 +38,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/IDGenerator.js~IDGenerator.html">IDGenerator</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Cloneable.js~Cloneable.html">Cloneable</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Extensible.js~Extensible.html">Extensible</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Observable.js~Observable.html">Observable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableSymbols">cloneableSymbols</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
@@ -72,7 +69,7 @@
   
   
   
-  <div class="flat-list" data-ice="implements"><h4>Implements:</h4><ul><li><span><a href="class/src/Observable.js~Observable.html">Observable</a></span></li></ul></div>
+  <div class="flat-list" data-ice="implements"><h4>Implements:</h4><ul><li><span>Observable</span></li></ul></div>
   
   
   
@@ -109,7 +106,7 @@ If you want to hide that you are using this class, you can use the provided
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html#static-method-makeEvent">makeEvent</a></span></span><span data-ice="signature">(source: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, type: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, data: <span>*</span>): <span><a href="class/src/Event.js~Event.html">Event</a></span></span>
+           <span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html#static-method-makeEvent">makeEvent</a></span></span><span data-ice="signature">(p: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="class/src/Event.js~Event.html">Event</a></span></span>
         </p>
       </div>
       <div>
@@ -316,11 +313,11 @@ If you want to hide that you are using this class, you can use the provided
     
     
     
-    <span data-ice="name">makeEvent</span><span data-ice="signature">(source: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, type: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, data: <span>*</span>): <span><a href="class/src/Event.js~Event.html">Event</a></span></span>
+    <span data-ice="name">makeEvent</span><span data-ice="signature">(p: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="class/src/Event.js~Event.html">Event</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber28">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber31">source</a></span></span>
     </span>
   </h3>
 
@@ -341,23 +338,30 @@ If you want to hide that you are using this class, you can use the provided
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">source</td>
+      <td data-ice="name" data-depth="0">p</td>
       <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The parameter object.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">p.source</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
       <td data-ice="description"><p>The object firing this event.</p>
 </td>
     </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">type</td>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">p.type</td>
       <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
-      <td data-ice="appendix"></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
       <td data-ice="description"><p>The type of this event.</p>
 </td>
     </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">data</td>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">p.data</td>
       <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
       <td data-ice="description"><p>Any additional data to associate with this event.</p>
 </td>
     </tr>
@@ -406,7 +410,7 @@ If you want to hide that you are using this class, you can use the provided
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber35">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber38">source</a></span></span>
     </span>
   </h3>
 
@@ -449,7 +453,7 @@ If you want to hide that you are using this class, you can use the provided
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber49">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber52">source</a></span></span>
     </span>
   </h3>
 
@@ -490,7 +494,7 @@ If you want to hide that you are using this class, you can use the provided
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber42">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber45">source</a></span></span>
     </span>
   </h3>
 
@@ -534,7 +538,7 @@ If you want to hide that you are using this class, you can use the provided
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber65">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber68">source</a></span></span>
     </span>
   </h3>
 
@@ -611,7 +615,7 @@ not specified it will only listen to events without a type.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber130">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber133">source</a></span></span>
     </span>
   </h3>
 
@@ -680,7 +684,7 @@ not specified it will only listen to events without a type.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber97">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber100">source</a></span></span>
     </span>
   </h3>
 
@@ -750,7 +754,7 @@ parameter is left empty the listener is removed completely.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.3)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.4)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

@@ -3,10 +3,10 @@
   "description": "Some utility classes.",
   "keywords": "utility",
   "license": "ISC",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "main": "dist/util.js",
   "scripts": {
-    "build": "jspm build ./src/util.js ./dist/util.js --format esm --skip-source-maps --minify",
+    "build": "jspm build ./src/util.js ./dist/util.js --format umd --global-name \"ignaviaUtil\" --global-deps \"{}\" --skip-source-maps --minify",
     "prepublish": "npm run build",
     "doc": "esdoc -c esdoc.json"
   },

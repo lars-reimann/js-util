@@ -11,59 +11,6 @@ export const extensibleSymbols = {
 };
 
 /**
- * An interface for every object that can be extended by plugins.
- *
- * @interface
- */
-export default class Extensible {
-
-    /**
-     * Adds the given method to this object.
-     *
-     * @param {String|Symbol} name
-     * The name of the method.
-     *
-     * @param {Function} f
-     * The function to execute.
-     *
-     * @abstract
-     */
-    [extensibleSymbols.addMethod](name, f) {}
-
-    /**
-     * Removes the method with the given name from this object.
-     *
-     * @param {String|Symbol} name
-     * The name of the function to remove.
-     *
-     * @abstract
-     */
-    [extensibleSymbols.removeMethod](name) {}
-
-    /**
-     * Adds the given plugins to this object by calling the register method on
-     * each plugin and passing this object as an argument.
-     *
-     * @param {Plugin} plugins
-     * The plugins to add.
-     *
-     * @abstract
-     */
-    [extensibleSymbols.addPlugin](plugin) {}
-
-    /**
-     * Removes the given plugins from this object by calling the register method
-     * on each plugin and passing this object as an argument.
-     *
-     * @param {Plugin} plugins
-     * The plugins to remove.
-     *
-     * @abstract
-     */
-    [extensibleSymbols.removePlugin](plugin) {}
-}
-
-/**
  * A mixin for Extensible behavior.
  *
  * @type {Object}
@@ -100,3 +47,56 @@ export const extensibleMixin = {
         return this;
     }
 };
+
+// /**
+//  * An interface for every object that can be extended by plugins.
+//  *
+//  * @interface
+//  */
+// class Extensible {
+
+//     /**
+//      * Adds the given method to this object.
+//      *
+//      * @param {String|Symbol} name
+//      * The name of the method.
+//      *
+//      * @param {Function} f
+//      * The function to execute.
+//      *
+//      * @abstract
+//      */
+//     [extensibleSymbols.addMethod](name, f) {}
+
+//     /**
+//      * Removes the method with the given name from this object.
+//      *
+//      * @param {String|Symbol} name
+//      * The name of the function to remove.
+//      *
+//      * @abstract
+//      */
+//     [extensibleSymbols.removeMethod](name) {}
+
+//     /**
+//      * Adds the given plugins to this object by calling the register method on
+//      * each plugin and passing this object as an argument.
+//      *
+//      * @param {Plugin} plugins
+//      * The plugins to add.
+//      *
+//      * @abstract
+//      */
+//     [extensibleSymbols.addPlugin](plugin) {}
+
+//     /**
+//      * Removes the given plugins from this object by calling the register method
+//      * on each plugin and passing this object as an argument.
+//      *
+//      * @param {Plugin} plugins
+//      * The plugins to remove.
+//      *
+//      * @abstract
+//      */
+//     [extensibleSymbols.removePlugin](plugin) {}
+// }

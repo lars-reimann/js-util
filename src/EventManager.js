@@ -1,5 +1,5 @@
 import Event               from "./Event.js";
-import {observableSymbols} from "./Observable";
+import {observableSymbols} from "./Observable.js";
 
 /**
  * A helper class that can manage events and event listeners for other objects.
@@ -13,13 +13,16 @@ export default class EventManager {
     /**
      * A factory method for {@link Event} objects.
      *
-     * @param {Object} source
+     * @param {Object} p
+     * The parameter object.
+     *
+     * @param {Object} [p.source]
      * The object firing this event.
      *
-     * @param {String} type
+     * @param {String} [p.type]
      * The type of this event.
      *
-     * @param {*} data
+     * @param {*} [p.data]
      * Any additional data to associate with this event.
      *
      * @return {Event}

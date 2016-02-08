@@ -42,11 +42,11 @@
       ],
       "source": {
         "type": "Literal",
-        "value": "./Cloner",
-        "raw": "\"./Cloner\"",
+        "value": "./Cloner.js",
+        "raw": "\"./Cloner.js\"",
         "range": [
           19,
-          29
+          32
         ],
         "loc": {
           "start": {
@@ -55,13 +55,13 @@
           },
           "end": {
             "line": 1,
-            "column": 29
+            "column": 32
           }
         }
       },
       "range": [
         0,
-        30
+        33
       ],
       "loc": {
         "start": {
@@ -70,7 +70,7 @@
         },
         "end": {
           "line": 1,
-          "column": 30
+          "column": 33
         }
       },
       "trailingComments": [
@@ -78,8 +78,8 @@
           "type": "Block",
           "value": "*\r\n * Contains symbols for the methods of the Cloneable interface.\r\n *\r\n * @type {Object}\r\n ",
           "range": [
-            34,
-            130
+            37,
+            133
           ],
           "loc": {
             "start": {
@@ -105,8 +105,8 @@
               "type": "Identifier",
               "name": "cloneableSymbols",
               "range": [
-                145,
-                161
+                148,
+                164
               ],
               "loc": {
                 "start": {
@@ -128,8 +128,8 @@
                     "type": "Identifier",
                     "name": "clone",
                     "range": [
-                      171,
-                      176
+                      174,
+                      179
                     ],
                     "loc": {
                       "start": {
@@ -148,8 +148,8 @@
                       "type": "Identifier",
                       "name": "Symbol",
                       "range": [
-                        178,
-                        184
+                        181,
+                        187
                       ],
                       "loc": {
                         "start": {
@@ -168,8 +168,8 @@
                         "value": "clone",
                         "raw": "\"clone\"",
                         "range": [
-                          185,
-                          192
+                          188,
+                          195
                         ],
                         "loc": {
                           "start": {
@@ -184,8 +184,8 @@
                       }
                     ],
                     "range": [
-                      178,
-                      193
+                      181,
+                      196
                     ],
                     "loc": {
                       "start": {
@@ -203,8 +203,8 @@
                   "shorthand": false,
                   "computed": false,
                   "range": [
-                    171,
-                    193
+                    174,
+                    196
                   ],
                   "loc": {
                     "start": {
@@ -219,8 +219,8 @@
                 }
               ],
               "range": [
-                164,
-                196
+                167,
+                199
               ],
               "loc": {
                 "start": {
@@ -234,8 +234,8 @@
               }
             },
             "range": [
-              145,
-              196
+              148,
+              199
             ],
             "loc": {
               "start": {
@@ -251,8 +251,8 @@
         ],
         "kind": "const",
         "range": [
-          139,
-          197
+          142,
+          200
         ],
         "loc": {
           "start": {
@@ -269,8 +269,8 @@
             "type": "Block",
             "value": "*\r\n * Contains symbols for the methods of the Cloneable interface.\r\n *\r\n * @type {Object}\r\n ",
             "range": [
-              34,
-              130
+              37,
+              133
             ],
             "loc": {
               "start": {
@@ -287,10 +287,10 @@
         "trailingComments": [
           {
             "type": "Block",
-            "value": "*\r\n * An interface for every object that can be cloned.\r\n *\r\n * @interface\r\n ",
+            "value": "*\r\n * A mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n *\r\n * @example\r\n * Object.assign(MyClass.prototype, cloneableMixin);\r\n * let myObject = new MyClass(),\r\n *     clone    = myObject[cloneableSymbols.clone]\r\n ",
             "range": [
-              201,
-              282
+              204,
+              428
             ],
             "loc": {
               "start": {
@@ -298,7 +298,7 @@
                 "column": 0
               },
               "end": {
-                "line": 16,
+                "line": 21,
                 "column": 3
               }
             }
@@ -308,8 +308,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        132,
-        197
+        135,
+        200
       ],
       "loc": {
         "start": {
@@ -326,8 +326,8 @@
           "type": "Block",
           "value": "*\r\n * Contains symbols for the methods of the Cloneable interface.\r\n *\r\n * @type {Object}\r\n ",
           "range": [
-            34,
-            130
+            37,
+            133
           ],
           "loc": {
             "start": {
@@ -344,283 +344,18 @@
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\r\n * An interface for every object that can be cloned.\r\n *\r\n * @interface\r\n ",
-          "range": [
-            201,
-            282
-          ],
-          "loc": {
-            "start": {
-              "line": 12,
-              "column": 0
-            },
-            "end": {
-              "line": 16,
-              "column": 3
-            }
-          }
-        }
-      ]
-    },
-    {
-      "type": "ExportDefaultDeclaration",
-      "declaration": {
-        "type": "ClassDeclaration",
-        "id": {
-          "type": "Identifier",
-          "name": "Cloneable",
-          "range": [
-            305,
-            314
-          ],
-          "loc": {
-            "start": {
-              "line": 17,
-              "column": 21
-            },
-            "end": {
-              "line": 17,
-              "column": 30
-            }
-          }
-        },
-        "superClass": null,
-        "body": {
-          "type": "ClassBody",
-          "body": [
-            {
-              "type": "MethodDefinition",
-              "key": {
-                "type": "MemberExpression",
-                "computed": false,
-                "object": {
-                  "type": "Identifier",
-                  "name": "cloneableSymbols",
-                  "range": [
-                    441,
-                    457
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 25,
-                      "column": 5
-                    },
-                    "end": {
-                      "line": 25,
-                      "column": 21
-                    }
-                  }
-                },
-                "property": {
-                  "type": "Identifier",
-                  "name": "clone",
-                  "range": [
-                    458,
-                    463
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 25,
-                      "column": 22
-                    },
-                    "end": {
-                      "line": 25,
-                      "column": 27
-                    }
-                  }
-                },
-                "range": [
-                  441,
-                  463
-                ],
-                "loc": {
-                  "start": {
-                    "line": 25,
-                    "column": 5
-                  },
-                  "end": {
-                    "line": 25,
-                    "column": 27
-                  }
-                }
-              },
-              "value": {
-                "type": "FunctionExpression",
-                "id": null,
-                "params": [],
-                "body": {
-                  "type": "BlockStatement",
-                  "body": [],
-                  "range": [
-                    467,
-                    469
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 25,
-                      "column": 31
-                    },
-                    "end": {
-                      "line": 25,
-                      "column": 33
-                    }
-                  }
-                },
-                "generator": false,
-                "expression": false,
-                "range": [
-                  464,
-                  469
-                ],
-                "loc": {
-                  "start": {
-                    "line": 25,
-                    "column": 28
-                  },
-                  "end": {
-                    "line": 25,
-                    "column": 33
-                  }
-                }
-              },
-              "kind": "method",
-              "computed": true,
-              "range": [
-                440,
-                469
-              ],
-              "loc": {
-                "start": {
-                  "line": 25,
-                  "column": 4
-                },
-                "end": {
-                  "line": 25,
-                  "column": 33
-                }
-              },
-              "static": false
-            }
-          ],
-          "range": [
-            315,
-            472
-          ],
-          "loc": {
-            "start": {
-              "line": 17,
-              "column": 31
-            },
-            "end": {
-              "line": 26,
-              "column": 1
-            }
-          }
-        },
-        "range": [
-          299,
-          472
-        ],
-        "loc": {
-          "start": {
-            "line": 17,
-            "column": 15
-          },
-          "end": {
-            "line": 26,
-            "column": 1
-          }
-        },
-        "leadingComments": [
-          {
-            "type": "Block",
-            "value": "*\r\n * An interface for every object that can be cloned.\r\n *\r\n * @interface\r\n ",
-            "range": [
-              201,
-              282
-            ],
-            "loc": {
-              "start": {
-                "line": 12,
-                "column": 0
-              },
-              "end": {
-                "line": 16,
-                "column": 3
-              }
-            }
-          }
-        ],
-        "trailingComments": [
-          {
-            "type": "Block",
-            "value": "*\r\n * A mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n *\r\n * @example\r\n * Object.assign(MyClass.prototype, cloneableMixin);\r\n * let myObject = new MyClass(),\r\n *     clone    = myObject[cloneableSymbols.clone]\r\n ",
-            "range": [
-              476,
-              700
-            ],
-            "loc": {
-              "start": {
-                "line": 28,
-                "column": 0
-              },
-              "end": {
-                "line": 37,
-                "column": 3
-              }
-            }
-          }
-        ]
-      },
-      "range": [
-        284,
-        472
-      ],
-      "loc": {
-        "start": {
-          "line": 17,
-          "column": 0
-        },
-        "end": {
-          "line": 26,
-          "column": 1
-        }
-      },
-      "leadingComments": [
-        {
-          "type": "Block",
-          "value": "*\r\n * An interface for every object that can be cloned.\r\n *\r\n * @interface\r\n ",
-          "range": [
-            201,
-            282
-          ],
-          "loc": {
-            "start": {
-              "line": 12,
-              "column": 0
-            },
-            "end": {
-              "line": 16,
-              "column": 3
-            }
-          }
-        }
-      ],
-      "trailingComments": [
-        {
-          "type": "Block",
           "value": "*\r\n * A mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n *\r\n * @example\r\n * Object.assign(MyClass.prototype, cloneableMixin);\r\n * let myObject = new MyClass(),\r\n *     clone    = myObject[cloneableSymbols.clone]\r\n ",
           "range": [
-            476,
-            700
+            204,
+            428
           ],
           "loc": {
             "start": {
-              "line": 28,
+              "line": 12,
               "column": 0
             },
             "end": {
-              "line": 37,
+              "line": 21,
               "column": 3
             }
           }
@@ -638,16 +373,16 @@
               "type": "Identifier",
               "name": "cloneableMixin",
               "range": [
-                715,
-                729
+                443,
+                457
               ],
               "loc": {
                 "start": {
-                  "line": 38,
+                  "line": 22,
                   "column": 13
                 },
                 "end": {
-                  "line": 38,
+                  "line": 22,
                   "column": 27
                 }
               }
@@ -664,16 +399,16 @@
                       "type": "Identifier",
                       "name": "cloneableSymbols",
                       "range": [
-                        740,
-                        756
+                        468,
+                        484
                       ],
                       "loc": {
                         "start": {
-                          "line": 39,
+                          "line": 23,
                           "column": 5
                         },
                         "end": {
-                          "line": 39,
+                          "line": 23,
                           "column": 21
                         }
                       }
@@ -682,31 +417,31 @@
                       "type": "Identifier",
                       "name": "clone",
                       "range": [
-                        757,
-                        762
+                        485,
+                        490
                       ],
                       "loc": {
                         "start": {
-                          "line": 39,
+                          "line": 23,
                           "column": 22
                         },
                         "end": {
-                          "line": 39,
+                          "line": 23,
                           "column": 27
                         }
                       }
                     },
                     "range": [
-                      740,
-                      762
+                      468,
+                      490
                     ],
                     "loc": {
                       "start": {
-                        "line": 39,
+                        "line": 23,
                         "column": 5
                       },
                       "end": {
-                        "line": 39,
+                        "line": 23,
                         "column": 27
                       }
                     }
@@ -721,16 +456,16 @@
                           "type": "Identifier",
                           "name": "cloner",
                           "range": [
-                            764,
-                            770
+                            492,
+                            498
                           ],
                           "loc": {
                             "start": {
-                              "line": 39,
+                              "line": 23,
                               "column": 29
                             },
                             "end": {
-                              "line": 39,
+                              "line": 23,
                               "column": 35
                             }
                           }
@@ -741,47 +476,47 @@
                             "type": "Identifier",
                             "name": "Cloner",
                             "range": [
-                              777,
-                              783
+                              505,
+                              511
                             ],
                             "loc": {
                               "start": {
-                                "line": 39,
+                                "line": 23,
                                 "column": 42
                               },
                               "end": {
-                                "line": 39,
+                                "line": 23,
                                 "column": 48
                               }
                             }
                           },
                           "arguments": [],
                           "range": [
-                            773,
-                            785
+                            501,
+                            513
                           ],
                           "loc": {
                             "start": {
-                              "line": 39,
+                              "line": 23,
                               "column": 38
                             },
                             "end": {
-                              "line": 39,
+                              "line": 23,
                               "column": 50
                             }
                           }
                         },
                         "range": [
-                          764,
-                          785
+                          492,
+                          513
                         ],
                         "loc": {
                           "start": {
-                            "line": 39,
+                            "line": 23,
                             "column": 29
                           },
                           "end": {
-                            "line": 39,
+                            "line": 23,
                             "column": 50
                           }
                         }
@@ -801,16 +536,16 @@
                                 "type": "Identifier",
                                 "name": "cloner",
                                 "range": [
-                                  805,
-                                  811
+                                  533,
+                                  539
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 40,
+                                    "line": 24,
                                     "column": 15
                                   },
                                   "end": {
-                                    "line": 40,
+                                    "line": 24,
                                     "column": 21
                                   }
                                 }
@@ -819,31 +554,31 @@
                                 "type": "Identifier",
                                 "name": "clone",
                                 "range": [
-                                  812,
-                                  817
+                                  540,
+                                  545
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 40,
+                                    "line": 24,
                                     "column": 22
                                   },
                                   "end": {
-                                    "line": 40,
+                                    "line": 24,
                                     "column": 27
                                   }
                                 }
                               },
                               "range": [
-                                805,
-                                817
+                                533,
+                                545
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 40,
+                                  "line": 24,
                                   "column": 15
                                 },
                                 "end": {
-                                  "line": 40,
+                                  "line": 24,
                                   "column": 27
                                 }
                               }
@@ -852,63 +587,63 @@
                               {
                                 "type": "ThisExpression",
                                 "range": [
-                                  818,
-                                  822
+                                  546,
+                                  550
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 40,
+                                    "line": 24,
                                     "column": 28
                                   },
                                   "end": {
-                                    "line": 40,
+                                    "line": 24,
                                     "column": 32
                                   }
                                 }
                               }
                             ],
                             "range": [
-                              805,
-                              823
+                              533,
+                              551
                             ],
                             "loc": {
                               "start": {
-                                "line": 40,
+                                "line": 24,
                                 "column": 15
                               },
                               "end": {
-                                "line": 40,
+                                "line": 24,
                                 "column": 33
                               }
                             }
                           },
                           "range": [
-                            798,
-                            824
+                            526,
+                            552
                           ],
                           "loc": {
                             "start": {
-                              "line": 40,
+                              "line": 24,
                               "column": 8
                             },
                             "end": {
-                              "line": 40,
+                              "line": 24,
                               "column": 34
                             }
                           }
                         }
                       ],
                       "range": [
-                        787,
-                        831
+                        515,
+                        559
                       ],
                       "loc": {
                         "start": {
-                          "line": 39,
+                          "line": 23,
                           "column": 52
                         },
                         "end": {
-                          "line": 41,
+                          "line": 25,
                           "column": 5
                         }
                       }
@@ -916,16 +651,16 @@
                     "generator": false,
                     "expression": false,
                     "range": [
-                      763,
-                      831
+                      491,
+                      559
                     ],
                     "loc": {
                       "start": {
-                        "line": 39,
+                        "line": 23,
                         "column": 28
                       },
                       "end": {
-                        "line": 41,
+                        "line": 25,
                         "column": 5
                       }
                     }
@@ -935,47 +670,47 @@
                   "shorthand": false,
                   "computed": true,
                   "range": [
-                    739,
-                    831
+                    467,
+                    559
                   ],
                   "loc": {
                     "start": {
-                      "line": 39,
+                      "line": 23,
                       "column": 4
                     },
                     "end": {
-                      "line": 41,
+                      "line": 25,
                       "column": 5
                     }
                   }
                 }
               ],
               "range": [
-                732,
-                834
+                460,
+                562
               ],
               "loc": {
                 "start": {
-                  "line": 38,
+                  "line": 22,
                   "column": 30
                 },
                 "end": {
-                  "line": 42,
+                  "line": 26,
                   "column": 1
                 }
               }
             },
             "range": [
-              715,
-              834
+              443,
+              562
             ],
             "loc": {
               "start": {
-                "line": 38,
+                "line": 22,
                 "column": 13
               },
               "end": {
-                "line": 42,
+                "line": 26,
                 "column": 1
               }
             }
@@ -983,16 +718,16 @@
         ],
         "kind": "const",
         "range": [
-          709,
-          835
+          437,
+          563
         ],
         "loc": {
           "start": {
-            "line": 38,
+            "line": 22,
             "column": 7
           },
           "end": {
-            "line": 42,
+            "line": 26,
             "column": 2
           }
         },
@@ -1001,8 +736,28 @@
             "type": "Block",
             "value": "*\r\n * A mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n *\r\n * @example\r\n * Object.assign(MyClass.prototype, cloneableMixin);\r\n * let myObject = new MyClass(),\r\n *     clone    = myObject[cloneableSymbols.clone]\r\n ",
             "range": [
-              476,
-              700
+              204,
+              428
+            ],
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 0
+              },
+              "end": {
+                "line": 21,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Line",
+            "value": " /**",
+            "range": [
+              567,
+              573
             ],
             "loc": {
               "start": {
@@ -1010,27 +765,260 @@
                 "column": 0
               },
               "end": {
+                "line": 28,
+                "column": 6
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": "  * An interface for every object that can be cloned.",
+            "range": [
+              575,
+              630
+            ],
+            "loc": {
+              "start": {
+                "line": 29,
+                "column": 0
+              },
+              "end": {
+                "line": 29,
+                "column": 55
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": "  *",
+            "range": [
+              632,
+              637
+            ],
+            "loc": {
+              "start": {
+                "line": 30,
+                "column": 0
+              },
+              "end": {
+                "line": 30,
+                "column": 5
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": "  * @interface",
+            "range": [
+              639,
+              655
+            ],
+            "loc": {
+              "start": {
+                "line": 31,
+                "column": 0
+              },
+              "end": {
+                "line": 31,
+                "column": 16
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": "  */",
+            "range": [
+              657,
+              663
+            ],
+            "loc": {
+              "start": {
+                "line": 32,
+                "column": 0
+              },
+              "end": {
+                "line": 32,
+                "column": 6
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": " class Cloneable {",
+            "range": [
+              665,
+              685
+            ],
+            "loc": {
+              "start": {
+                "line": 33,
+                "column": 0
+              },
+              "end": {
+                "line": 33,
+                "column": 20
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": "     /**",
+            "range": [
+              689,
+              699
+            ],
+            "loc": {
+              "start": {
+                "line": 35,
+                "column": 0
+              },
+              "end": {
+                "line": 35,
+                "column": 10
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": "      * Returns a copy of this object.",
+            "range": [
+              701,
+              741
+            ],
+            "loc": {
+              "start": {
+                "line": 36,
+                "column": 0
+              },
+              "end": {
+                "line": 36,
+                "column": 40
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": "      *",
+            "range": [
+              743,
+              752
+            ],
+            "loc": {
+              "start": {
                 "line": 37,
-                "column": 3
+                "column": 0
+              },
+              "end": {
+                "line": 37,
+                "column": 9
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": "      * @return {*}",
+            "range": [
+              754,
+              775
+            ],
+            "loc": {
+              "start": {
+                "line": 38,
+                "column": 0
+              },
+              "end": {
+                "line": 38,
+                "column": 21
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": "      * A copy of this object.",
+            "range": [
+              777,
+              809
+            ],
+            "loc": {
+              "start": {
+                "line": 39,
+                "column": 0
+              },
+              "end": {
+                "line": 39,
+                "column": 32
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": "      */",
+            "range": [
+              811,
+              821
+            ],
+            "loc": {
+              "start": {
+                "line": 40,
+                "column": 0
+              },
+              "end": {
+                "line": 40,
+                "column": 10
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": "     [cloneableSymbols.clone]() {}",
+            "range": [
+              823,
+              859
+            ],
+            "loc": {
+              "start": {
+                "line": 41,
+                "column": 0
+              },
+              "end": {
+                "line": 41,
+                "column": 36
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": " }",
+            "range": [
+              861,
+              865
+            ],
+            "loc": {
+              "start": {
+                "line": 42,
+                "column": 0
+              },
+              "end": {
+                "line": 42,
+                "column": 4
               }
             }
           }
-        ],
-        "trailingComments": []
+        ]
       },
       "specifiers": [],
       "source": null,
       "range": [
-        702,
-        835
+        430,
+        563
       ],
       "loc": {
         "start": {
-          "line": 38,
+          "line": 22,
           "column": 0
         },
         "end": {
-          "line": 42,
+          "line": 26,
           "column": 2
         }
       },
@@ -1039,8 +1027,28 @@
           "type": "Block",
           "value": "*\r\n * A mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n *\r\n * @example\r\n * Object.assign(MyClass.prototype, cloneableMixin);\r\n * let myObject = new MyClass(),\r\n *     clone    = myObject[cloneableSymbols.clone]\r\n ",
           "range": [
-            476,
-            700
+            204,
+            428
+          ],
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 0
+            },
+            "end": {
+              "line": 21,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Line",
+          "value": " /**",
+          "range": [
+            567,
+            573
           ],
           "loc": {
             "start": {
@@ -1048,8 +1056,242 @@
               "column": 0
             },
             "end": {
+              "line": 28,
+              "column": 6
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "  * An interface for every object that can be cloned.",
+          "range": [
+            575,
+            630
+          ],
+          "loc": {
+            "start": {
+              "line": 29,
+              "column": 0
+            },
+            "end": {
+              "line": 29,
+              "column": 55
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "  *",
+          "range": [
+            632,
+            637
+          ],
+          "loc": {
+            "start": {
+              "line": 30,
+              "column": 0
+            },
+            "end": {
+              "line": 30,
+              "column": 5
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "  * @interface",
+          "range": [
+            639,
+            655
+          ],
+          "loc": {
+            "start": {
+              "line": 31,
+              "column": 0
+            },
+            "end": {
+              "line": 31,
+              "column": 16
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "  */",
+          "range": [
+            657,
+            663
+          ],
+          "loc": {
+            "start": {
+              "line": 32,
+              "column": 0
+            },
+            "end": {
+              "line": 32,
+              "column": 6
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": " class Cloneable {",
+          "range": [
+            665,
+            685
+          ],
+          "loc": {
+            "start": {
+              "line": 33,
+              "column": 0
+            },
+            "end": {
+              "line": 33,
+              "column": 20
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "     /**",
+          "range": [
+            689,
+            699
+          ],
+          "loc": {
+            "start": {
+              "line": 35,
+              "column": 0
+            },
+            "end": {
+              "line": 35,
+              "column": 10
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "      * Returns a copy of this object.",
+          "range": [
+            701,
+            741
+          ],
+          "loc": {
+            "start": {
+              "line": 36,
+              "column": 0
+            },
+            "end": {
+              "line": 36,
+              "column": 40
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "      *",
+          "range": [
+            743,
+            752
+          ],
+          "loc": {
+            "start": {
               "line": 37,
-              "column": 3
+              "column": 0
+            },
+            "end": {
+              "line": 37,
+              "column": 9
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "      * @return {*}",
+          "range": [
+            754,
+            775
+          ],
+          "loc": {
+            "start": {
+              "line": 38,
+              "column": 0
+            },
+            "end": {
+              "line": 38,
+              "column": 21
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "      * A copy of this object.",
+          "range": [
+            777,
+            809
+          ],
+          "loc": {
+            "start": {
+              "line": 39,
+              "column": 0
+            },
+            "end": {
+              "line": 39,
+              "column": 32
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "      */",
+          "range": [
+            811,
+            821
+          ],
+          "loc": {
+            "start": {
+              "line": 40,
+              "column": 0
+            },
+            "end": {
+              "line": 40,
+              "column": 10
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "     [cloneableSymbols.clone]() {}",
+          "range": [
+            823,
+            859
+          ],
+          "loc": {
+            "start": {
+              "line": 41,
+              "column": 0
+            },
+            "end": {
+              "line": 41,
+              "column": 36
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": " }",
+          "range": [
+            861,
+            865
+          ],
+          "loc": {
+            "start": {
+              "line": 42,
+              "column": 0
+            },
+            "end": {
+              "line": 42,
+              "column": 4
             }
           }
         }
@@ -1059,7 +1301,7 @@
   "sourceType": "module",
   "range": [
     0,
-    835
+    563
   ],
   "loc": {
     "start": {
@@ -1067,7 +1309,7 @@
       "column": 0
     },
     "end": {
-      "line": 42,
+      "line": 26,
       "column": 2
     }
   },
@@ -1076,8 +1318,8 @@
       "type": "Block",
       "value": "*\r\n * Contains symbols for the methods of the Cloneable interface.\r\n *\r\n * @type {Object}\r\n ",
       "range": [
-        34,
-        130
+        37,
+        133
       ],
       "loc": {
         "start": {
@@ -1092,10 +1334,10 @@
     },
     {
       "type": "Block",
-      "value": "*\r\n * An interface for every object that can be cloned.\r\n *\r\n * @interface\r\n ",
+      "value": "*\r\n * A mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n *\r\n * @example\r\n * Object.assign(MyClass.prototype, cloneableMixin);\r\n * let myObject = new MyClass(),\r\n *     clone    = myObject[cloneableSymbols.clone]\r\n ",
       "range": [
-        201,
-        282
+        204,
+        428
       ],
       "loc": {
         "start": {
@@ -1103,35 +1345,17 @@
           "column": 0
         },
         "end": {
-          "line": 16,
+          "line": 21,
           "column": 3
         }
       }
     },
     {
-      "type": "Block",
-      "value": "*\r\n     * Returns a copy of this object.\r\n     *\r\n     * @return {*}\r\n     * A copy of this object.\r\n     ",
+      "type": "Line",
+      "value": " /**",
       "range": [
-        324,
-        434
-      ],
-      "loc": {
-        "start": {
-          "line": 19,
-          "column": 4
-        },
-        "end": {
-          "line": 24,
-          "column": 7
-        }
-      }
-    },
-    {
-      "type": "Block",
-      "value": "*\r\n * A mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n *\r\n * @example\r\n * Object.assign(MyClass.prototype, cloneableMixin);\r\n * let myObject = new MyClass(),\r\n *     clone    = myObject[cloneableSymbols.clone]\r\n ",
-      "range": [
-        476,
-        700
+        567,
+        573
       ],
       "loc": {
         "start": {
@@ -1139,8 +1363,242 @@
           "column": 0
         },
         "end": {
+          "line": 28,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "  * An interface for every object that can be cloned.",
+      "range": [
+        575,
+        630
+      ],
+      "loc": {
+        "start": {
+          "line": 29,
+          "column": 0
+        },
+        "end": {
+          "line": 29,
+          "column": 55
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "  *",
+      "range": [
+        632,
+        637
+      ],
+      "loc": {
+        "start": {
+          "line": 30,
+          "column": 0
+        },
+        "end": {
+          "line": 30,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "  * @interface",
+      "range": [
+        639,
+        655
+      ],
+      "loc": {
+        "start": {
+          "line": 31,
+          "column": 0
+        },
+        "end": {
+          "line": 31,
+          "column": 16
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "  */",
+      "range": [
+        657,
+        663
+      ],
+      "loc": {
+        "start": {
+          "line": 32,
+          "column": 0
+        },
+        "end": {
+          "line": 32,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": " class Cloneable {",
+      "range": [
+        665,
+        685
+      ],
+      "loc": {
+        "start": {
+          "line": 33,
+          "column": 0
+        },
+        "end": {
+          "line": 33,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "     /**",
+      "range": [
+        689,
+        699
+      ],
+      "loc": {
+        "start": {
+          "line": 35,
+          "column": 0
+        },
+        "end": {
+          "line": 35,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "      * Returns a copy of this object.",
+      "range": [
+        701,
+        741
+      ],
+      "loc": {
+        "start": {
+          "line": 36,
+          "column": 0
+        },
+        "end": {
+          "line": 36,
+          "column": 40
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "      *",
+      "range": [
+        743,
+        752
+      ],
+      "loc": {
+        "start": {
           "line": 37,
-          "column": 3
+          "column": 0
+        },
+        "end": {
+          "line": 37,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "      * @return {*}",
+      "range": [
+        754,
+        775
+      ],
+      "loc": {
+        "start": {
+          "line": 38,
+          "column": 0
+        },
+        "end": {
+          "line": 38,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "      * A copy of this object.",
+      "range": [
+        777,
+        809
+      ],
+      "loc": {
+        "start": {
+          "line": 39,
+          "column": 0
+        },
+        "end": {
+          "line": 39,
+          "column": 32
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "      */",
+      "range": [
+        811,
+        821
+      ],
+      "loc": {
+        "start": {
+          "line": 40,
+          "column": 0
+        },
+        "end": {
+          "line": 40,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "     [cloneableSymbols.clone]() {}",
+      "range": [
+        823,
+        859
+      ],
+      "loc": {
+        "start": {
+          "line": 41,
+          "column": 0
+        },
+        "end": {
+          "line": 41,
+          "column": 36
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": " }",
+      "range": [
+        861,
+        865
+      ],
+      "loc": {
+        "start": {
+          "line": 42,
+          "column": 0
+        },
+        "end": {
+          "line": 42,
+          "column": 4
         }
       }
     }

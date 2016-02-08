@@ -1,11 +1,5 @@
 window.esdocSearchIndex = [
   [
-    "@ignavia/util/src/cloneable.js~cloneable",
-    "class/src/Cloneable.js~Cloneable.html",
-    "<span>Cloneable</span> <span class=\"search-result-import-path\">@ignavia/util/src/Cloneable.js</span>",
-    "class"
-  ],
-  [
     "@ignavia/util/src/cloner.js~cloner",
     "class/src/Cloner.js~Cloner.html",
     "<span>Cloner</span> <span class=\"search-result-import-path\">@ignavia/util/src/Cloner.js</span>",
@@ -30,21 +24,9 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "@ignavia/util/src/extensible.js~extensible",
-    "class/src/Extensible.js~Extensible.html",
-    "<span>Extensible</span> <span class=\"search-result-import-path\">@ignavia/util/src/Extensible.js</span>",
-    "class"
-  ],
-  [
     "@ignavia/util/src/idgenerator.js~idgenerator",
     "class/src/IDGenerator.js~IDGenerator.html",
     "<span>IDGenerator</span> <span class=\"search-result-import-path\">@ignavia/util/src/IDGenerator.js</span>",
-    "class"
-  ],
-  [
-    "@ignavia/util/src/observable.js~observable",
-    "class/src/Observable.js~Observable.html",
-    "<span>Observable</span> <span class=\"search-result-import-path\">@ignavia/util/src/Observable.js</span>",
     "class"
   ],
   [
@@ -432,12 +414,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/cloneable.js~cloneable#[cloneablesymbols.clone]",
-    "class/src/Cloneable.js~Cloneable.html#instance-method-[cloneableSymbols.clone]",
-    "src/Cloneable.js~Cloneable#[cloneableSymbols.clone]",
-    "method"
-  ],
-  [
     "src/cloner.js",
     "file/src/Cloner.js.html",
     "src/Cloner.js",
@@ -594,30 +570,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/extensible.js~extensible#[extensiblesymbols.addmethod]",
-    "class/src/Extensible.js~Extensible.html#instance-method-[extensibleSymbols.addMethod]",
-    "src/Extensible.js~Extensible#[extensibleSymbols.addMethod]",
-    "method"
-  ],
-  [
-    "src/extensible.js~extensible#[extensiblesymbols.addplugin]",
-    "class/src/Extensible.js~Extensible.html#instance-method-[extensibleSymbols.addPlugin]",
-    "src/Extensible.js~Extensible#[extensibleSymbols.addPlugin]",
-    "method"
-  ],
-  [
-    "src/extensible.js~extensible#[extensiblesymbols.removemethod]",
-    "class/src/Extensible.js~Extensible.html#instance-method-[extensibleSymbols.removeMethod]",
-    "src/Extensible.js~Extensible#[extensibleSymbols.removeMethod]",
-    "method"
-  ],
-  [
-    "src/extensible.js~extensible#[extensiblesymbols.removeplugin]",
-    "class/src/Extensible.js~Extensible.html#instance-method-[extensibleSymbols.removePlugin]",
-    "src/Extensible.js~Extensible#[extensibleSymbols.removePlugin]",
-    "method"
-  ],
-  [
     "src/idgenerator.js",
     "file/src/IDGenerator.js.html",
     "src/IDGenerator.js",
@@ -646,24 +598,6 @@ window.esdocSearchIndex = [
     "file/src/Observable.js.html",
     "src/Observable.js",
     "file"
-  ],
-  [
-    "src/observable.js~observable#[observablesymbols.addlistener]",
-    "class/src/Observable.js~Observable.html#instance-method-[observableSymbols.addListener]",
-    "src/Observable.js~Observable#[observableSymbols.addListener]",
-    "method"
-  ],
-  [
-    "src/observable.js~observable#[observablesymbols.fireevent]",
-    "class/src/Observable.js~Observable.html#instance-method-[observableSymbols.fireEvent]",
-    "src/Observable.js~Observable#[observableSymbols.fireEvent]",
-    "method"
-  ],
-  [
-    "src/observable.js~observable#[observablesymbols.removelistener]",
-    "class/src/Observable.js~Observable.html#instance-method-[observableSymbols.removeListener]",
-    "src/Observable.js~Observable#[observableSymbols.removeListener]",
-    "method"
   ],
   [
     "src/plugin.js",

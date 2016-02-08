@@ -10,48 +10,6 @@ export const observableSymbols = {
 };
 
 /**
- * An interface for every object that allows listeners to be attached to it.
- *
- * @interface
- */
-export default class Observable {
-
-    /**
-     * Adds an event listener to this object.
-     *
-     * @param {String|Iterator<String>} types
-     * The types of events the function should listen to.
-     *
-     * @param {Function} f
-     * The function that should be executed when the event fires.
-     *
-     * @abstract
-     */
-    [observableSymbols.addListener](f, types) {}
-
-    /**
-     * Adds an event listener to this object.
-     *
-     * @param {String|Iterator<String>} types
-     * The types of events the function should listen to.
-     *
-     * @param {Function} f
-     * The function that should be executed when the event fires.
-     *
-     * @abstract
-     */
-    [observableSymbols.removeListener](f, types) {}
-
-    /**
-     * Notifies all listeners that are interested in the given event.
-     *
-     * @param {Event} e
-     * The event to fire.
-     */
-    [observableSymbols.fireEvent](e) {}
-}
-
-/**
  * This is a mixin for Observable behavior if an {@link EventManager} is used.
  * The event manager must be reachable by this.eventManager. This mixin can be
  * used to facade the use of an EventManager.
@@ -74,3 +32,45 @@ export const observableMixin = {
         return this;
     }
 };
+
+// /**
+//  * An interface for every object that allows listeners to be attached to it.
+//  *
+//  * @interface
+//  */
+// class Observable {
+//
+//     /**
+//      * Adds an event listener to this object.
+//      *
+//      * @param {String|Iterator<String>} types
+//      * The types of events the function should listen to.
+//      *
+//      * @param {Function} f
+//      * The function that should be executed when the event fires.
+//      *
+//      * @abstract
+//      */
+//     [observableSymbols.addListener](f, types) {}
+//
+//     /**
+//      * Adds an event listener to this object.
+//      *
+//      * @param {String|Iterator<String>} types
+//      * The types of events the function should listen to.
+//      *
+//      * @param {Function} f
+//      * The function that should be executed when the event fires.
+//      *
+//      * @abstract
+//      */
+//     [observableSymbols.removeListener](f, types) {}
+//
+//     /**
+//      * Notifies all listeners that are interested in the given event.
+//      *
+//      * @param {Event} e
+//      * The event to fire.
+//      */
+//     [observableSymbols.fireEvent](e) {}
+// }
