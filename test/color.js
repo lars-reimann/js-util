@@ -1,3 +1,5 @@
+/* global describe */
+/* global it */
 import {expect} from "chai";
 
 import {Color, predefinedColors} from "@ignavia/util";

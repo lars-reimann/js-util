@@ -1,4 +1,5 @@
-import {Event} from "@ignavia/util";
+import Event               from "./Event.js";
+import {observableSymbols} from "./Observable";
 
 /**
  * A helper class that can manage events and event listeners for other objects.
@@ -24,8 +25,8 @@ export default class EventManager {
      * @return {Event}
      * The new Event object.
      */
-    static makeEvent(source, type, data) {
-        return new Event(source, type, data);
+    static makeEvent({source, type, data} = {}) {
+        return new Event({source, type, data});
     }
 
     /**
@@ -42,7 +43,7 @@ export default class EventManager {
 
         /**
          * Maps from a listener to the types of events it listens to.
-         * 
+         *
          * @type {Map<Function, Set<String>}
          */
         this.listenerToTypes = new Map();
@@ -54,19 +55,20 @@ export default class EventManager {
      * @param {Function} f
      * The function that should be executed when the event fires.
      *
-     * @param {String|Iterator<String>} types
-     * The types of events the function should listen to.
+     * @param {String|Iterator<String>} [types]
+     * The types of events the function should listen to. If this parameter is
+     * not specified it will only listen to events without a type.
      *
      * @return {EventManager}
      * This event manager to make the method chainable.
      */
-    addListener(f, types) {
+    [observableSymbols.addListener](f, types = []) {
         if (typeof types === "string") {
             types = [types];
         }
 
         if (!this.listenerToTypes.has(f)) {
-            this.listenerToTypes.set(f, []);
+            this.listenerToTypes.set(f, new Set());
         }
         for (let type of types) {
             if (!this.typeToListeners.has(type)) {
@@ -80,19 +82,28 @@ export default class EventManager {
     }
 
     /**
-     * Adds an event listener to this event manager.
+     * Removes an event listener from this event manager.
      *
      * @param {Function} f
-     * The function that should be executed when the event fires.
+     * The listener that should be removed.
      *
      * @param {String|Iterator<String>} [types]
-     * The types of events the function should listen to.
+     * The types of events the function should no longer listen to. If this
+     * parameter is left empty the listener is removed completely.
      *
      * @return {EventManager}
      * This event manager to make the method chainable.
      */
-    removeListener(f, types = this.listenerToTypes.get(f)) {
+    [observableSymbols.removeListener](f, types = this.listenerToTypes.get(f)) {
+        if (typeof types === "string") {
+            types = [types];
+        }
+
         for (let type of types) {
+            if (!this.typeToListeners.has(type)) {
+                continue;
+            }
+
             this.typeToListeners.get(type).delete(f);
             if (this.typeToListeners.get(type).size === 0) {
                 this.typeToListeners.delete(type);
@@ -100,8 +111,9 @@ export default class EventManager {
             this.listenerToTypes.get(f).delete(type);
         }
 
-        // Update listener -> types
-        this.listenerToTypes.delete(f);
+        if (this.listenerToTypes.get(f).size === 0) {
+            this.listenerToTypes.delete(f);
+        }
 
         return this;
     }
@@ -115,8 +127,13 @@ export default class EventManager {
      * @return {EventManager}
      * This event manager to make the method chainable.
      */
-    fireEvent(e) {
-        const listeners = this.listeners.get(e.type) || [];
+    [observableSymbols.fireEvent](e) {
+        let listeners;
+        if (e.type) {
+            listeners = this.typeToListeners.get(e.type) || [];
+        } else {
+            listeners = this.listenerToTypes.keys();
+        }
         for (let f of listeners) {
             f(e);
         }

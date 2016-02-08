@@ -1,3 +1,5 @@
+/* global describe */
+/* global it */
 import {expect} from "chai";
 
 import {cloneableSymbols, cloneableMixin} from "@ignavia/util";

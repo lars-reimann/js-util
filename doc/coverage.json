@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 49,
-  "actualCount": 49,
+  "expectCount": 52,
+  "actualCount": 52,
   "files": {
     "src/Cloneable.js": {
       "expectCount": 4,
@@ -24,13 +24,13 @@
       "undocumentLines": []
     },
     "src/EventManager.js": {
-      "expectCount": 6,
-      "actualCount": 6,
+      "expectCount": 8,
+      "actualCount": 8,
       "undocumentLines": []
     },
     "src/Extensible.js": {
-      "expectCount": 10,
-      "actualCount": 10,
+      "expectCount": 7,
+      "actualCount": 7,
       "undocumentLines": []
     },
     "src/IDGenerator.js": {
@@ -39,13 +39,13 @@
       "undocumentLines": []
     },
     "src/Observable.js": {
-      "expectCount": 3,
-      "actualCount": 3,
+      "expectCount": 6,
+      "actualCount": 6,
       "undocumentLines": []
     },
     "src/Plugin.js": {
-      "expectCount": 4,
-      "actualCount": 4,
+      "expectCount": 5,
+      "actualCount": 5,
       "undocumentLines": []
     }
   }

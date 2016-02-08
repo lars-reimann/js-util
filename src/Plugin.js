@@ -1,4 +1,4 @@
-import {cloneableSymbols} from "@ignavia/util";
+import {cloneableSymbols} from "./Cloneable.js";
 
 /**
  * A base class for plugins.
@@ -6,6 +6,11 @@ import {cloneableSymbols} from "@ignavia/util";
  * @implements {Cloneable}
  */
 export default class Plugin {
+
+    /**
+     *
+     */
+    constructor() {}
 
     /**
      * Adds this plugin to the given object.
@@ -19,7 +24,7 @@ export default class Plugin {
 
     /**
      * Removes this plugin from the given object.
-     * 
+     *
      * @param {Object} o
      * The object this plugin should be removed from.
      *

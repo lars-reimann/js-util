@@ -4,16 +4,19 @@
 export default class Event {
 
     /**
-     * @param {Object} source
+     * @param {Object} p
+     * The parameter object.
+     *
+     * @param {Object} [p.source]
      * The object firing this event.
      *
-     * @param {String} type
+     * @param {String} [p.type]
      * The type of this event.
      *
-     * @param {*} [data]
+     * @param {*} [p.data]
      * Any additional data to associate with this event.
      */
-    constructor(source, type, data) {
+    constructor({source, type, data} = {}) {
 
         /**
          * The object firing this event.

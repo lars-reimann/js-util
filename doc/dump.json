@@ -10,10 +10,33 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Cloner from \"./Cloner.js\";\r\n\r\n/**\r\n * An interface for every object that can be cloned.\r\n *\r\n * @interface\r\n */\r\nexport default class Cloneable {\r\n\r\n    /**\r\n     * Returns a copy of this object.\r\n     *\r\n     * @return {*}\r\n     * A copy of this object.\r\n     */\r\n    [cloneSym]() {}\r\n}\r\n\r\n/**\r\n * A symbol for the clone method in the Cloneable interface.\r\n *\r\n * @type {Symbol}\r\n */\r\nexport const cloneSym = Symbol(\"clone\");\r\n\r\n/**\r\n * A mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n *\r\n * @example\r\n * Object.assign(MyClass.prototype, cloneableMixin);\r\n * let myObject = new MyClass(),\r\n *     clone    = myObject[cloneSym]\r\n */\r\nexport const cloneableMixin = {\r\n    [cloneSym](cloner = new Cloner()) {\r\n        return cloner.clone(this);\r\n    }\r\n};\r\n"
+    "content": "import Cloner from \"./Cloner\";\r\n\r\n/**\r\n * Contains symbols for the methods of the Cloneable interface.\r\n *\r\n * @type {Object}\r\n */\r\nexport const cloneableSymbols = {\r\n    clone: Symbol(\"clone\")\r\n};\r\n\r\n/**\r\n * An interface for every object that can be cloned.\r\n *\r\n * @interface\r\n */\r\nexport default class Cloneable {\r\n\r\n    /**\r\n     * Returns a copy of this object.\r\n     *\r\n     * @return {*}\r\n     * A copy of this object.\r\n     */\r\n    [cloneableSymbols.clone]() {}\r\n}\r\n\r\n/**\r\n * A mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n *\r\n * @example\r\n * Object.assign(MyClass.prototype, cloneableMixin);\r\n * let myObject = new MyClass(),\r\n *     clone    = myObject[cloneableSymbols.clone]\r\n */\r\nexport const cloneableMixin = {\r\n    [cloneableSymbols.clone](cloner = new Cloner()) {\r\n        return cloner.clone(this);\r\n    }\r\n};\r\n"
   },
   {
     "__docId__": 1,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "cloneableSymbols",
+    "memberof": "src/Cloneable.js",
+    "longname": "src/Cloneable.js~cloneableSymbols",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/Cloneable.js",
+    "importStyle": "{cloneableSymbols}",
+    "description": "Contains symbols for the methods of the Cloneable interface.",
+    "lineNumber": 8,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 2,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -25,20 +48,20 @@
     "importPath": "@ignavia/util/src/Cloneable.js",
     "importStyle": "Cloneable",
     "description": "An interface for every object that can be cloned.",
-    "lineNumber": 8,
+    "lineNumber": 17,
     "interface": true
   },
   {
-    "__docId__": 2,
+    "__docId__": 3,
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "[cloneSym]",
+    "name": "[cloneableSymbols.clone]",
     "memberof": "src/Cloneable.js~Cloneable",
-    "longname": "src/Cloneable.js~Cloneable#[cloneSym]",
+    "longname": "src/Cloneable.js~Cloneable#[cloneableSymbols.clone]",
     "access": null,
     "description": "Returns a copy of this object.",
-    "lineNumber": 16,
+    "lineNumber": 25,
     "params": [],
     "return": {
       "nullable": null,
@@ -49,29 +72,6 @@
       "description": "A copy of this object."
     },
     "generator": false
-  },
-  {
-    "__docId__": 3,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "cloneSym",
-    "memberof": "src/Cloneable.js",
-    "longname": "src/Cloneable.js~cloneSym",
-    "access": null,
-    "export": true,
-    "importPath": "@ignavia/util/src/Cloneable.js",
-    "importStyle": "{cloneSym}",
-    "description": "A symbol for the clone method in the Cloneable interface.",
-    "lineNumber": 24,
-    "type": {
-      "nullable": null,
-      "types": [
-        "Symbol"
-      ],
-      "spread": false,
-      "description": null
-    }
   },
   {
     "__docId__": 4,
@@ -87,9 +87,9 @@
     "importStyle": "{cloneableMixin}",
     "description": "A mixin for Cloneable behavior.",
     "examples": [
-      "Object.assign(MyClass.prototype, cloneableMixin);\nlet myObject = new MyClass(),\n    clone    = myObject[cloneSym]"
+      "Object.assign(MyClass.prototype, cloneableMixin);\nlet myObject = new MyClass(),\n    clone    = myObject[cloneableSymbols.clone]"
     ],
-    "lineNumber": 36,
+    "lineNumber": 38,
     "type": {
       "nullable": null,
       "types": [
@@ -110,7 +110,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {cloneSym} from \"./Cloneable.js\";\r\n\r\n/**\r\n * A class to clone primitive values (type undefined, boolean, number, string,\r\n * symbol of function) and acyclic or cyclic arrays and objects. There is some\r\n * special support for Date and RegExp objects.\r\n */\r\nexport default class Cloner {\r\n\r\n    /**\r\n     *\r\n     */\r\n    constructor() {\r\n\r\n        /**\r\n         * How deep calls to the clone method are nested.\r\n         *\r\n         * @type {Number}\r\n         * @private\r\n         */\r\n        this.recursionLevel = 0;\r\n\r\n        /**\r\n         * A mapping from original objects to their clones.\r\n         *\r\n         * @type {Map<Object, Object>}\r\n         * @private\r\n         */\r\n        this.context = new Map();\r\n    }\r\n\r\n    /**\r\n     * Tries to clone the given parameter.\r\n     *\r\n     * @param {*} p\r\n     * The value to clone.\r\n     *\r\n     * @return {*}\r\n     * A clone of the value.\r\n     *\r\n     * @throws {Error}\r\n     * If the cloning fails because a type was not supported.\r\n     */\r\n    clone(p) {\r\n        let result;\r\n\r\n        this.recursionLevel++;\r\n        if (this.isPrimitive(p)) {\r\n            result = p;\r\n        } else if (this.context.has(p)) {\r\n            result = this.context.get(p);\r\n        } else if (this.isDate(p)) {\r\n            result = this.cloneDate(p);\r\n        } else if (this.isRegExp(p)) {\r\n            result = this.cloneRegExp(p);\r\n        } else if (this.isArray(p)) {\r\n            result = this.cloneArray(p);\r\n        } else if (this.isObject(p)) {\r\n            result = this.cloneObject(p);\r\n        } else {\r\n            throw new Error(`${p} cannot be cloned.`);\r\n        }\r\n        this.recursionLevel--;\r\n        this.cleanup();\r\n\r\n        return result;\r\n    }\r\n\r\n    /**\r\n     * Tests if the given parameter is just a primitive value, i. e. it is not\r\n     * an object or null.\r\n     *\r\n     * @param {*} p\r\n     * The parameter to test.\r\n     *\r\n     * @return {Boolean}\r\n     * If the given parameter is primitive.\r\n     *\r\n     * @private\r\n     */\r\n    isPrimitive(p) {\r\n        return p === null || typeof p !== \"object\";\r\n    }\r\n\r\n    /**\r\n     * Tests if the given parameter is a Date object.\r\n     *\r\n     * @param {*} p\r\n     * The parameter to test.\r\n     *\r\n     * @return {Boolean}\r\n     * If the given parameter is a Date object.\r\n     *\r\n     * @private\r\n     */\r\n    isDate(p) {\r\n        return p instanceof Date;\r\n    }\r\n\r\n    /**\r\n     * Clones a Date object\r\n     *\r\n     * @param {Date} date\r\n     * The Date object to clone.\r\n     *\r\n     * @return {Date}\r\n     * A clone of the Date object.\r\n     *\r\n     * @private\r\n     */\r\n    cloneDate(date) {\r\n        let result = new Date(date.getTime());\r\n        this.context.set(date, result);\r\n        return result;\r\n    }\r\n\r\n    /**\r\n     * Tests if the given parameter is a RegExp object.\r\n     *\r\n     * @param {*} p\r\n     * The parameter to test.\r\n     *\r\n     * @return {Boolean}\r\n     * If the given parameter is a RegExp object.\r\n     *\r\n     * @private\r\n     */\r\n    isRegExp(p) {\r\n        return p instanceof RegExp;\r\n    }\r\n\r\n    /**\r\n     * Clones a RegExp object.\r\n     *\r\n     * @param {RegExp} regExp\r\n     * The RegExp object to clone.\r\n     *\r\n     * @return {RegExp}\r\n     * A clone of the RegExp object.\r\n     *\r\n     * @private\r\n     */\r\n    cloneRegExp(regExp) {\r\n        let result = new RegExp(regExp);\r\n        this.context.set(regExp, result);\r\n        return result;\r\n    }\r\n\r\n    /**\r\n     * Tests if the given parameter is an array.\r\n     *\r\n     * @param {*} p\r\n     * The parameter to test.\r\n     *\r\n     * @return {Boolean}\r\n     * If the given parameter is an array.\r\n     *\r\n     * @private\r\n     */\r\n    isArray(p) {\r\n        return Array.isArray(p);\r\n    }\r\n\r\n    /**\r\n     * Clones an array.\r\n     *\r\n     * @param {Array} arr\r\n     * The array to clone.\r\n     *\r\n     * @return {Array}\r\n     * A clone of the array.\r\n     *\r\n     * @private\r\n     */\r\n    cloneArray(arr) {\r\n        let result = [];\r\n        this.context.set(arr, result);\r\n        for (let v of arr) {\r\n            result.push(this.cloneChild(v));\r\n        }\r\n        return result;\r\n    }\r\n\r\n    /**\r\n     * Tests if the given parameter is an object.\r\n     *\r\n     * @param {*} p\r\n     * The parameter to test.\r\n     *\r\n     * @return {Boolean}\r\n     * If the given parameter is an object.\r\n     *\r\n     * @private\r\n     */\r\n    isObject(p) {\r\n        return p instanceof Object;\r\n    }\r\n\r\n    /**\r\n     * Clones an object.\r\n     *\r\n     * @param {Object} obj\r\n     * The object to clone.\r\n     *\r\n     * @return {Object}\r\n     * A clone of the object.\r\n     *\r\n     * @private\r\n     */\r\n    cloneObject(obj) {\r\n        let result = {};\r\n        this.context.set(obj, result);\r\n        for (var [k, v] of Object.entries(obj)) {\r\n            result[k] = this.cloneChild(v);\r\n        }\r\n        return result;\r\n    }\r\n\r\n    /**\r\n     * Clones a value in a container.\r\n     *\r\n     * @param {*} child\r\n     * The value to clone.\r\n     *\r\n     * @return {*}\r\n     * A clone of the value.\r\n     *\r\n     * @private\r\n     */\r\n    cloneChild(child) {\r\n        return this.isCloneable(child) ? this.cloneCloneable(child) : this.clone(child);\r\n    }\r\n\r\n    /**\r\n     * Tests if the given parameter implements the Cloneable interface.\r\n     *\r\n     * @param {*} p\r\n     * The parameter to test.\r\n     *\r\n     * @return {Boolean}\r\n     * If the given parameter is Cloneable.\r\n     *\r\n     * @private\r\n     */\r\n    isCloneable(p) {\r\n        return typeof p === \"object\" && typeof p[cloneSym] === \"function\";\r\n    }\r\n\r\n    /**\r\n     * Clones a Cloneable object.\r\n     *\r\n     * @param {Object} cloneable\r\n     * The object to clone.\r\n     *\r\n     * @return {Object}\r\n     * A clone of the object.\r\n     *\r\n     * @private\r\n     */\r\n    cloneCloneable(cloneable) {\r\n        return cloneable[cloneSym](this);\r\n    }\r\n\r\n    /**\r\n     * Clears the context once the cloning is completed.\r\n     *\r\n     * @private\r\n     */\r\n    cleanup() {\r\n        if (this.recursionLevel === 0) {\r\n            this.context.clear();\r\n        }\r\n    }\r\n}"
+    "content": "import {cloneableSymbols} from \"./Cloneable.js\";\r\n\r\n/**\r\n * A class to clone primitive values (type undefined, boolean, number, string,\r\n * symbol of function) and acyclic or cyclic arrays and objects. There is some\r\n * special support for Date and RegExp objects.\r\n */\r\nexport default class Cloner {\r\n\r\n    /**\r\n     *\r\n     */\r\n    constructor() {\r\n\r\n        /**\r\n         * How deep calls to the clone method are nested.\r\n         *\r\n         * @type {Number}\r\n         * @private\r\n         */\r\n        this.recursionLevel = 0;\r\n\r\n        /**\r\n         * A mapping from original objects to their clones.\r\n         *\r\n         * @type {Map<Object, Object>}\r\n         * @private\r\n         */\r\n        this.context = new Map();\r\n    }\r\n\r\n    /**\r\n     * Tries to clone the given parameter.\r\n     *\r\n     * @param {*} p\r\n     * The value to clone.\r\n     *\r\n     * @return {*}\r\n     * A clone of the value.\r\n     *\r\n     * @throws {Error}\r\n     * If the cloning fails because a type was not supported.\r\n     */\r\n    clone(p) {\r\n        let result;\r\n\r\n        this.recursionLevel++;\r\n        if (this.isPrimitive(p)) {\r\n            result = p;\r\n        } else if (this.context.has(p)) {\r\n            result = this.context.get(p);\r\n        } else if (this.isDate(p)) {\r\n            result = this.cloneDate(p);\r\n        } else if (this.isRegExp(p)) {\r\n            result = this.cloneRegExp(p);\r\n        } else if (this.isArray(p)) {\r\n            result = this.cloneArray(p);\r\n        } else if (this.isObject(p)) {\r\n            result = this.cloneObject(p);\r\n        } else {\r\n            throw new Error(`${p} cannot be cloned.`);\r\n        }\r\n        this.recursionLevel--;\r\n        this.cleanup();\r\n\r\n        return result;\r\n    }\r\n\r\n    /**\r\n     * Tests if the given parameter is just a primitive value, i. e. it is not\r\n     * an object or null.\r\n     *\r\n     * @param {*} p\r\n     * The parameter to test.\r\n     *\r\n     * @return {Boolean}\r\n     * If the given parameter is primitive.\r\n     *\r\n     * @private\r\n     */\r\n    isPrimitive(p) {\r\n        return p === null || typeof p !== \"object\";\r\n    }\r\n\r\n    /**\r\n     * Tests if the given parameter is a Date object.\r\n     *\r\n     * @param {*} p\r\n     * The parameter to test.\r\n     *\r\n     * @return {Boolean}\r\n     * If the given parameter is a Date object.\r\n     *\r\n     * @private\r\n     */\r\n    isDate(p) {\r\n        return p instanceof Date;\r\n    }\r\n\r\n    /**\r\n     * Clones a Date object\r\n     *\r\n     * @param {Date} date\r\n     * The Date object to clone.\r\n     *\r\n     * @return {Date}\r\n     * A clone of the Date object.\r\n     *\r\n     * @private\r\n     */\r\n    cloneDate(date) {\r\n        let result = new Date(date.getTime());\r\n        this.context.set(date, result);\r\n        return result;\r\n    }\r\n\r\n    /**\r\n     * Tests if the given parameter is a RegExp object.\r\n     *\r\n     * @param {*} p\r\n     * The parameter to test.\r\n     *\r\n     * @return {Boolean}\r\n     * If the given parameter is a RegExp object.\r\n     *\r\n     * @private\r\n     */\r\n    isRegExp(p) {\r\n        return p instanceof RegExp;\r\n    }\r\n\r\n    /**\r\n     * Clones a RegExp object.\r\n     *\r\n     * @param {RegExp} regExp\r\n     * The RegExp object to clone.\r\n     *\r\n     * @return {RegExp}\r\n     * A clone of the RegExp object.\r\n     *\r\n     * @private\r\n     */\r\n    cloneRegExp(regExp) {\r\n        let result = new RegExp(regExp);\r\n        this.context.set(regExp, result);\r\n        return result;\r\n    }\r\n\r\n    /**\r\n     * Tests if the given parameter is an array.\r\n     *\r\n     * @param {*} p\r\n     * The parameter to test.\r\n     *\r\n     * @return {Boolean}\r\n     * If the given parameter is an array.\r\n     *\r\n     * @private\r\n     */\r\n    isArray(p) {\r\n        return Array.isArray(p);\r\n    }\r\n\r\n    /**\r\n     * Clones an array.\r\n     *\r\n     * @param {Array} arr\r\n     * The array to clone.\r\n     *\r\n     * @return {Array}\r\n     * A clone of the array.\r\n     *\r\n     * @private\r\n     */\r\n    cloneArray(arr) {\r\n        let result = [];\r\n        this.context.set(arr, result);\r\n        for (let v of arr) {\r\n            result.push(this.cloneChild(v));\r\n        }\r\n        return result;\r\n    }\r\n\r\n    /**\r\n     * Tests if the given parameter is an object.\r\n     *\r\n     * @param {*} p\r\n     * The parameter to test.\r\n     *\r\n     * @return {Boolean}\r\n     * If the given parameter is an object.\r\n     *\r\n     * @private\r\n     */\r\n    isObject(p) {\r\n        return p instanceof Object;\r\n    }\r\n\r\n    /**\r\n     * Clones an object.\r\n     *\r\n     * @param {Object} obj\r\n     * The object to clone.\r\n     *\r\n     * @return {Object}\r\n     * A clone of the object.\r\n     *\r\n     * @private\r\n     */\r\n    cloneObject(obj) {\r\n        let result = {};\r\n        this.context.set(obj, result);\r\n        for (var [k, v] of Object.entries(obj)) {\r\n            result[k] = this.cloneChild(v);\r\n        }\r\n        return result;\r\n    }\r\n\r\n    /**\r\n     * Clones a value in a container.\r\n     *\r\n     * @param {*} child\r\n     * The value to clone.\r\n     *\r\n     * @return {*}\r\n     * A clone of the value.\r\n     *\r\n     * @private\r\n     */\r\n    cloneChild(child) {\r\n        return this.isCloneable(child) ? this.cloneCloneable(child) : this.clone(child);\r\n    }\r\n\r\n    /**\r\n     * Tests if the given parameter implements the Cloneable interface.\r\n     *\r\n     * @param {*} p\r\n     * The parameter to test.\r\n     *\r\n     * @return {Boolean}\r\n     * If the given parameter is Cloneable.\r\n     *\r\n     * @private\r\n     */\r\n    isCloneable(p) {\r\n        return typeof p === \"object\" && typeof p[cloneableSymbols.clone] === \"function\";\r\n    }\r\n\r\n    /**\r\n     * Clones a Cloneable object.\r\n     *\r\n     * @param {Object} cloneable\r\n     * The object to clone.\r\n     *\r\n     * @return {Object}\r\n     * A clone of the object.\r\n     *\r\n     * @private\r\n     */\r\n    cloneCloneable(cloneable) {\r\n        return cloneable[cloneableSymbols.clone](this);\r\n    }\r\n\r\n    /**\r\n     * Clears the context once the cloning is completed.\r\n     *\r\n     * @private\r\n     */\r\n    cleanup() {\r\n        if (this.recursionLevel === 0) {\r\n            this.context.clear();\r\n        }\r\n    }\r\n}\r\n"
   },
   {
     "__docId__": 6,
@@ -1000,7 +1000,7 @@
     "access": null,
     "description": null,
     "lineNumber": 4,
-    "content": "/**\r\n * An event that can be fired and then catched by listeners.\r\n */\r\nexport default class Event {\r\n\r\n    /**\r\n     * @param {Object} source\r\n     * The object firing this event.\r\n     *\r\n     * @param {String} type\r\n     * The type of this event.\r\n     *\r\n     * @param {*} [data]\r\n     * Any additional data to associate with this event.\r\n     */\r\n    constructor(source, type, data) {\r\n\r\n        /**\r\n         * The object firing this event.\r\n         *\r\n         * @type {Object}\r\n         */\r\n        this.source = source;\r\n\r\n        /**\r\n         * The type of this event.\r\n         *\r\n         * @type {String}\r\n         */\r\n        this.type = type;\r\n\r\n        /**\r\n         * Any additional data to associate with this event.\r\n         *\r\n         * @type {*}\r\n         */\r\n        this.data = data;\r\n    }\r\n}\r\n"
+    "content": "/**\r\n * An event that can be fired and then catched by listeners.\r\n */\r\nexport default class Event {\r\n\r\n    /**\r\n     * @param {Object} p\r\n     * The parameter object.\r\n     *\r\n     * @param {Object} [p.source]\r\n     * The object firing this event.\r\n     *\r\n     * @param {String} [p.type]\r\n     * The type of this event.\r\n     *\r\n     * @param {*} [p.data]\r\n     * Any additional data to associate with this event.\r\n     */\r\n    constructor({source, type, data} = {}) {\r\n\r\n        /**\r\n         * The object firing this event.\r\n         *\r\n         * @type {Object}\r\n         */\r\n        this.source = source;\r\n\r\n        /**\r\n         * The type of this event.\r\n         *\r\n         * @type {String}\r\n         */\r\n        this.type = type;\r\n\r\n        /**\r\n         * Any additional data to associate with this event.\r\n         *\r\n         * @type {*}\r\n         */\r\n        this.data = data;\r\n    }\r\n}\r\n"
   },
   {
     "__docId__": 37,
@@ -1028,7 +1028,7 @@
     "longname": "src/Event.js~Event#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 16,
+    "lineNumber": 19,
     "params": [
       {
         "nullable": null,
@@ -1037,7 +1037,17 @@
         ],
         "spread": false,
         "optional": false,
-        "name": "source",
+        "name": "p",
+        "description": "The parameter object."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "p.source",
         "description": "The object firing this event."
       },
       {
@@ -1046,8 +1056,8 @@
           "String"
         ],
         "spread": false,
-        "optional": false,
-        "name": "type",
+        "optional": true,
+        "name": "p.type",
         "description": "The type of this event."
       },
       {
@@ -1057,7 +1067,7 @@
         ],
         "spread": false,
         "optional": true,
-        "name": "data",
+        "name": "p.data",
         "description": "Any additional data to associate with this event."
       }
     ],
@@ -1073,7 +1083,7 @@
     "longname": "src/Event.js~Event#source",
     "access": null,
     "description": "The object firing this event.",
-    "lineNumber": 23,
+    "lineNumber": 26,
     "type": {
       "nullable": null,
       "types": [
@@ -1093,7 +1103,7 @@
     "longname": "src/Event.js~Event#type",
     "access": null,
     "description": "The type of this event.",
-    "lineNumber": 30,
+    "lineNumber": 33,
     "type": {
       "nullable": null,
       "types": [
@@ -1113,7 +1123,7 @@
     "longname": "src/Event.js~Event#data",
     "access": null,
     "description": "Any additional data to associate with this event.",
-    "lineNumber": 37,
+    "lineNumber": 40,
     "type": {
       "nullable": null,
       "types": [
@@ -1134,7 +1144,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Event from \"./Event.js\";\r\n\r\n/**\r\n * A helper class that can manage events and event listeners for other objects.\r\n * If you want to hide that you are using this class, you can use the provided\r\n * {@link observableMixin}.\r\n *\r\n * @implements {Observable}\r\n */\r\nexport default class EventManager {\r\n\r\n    /**\r\n     * A factory method for {@link Event} objects.\r\n     *\r\n     * @param {Object} source\r\n     * The object firing this event.\r\n     *\r\n     * @param {String} type\r\n     * The type of this event.\r\n     *\r\n     * @param {*} data\r\n     * Any additional data to associate with this event.\r\n     *\r\n     * @return {Event}\r\n     * The new Event object.\r\n     */\r\n    static makeEvent(source, type, data) {\r\n        return new Event(source, type, data);\r\n    }\r\n\r\n    /**\r\n     *\r\n     */\r\n    constructor() {\r\n\r\n        /**\r\n         * The registered listeners ordered by event type.\r\n         *\r\n         * @type {Map<String, Function[]>}\r\n         */\r\n        this.listeners = new Map();\r\n    }\r\n\r\n    /**\r\n     * Adds an event listener to this event manager.\r\n     *\r\n     * @param {String|Iterator<String>} types\r\n     * The types of events the function should listen to.\r\n     *\r\n     * @param {Function} f\r\n     * The function that should be executed when the event fires.\r\n     *\r\n     * @param {Object} [context]\r\n     * The object this should refer to inside f.\r\n     *\r\n     * @return {EventManager}\r\n     * This event manager to make the method chainable.\r\n     */\r\n    addListener(types, f, context) {\r\n        if (typeof types === \"string\") {\r\n            types = [types];\r\n        }\r\n        if (context) {\r\n            f = f.bind(context);\r\n        }\r\n\r\n        for (let type of types) {\r\n            if (!this.listeners.has(type)) {\r\n                this.listeners.set(type, []);\r\n            }\r\n            this.listeners.get(type).push(f);\r\n        }\r\n\r\n        return this;\r\n    }\r\n\r\n    /**\r\n     * Notifies all listeners that are interested in the given event.\r\n     *\r\n     * @param {Event} e\r\n     * The event to fire.\r\n     *\r\n     * @return {EventManager}\r\n     * This event manager to make the method chainable.\r\n     */\r\n    fireEvent(e) {\r\n        const listeners = this.listeners.get(e.type) || [];\r\n        for (let f of listeners) {\r\n            f(e);\r\n        }\r\n        return this;\r\n    }\r\n}\r\n"
+    "content": "import Event               from \"./Event.js\";\r\nimport {observableSymbols} from \"./Observable\";\r\n\r\n/**\r\n * A helper class that can manage events and event listeners for other objects.\r\n * If you want to hide that you are using this class, you can use the provided\r\n * {@link observableMixin}.\r\n *\r\n * @implements {Observable}\r\n */\r\nexport default class EventManager {\r\n\r\n    /**\r\n     * A factory method for {@link Event} objects.\r\n     *\r\n     * @param {Object} source\r\n     * The object firing this event.\r\n     *\r\n     * @param {String} type\r\n     * The type of this event.\r\n     *\r\n     * @param {*} data\r\n     * Any additional data to associate with this event.\r\n     *\r\n     * @return {Event}\r\n     * The new Event object.\r\n     */\r\n    static makeEvent({source, type, data} = {}) {\r\n        return new Event({source, type, data});\r\n    }\r\n\r\n    /**\r\n     *\r\n     */\r\n    constructor() {\r\n\r\n        /**\r\n         * Maps from an event type to its listeners.\r\n         *\r\n         * @type {Map<String, Set<Function>>}\r\n         */\r\n        this.typeToListeners = new Map();\r\n\r\n        /**\r\n         * Maps from a listener to the types of events it listens to.\r\n         *\r\n         * @type {Map<Function, Set<String>}\r\n         */\r\n        this.listenerToTypes = new Map();\r\n    }\r\n\r\n    /**\r\n     * Adds an event listener to this event manager.\r\n     *\r\n     * @param {Function} f\r\n     * The function that should be executed when the event fires.\r\n     *\r\n     * @param {String|Iterator<String>} [types]\r\n     * The types of events the function should listen to. If this parameter is\r\n     * not specified it will only listen to events without a type.\r\n     *\r\n     * @return {EventManager}\r\n     * This event manager to make the method chainable.\r\n     */\r\n    [observableSymbols.addListener](f, types = []) {\r\n        if (typeof types === \"string\") {\r\n            types = [types];\r\n        }\r\n\r\n        if (!this.listenerToTypes.has(f)) {\r\n            this.listenerToTypes.set(f, new Set());\r\n        }\r\n        for (let type of types) {\r\n            if (!this.typeToListeners.has(type)) {\r\n                this.typeToListeners.set(type, new Set());\r\n            }\r\n            this.typeToListeners.get(type).add(f);\r\n            this.listenerToTypes.get(f).add(type);\r\n        }\r\n\r\n        return this;\r\n    }\r\n\r\n    /**\r\n     * Removes an event listener from this event manager.\r\n     *\r\n     * @param {Function} f\r\n     * The listener that should be removed.\r\n     *\r\n     * @param {String|Iterator<String>} [types]\r\n     * The types of events the function should no longer listen to. If this\r\n     * parameter is left empty the listener is removed completely.\r\n     *\r\n     * @return {EventManager}\r\n     * This event manager to make the method chainable.\r\n     */\r\n    [observableSymbols.removeListener](f, types = this.listenerToTypes.get(f)) {\r\n        if (typeof types === \"string\") {\r\n            types = [types];\r\n        }\r\n\r\n        for (let type of types) {\r\n            if (!this.typeToListeners.has(type)) {\r\n                continue;\r\n            }\r\n\r\n            this.typeToListeners.get(type).delete(f);\r\n            if (this.typeToListeners.get(type).size === 0) {\r\n                this.typeToListeners.delete(type);\r\n            }\r\n            this.listenerToTypes.get(f).delete(type);\r\n        }\r\n\r\n        if (this.listenerToTypes.get(f).size === 0) {\r\n            this.listenerToTypes.delete(f);\r\n        }\r\n\r\n        return this;\r\n    }\r\n\r\n    /**\r\n     * Notifies all listeners that are interested in the given event.\r\n     *\r\n     * @param {Event} e\r\n     * The event to fire.\r\n     *\r\n     * @return {EventManager}\r\n     * This event manager to make the method chainable.\r\n     */\r\n    [observableSymbols.fireEvent](e) {\r\n        let listeners;\r\n        if (e.type) {\r\n            listeners = this.typeToListeners.get(e.type) || [];\r\n        } else {\r\n            listeners = this.listenerToTypes.keys();\r\n        }\r\n        for (let f of listeners) {\r\n            f(e);\r\n        }\r\n        return this;\r\n    }\r\n}\r\n"
   },
   {
     "__docId__": 43,
@@ -1149,7 +1159,7 @@
     "importPath": "@ignavia/util/src/EventManager.js",
     "importStyle": "EventManager",
     "description": "A helper class that can manage events and event listeners for other objects.\nIf you want to hide that you are using this class, you can use the provided\n{@link observableMixin}.",
-    "lineNumber": 10,
+    "lineNumber": 11,
     "interface": false,
     "implements": [
       "Observable"
@@ -1165,7 +1175,7 @@
     "longname": "src/EventManager.js~EventManager.makeEvent",
     "access": null,
     "description": "A factory method for {@link Event} objects.",
-    "lineNumber": 27,
+    "lineNumber": 28,
     "params": [
       {
         "nullable": null,
@@ -1218,7 +1228,7 @@
     "longname": "src/EventManager.js~EventManager#constructor",
     "access": null,
     "description": "",
-    "lineNumber": 34,
+    "lineNumber": 35,
     "params": [],
     "generator": false
   },
@@ -1227,16 +1237,16 @@
     "kind": "member",
     "static": false,
     "variation": null,
-    "name": "listeners",
+    "name": "typeToListeners",
     "memberof": "src/EventManager.js~EventManager",
-    "longname": "src/EventManager.js~EventManager#listeners",
+    "longname": "src/EventManager.js~EventManager#typeToListeners",
     "access": null,
-    "description": "The registered listeners ordered by event type.",
-    "lineNumber": 41,
+    "description": "Maps from an event type to its listeners.",
+    "lineNumber": 42,
     "type": {
       "nullable": null,
       "types": [
-        "Map<String, Function[]>"
+        "Map<String, Set<Function>>"
       ],
       "spread": false,
       "description": null
@@ -1244,27 +1254,36 @@
   },
   {
     "__docId__": 47,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "listenerToTypes",
+    "memberof": "src/EventManager.js~EventManager",
+    "longname": "src/EventManager.js~EventManager#listenerToTypes",
+    "access": null,
+    "description": "Maps from a listener to the types of events it listens to.",
+    "lineNumber": 49,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Map<Function, Set<String>"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 48,
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "addListener",
+    "name": "[observableSymbols.addListener]",
     "memberof": "src/EventManager.js~EventManager",
-    "longname": "src/EventManager.js~EventManager#addListener",
+    "longname": "src/EventManager.js~EventManager#[observableSymbols.addListener]",
     "access": null,
     "description": "Adds an event listener to this event manager.",
-    "lineNumber": 59,
+    "lineNumber": 65,
     "params": [
-      {
-        "nullable": null,
-        "types": [
-          "String",
-          "Iterator<String>"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "types",
-        "description": "The types of events the function should listen to."
-      },
       {
         "nullable": null,
         "types": [
@@ -1278,12 +1297,13 @@
       {
         "nullable": null,
         "types": [
-          "Object"
+          "String",
+          "Iterator<String>"
         ],
         "spread": false,
         "optional": true,
-        "name": "context",
-        "description": "The object this should refer to inside f."
+        "name": "types",
+        "description": "The types of events the function should listen to. If this parameter is\nnot specified it will only listen to events without a type."
       }
     ],
     "return": {
@@ -1297,16 +1317,60 @@
     "generator": false
   },
   {
-    "__docId__": 48,
+    "__docId__": 49,
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "fireEvent",
+    "name": "[observableSymbols.removeListener]",
     "memberof": "src/EventManager.js~EventManager",
-    "longname": "src/EventManager.js~EventManager#fireEvent",
+    "longname": "src/EventManager.js~EventManager#[observableSymbols.removeListener]",
+    "access": null,
+    "description": "Removes an event listener from this event manager.",
+    "lineNumber": 97,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "f",
+        "description": "The listener that should be removed."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String",
+          "Iterator<String>"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "types",
+        "description": "The types of events the function should no longer listen to. If this\nparameter is left empty the listener is removed completely."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "EventManager"
+      ],
+      "spread": false,
+      "description": "This event manager to make the method chainable."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 50,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "[observableSymbols.fireEvent]",
+    "memberof": "src/EventManager.js~EventManager",
+    "longname": "src/EventManager.js~EventManager#[observableSymbols.fireEvent]",
     "access": null,
     "description": "Notifies all listeners that are interested in the given event.",
-    "lineNumber": 86,
+    "lineNumber": 130,
     "params": [
       {
         "nullable": null,
@@ -1330,7 +1394,7 @@
     "generator": false
   },
   {
-    "__docId__": 49,
+    "__docId__": 51,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1340,10 +1404,33 @@
     "access": null,
     "description": null,
     "lineNumber": 6,
-    "content": "/**\r\n * An interface for every object that can be extended by plugins.\r\n *\r\n * @interface\r\n */\r\nexport default class Extensible {\r\n\r\n    /**\r\n     * Adds the given method to this object.\r\n     *\r\n     * @param {String|Symbol} name\r\n     * The name of the method.\r\n     *\r\n     * @param {Function} f\r\n     * The function to execute.\r\n     *\r\n     * @abstract\r\n     */\r\n    [addMethodSym](name, f) {}\r\n\r\n    /**\r\n     * Removes the method with the given name from this object.\r\n     *\r\n     * @param {String|Symbol} name\r\n     * The name of the function to remove.\r\n     *\r\n     * @abstract\r\n     */\r\n    [removeMethodSym](name) {}\r\n\r\n    /**\r\n     * Adds the given plugins to this object by calling the register method on\r\n     * each plugin and passing this object as an argument.\r\n     *\r\n     * @param {Plugin} plugins\r\n     * The plugins to add.\r\n     *\r\n     * @abstract\r\n     */\r\n    [addPluginSym](plugin) {}\r\n\r\n    /**\r\n     * Removes the given plugins from this object by calling the register method\r\n     * on each plugin and passing this object as an argument.\r\n     *\r\n     * @param {Plugin} plugins\r\n     * The plugins to remove.\r\n     *\r\n     * @abstract\r\n     */\r\n    [removePluginSym](plugin) {}\r\n}\r\n\r\n/**\r\n * A symbol for the addMethod method in the Extensible interface.\r\n *\r\n * @type {Symbol}\r\n */\r\nexport const addMethodSym = Symbol(\"addMethod\");\r\n\r\n/**\r\n * A symbol for the removeMethod method in the Extensible interface.\r\n *\r\n * @type {Symbol}\r\n */\r\nexport const removeMethodSym = Symbol(\"removeMethod\");\r\n\r\n/**\r\n * A symbol for the addPlugin method in the Extensible interface.\r\n *\r\n * @type {Symbol}\r\n */\r\nexport const addPluginSym = Symbol(\"addPlugin\");\r\n\r\n/**\r\n * A symbol for the removePlugin method in the Extensible interface.\r\n *\r\n * @type {Symbol}\r\n */\r\nexport const removePluginSym = Symbol(\"removePlugin\");\r\n\r\n/**\r\n * A mixin for Extensible behavior.\r\n *\r\n * @type {Object}\r\n */\r\nexport const extensibleMixin = {\r\n    addMethod(name, f, override = false) {\r\n        if (!override && this[name]) {\r\n            throw new Error(`A property ${name} exists already on ${this}.`);\r\n        }\r\n        this[name] = f;\r\n        return this;\r\n    },\r\n\r\n    removeMethod(name) {\r\n        if (!this[name]) {\r\n            throw new Error(`A property ${name} does not exist on ${this}.`);\r\n        }\r\n        delete this[name];\r\n        return this;\r\n    },\r\n\r\n    addPlugin(plugin) {\r\n        plugin.register(this);\r\n        return this;\r\n    },\r\n\r\n    removePlugin(plugin) {\r\n        plugin.unregister(this);\r\n        return this;\r\n    }\r\n};\r\n"
+    "content": "/**\r\n * Contains symbols for the methods of the Extensible interface.\r\n *\r\n * @type {Object}\r\n */\r\nexport const extensibleSymbols = {\r\n    addMethod:    Symbol(\"addMethod\"),\r\n    removeMethod: Symbol(\"removeMethod\"),\r\n    addPlugin:    Symbol(\"addPlugin\"),\r\n    removePlugin: Symbol(\"removePlugin\")\r\n};\r\n\r\n/**\r\n * An interface for every object that can be extended by plugins.\r\n *\r\n * @interface\r\n */\r\nexport default class Extensible {\r\n\r\n    /**\r\n     * Adds the given method to this object.\r\n     *\r\n     * @param {String|Symbol} name\r\n     * The name of the method.\r\n     *\r\n     * @param {Function} f\r\n     * The function to execute.\r\n     *\r\n     * @abstract\r\n     */\r\n    [extensibleSymbols.addMethod](name, f) {}\r\n\r\n    /**\r\n     * Removes the method with the given name from this object.\r\n     *\r\n     * @param {String|Symbol} name\r\n     * The name of the function to remove.\r\n     *\r\n     * @abstract\r\n     */\r\n    [extensibleSymbols.removeMethod](name) {}\r\n\r\n    /**\r\n     * Adds the given plugins to this object by calling the register method on\r\n     * each plugin and passing this object as an argument.\r\n     *\r\n     * @param {Plugin} plugins\r\n     * The plugins to add.\r\n     *\r\n     * @abstract\r\n     */\r\n    [extensibleSymbols.addPlugin](plugin) {}\r\n\r\n    /**\r\n     * Removes the given plugins from this object by calling the register method\r\n     * on each plugin and passing this object as an argument.\r\n     *\r\n     * @param {Plugin} plugins\r\n     * The plugins to remove.\r\n     *\r\n     * @abstract\r\n     */\r\n    [extensibleSymbols.removePlugin](plugin) {}\r\n}\r\n\r\n/**\r\n * A mixin for Extensible behavior.\r\n *\r\n * @type {Object}\r\n *\r\n * @example\r\n * Object.assign(MyClass.prototype, extensibleMixin);\r\n * let myObject = new MyClass(),\r\n * myObject[extensibleSymbols.addMethod](\"toString\", () => \"Hi\");\r\n */\r\nexport const extensibleMixin = {\r\n    [extensibleSymbols.addMethod](name, f, override = false) {\r\n        if (!override && this.hasOwnProperty(name)) {\r\n            throw new Error(`A property ${name} exists already on ${this}.`);\r\n        }\r\n        this[name] = f;\r\n        return this;\r\n    },\r\n\r\n    [extensibleSymbols.removeMethod](name) {\r\n        if (!this[name]) {\r\n            throw new Error(`A property ${name} does not exist on ${this}.`);\r\n        }\r\n        delete this[name];\r\n        return this;\r\n    },\r\n\r\n    [extensibleSymbols.addPlugin](plugin) {\r\n        plugin.register(this);\r\n        return this;\r\n    },\r\n\r\n    [extensibleSymbols.removePlugin](plugin) {\r\n        plugin.unregister(this);\r\n        return this;\r\n    }\r\n};\r\n"
   },
   {
-    "__docId__": 50,
+    "__docId__": 52,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "extensibleSymbols",
+    "memberof": "src/Extensible.js",
+    "longname": "src/Extensible.js~extensibleSymbols",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/Extensible.js",
+    "importStyle": "{extensibleSymbols}",
+    "description": "Contains symbols for the methods of the Extensible interface.",
+    "lineNumber": 6,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 53,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -1355,20 +1442,20 @@
     "importPath": "@ignavia/util/src/Extensible.js",
     "importStyle": "Extensible",
     "description": "An interface for every object that can be extended by plugins.",
-    "lineNumber": 6,
+    "lineNumber": 18,
     "interface": true
   },
   {
-    "__docId__": 51,
+    "__docId__": 54,
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "[addMethodSym]",
+    "name": "[extensibleSymbols.addMethod]",
     "memberof": "src/Extensible.js~Extensible",
-    "longname": "src/Extensible.js~Extensible#[addMethodSym]",
+    "longname": "src/Extensible.js~Extensible#[extensibleSymbols.addMethod]",
     "access": null,
     "description": "Adds the given method to this object.",
-    "lineNumber": 19,
+    "lineNumber": 31,
     "params": [
       {
         "nullable": null,
@@ -1396,16 +1483,16 @@
     "generator": false
   },
   {
-    "__docId__": 52,
+    "__docId__": 55,
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "[removeMethodSym]",
+    "name": "[extensibleSymbols.removeMethod]",
     "memberof": "src/Extensible.js~Extensible",
-    "longname": "src/Extensible.js~Extensible#[removeMethodSym]",
+    "longname": "src/Extensible.js~Extensible#[extensibleSymbols.removeMethod]",
     "access": null,
     "description": "Removes the method with the given name from this object.",
-    "lineNumber": 29,
+    "lineNumber": 41,
     "params": [
       {
         "nullable": null,
@@ -1423,16 +1510,16 @@
     "generator": false
   },
   {
-    "__docId__": 53,
+    "__docId__": 56,
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "[addPluginSym]",
+    "name": "[extensibleSymbols.addPlugin]",
     "memberof": "src/Extensible.js~Extensible",
-    "longname": "src/Extensible.js~Extensible#[addPluginSym]",
+    "longname": "src/Extensible.js~Extensible#[extensibleSymbols.addPlugin]",
     "access": null,
     "description": "Adds the given plugins to this object by calling the register method on\neach plugin and passing this object as an argument.",
-    "lineNumber": 40,
+    "lineNumber": 52,
     "params": [
       {
         "nullable": null,
@@ -1449,16 +1536,16 @@
     "generator": false
   },
   {
-    "__docId__": 54,
+    "__docId__": 57,
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "[removePluginSym]",
+    "name": "[extensibleSymbols.removePlugin]",
     "memberof": "src/Extensible.js~Extensible",
-    "longname": "src/Extensible.js~Extensible#[removePluginSym]",
+    "longname": "src/Extensible.js~Extensible#[extensibleSymbols.removePlugin]",
     "access": null,
     "description": "Removes the given plugins from this object by calling the register method\non each plugin and passing this object as an argument.",
-    "lineNumber": 51,
+    "lineNumber": 63,
     "params": [
       {
         "nullable": null,
@@ -1475,99 +1562,7 @@
     "generator": false
   },
   {
-    "__docId__": 55,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "addMethodSym",
-    "memberof": "src/Extensible.js",
-    "longname": "src/Extensible.js~addMethodSym",
-    "access": null,
-    "export": true,
-    "importPath": "@ignavia/util/src/Extensible.js",
-    "importStyle": "{addMethodSym}",
-    "description": "A symbol for the addMethod method in the Extensible interface.",
-    "lineNumber": 59,
-    "type": {
-      "nullable": null,
-      "types": [
-        "Symbol"
-      ],
-      "spread": false,
-      "description": null
-    }
-  },
-  {
-    "__docId__": 56,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "removeMethodSym",
-    "memberof": "src/Extensible.js",
-    "longname": "src/Extensible.js~removeMethodSym",
-    "access": null,
-    "export": true,
-    "importPath": "@ignavia/util/src/Extensible.js",
-    "importStyle": "{removeMethodSym}",
-    "description": "A symbol for the removeMethod method in the Extensible interface.",
-    "lineNumber": 66,
-    "type": {
-      "nullable": null,
-      "types": [
-        "Symbol"
-      ],
-      "spread": false,
-      "description": null
-    }
-  },
-  {
-    "__docId__": 57,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "addPluginSym",
-    "memberof": "src/Extensible.js",
-    "longname": "src/Extensible.js~addPluginSym",
-    "access": null,
-    "export": true,
-    "importPath": "@ignavia/util/src/Extensible.js",
-    "importStyle": "{addPluginSym}",
-    "description": "A symbol for the addPlugin method in the Extensible interface.",
-    "lineNumber": 73,
-    "type": {
-      "nullable": null,
-      "types": [
-        "Symbol"
-      ],
-      "spread": false,
-      "description": null
-    }
-  },
-  {
     "__docId__": 58,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "removePluginSym",
-    "memberof": "src/Extensible.js",
-    "longname": "src/Extensible.js~removePluginSym",
-    "access": null,
-    "export": true,
-    "importPath": "@ignavia/util/src/Extensible.js",
-    "importStyle": "{removePluginSym}",
-    "description": "A symbol for the removePlugin method in the Extensible interface.",
-    "lineNumber": 80,
-    "type": {
-      "nullable": null,
-      "types": [
-        "Symbol"
-      ],
-      "spread": false,
-      "description": null
-    }
-  },
-  {
-    "__docId__": 59,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1579,7 +1574,10 @@
     "importPath": "@ignavia/util/src/Extensible.js",
     "importStyle": "{extensibleMixin}",
     "description": "A mixin for Extensible behavior.",
-    "lineNumber": 87,
+    "examples": [
+      "Object.assign(MyClass.prototype, extensibleMixin);\nlet myObject = new MyClass(),\nmyObject[extensibleSymbols.addMethod](\"toString\", () => \"Hi\");"
+    ],
+    "lineNumber": 76,
     "type": {
       "nullable": null,
       "types": [
@@ -1590,7 +1588,7 @@
     }
   },
   {
-    "__docId__": 60,
+    "__docId__": 59,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1603,7 +1601,7 @@
     "content": "/**\r\n * A class to generate IDs.\r\n */\r\nexport default class IDGenerator {\r\n\r\n    /**\r\n     * @param {String} [prefix=\"\"]\r\n     * The prefix IDs should use.\r\n     */\r\n    constructor(prefix = \"\") {\r\n\r\n        /**\r\n         * The prefix IDs should use.\r\n         *\r\n         * @type {String}\r\n         */\r\n        this.prefix = prefix;\r\n\r\n        /**\r\n         * An automatically incremented counter used to generate IDs.\r\n         *\r\n         * @type {Number}\r\n         * @private\r\n         */\r\n        this.counter = 0;\r\n    }\r\n\r\n    /**\r\n     * Returns an ID.\r\n     *\r\n     * @return {String}\r\n     * An ID.\r\n     */\r\n    next() {\r\n        return this.prefix + (this.counter++);\r\n    }\r\n}\r\n"
   },
   {
-    "__docId__": 61,
+    "__docId__": 60,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -1619,7 +1617,7 @@
     "interface": false
   },
   {
-    "__docId__": 62,
+    "__docId__": 61,
     "kind": "constructor",
     "static": false,
     "variation": null,
@@ -1646,7 +1644,7 @@
     "generator": false
   },
   {
-    "__docId__": 63,
+    "__docId__": 62,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -1666,7 +1664,7 @@
     }
   },
   {
-    "__docId__": 64,
+    "__docId__": 63,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -1686,7 +1684,7 @@
     }
   },
   {
-    "__docId__": 65,
+    "__docId__": 64,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1708,20 +1706,7 @@
     "generator": false
   },
   {
-    "__docId__": 66,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/Listener.js",
-    "memberof": null,
-    "longname": "src/Listener.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 0,
-    "content": ""
-  },
-  {
-    "__docId__": 67,
+    "__docId__": 65,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1730,11 +1715,34 @@
     "longname": "src/Observable.js",
     "access": null,
     "description": null,
-    "lineNumber": 1,
-    "content": "import EventManager from \"./EventManager.js\";\r\n\r\n/**\r\n * An interface for every object that allows listeners to be attached to it.\r\n *\r\n * @interface\r\n */\r\nexport default class Observable {\r\n\r\n    /**\r\n     * Adds an event listener to this object.\r\n     *\r\n     * @param {String|Iterator<String>} types\r\n     * The types of events the function should listen to.\r\n     *\r\n     * @param {Function} f\r\n     * The function that should be executed when the event fires.\r\n     *\r\n     * @param {Object} [context]\r\n     * The object this should refer to inside f.\r\n     *\r\n     * @return {Object}\r\n     * This object to make the method chainable.\r\n     *\r\n     * @abstract\r\n     */\r\n    addListener(types, f, context) {}\r\n}\r\n\r\n/**\r\n * This is a mixin for Observable behavior if an {@link EventManager} is used.\r\n * Several assumptions are made: The event manager must be reachable by\r\n * this.eventManager and the EventManager class must be imported under this\r\n * exact name. This mixin can be used to facade the use of an EventManager.\r\n *\r\n * @type {Object}\r\n */\r\nexport const observableMixin = {\r\n    addListener(types, f, context) {\r\n        this.eventManager.addListener(types, f, context);\r\n        return this;\r\n    },\r\n\r\n    fireEvent(type, data) {\r\n        const e = EventManager.makeEvent(this, type, data);\r\n        this.eventManager.fireEvent(e);\r\n    },\r\n\r\n    bubbleEvent(e, newType) {\r\n        if (newType) {\r\n            e = EventManager.makeEvent(e.source, newType, e.data);\r\n        }\r\n        this.eventManager.fireEvent(e);\r\n    }\r\n};\r\n"
+    "lineNumber": 6,
+    "content": "/**\r\n * Contains symbols for the methods of the Observable interface.\r\n *\r\n * @type {Object}\r\n */\r\nexport const observableSymbols = {\r\n    addListener:    Symbol(\"addListener\"),\r\n    removeListener: Symbol(\"removeListener\"),\r\n    fireEvent:      Symbol(\"fireEvent\")\r\n};\r\n\r\n/**\r\n * An interface for every object that allows listeners to be attached to it.\r\n *\r\n * @interface\r\n */\r\nexport default class Observable {\r\n\r\n    /**\r\n     * Adds an event listener to this object.\r\n     *\r\n     * @param {String|Iterator<String>} types\r\n     * The types of events the function should listen to.\r\n     *\r\n     * @param {Function} f\r\n     * The function that should be executed when the event fires.\r\n     *\r\n     * @abstract\r\n     */\r\n    [observableSymbols.addListener](f, types) {}\r\n\r\n    /**\r\n     * Adds an event listener to this object.\r\n     *\r\n     * @param {String|Iterator<String>} types\r\n     * The types of events the function should listen to.\r\n     *\r\n     * @param {Function} f\r\n     * The function that should be executed when the event fires.\r\n     *\r\n     * @abstract\r\n     */\r\n    [observableSymbols.removeListener](f, types) {}\r\n\r\n    /**\r\n     * Notifies all listeners that are interested in the given event.\r\n     *\r\n     * @param {Event} e\r\n     * The event to fire.\r\n     */\r\n    [observableSymbols.fireEvent](e) {}\r\n}\r\n\r\n/**\r\n * This is a mixin for Observable behavior if an {@link EventManager} is used.\r\n * The event manager must be reachable by this.eventManager. This mixin can be\r\n * used to facade the use of an EventManager.\r\n *\r\n * @type {Object}\r\n */\r\nexport const observableMixin = {\r\n    [observableSymbols.addListener](f, types) {\r\n        this.eventManager[observableSymbols.addListener](f, types);\r\n        return this;\r\n    },\r\n\r\n    [observableSymbols.removeListener](f, types) {\r\n        this.eventManager[observableSymbols.removeListener](f, types);\r\n        return this;\r\n    },\r\n\r\n    [observableSymbols.fireEvent](e) {\r\n        this.eventManager[observableSymbols.fireEvent](e);\r\n        return this;\r\n    }\r\n};\r\n"
   },
   {
-    "__docId__": 68,
+    "__docId__": 66,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "observableSymbols",
+    "memberof": "src/Observable.js",
+    "longname": "src/Observable.js~observableSymbols",
+    "access": null,
+    "export": true,
+    "importPath": "@ignavia/util/src/Observable.js",
+    "importStyle": "{observableSymbols}",
+    "description": "Contains symbols for the methods of the Observable interface.",
+    "lineNumber": 6,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 67,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -1746,20 +1754,20 @@
     "importPath": "@ignavia/util/src/Observable.js",
     "importStyle": "Observable",
     "description": "An interface for every object that allows listeners to be attached to it.",
-    "lineNumber": 8,
+    "lineNumber": 17,
     "interface": true
   },
   {
-    "__docId__": 69,
+    "__docId__": 68,
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "addListener",
+    "name": "[observableSymbols.addListener]",
     "memberof": "src/Observable.js~Observable",
-    "longname": "src/Observable.js~Observable#addListener",
+    "longname": "src/Observable.js~Observable#[observableSymbols.addListener]",
     "access": null,
     "description": "Adds an event listener to this object.",
-    "lineNumber": 27,
+    "lineNumber": 30,
     "params": [
       {
         "nullable": null,
@@ -1781,31 +1789,75 @@
         "optional": false,
         "name": "f",
         "description": "The function that should be executed when the event fires."
+      }
+    ],
+    "abstract": true,
+    "generator": false
+  },
+  {
+    "__docId__": 69,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "[observableSymbols.removeListener]",
+    "memberof": "src/Observable.js~Observable",
+    "longname": "src/Observable.js~Observable#[observableSymbols.removeListener]",
+    "access": null,
+    "description": "Adds an event listener to this object.",
+    "lineNumber": 43,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String",
+          "Iterator<String>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "types",
+        "description": "The types of events the function should listen to."
       },
       {
         "nullable": null,
         "types": [
-          "Object"
+          "Function"
         ],
         "spread": false,
-        "optional": true,
-        "name": "context",
-        "description": "The object this should refer to inside f."
+        "optional": false,
+        "name": "f",
+        "description": "The function that should be executed when the event fires."
       }
     ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "Object"
-      ],
-      "spread": false,
-      "description": "This object to make the method chainable."
-    },
     "abstract": true,
     "generator": false
   },
   {
     "__docId__": 70,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "[observableSymbols.fireEvent]",
+    "memberof": "src/Observable.js~Observable",
+    "longname": "src/Observable.js~Observable#[observableSymbols.fireEvent]",
+    "access": null,
+    "description": "Notifies all listeners that are interested in the given event.",
+    "lineNumber": 51,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "e",
+        "description": "The event to fire."
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 71,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1816,8 +1868,8 @@
     "export": true,
     "importPath": "@ignavia/util/src/Observable.js",
     "importStyle": "{observableMixin}",
-    "description": "This is a mixin for Observable behavior if an {@link EventManager} is used.\nSeveral assumptions are made: The event manager must be reachable by\nthis.eventManager and the EventManager class must be imported under this\nexact name. This mixin can be used to facade the use of an EventManager.",
-    "lineNumber": 38,
+    "description": "This is a mixin for Observable behavior if an {@link EventManager} is used.\nThe event manager must be reachable by this.eventManager. This mixin can be\nused to facade the use of an EventManager.",
+    "lineNumber": 61,
     "type": {
       "nullable": null,
       "types": [
@@ -1828,7 +1880,7 @@
     }
   },
   {
-    "__docId__": 71,
+    "__docId__": 72,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1837,11 +1889,11 @@
     "longname": "src/Plugin.js",
     "access": null,
     "description": null,
-    "lineNumber": 6,
-    "content": "/**\r\n * A base class for plugins.\r\n *\r\n * @implements {Cloneable}\r\n */\r\nexport default class Plugin {\r\n\r\n    /**\r\n     * Adds this plugin to the given object.\r\n     *\r\n     * @param {Object} o\r\n     * The object this plugin should be added to.\r\n     *\r\n     * @abstract\r\n     */\r\n    register(o) {}\r\n\r\n    /**\r\n     * Removes this plugin from the given object.\r\n     * \r\n     * @param {Object} o\r\n     * The object this plugin should be removed from.\r\n     *\r\n     * @abstract\r\n     */\r\n    unregister(o) {}\r\n\r\n    /**\r\n     * Returns a copy of this plugin. For indexes you usually do not want to\r\n     * copy its internal data structures but just the configuration so it can be\r\n     * added to a new object. By default this method returns this plugin.\r\n     *\r\n     * @return {Plugin}\r\n     * This object.\r\n     */\r\n    clone() {\r\n        return this;\r\n    }\r\n}\r\n"
+    "lineNumber": 1,
+    "content": "import {cloneableSymbols} from \"./Cloneable.js\";\r\n\r\n/**\r\n * A base class for plugins.\r\n *\r\n * @implements {Cloneable}\r\n */\r\nexport default class Plugin {\r\n\r\n    /**\r\n     *\r\n     */\r\n    constructor() {}\r\n\r\n    /**\r\n     * Adds this plugin to the given object.\r\n     *\r\n     * @param {Object} o\r\n     * The object this plugin should be added to.\r\n     *\r\n     * @abstract\r\n     */\r\n    register(o) {}\r\n\r\n    /**\r\n     * Removes this plugin from the given object.\r\n     *\r\n     * @param {Object} o\r\n     * The object this plugin should be removed from.\r\n     *\r\n     * @abstract\r\n     */\r\n    unregister(o) {}\r\n\r\n    /**\r\n     * Returns a copy of this plugin. For indexes you usually do not want to\r\n     * copy its internal data structures but just the configuration so it can be\r\n     * added to a new object. By default this method returns this plugin.\r\n     *\r\n     * @return {Plugin}\r\n     * This object.\r\n     */\r\n    [cloneableSymbols.clone]() {\r\n        return this;\r\n    }\r\n}\r\n"
   },
   {
-    "__docId__": 72,
+    "__docId__": 73,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -1853,14 +1905,28 @@
     "importPath": "@ignavia/util/src/Plugin.js",
     "importStyle": "Plugin",
     "description": "A base class for plugins.",
-    "lineNumber": 6,
+    "lineNumber": 8,
     "interface": false,
     "implements": [
       "Cloneable"
     ]
   },
   {
-    "__docId__": 73,
+    "__docId__": 74,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/Plugin.js~Plugin",
+    "longname": "src/Plugin.js~Plugin#constructor",
+    "access": null,
+    "description": "",
+    "lineNumber": 13,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 75,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1869,7 +1935,7 @@
     "longname": "src/Plugin.js~Plugin#register",
     "access": null,
     "description": "Adds this plugin to the given object.",
-    "lineNumber": 16,
+    "lineNumber": 23,
     "params": [
       {
         "nullable": null,
@@ -1886,7 +1952,7 @@
     "generator": false
   },
   {
-    "__docId__": 74,
+    "__docId__": 76,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1895,7 +1961,7 @@
     "longname": "src/Plugin.js~Plugin#unregister",
     "access": null,
     "description": "Removes this plugin from the given object.",
-    "lineNumber": 26,
+    "lineNumber": 33,
     "params": [
       {
         "nullable": null,
@@ -1912,16 +1978,16 @@
     "generator": false
   },
   {
-    "__docId__": 75,
+    "__docId__": 77,
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "clone",
+    "name": "[cloneableSymbols.clone]",
     "memberof": "src/Plugin.js~Plugin",
-    "longname": "src/Plugin.js~Plugin#clone",
+    "longname": "src/Plugin.js~Plugin#[cloneableSymbols.clone]",
     "access": null,
     "description": "Returns a copy of this plugin. For indexes you usually do not want to\ncopy its internal data structures but just the configuration so it can be\nadded to a new object. By default this method returns this plugin.",
-    "lineNumber": 36,
+    "lineNumber": 43,
     "params": [],
     "return": {
       "nullable": null,
@@ -1934,7 +2000,7 @@
     "generator": false
   },
   {
-    "__docId__": 76,
+    "__docId__": 78,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1944,10 +2010,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import \"core-js\"; // TODO remove once no longer needed\r\n\r\nexport {default as Cloneable, cloneSym, cloneableMixin} from \"./Cloneable.js\";\r\nexport {default as Cloner}                              from \"./Cloner.js\";\r\nexport {default as Color, predefinedColors}             from \"./Color.js\";\r\nexport {default as Event}                               from \"./Event.js\";\r\nexport {default as EventManager}                        from \"./EventManager.js\";\r\nexport {default as Extensible, addMethod, removeMethod,\r\n        addPlugin, removePlugin, extensibleMixin}       from \"./Extensible.js\";\r\nexport {default as IDGenerator}                         from \"./IDGenerator.js\";\r\nexport {default as Observable, observableMixin}         from \"./Observable.js\";\r\nexport {default as Plugin}                              from \"./Plugin.js\";\r\n"
+    "content": "export {cloneableSymbols, cloneableMixin}   from \"./Cloneable.js\";\r\nexport {default as Cloner}                  from \"./Cloner.js\";\r\nexport {default as Color, predefinedColors} from \"./Color.js\";\r\nexport {default as Event}                   from \"./Event.js\";\r\nexport {default as EventManager}            from \"./EventManager.js\";\r\nexport {extensibleSymbols, extensibleMixin} from \"./Extensible.js\";\r\nexport {default as IDGenerator}             from \"./IDGenerator.js\";\r\nexport {observableSymbols, observableMixin} from \"./Observable.js\";\r\nexport {default as Plugin}                  from \"./Plugin.js\";"
   },
   {
-    "__docId__": 78,
+    "__docId__": 80,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1960,7 +2026,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 79,
+    "__docId__": 81,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1973,7 +2039,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 80,
+    "__docId__": 82,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1986,7 +2052,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 81,
+    "__docId__": 83,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1999,7 +2065,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 82,
+    "__docId__": 84,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2012,7 +2078,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 83,
+    "__docId__": 85,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2025,7 +2091,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 84,
+    "__docId__": 86,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2038,7 +2104,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 85,
+    "__docId__": 87,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2051,7 +2117,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 86,
+    "__docId__": 88,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2064,7 +2130,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 87,
+    "__docId__": 89,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2077,7 +2143,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 88,
+    "__docId__": 90,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2090,7 +2156,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 89,
+    "__docId__": 91,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2103,7 +2169,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 90,
+    "__docId__": 92,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2116,7 +2182,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 91,
+    "__docId__": 93,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2129,7 +2195,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 92,
+    "__docId__": 94,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2142,7 +2208,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 93,
+    "__docId__": 95,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2155,7 +2221,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 94,
+    "__docId__": 96,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2168,7 +2234,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 95,
+    "__docId__": 97,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2181,7 +2247,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 96,
+    "__docId__": 98,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2194,7 +2260,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 97,
+    "__docId__": 99,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2207,7 +2273,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 98,
+    "__docId__": 100,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2220,7 +2286,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 99,
+    "__docId__": 101,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2233,7 +2299,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 100,
+    "__docId__": 102,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2246,7 +2312,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 101,
+    "__docId__": 103,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2259,7 +2325,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 102,
+    "__docId__": 104,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2272,7 +2338,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 103,
+    "__docId__": 105,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2285,7 +2351,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 104,
+    "__docId__": 106,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2298,7 +2364,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 105,
+    "__docId__": 107,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2311,7 +2377,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 106,
+    "__docId__": 108,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2324,7 +2390,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 107,
+    "__docId__": 109,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2337,7 +2403,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 108,
+    "__docId__": 110,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2350,7 +2416,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 109,
+    "__docId__": 111,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2363,7 +2429,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 110,
+    "__docId__": 112,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2376,7 +2442,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 111,
+    "__docId__": 113,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2389,7 +2455,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 112,
+    "__docId__": 114,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2402,7 +2468,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 113,
+    "__docId__": 115,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2415,7 +2481,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 114,
+    "__docId__": 116,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2428,7 +2494,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 115,
+    "__docId__": 117,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2441,7 +2507,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 116,
+    "__docId__": 118,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2454,7 +2520,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 117,
+    "__docId__": 119,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2467,7 +2533,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 118,
+    "__docId__": 120,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2480,7 +2546,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 119,
+    "__docId__": 121,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2493,7 +2559,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 120,
+    "__docId__": 122,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2506,7 +2572,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 121,
+    "__docId__": 123,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2519,7 +2585,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 122,
+    "__docId__": 124,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2532,7 +2598,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 123,
+    "__docId__": 125,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2545,7 +2611,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 124,
+    "__docId__": 126,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2558,7 +2624,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 126,
+    "__docId__": 128,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2571,7 +2637,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 127,
+    "__docId__": 129,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2584,7 +2650,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 128,
+    "__docId__": 130,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2597,7 +2663,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 129,
+    "__docId__": 131,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2610,7 +2676,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 130,
+    "__docId__": 132,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2623,7 +2689,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 131,
+    "__docId__": 133,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2636,7 +2702,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 132,
+    "__docId__": 134,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2649,7 +2715,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 133,
+    "__docId__": 135,
     "kind": "external",
     "static": true,
     "variation": null,

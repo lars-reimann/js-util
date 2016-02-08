@@ -1,4 +1,4 @@
-import {cloneableSymbols} from "@ignavia/util";
+import {cloneableSymbols} from "./Cloneable.js";
 
 /**
  * A class to clone primitive values (type undefined, boolean, number, string,

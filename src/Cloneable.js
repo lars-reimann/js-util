@@ -1,4 +1,4 @@
-import {Cloner} from "@ignavia/util";
+import Cloner from "./Cloner";
 
 /**
  * Contains symbols for the methods of the Cloneable interface.

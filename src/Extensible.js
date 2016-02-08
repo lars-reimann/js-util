@@ -67,6 +67,11 @@ export default class Extensible {
  * A mixin for Extensible behavior.
  *
  * @type {Object}
+ *
+ * @example
+ * Object.assign(MyClass.prototype, extensibleMixin);
+ * let myObject = new MyClass(),
+ * myObject[extensibleSymbols.addMethod]("toString", () => "Hi");
  */
 export const extensibleMixin = {
     [extensibleSymbols.addMethod](name, f, override = false) {

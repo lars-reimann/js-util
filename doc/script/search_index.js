@@ -54,27 +54,15 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "@ignavia/util/src/extensible.js~addmethodsym",
-    "variable/index.html#static-variable-addMethodSym",
-    "<span>addMethodSym</span> <span class=\"search-result-import-path\">@ignavia/util/src/Extensible.js</span>",
-    "variable"
-  ],
-  [
-    "@ignavia/util/src/extensible.js~addpluginsym",
-    "variable/index.html#static-variable-addPluginSym",
-    "<span>addPluginSym</span> <span class=\"search-result-import-path\">@ignavia/util/src/Extensible.js</span>",
-    "variable"
-  ],
-  [
-    "@ignavia/util/src/cloneable.js~clonesym",
-    "variable/index.html#static-variable-cloneSym",
-    "<span>cloneSym</span> <span class=\"search-result-import-path\">@ignavia/util/src/Cloneable.js</span>",
-    "variable"
-  ],
-  [
     "@ignavia/util/src/cloneable.js~cloneablemixin",
     "variable/index.html#static-variable-cloneableMixin",
     "<span>cloneableMixin</span> <span class=\"search-result-import-path\">@ignavia/util/src/Cloneable.js</span>",
+    "variable"
+  ],
+  [
+    "@ignavia/util/src/cloneable.js~cloneablesymbols",
+    "variable/index.html#static-variable-cloneableSymbols",
+    "<span>cloneableSymbols</span> <span class=\"search-result-import-path\">@ignavia/util/src/Cloneable.js</span>",
     "variable"
   ],
   [
@@ -84,27 +72,27 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "@ignavia/util/src/extensible.js~extensiblesymbols",
+    "variable/index.html#static-variable-extensibleSymbols",
+    "<span>extensibleSymbols</span> <span class=\"search-result-import-path\">@ignavia/util/src/Extensible.js</span>",
+    "variable"
+  ],
+  [
     "@ignavia/util/src/observable.js~observablemixin",
     "variable/index.html#static-variable-observableMixin",
     "<span>observableMixin</span> <span class=\"search-result-import-path\">@ignavia/util/src/Observable.js</span>",
     "variable"
   ],
   [
+    "@ignavia/util/src/observable.js~observablesymbols",
+    "variable/index.html#static-variable-observableSymbols",
+    "<span>observableSymbols</span> <span class=\"search-result-import-path\">@ignavia/util/src/Observable.js</span>",
+    "variable"
+  ],
+  [
     "@ignavia/util/src/color.js~predefinedcolors",
     "variable/index.html#static-variable-predefinedColors",
     "<span>predefinedColors</span> <span class=\"search-result-import-path\">@ignavia/util/src/Color.js</span>",
-    "variable"
-  ],
-  [
-    "@ignavia/util/src/extensible.js~removemethodsym",
-    "variable/index.html#static-variable-removeMethodSym",
-    "<span>removeMethodSym</span> <span class=\"search-result-import-path\">@ignavia/util/src/Extensible.js</span>",
-    "variable"
-  ],
-  [
-    "@ignavia/util/src/extensible.js~removepluginsym",
-    "variable/index.html#static-variable-removePluginSym",
-    "<span>removePluginSym</span> <span class=\"search-result-import-path\">@ignavia/util/src/Extensible.js</span>",
     "variable"
   ],
   [
@@ -444,9 +432,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/cloneable.js~cloneable#[clonesym]",
-    "class/src/Cloneable.js~Cloneable.html#instance-method-[cloneSym]",
-    "src/Cloneable.js~Cloneable#[cloneSym]",
+    "src/cloneable.js~cloneable#[cloneablesymbols.clone]",
+    "class/src/Cloneable.js~Cloneable.html#instance-method-[cloneableSymbols.clone]",
+    "src/Cloneable.js~Cloneable#[cloneableSymbols.clone]",
     "method"
   ],
   [
@@ -558,9 +546,21 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/eventmanager.js~eventmanager#addlistener",
-    "class/src/EventManager.js~EventManager.html#instance-method-addListener",
-    "src/EventManager.js~EventManager#addListener",
+    "src/eventmanager.js~eventmanager#[observablesymbols.addlistener]",
+    "class/src/EventManager.js~EventManager.html#instance-method-[observableSymbols.addListener]",
+    "src/EventManager.js~EventManager#[observableSymbols.addListener]",
+    "method"
+  ],
+  [
+    "src/eventmanager.js~eventmanager#[observablesymbols.fireevent]",
+    "class/src/EventManager.js~EventManager.html#instance-method-[observableSymbols.fireEvent]",
+    "src/EventManager.js~EventManager#[observableSymbols.fireEvent]",
+    "method"
+  ],
+  [
+    "src/eventmanager.js~eventmanager#[observablesymbols.removelistener]",
+    "class/src/EventManager.js~EventManager.html#instance-method-[observableSymbols.removeListener]",
+    "src/EventManager.js~EventManager#[observableSymbols.removeListener]",
     "method"
   ],
   [
@@ -570,15 +570,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/eventmanager.js~eventmanager#fireevent",
-    "class/src/EventManager.js~EventManager.html#instance-method-fireEvent",
-    "src/EventManager.js~EventManager#fireEvent",
-    "method"
+    "src/eventmanager.js~eventmanager#listenertotypes",
+    "class/src/EventManager.js~EventManager.html#instance-member-listenerToTypes",
+    "src/EventManager.js~EventManager#listenerToTypes",
+    "member"
   ],
   [
-    "src/eventmanager.js~eventmanager#listeners",
-    "class/src/EventManager.js~EventManager.html#instance-member-listeners",
-    "src/EventManager.js~EventManager#listeners",
+    "src/eventmanager.js~eventmanager#typetolisteners",
+    "class/src/EventManager.js~EventManager.html#instance-member-typeToListeners",
+    "src/EventManager.js~EventManager#typeToListeners",
     "member"
   ],
   [
@@ -594,27 +594,27 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/extensible.js~extensible#[addmethodsym]",
-    "class/src/Extensible.js~Extensible.html#instance-method-[addMethodSym]",
-    "src/Extensible.js~Extensible#[addMethodSym]",
+    "src/extensible.js~extensible#[extensiblesymbols.addmethod]",
+    "class/src/Extensible.js~Extensible.html#instance-method-[extensibleSymbols.addMethod]",
+    "src/Extensible.js~Extensible#[extensibleSymbols.addMethod]",
     "method"
   ],
   [
-    "src/extensible.js~extensible#[addpluginsym]",
-    "class/src/Extensible.js~Extensible.html#instance-method-[addPluginSym]",
-    "src/Extensible.js~Extensible#[addPluginSym]",
+    "src/extensible.js~extensible#[extensiblesymbols.addplugin]",
+    "class/src/Extensible.js~Extensible.html#instance-method-[extensibleSymbols.addPlugin]",
+    "src/Extensible.js~Extensible#[extensibleSymbols.addPlugin]",
     "method"
   ],
   [
-    "src/extensible.js~extensible#[removemethodsym]",
-    "class/src/Extensible.js~Extensible.html#instance-method-[removeMethodSym]",
-    "src/Extensible.js~Extensible#[removeMethodSym]",
+    "src/extensible.js~extensible#[extensiblesymbols.removemethod]",
+    "class/src/Extensible.js~Extensible.html#instance-method-[extensibleSymbols.removeMethod]",
+    "src/Extensible.js~Extensible#[extensibleSymbols.removeMethod]",
     "method"
   ],
   [
-    "src/extensible.js~extensible#[removepluginsym]",
-    "class/src/Extensible.js~Extensible.html#instance-method-[removePluginSym]",
-    "src/Extensible.js~Extensible#[removePluginSym]",
+    "src/extensible.js~extensible#[extensiblesymbols.removeplugin]",
+    "class/src/Extensible.js~Extensible.html#instance-method-[extensibleSymbols.removePlugin]",
+    "src/Extensible.js~Extensible#[extensibleSymbols.removePlugin]",
     "method"
   ],
   [
@@ -642,21 +642,27 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/listener.js",
-    "file/src/Listener.js.html",
-    "src/Listener.js",
-    "file"
-  ],
-  [
     "src/observable.js",
     "file/src/Observable.js.html",
     "src/Observable.js",
     "file"
   ],
   [
-    "src/observable.js~observable#addlistener",
-    "class/src/Observable.js~Observable.html#instance-method-addListener",
-    "src/Observable.js~Observable#addListener",
+    "src/observable.js~observable#[observablesymbols.addlistener]",
+    "class/src/Observable.js~Observable.html#instance-method-[observableSymbols.addListener]",
+    "src/Observable.js~Observable#[observableSymbols.addListener]",
+    "method"
+  ],
+  [
+    "src/observable.js~observable#[observablesymbols.fireevent]",
+    "class/src/Observable.js~Observable.html#instance-method-[observableSymbols.fireEvent]",
+    "src/Observable.js~Observable#[observableSymbols.fireEvent]",
+    "method"
+  ],
+  [
+    "src/observable.js~observable#[observablesymbols.removelistener]",
+    "class/src/Observable.js~Observable.html#instance-method-[observableSymbols.removeListener]",
+    "src/Observable.js~Observable#[observableSymbols.removeListener]",
     "method"
   ],
   [
@@ -666,9 +672,15 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/plugin.js~plugin#clone",
-    "class/src/Plugin.js~Plugin.html#instance-method-clone",
-    "src/Plugin.js~Plugin#clone",
+    "src/plugin.js~plugin#[cloneablesymbols.clone]",
+    "class/src/Plugin.js~Plugin.html#instance-method-[cloneableSymbols.clone]",
+    "src/Plugin.js~Plugin#[cloneableSymbols.clone]",
+    "method"
+  ],
+  [
+    "src/plugin.js~plugin#constructor",
+    "class/src/Plugin.js~Plugin.html#instance-constructor-constructor",
+    "src/Plugin.js~Plugin#constructor",
     "method"
   ],
   [

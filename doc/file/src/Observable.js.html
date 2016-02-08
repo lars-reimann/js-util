@@ -41,21 +41,28 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Cloneable.js~Cloneable.html">Cloneable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Extensible.js~Extensible.html">Extensible</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Observable.js~Observable.html">Observable</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneSym">cloneSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableSymbols">cloneableSymbols</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addMethodSym">addMethodSym</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addPluginSym">addPluginSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removeMethodSym">removeMethodSym</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removePluginSym">removePluginSym</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleSymbols">extensibleSymbols</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableSymbols">observableSymbols</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/Observable.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import EventManager from &quot;./EventManager.js&quot;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Contains symbols for the methods of the Observable interface.
+ *
+ * @type {Object}
+ */
+export const observableSymbols = {
+    addListener:    Symbol(&quot;addListener&quot;),
+    removeListener: Symbol(&quot;removeListener&quot;),
+    fireEvent:      Symbol(&quot;fireEvent&quot;)
+};
 
 /**
  * An interface for every object that allows listeners to be attached to it.
@@ -73,41 +80,53 @@ export default class Observable {
      * @param {Function} f
      * The function that should be executed when the event fires.
      *
-     * @param {Object} [context]
-     * The object this should refer to inside f.
+     * @abstract
+     */
+    [observableSymbols.addListener](f, types) {}
+
+    /**
+     * Adds an event listener to this object.
      *
-     * @return {Object}
-     * This object to make the method chainable.
+     * @param {String|Iterator&lt;String&gt;} types
+     * The types of events the function should listen to.
+     *
+     * @param {Function} f
+     * The function that should be executed when the event fires.
      *
      * @abstract
      */
-    addListener(types, f, context) {}
+    [observableSymbols.removeListener](f, types) {}
+
+    /**
+     * Notifies all listeners that are interested in the given event.
+     *
+     * @param {Event} e
+     * The event to fire.
+     */
+    [observableSymbols.fireEvent](e) {}
 }
 
 /**
  * This is a mixin for Observable behavior if an {@link EventManager} is used.
- * Several assumptions are made: The event manager must be reachable by
- * this.eventManager and the EventManager class must be imported under this
- * exact name. This mixin can be used to facade the use of an EventManager.
+ * The event manager must be reachable by this.eventManager. This mixin can be
+ * used to facade the use of an EventManager.
  *
  * @type {Object}
  */
 export const observableMixin = {
-    addListener(types, f, context) {
-        this.eventManager.addListener(types, f, context);
+    [observableSymbols.addListener](f, types) {
+        this.eventManager[observableSymbols.addListener](f, types);
         return this;
     },
 
-    fireEvent(type, data) {
-        const e = EventManager.makeEvent(this, type, data);
-        this.eventManager.fireEvent(e);
+    [observableSymbols.removeListener](f, types) {
+        this.eventManager[observableSymbols.removeListener](f, types);
+        return this;
     },
 
-    bubbleEvent(e, newType) {
-        if (newType) {
-            e = EventManager.makeEvent(e.source, newType, e.data);
-        }
-        this.eventManager.fireEvent(e);
+    [observableSymbols.fireEvent](e) {
+        this.eventManager[observableSymbols.fireEvent](e);
+        return this;
     }
 };
 </code></pre>

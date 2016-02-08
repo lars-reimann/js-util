@@ -41,27 +41,25 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Cloneable.js~Cloneable.html">Cloneable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Extensible.js~Extensible.html">Extensible</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Observable.js~Observable.html">Observable</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneSym">cloneSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableSymbols">cloneableSymbols</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addMethodSym">addMethodSym</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addPluginSym">addPluginSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removeMethodSym">removeMethodSym</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removePluginSym">removePluginSym</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleSymbols">extensibleSymbols</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableSymbols">observableSymbols</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import EventManager from &apos;<span><a href="file/src/EventManager.js.html#lineNumber10">@ignavia/util/src/EventManager.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import EventManager from &apos;<span><a href="file/src/EventManager.js.html#lineNumber11">@ignavia/util/src/EventManager.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/EventManager.js.html#lineNumber10">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/EventManager.js.html#lineNumber11">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -176,13 +174,39 @@ If you want to hide that you are using this class, you can use the provided
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html#instance-member-listeners">listeners</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span><span>[]</span></span>&gt;</span>
+           <span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html#instance-member-listenerToTypes">listenerToTypes</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, <span>Set&lt;String</span>&gt;</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>The registered listeners ordered by event type.</p>
+        <div data-ice="description"><p>Maps from a listener to the types of events it listens to.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html#instance-member-typeToListeners">typeToListeners</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>&gt;&gt;</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Maps from an event type to its listeners.</p>
 </div>
       </div>
     </td>
@@ -209,7 +233,7 @@ If you want to hide that you are using this class, you can use the provided
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html#instance-method-addListener">addListener</a></span></span><span data-ice="signature">(types: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span>Iterator</span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>&gt;, f: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span>
+           <span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html#instance-method-[observableSymbols.addListener]">[observableSymbols.addListener]</a></span></span><span data-ice="signature">(f: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, types: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span>Iterator</span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>&gt;): <span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span>
         </p>
       </div>
       <div>
@@ -235,13 +259,39 @@ If you want to hide that you are using this class, you can use the provided
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html#instance-method-fireEvent">fireEvent</a></span></span><span data-ice="signature">(e: <span><a href="class/src/Event.js~Event.html">Event</a></span>): <span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span>
+           <span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html#instance-method-[observableSymbols.fireEvent]">[observableSymbols.fireEvent]</a></span></span><span data-ice="signature">(e: <span><a href="class/src/Event.js~Event.html">Event</a></span>): <span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span>
         </p>
       </div>
       <div>
         
         
         <div data-ice="description"><p>Notifies all listeners that are interested in the given event.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html#instance-method-[observableSymbols.removeListener]">[observableSymbols.removeListener]</a></span></span><span data-ice="signature">(f: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, types: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span>Iterator</span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>&gt;): <span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Removes an event listener from this event manager.</p>
 </div>
       </div>
     </td>
@@ -270,7 +320,7 @@ If you want to hide that you are using this class, you can use the provided
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber27">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber28">source</a></span></span>
     </span>
   </h3>
 
@@ -356,7 +406,7 @@ If you want to hide that you are using this class, you can use the provided
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber34">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber35">source</a></span></span>
     </span>
   </h3>
 
@@ -389,24 +439,65 @@ If you want to hide that you are using this class, you can use the provided
 <div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-listeners">
+  <h3 data-ice="anchor" id="instance-member-listenerToTypes">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    <span data-ice="name">listeners</span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span><span>[]</span></span>&gt;</span>
+    <span data-ice="name">listenerToTypes</span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, <span>Set&lt;String</span>&gt;</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber41">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber49">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>The registered listeners ordered by event type.</p>
+  <div data-ice="description"><p>Maps from a listener to the types of events it listens to.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-member-typeToListeners">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">typeToListeners</span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>&gt;&gt;</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber42">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Maps from an event type to its listeners.</p>
 </div>
 
   
@@ -433,17 +524,17 @@ If you want to hide that you are using this class, you can use the provided
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-addListener">
+  <h3 data-ice="anchor" id="instance-method-[observableSymbols.addListener]">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    <span data-ice="name">addListener</span><span data-ice="signature">(types: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span>Iterator</span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>&gt;, f: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span>
+    <span data-ice="name">[observableSymbols.addListener]</span><span data-ice="signature">(f: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, types: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span>Iterator</span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>&gt;): <span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber59">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber65">source</a></span></span>
     </span>
   </h3>
 
@@ -464,13 +555,6 @@ If you want to hide that you are using this class, you can use the provided
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">types</td>
-      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span>Iterator</span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>&gt;</td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>The types of events the function should listen to.</p>
-</td>
-    </tr>
-<tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">f</td>
       <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
       <td data-ice="appendix"></td>
@@ -478,10 +562,11 @@ If you want to hide that you are using this class, you can use the provided
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">context</td>
-      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="name" data-depth="0">types</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span>Iterator</span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>&gt;</td>
       <td data-ice="appendix"><ul><li>optional</li></ul></td>
-      <td data-ice="description"><p>The object this should refer to inside f.</p>
+      <td data-ice="description"><p>The types of events the function should listen to. If this parameter is
+not specified it will only listen to events without a type.</p>
 </td>
     </tr>
 </tbody>
@@ -516,17 +601,17 @@ If you want to hide that you are using this class, you can use the provided
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-fireEvent">
+  <h3 data-ice="anchor" id="instance-method-[observableSymbols.fireEvent]">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    <span data-ice="name">fireEvent</span><span data-ice="signature">(e: <span><a href="class/src/Event.js~Event.html">Event</a></span>): <span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span>
+    <span data-ice="name">[observableSymbols.fireEvent]</span><span data-ice="signature">(e: <span><a href="class/src/Event.js~Event.html">Event</a></span>): <span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber86">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber130">source</a></span></span>
     </span>
   </h3>
 
@@ -551,6 +636,83 @@ If you want to hide that you are using this class, you can use the provided
       <td data-ice="type"><span><a href="class/src/Event.js~Event.html">Event</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>The event to fire.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>This event manager to make the method chainable.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-[observableSymbols.removeListener]">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">[observableSymbols.removeListener]</span><span data-ice="signature">(f: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, types: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span>Iterator</span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>&gt;): <span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/EventManager.js.html#lineNumber97">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Removes an event listener from this event manager.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">f</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The listener that should be removed.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">types</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span>Iterator</span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>&gt;</td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"><p>The types of events the function should no longer listen to. If this
+parameter is left empty the listener is removed completely.</p>
 </td>
     </tr>
 </tbody>

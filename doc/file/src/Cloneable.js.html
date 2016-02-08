@@ -41,21 +41,28 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Cloneable.js~Cloneable.html">Cloneable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Extensible.js~Extensible.html">Extensible</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Observable.js~Observable.html">Observable</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneSym">cloneSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableSymbols">cloneableSymbols</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addMethodSym">addMethodSym</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addPluginSym">addPluginSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removeMethodSym">removeMethodSym</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removePluginSym">removePluginSym</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleSymbols">extensibleSymbols</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableSymbols">observableSymbols</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/Cloneable.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Cloner from &quot;./Cloner.js&quot;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Cloner from &quot;./Cloner&quot;;
+
+/**
+ * Contains symbols for the methods of the Cloneable interface.
+ *
+ * @type {Object}
+ */
+export const cloneableSymbols = {
+    clone: Symbol(&quot;clone&quot;)
+};
 
 /**
  * An interface for every object that can be cloned.
@@ -70,15 +77,8 @@ export default class Cloneable {
      * @return {*}
      * A copy of this object.
      */
-    [cloneSym]() {}
+    [cloneableSymbols.clone]() {}
 }
-
-/**
- * A symbol for the clone method in the Cloneable interface.
- *
- * @type {Symbol}
- */
-export const cloneSym = Symbol(&quot;clone&quot;);
 
 /**
  * A mixin for Cloneable behavior.
@@ -88,10 +88,10 @@ export const cloneSym = Symbol(&quot;clone&quot;);
  * @example
  * Object.assign(MyClass.prototype, cloneableMixin);
  * let myObject = new MyClass(),
- *     clone    = myObject[cloneSym]
+ *     clone    = myObject[cloneableSymbols.clone]
  */
 export const cloneableMixin = {
-    [cloneSym](cloner = new Cloner()) {
+    [cloneableSymbols.clone](cloner = new Cloner()) {
         return cloner.clone(this);
     }
 };

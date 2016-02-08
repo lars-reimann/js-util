@@ -19,7 +19,6 @@
       "babel-preset-stage-0": "^6.3.13",
       "chai": "^3.5.0",
       "clean-css": "^3.4.9",
-      "core-js": "^2.0.3",
       "mocha": "^2.4.5",
       "plugin-babel": "systemjs-plugin-babel@^0.0.2"
     },
@@ -27,6 +26,7 @@
       "assert": "github:jspm/nodelibs-assert@^0.2.0-alpha",
       "buffer": "github:jspm/nodelibs-buffer@^0.2.0-alpha",
       "child_process": "github:jspm/nodelibs-child_process@^0.2.0-alpha",
+      "core-js": "^2.0.3",
       "events": "github:jspm/nodelibs-events@^0.2.0-alpha",
       "fs": "github:jspm/nodelibs-fs@^0.2.0-alpha",
       "http": "github:jspm/nodelibs-http@^0.2.0-alpha",
@@ -49,10 +49,92 @@
           "core-js": "^1.2.0"
         }
       },
+      "npm:core-js@2.0.3": {
+        "format": "cjs",
+        "meta": {
+          "*": {
+            "globals": {
+              "process": "process"
+            }
+          },
+          "*.json": {
+            "format": "json"
+          }
+        },
+        "map": {
+          "./build.js": "./build/index.js",
+          "./core.js": "./core/index.js",
+          "./es5.js": "./es5/index.js",
+          "./es6.js": "./es6/index.js",
+          "./es7.js": "./es7/index.js",
+          "./fn/array.js": "./fn/array/index.js",
+          "./fn/array/virtual.js": "./fn/array/virtual/index.js",
+          "./fn/date.js": "./fn/date/index.js",
+          "./fn/dom-collections.js": "./fn/dom-collections/index.js",
+          "./fn/error.js": "./fn/error/index.js",
+          "./fn/function.js": "./fn/function/index.js",
+          "./fn/function/virtual.js": "./fn/function/virtual/index.js",
+          "./fn/json.js": "./fn/json/index.js",
+          "./fn/math.js": "./fn/math/index.js",
+          "./fn/number.js": "./fn/number/index.js",
+          "./fn/number/virtual.js": "./fn/number/virtual/index.js",
+          "./fn/object.js": "./fn/object/index.js",
+          "./fn/reflect.js": "./fn/reflect/index.js",
+          "./fn/regexp.js": "./fn/regexp/index.js",
+          "./fn/string.js": "./fn/string/index.js",
+          "./fn/string/virtual.js": "./fn/string/virtual/index.js",
+          "./fn/symbol.js": "./fn/symbol/index.js",
+          "./fn/system.js": "./fn/system/index.js",
+          "./fn/typed.js": "./fn/typed/index.js",
+          "./library.js": "./library/index.js",
+          "./library/core.js": "./library/core/index.js",
+          "./library/es5.js": "./library/es5/index.js",
+          "./library/es6.js": "./library/es6/index.js",
+          "./library/es7.js": "./library/es7/index.js",
+          "./library/fn/array.js": "./library/fn/array/index.js",
+          "./library/fn/array/virtual.js": "./library/fn/array/virtual/index.js",
+          "./library/fn/date.js": "./library/fn/date/index.js",
+          "./library/fn/dom-collections.js": "./library/fn/dom-collections/index.js",
+          "./library/fn/error.js": "./library/fn/error/index.js",
+          "./library/fn/function.js": "./library/fn/function/index.js",
+          "./library/fn/function/virtual.js": "./library/fn/function/virtual/index.js",
+          "./library/fn/json.js": "./library/fn/json/index.js",
+          "./library/fn/math.js": "./library/fn/math/index.js",
+          "./library/fn/number.js": "./library/fn/number/index.js",
+          "./library/fn/number/virtual.js": "./library/fn/number/virtual/index.js",
+          "./library/fn/object.js": "./library/fn/object/index.js",
+          "./library/fn/reflect.js": "./library/fn/reflect/index.js",
+          "./library/fn/regexp.js": "./library/fn/regexp/index.js",
+          "./library/fn/string.js": "./library/fn/string/index.js",
+          "./library/fn/string/virtual.js": "./library/fn/string/virtual/index.js",
+          "./library/fn/symbol.js": "./library/fn/symbol/index.js",
+          "./library/fn/system.js": "./library/fn/system/index.js",
+          "./library/fn/typed.js": "./library/fn/typed/index.js",
+          "./library/stage.js": "./library/stage/index.js",
+          "./library/web.js": "./library/web/index.js",
+          "./package": "./package.json",
+          "./stage.js": "./stage/index.js",
+          "./web.js": "./web/index.js"
+        }
+      },
       "npm:inherits@2.0.1": {
         "ignore": [
           "test.js"
         ]
+      },
+      "npm:lodash@3.10.1": {
+        "format": "cjs",
+        "meta": {
+          "*": {
+            "globals": {
+              "process": "process"
+            }
+          },
+          "*.json": {
+            "format": "json"
+          }
+        },
+        "map": {}
       },
       "npm:mocha@2.4.5": {
         "browser": "mocha",

@@ -1,3 +1,5 @@
+/* global describe */
+/* global it */
 import {expect} from "chai";
 
 import {extensibleSymbols, extensibleMixin} from "@ignavia/util";
@@ -23,7 +25,6 @@ export default function() {
             expect(o.hasOwnProperty("toString")).to.equal(false);
         });
 
-        // TODO add/remove plugin tests
         it("should offer an addPlugin method as a mixin", function () {
             const plugin = {
                 register:   (o) => o[addMethod]("toString", () => "Hi"),

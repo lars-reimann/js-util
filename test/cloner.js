@@ -1,3 +1,5 @@
+/* global describe */
+/* global it */
 import {expect} from "chai";
 
 import {cloneableSymbols, Cloner} from "@ignavia/util";
@@ -60,7 +62,7 @@ export default function() {
             });
 
             it("should clone RegExp objects", function () {
-                const v = new RegExp(/[a-zA-Z0-9]/),
+                const v = new RegExp("[a-zA-Z0-9]"),
                       r = cloner.clone(v);
                 expect(v.toString()).to.equal(r.toString());
                 expect(v).to.not.equal(r);
