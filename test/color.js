@@ -32,6 +32,7 @@ export default function() {
             });
         });
 
+        /** @test {Color#fromHSLA} */
         describe("#fromHSLA", function () {
             it("should create a Color object for an HSLA color", function () {
                 const r0 = Color.fromHSLA(0, 0, 0, 1); // black
@@ -56,7 +57,8 @@ export default function() {
             });
         });
 
-        describe("toRGBA", function () {
+        /** @test {Color#toRGBA} */
+        describe("#toRGBA", function () {
             it("should create an RGBA color from a Color object", function () {
 
                 const r0 = predefinedColors.black.toRGBA(); // black
@@ -91,7 +93,8 @@ export default function() {
             });
         });
 
-        describe("toHSLA", function () {
+        /** @test {Color#toHSLA} */
+        describe("#toHSLA", function () {
             it("should create an HSLA color from a Color object", function () {
 
                 const r0 = predefinedColors.black.toHSLA(); // black
@@ -126,7 +129,8 @@ export default function() {
             });
         });
 
-        describe("toString", function () {
+        /** @test {Color#toString} */
+        describe("#toString", function () {
             it("should print a hex string for a Color object", function () {
                 const r0 = predefinedColors.black.toString(); // black
                 expect(r0).to.equal("#000000");
@@ -142,7 +146,7 @@ export default function() {
 
                 const r4 = predefinedColors.transparent.toString(); // transparent
                 expect(r4).to.equal("#000000");
-            })
+            });
         });
     });
 }

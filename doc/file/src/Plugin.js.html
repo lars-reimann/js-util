@@ -44,7 +44,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneSym">cloneSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addMethodSym">addMethodSym</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addPluginSym">addPluginSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removeMethodSym">removeMethodSym</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removePluginSym">removePluginSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
 </ul>
 </div>
@@ -67,6 +71,16 @@ export default class Plugin {
      * @abstract
      */
     register(o) {}
+
+    /**
+     * Removes this plugin from the given object.
+     * 
+     * @param {Object} o
+     * The object this plugin should be removed from.
+     *
+     * @abstract
+     */
+    unregister(o) {}
 
     /**
      * Returns a copy of this plugin. For indexes you usually do not want to

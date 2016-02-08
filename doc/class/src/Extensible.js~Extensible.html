@@ -44,7 +44,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneSym">cloneSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addMethodSym">addMethodSym</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addPluginSym">addPluginSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removeMethodSym">removeMethodSym</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removePluginSym">removePluginSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
 </ul>
 </div>
@@ -108,7 +112,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/Extensible.js~Extensible.html#instance-method-addMethod">addMethod</a></span></span><span data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a></span>, f: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+           <span data-ice="name"><span><a href="class/src/Extensible.js~Extensible.html#instance-method-[addMethodSym]">[addMethodSym]</a></span></span><span data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a></span>, f: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>)</span>
         </p>
       </div>
       <div>
@@ -134,7 +138,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/Extensible.js~Extensible.html#instance-method-addPlugins">addPlugins</a></span></span><span data-ice="signature">(plugins: <span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span> | <span>Iterator</span>&lt;<span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span>&gt;): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+           <span data-ice="name"><span><a href="class/src/Extensible.js~Extensible.html#instance-method-[addPluginSym]">[addPluginSym]</a></span></span><span data-ice="signature">(plugins: <span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span>)</span>
         </p>
       </div>
       <div>
@@ -142,6 +146,59 @@
         
         <div data-ice="description"><p>Adds the given plugins to this object by calling the register method on
 each plugin and passing this object as an argument.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      <span class="abstract" data-ice="abstract">abstract</span>
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/Extensible.js~Extensible.html#instance-method-[removeMethodSym]">[removeMethodSym]</a></span></span><span data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Removes the method with the given name from this object.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      <span class="abstract" data-ice="abstract">abstract</span>
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/Extensible.js~Extensible.html#instance-method-[removePluginSym]">[removePluginSym]</a></span></span><span data-ice="signature">(plugins: <span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Removes the given plugins from this object by calling the register method
+on each plugin and passing this object as an argument.</p>
 </div>
       </div>
     </td>
@@ -163,17 +220,17 @@ each plugin and passing this object as an argument.</p>
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-addMethod">
+  <h3 data-ice="anchor" id="instance-method-[addMethodSym]">
     <span class="access" data-ice="access">public</span>
     
     
     <span class="abstract" data-ice="abstract">abstract</span>
     
-    <span data-ice="name">addMethod</span><span data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a></span>, f: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+    <span data-ice="name">[addMethodSym]</span><span data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a></span>, f: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Extensible.js.html#lineNumber25">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Extensible.js.html#lineNumber19">source</a></span></span>
     </span>
   </h3>
 
@@ -197,21 +254,14 @@ each plugin and passing this object as an argument.</p>
       <td data-ice="name" data-depth="0">name</td>
       <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>The name of the new method.</p>
+      <td data-ice="description"><p>The name of the method.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">f</td>
       <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>The method to add.</p>
-</td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">context</td>
-      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
-      <td data-ice="appendix"><ul><li>optional</li></ul></td>
-      <td data-ice="description"><p>The object this should refer to inside f.</p>
+      <td data-ice="description"><p>The function to execute.</p>
 </td>
     </tr>
 </tbody>
@@ -219,18 +269,7 @@ each plugin and passing this object as an argument.</p>
 </div>
 </div>
 
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>This object to make the method chainable.</p>
-</td>
-      </tr>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
+  
 
   
 
@@ -246,17 +285,17 @@ each plugin and passing this object as an argument.</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-addPlugins">
+  <h3 data-ice="anchor" id="instance-method-[addPluginSym]">
     <span class="access" data-ice="access">public</span>
     
     
     <span class="abstract" data-ice="abstract">abstract</span>
     
-    <span data-ice="name">addPlugins</span><span data-ice="signature">(plugins: <span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span> | <span>Iterator</span>&lt;<span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span>&gt;): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+    <span data-ice="name">[addPluginSym]</span><span data-ice="signature">(plugins: <span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Extensible.js.html#lineNumber39">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Extensible.js.html#lineNumber40">source</a></span></span>
     </span>
   </h3>
 
@@ -279,7 +318,7 @@ each plugin and passing this object as an argument.</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">plugins</td>
-      <td data-ice="type"><span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span> | <span>Iterator</span>&lt;<span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span>&gt;</td>
+      <td data-ice="type"><span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>The plugins to add.</p>
 </td>
@@ -289,18 +328,124 @@ each plugin and passing this object as an argument.</p>
 </div>
 </div>
 
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>This object to make the method chainable.</p>
-</td>
-      </tr>
-    </table>
-    <div data-ice="returnProperties">
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
 </div>
-  </div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-[removeMethodSym]">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    <span class="abstract" data-ice="abstract">abstract</span>
+    
+    <span data-ice="name">[removeMethodSym]</span><span data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a></span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/Extensible.js.html#lineNumber29">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Removes the method with the given name from this object.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">name</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The name of the function to remove.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-[removePluginSym]">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    <span class="abstract" data-ice="abstract">abstract</span>
+    
+    <span data-ice="name">[removePluginSym]</span><span data-ice="signature">(plugins: <span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/Extensible.js.html#lineNumber51">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Removes the given plugins from this object by calling the register method
+on each plugin and passing this object as an argument.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">plugins</td>
+      <td data-ice="type"><span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The plugins to remove.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
 
   
 

@@ -1,4 +1,13 @@
-import Cloner from "./Cloner.js";
+import {Cloner} from "@ignavia/util";
+
+/**
+ * Contains symbols for the methods of the Cloneable interface.
+ *
+ * @type {Object}
+ */
+export const cloneableSymbols = {
+    clone: Symbol("clone")
+};
 
 /**
  * An interface for every object that can be cloned.
@@ -13,23 +22,21 @@ export default class Cloneable {
      * @return {*}
      * A copy of this object.
      */
-    [cloneSym]() {}
+    [cloneableSymbols.clone]() {}
 }
 
 /**
- * A symbol for the clone method in the Cloneable interface.
- *
- * @type {Symbol}
- */
-export const cloneSym = Symbol("clone");
-
-/**
- * This is a mixin for Cloneable behavior.
+ * A mixin for Cloneable behavior.
  *
  * @type {Object}
+ *
+ * @example
+ * Object.assign(MyClass.prototype, cloneableMixin);
+ * let myObject = new MyClass(),
+ *     clone    = myObject[cloneableSymbols.clone]
  */
 export const cloneableMixin = {
-    [cloneSym](cloner = new Cloner()) {
+    [cloneableSymbols.clone](cloner = new Cloner()) {
         return cloner.clone(this);
     }
 };

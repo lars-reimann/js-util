@@ -1,4 +1,4 @@
-import EventManager from "./EventManager.js";
+import {EventManager} from "@ignavia/util";
 
 /**
  * An interface for every object that allows listeners to be attached to it.
@@ -16,15 +16,11 @@ export default class Observable {
      * @param {Function} f
      * The function that should be executed when the event fires.
      *
-     * @param {Object} [context]
-     * The object this should refer to inside f.
-     *
-     * @return {Object}
-     * This object to make the method chainable.
-     *
      * @abstract
      */
-    addListener(types, f, context) {}
+    addListener(types, f) {}
+
+    removeListener(f) {}
 }
 
 /**
@@ -38,6 +34,11 @@ export default class Observable {
 export const observableMixin = {
     addListener(types, f, context) {
         this.eventManager.addListener(types, f, context);
+        return this;
+    },
+
+    removeListener(f) {
+        this.eventManager.removeListener(f);
         return this;
     },
 

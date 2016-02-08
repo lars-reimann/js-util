@@ -1,7 +1,7 @@
 {
     "source": "./src",
     "destination": "./doc",
-    "access": ["public", "protected", "private"],
+    "access": ["public", "protected"],
     "title": "JavaScript Utility",
     "index": "./README.md",
     "package": "./package.json"

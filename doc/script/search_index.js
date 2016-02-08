@@ -54,6 +54,18 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "@ignavia/util/src/extensible.js~addmethodsym",
+    "variable/index.html#static-variable-addMethodSym",
+    "<span>addMethodSym</span> <span class=\"search-result-import-path\">@ignavia/util/src/Extensible.js</span>",
+    "variable"
+  ],
+  [
+    "@ignavia/util/src/extensible.js~addpluginsym",
+    "variable/index.html#static-variable-addPluginSym",
+    "<span>addPluginSym</span> <span class=\"search-result-import-path\">@ignavia/util/src/Extensible.js</span>",
+    "variable"
+  ],
+  [
     "@ignavia/util/src/cloneable.js~clonesym",
     "variable/index.html#static-variable-cloneSym",
     "<span>cloneSym</span> <span class=\"search-result-import-path\">@ignavia/util/src/Cloneable.js</span>",
@@ -81,6 +93,18 @@ window.esdocSearchIndex = [
     "@ignavia/util/src/color.js~predefinedcolors",
     "variable/index.html#static-variable-predefinedColors",
     "<span>predefinedColors</span> <span class=\"search-result-import-path\">@ignavia/util/src/Color.js</span>",
+    "variable"
+  ],
+  [
+    "@ignavia/util/src/extensible.js~removemethodsym",
+    "variable/index.html#static-variable-removeMethodSym",
+    "<span>removeMethodSym</span> <span class=\"search-result-import-path\">@ignavia/util/src/Extensible.js</span>",
+    "variable"
+  ],
+  [
+    "@ignavia/util/src/extensible.js~removepluginsym",
+    "variable/index.html#static-variable-removePluginSym",
+    "<span>removePluginSym</span> <span class=\"search-result-import-path\">@ignavia/util/src/Extensible.js</span>",
     "variable"
   ],
   [
@@ -432,51 +456,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/cloner.js~cloner#cleanup",
-    "class/src/Cloner.js~Cloner.html#instance-method-cleanup",
-    "src/Cloner.js~Cloner#cleanup",
-    "method"
-  ],
-  [
     "src/cloner.js~cloner#clone",
     "class/src/Cloner.js~Cloner.html#instance-method-clone",
     "src/Cloner.js~Cloner#clone",
-    "method"
-  ],
-  [
-    "src/cloner.js~cloner#clonearray",
-    "class/src/Cloner.js~Cloner.html#instance-method-cloneArray",
-    "src/Cloner.js~Cloner#cloneArray",
-    "method"
-  ],
-  [
-    "src/cloner.js~cloner#clonechild",
-    "class/src/Cloner.js~Cloner.html#instance-method-cloneChild",
-    "src/Cloner.js~Cloner#cloneChild",
-    "method"
-  ],
-  [
-    "src/cloner.js~cloner#clonecloneable",
-    "class/src/Cloner.js~Cloner.html#instance-method-cloneCloneable",
-    "src/Cloner.js~Cloner#cloneCloneable",
-    "method"
-  ],
-  [
-    "src/cloner.js~cloner#clonedate",
-    "class/src/Cloner.js~Cloner.html#instance-method-cloneDate",
-    "src/Cloner.js~Cloner#cloneDate",
-    "method"
-  ],
-  [
-    "src/cloner.js~cloner#cloneobject",
-    "class/src/Cloner.js~Cloner.html#instance-method-cloneObject",
-    "src/Cloner.js~Cloner#cloneObject",
-    "method"
-  ],
-  [
-    "src/cloner.js~cloner#cloneregexp",
-    "class/src/Cloner.js~Cloner.html#instance-method-cloneRegExp",
-    "src/Cloner.js~Cloner#cloneRegExp",
     "method"
   ],
   [
@@ -484,54 +466,6 @@ window.esdocSearchIndex = [
     "class/src/Cloner.js~Cloner.html#instance-constructor-constructor",
     "src/Cloner.js~Cloner#constructor",
     "method"
-  ],
-  [
-    "src/cloner.js~cloner#context",
-    "class/src/Cloner.js~Cloner.html#instance-member-context",
-    "src/Cloner.js~Cloner#context",
-    "member"
-  ],
-  [
-    "src/cloner.js~cloner#isarray",
-    "class/src/Cloner.js~Cloner.html#instance-method-isArray",
-    "src/Cloner.js~Cloner#isArray",
-    "method"
-  ],
-  [
-    "src/cloner.js~cloner#iscloneable",
-    "class/src/Cloner.js~Cloner.html#instance-method-isCloneable",
-    "src/Cloner.js~Cloner#isCloneable",
-    "method"
-  ],
-  [
-    "src/cloner.js~cloner#isdate",
-    "class/src/Cloner.js~Cloner.html#instance-method-isDate",
-    "src/Cloner.js~Cloner#isDate",
-    "method"
-  ],
-  [
-    "src/cloner.js~cloner#isobject",
-    "class/src/Cloner.js~Cloner.html#instance-method-isObject",
-    "src/Cloner.js~Cloner#isObject",
-    "method"
-  ],
-  [
-    "src/cloner.js~cloner#isprimitive",
-    "class/src/Cloner.js~Cloner.html#instance-method-isPrimitive",
-    "src/Cloner.js~Cloner#isPrimitive",
-    "method"
-  ],
-  [
-    "src/cloner.js~cloner#isregexp",
-    "class/src/Cloner.js~Cloner.html#instance-method-isRegExp",
-    "src/Cloner.js~Cloner#isRegExp",
-    "method"
-  ],
-  [
-    "src/cloner.js~cloner#recursionlevel",
-    "class/src/Cloner.js~Cloner.html#instance-member-recursionLevel",
-    "src/Cloner.js~Cloner#recursionLevel",
-    "member"
   ],
   [
     "src/color.js",
@@ -585,12 +519,6 @@ window.esdocSearchIndex = [
     "src/color.js~color.fromrgba",
     "class/src/Color.js~Color.html#static-method-fromRGBA",
     "src/Color.js~Color.fromRGBA",
-    "method"
-  ],
-  [
-    "src/color.js~color.huetorgb",
-    "class/src/Color.js~Color.html#static-method-hueToRGB",
-    "src/Color.js~Color.hueToRGB",
     "method"
   ],
   [
@@ -666,15 +594,27 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/extensible.js~extensible#addmethod",
-    "class/src/Extensible.js~Extensible.html#instance-method-addMethod",
-    "src/Extensible.js~Extensible#addMethod",
+    "src/extensible.js~extensible#[addmethodsym]",
+    "class/src/Extensible.js~Extensible.html#instance-method-[addMethodSym]",
+    "src/Extensible.js~Extensible#[addMethodSym]",
     "method"
   ],
   [
-    "src/extensible.js~extensible#addplugins",
-    "class/src/Extensible.js~Extensible.html#instance-method-addPlugins",
-    "src/Extensible.js~Extensible#addPlugins",
+    "src/extensible.js~extensible#[addpluginsym]",
+    "class/src/Extensible.js~Extensible.html#instance-method-[addPluginSym]",
+    "src/Extensible.js~Extensible#[addPluginSym]",
+    "method"
+  ],
+  [
+    "src/extensible.js~extensible#[removemethodsym]",
+    "class/src/Extensible.js~Extensible.html#instance-method-[removeMethodSym]",
+    "src/Extensible.js~Extensible#[removeMethodSym]",
+    "method"
+  ],
+  [
+    "src/extensible.js~extensible#[removepluginsym]",
+    "class/src/Extensible.js~Extensible.html#instance-method-[removePluginSym]",
+    "src/Extensible.js~Extensible#[removePluginSym]",
     "method"
   ],
   [
@@ -690,12 +630,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/idgenerator.js~idgenerator#counter",
-    "class/src/IDGenerator.js~IDGenerator.html#instance-member-counter",
-    "src/IDGenerator.js~IDGenerator#counter",
-    "member"
-  ],
-  [
     "src/idgenerator.js~idgenerator#next",
     "class/src/IDGenerator.js~IDGenerator.html#instance-method-next",
     "src/IDGenerator.js~IDGenerator#next",
@@ -706,6 +640,12 @@ window.esdocSearchIndex = [
     "class/src/IDGenerator.js~IDGenerator.html#instance-member-prefix",
     "src/IDGenerator.js~IDGenerator#prefix",
     "member"
+  ],
+  [
+    "src/listener.js",
+    "file/src/Listener.js.html",
+    "src/Listener.js",
+    "file"
   ],
   [
     "src/observable.js",
@@ -735,6 +675,12 @@ window.esdocSearchIndex = [
     "src/plugin.js~plugin#register",
     "class/src/Plugin.js~Plugin.html#instance-method-register",
     "src/Plugin.js~Plugin#register",
+    "method"
+  ],
+  [
+    "src/plugin.js~plugin#unregister",
+    "class/src/Plugin.js~Plugin.html#instance-method-unregister",
+    "src/Plugin.js~Plugin#unregister",
     "method"
   ],
   [

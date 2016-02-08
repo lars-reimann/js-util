@@ -44,7 +44,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneSym">cloneSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addMethodSym">addMethodSym</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addPluginSym">addPluginSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removeMethodSym">removeMethodSym</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removePluginSym">removePluginSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
 </ul>
 </div>
@@ -62,47 +66,83 @@ export default class Extensible {
      * Adds the given method to this object.
      *
      * @param {String|Symbol} name
-     * The name of the new method.
+     * The name of the method.
      *
      * @param {Function} f
-     * The method to add.
-     *
-     * @param {Object} [context]
-     * The object this should refer to inside f.
-     *
-     * @return {Object}
-     * This object to make the method chainable.
+     * The function to execute.
      *
      * @abstract
      */
-    addMethod(name, f, context) {}
+    [addMethodSym](name, f) {}
+
+    /**
+     * Removes the method with the given name from this object.
+     *
+     * @param {String|Symbol} name
+     * The name of the function to remove.
+     *
+     * @abstract
+     */
+    [removeMethodSym](name) {}
 
     /**
      * Adds the given plugins to this object by calling the register method on
      * each plugin and passing this object as an argument.
      *
-     * @param {Plugin|Iterator&lt;Plugin&gt;} plugins
+     * @param {Plugin} plugins
      * The plugins to add.
-     *
-     * @return {Object}
-     * This object to make the method chainable.
      *
      * @abstract
      */
-    addPlugins(plugins) {}
+    [addPluginSym](plugin) {}
+
+    /**
+     * Removes the given plugins from this object by calling the register method
+     * on each plugin and passing this object as an argument.
+     *
+     * @param {Plugin} plugins
+     * The plugins to remove.
+     *
+     * @abstract
+     */
+    [removePluginSym](plugin) {}
 }
 
 /**
- * This is a mixin for Extensible behavior.
+ * A symbol for the addMethod method in the Extensible interface.
+ *
+ * @type {Symbol}
+ */
+export const addMethodSym = Symbol(&quot;addMethod&quot;);
+
+/**
+ * A symbol for the removeMethod method in the Extensible interface.
+ *
+ * @type {Symbol}
+ */
+export const removeMethodSym = Symbol(&quot;removeMethod&quot;);
+
+/**
+ * A symbol for the addPlugin method in the Extensible interface.
+ *
+ * @type {Symbol}
+ */
+export const addPluginSym = Symbol(&quot;addPlugin&quot;);
+
+/**
+ * A symbol for the removePlugin method in the Extensible interface.
+ *
+ * @type {Symbol}
+ */
+export const removePluginSym = Symbol(&quot;removePlugin&quot;);
+
+/**
+ * A mixin for Extensible behavior.
  *
  * @type {Object}
  */
 export const extensibleMixin = {
-    addMethod(name, f, context, override = false) {
-        if (context) {
-            f = f.bind(context);
-        }
-
+    addMethod(name, f, override = false) {
         if (!override &amp;&amp; this[name]) {
             throw new Error(`A property ${name} exists already on ${this}.`);
         }
@@ -110,15 +150,21 @@ export const extensibleMixin = {
         return this;
     },
 
-    addPlugins(plugins) {
-        if (plugins instanceof Plugin) {
-            plugins = [plugins];
+    removeMethod(name) {
+        if (!this[name]) {
+            throw new Error(`A property ${name} does not exist on ${this}.`);
         }
+        delete this[name];
+        return this;
+    },
 
-        for (let plugin of plugins) {
-            plugin.register(this);
-        }
+    addPlugin(plugin) {
+        plugin.register(this);
+        return this;
+    },
 
+    removePlugin(plugin) {
+        plugin.unregister(this);
         return this;
     }
 };

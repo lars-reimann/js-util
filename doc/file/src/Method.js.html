@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">JavaScript Utility API Document</title>
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/Method.js | JavaScript Utility API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -37,6 +37,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Event.js~Event.html">Event</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/IDGenerator.js~IDGenerator.html">IDGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Method.js~Method.html">Method</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Cloneable.js~Cloneable.html">Cloneable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/Extensible.js~Extensible.html">Extensible</a></span></span></li>
@@ -54,7 +55,31 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content">
+<div class="content" data-ice="content"><h1 data-ice="title">src/Method.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export default class Method {
+
+    /*
+     * @param {String|Symbol} name
+     * The name of the method.
+     *
+     * @param {Function} f
+     * The function to execute.
+     *
+     * @param {Object} [context]
+     * The object this should refer to inside f.
+     *
+     * @return {Object}
+     * This object to make the method chainable.
+     */
+    constructor(name, f, context) {
+        this.name = name;
+
+        this.f = f;
+
+        this.context = context;
+    }
+}</code></pre>
+
 </div>
 
 <footer class="footer">

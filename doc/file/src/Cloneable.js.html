@@ -44,7 +44,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneSym">cloneSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addMethodSym">addMethodSym</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addPluginSym">addPluginSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removeMethodSym">removeMethodSym</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removePluginSym">removePluginSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
 </ul>
 </div>
@@ -77,9 +81,14 @@ export default class Cloneable {
 export const cloneSym = Symbol(&quot;clone&quot;);
 
 /**
- * This is a mixin for Cloneable behavior.
+ * A mixin for Cloneable behavior.
  *
  * @type {Object}
+ *
+ * @example
+ * Object.assign(MyClass.prototype, cloneableMixin);
+ * let myObject = new MyClass(),
+ *     clone    = myObject[cloneSym]
  */
 export const cloneableMixin = {
     [cloneSym](cloner = new Cloner()) {

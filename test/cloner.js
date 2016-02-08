@@ -1,7 +1,6 @@
 import {expect} from "chai";
 
-import {cloneSym} from "@ignavia/util";
-import {Cloner} from "@ignavia/util";
+import {cloneableSymbols, Cloner} from "@ignavia/util";
 
 export default function() {
 
@@ -107,9 +106,9 @@ export default function() {
                 expect(r.o).to.equal(r);
             });
 
-            it("should clone Cloneable childs using the [cloneSym] method", function () {
+            it("should clone Cloneable childs using the [cloneableSymbols.clone] method", function () {
                let v = {o: {
-                   [cloneSym]: () => "no-clone"
+                   [cloneableSymbols.clone]: () => "no-clone"
                }};
                let r = cloner.clone(v);
                expect(r.o).to.equal("no-clone");

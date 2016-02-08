@@ -6,5 +6,4 @@ test/
 .gitignore
 .npmignore
 esdoc.json
-jspm.browser.js
-jspm.config.js
+jspm.*

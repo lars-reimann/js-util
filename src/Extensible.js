@@ -1,4 +1,16 @@
 /**
+ * Contains symbols for the methods of the Extensible interface.
+ *
+ * @type {Object}
+ */
+export const extensibleSymbols = {
+    addMethod:    Symbol("addMethod"),
+    removeMethod: Symbol("removeMethod"),
+    addPlugin:    Symbol("addPlugin"),
+    removePlugin: Symbol("removePlugin")
+};
+
+/**
  * An interface for every object that can be extended by plugins.
  *
  * @interface
@@ -9,63 +21,77 @@ export default class Extensible {
      * Adds the given method to this object.
      *
      * @param {String|Symbol} name
-     * The name of the new method.
+     * The name of the method.
      *
      * @param {Function} f
-     * The method to add.
-     *
-     * @param {Object} [context]
-     * The object this should refer to inside f.
-     *
-     * @return {Object}
-     * This object to make the method chainable.
+     * The function to execute.
      *
      * @abstract
      */
-    addMethod(name, f, context) {}
+    [extensibleSymbols.addMethod](name, f) {}
+
+    /**
+     * Removes the method with the given name from this object.
+     *
+     * @param {String|Symbol} name
+     * The name of the function to remove.
+     *
+     * @abstract
+     */
+    [extensibleSymbols.removeMethod](name) {}
 
     /**
      * Adds the given plugins to this object by calling the register method on
      * each plugin and passing this object as an argument.
      *
-     * @param {Plugin|Iterator<Plugin>} plugins
+     * @param {Plugin} plugins
      * The plugins to add.
-     *
-     * @return {Object}
-     * This object to make the method chainable.
      *
      * @abstract
      */
-    addPlugins(plugins) {}
+    [extensibleSymbols.addPlugin](plugin) {}
+
+    /**
+     * Removes the given plugins from this object by calling the register method
+     * on each plugin and passing this object as an argument.
+     *
+     * @param {Plugin} plugins
+     * The plugins to remove.
+     *
+     * @abstract
+     */
+    [extensibleSymbols.removePlugin](plugin) {}
 }
 
 /**
- * This is a mixin for Extensible behavior.
+ * A mixin for Extensible behavior.
  *
  * @type {Object}
  */
 export const extensibleMixin = {
-    addMethod(name, f, context, override = false) {
-        if (context) {
-            f = f.bind(context);
-        }
-
-        if (!override && this[name]) {
+    [extensibleSymbols.addMethod](name, f, override = false) {
+        if (!override && this.hasOwnProperty(name)) {
             throw new Error(`A property ${name} exists already on ${this}.`);
         }
         this[name] = f;
         return this;
     },
 
-    addPlugins(plugins) {
-        if (plugins instanceof Plugin) {
-            plugins = [plugins];
+    [extensibleSymbols.removeMethod](name) {
+        if (!this[name]) {
+            throw new Error(`A property ${name} does not exist on ${this}.`);
         }
+        delete this[name];
+        return this;
+    },
 
-        for (let plugin of plugins) {
-            plugin.register(this);
-        }
+    [extensibleSymbols.addPlugin](plugin) {
+        plugin.register(this);
+        return this;
+    },
 
+    [extensibleSymbols.removePlugin](plugin) {
+        plugin.unregister(this);
         return this;
     }
 };

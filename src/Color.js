@@ -115,8 +115,8 @@ export default class Color {
      * @return {Object}
      * An RGBA representation of this color. The resulting object has the three
      * properties r, g and b for the red, green and blue channel respectively.
-     * Those are integers in the range [0, 255]. It also has an a property for
-     * the alpha value. This is a number in the range [0, 1]. 0 represents full
+     * Those are integers in the range [0, 255]. It also has a property for the
+     * alpha value. This is a number in the range [0, 1]. 0 represents full
      * transparency and 1 is full opacity.
      */
     toRGBA() {
@@ -133,7 +133,7 @@ export default class Color {
      * An HSLA representation of this color. The resulting object has the three
      * properties h, s and l for the hue, saturation and lightness respectively.
      * The hue is a number in the range [0, 360) and saturation and lightness
-     * are in the range [0, 1]. It also has an a property for the alpha value.
+     * are in the range [0, 1]. It also has a property for the alpha value.
      * This is a number in the range [0, 1]. 0 represents full transparency and
      * 1 is full opacity.
      */

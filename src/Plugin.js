@@ -1,3 +1,5 @@
+import {cloneableSymbols} from "@ignavia/util";
+
 /**
  * A base class for plugins.
  *
@@ -16,6 +18,16 @@ export default class Plugin {
     register(o) {}
 
     /**
+     * Removes this plugin from the given object.
+     * 
+     * @param {Object} o
+     * The object this plugin should be removed from.
+     *
+     * @abstract
+     */
+    unregister(o) {}
+
+    /**
      * Returns a copy of this plugin. For indexes you usually do not want to
      * copy its internal data structures but just the configuration so it can be
      * added to a new object. By default this method returns this plugin.
@@ -23,7 +35,7 @@ export default class Plugin {
      * @return {Plugin}
      * This object.
      */
-    clone() {
+    [cloneableSymbols.clone]() {
         return this;
     }
 }

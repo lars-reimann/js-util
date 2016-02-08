@@ -1,7 +1,7 @@
 {
-  "coverage": "98.3%",
-  "expectCount": 59,
-  "actualCount": 58,
+  "coverage": "100%",
+  "expectCount": 49,
+  "actualCount": 49,
   "files": {
     "src/Cloneable.js": {
       "expectCount": 4,
@@ -9,16 +9,14 @@
       "undocumentLines": []
     },
     "src/Cloner.js": {
-      "expectCount": 18,
-      "actualCount": 18,
+      "expectCount": 3,
+      "actualCount": 3,
       "undocumentLines": []
     },
     "src/Color.js": {
-      "expectCount": 11,
+      "expectCount": 10,
       "actualCount": 10,
-      "undocumentLines": [
-        178
-      ]
+      "undocumentLines": []
     },
     "src/Event.js": {
       "expectCount": 5,
@@ -31,13 +29,13 @@
       "undocumentLines": []
     },
     "src/Extensible.js": {
-      "expectCount": 4,
-      "actualCount": 4,
+      "expectCount": 10,
+      "actualCount": 10,
       "undocumentLines": []
     },
     "src/IDGenerator.js": {
-      "expectCount": 5,
-      "actualCount": 5,
+      "expectCount": 4,
+      "actualCount": 4,
       "undocumentLines": []
     },
     "src/Observable.js": {
@@ -46,8 +44,8 @@
       "undocumentLines": []
     },
     "src/Plugin.js": {
-      "expectCount": 3,
-      "actualCount": 3,
+      "expectCount": 4,
+      "actualCount": 4,
       "undocumentLines": []
     }
   }

@@ -458,10 +458,10 @@
         "trailingComments": [
           {
             "type": "Block",
-            "value": "*\r\n * This is a mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n ",
+            "value": "*\r\n * A mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n *\r\n * @example\r\n * Object.assign(MyClass.prototype, cloneableMixin);\r\n * let myObject = new MyClass(),\r\n *     clone    = myObject[cloneSym]\r\n ",
             "range": [
               437,
-              512
+              647
             ],
             "loc": {
               "start": {
@@ -469,7 +469,7 @@
                 "column": 0
               },
               "end": {
-                "line": 30,
+                "line": 35,
                 "column": 3
               }
             }
@@ -515,10 +515,10 @@
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\r\n * This is a mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n ",
+          "value": "*\r\n * A mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n *\r\n * @example\r\n * Object.assign(MyClass.prototype, cloneableMixin);\r\n * let myObject = new MyClass(),\r\n *     clone    = myObject[cloneSym]\r\n ",
           "range": [
             437,
-            512
+            647
           ],
           "loc": {
             "start": {
@@ -526,7 +526,7 @@
               "column": 0
             },
             "end": {
-              "line": 30,
+              "line": 35,
               "column": 3
             }
           }
@@ -544,16 +544,16 @@
               "type": "Identifier",
               "name": "cloneableMixin",
               "range": [
-                527,
-                541
+                662,
+                676
               ],
               "loc": {
                 "start": {
-                  "line": 31,
+                  "line": 36,
                   "column": 13
                 },
                 "end": {
-                  "line": 31,
+                  "line": 36,
                   "column": 27
                 }
               }
@@ -567,16 +567,16 @@
                     "type": "Identifier",
                     "name": "cloneSym",
                     "range": [
-                      552,
-                      560
+                      687,
+                      695
                     ],
                     "loc": {
                       "start": {
-                        "line": 32,
+                        "line": 37,
                         "column": 5
                       },
                       "end": {
-                        "line": 32,
+                        "line": 37,
                         "column": 13
                       }
                     }
@@ -591,16 +591,16 @@
                           "type": "Identifier",
                           "name": "cloner",
                           "range": [
-                            562,
-                            568
+                            697,
+                            703
                           ],
                           "loc": {
                             "start": {
-                              "line": 32,
+                              "line": 37,
                               "column": 15
                             },
                             "end": {
-                              "line": 32,
+                              "line": 37,
                               "column": 21
                             }
                           }
@@ -611,47 +611,47 @@
                             "type": "Identifier",
                             "name": "Cloner",
                             "range": [
-                              575,
-                              581
+                              710,
+                              716
                             ],
                             "loc": {
                               "start": {
-                                "line": 32,
+                                "line": 37,
                                 "column": 28
                               },
                               "end": {
-                                "line": 32,
+                                "line": 37,
                                 "column": 34
                               }
                             }
                           },
                           "arguments": [],
                           "range": [
-                            571,
-                            583
+                            706,
+                            718
                           ],
                           "loc": {
                             "start": {
-                              "line": 32,
+                              "line": 37,
                               "column": 24
                             },
                             "end": {
-                              "line": 32,
+                              "line": 37,
                               "column": 36
                             }
                           }
                         },
                         "range": [
-                          562,
-                          583
+                          697,
+                          718
                         ],
                         "loc": {
                           "start": {
-                            "line": 32,
+                            "line": 37,
                             "column": 15
                           },
                           "end": {
-                            "line": 32,
+                            "line": 37,
                             "column": 36
                           }
                         }
@@ -671,16 +671,16 @@
                                 "type": "Identifier",
                                 "name": "cloner",
                                 "range": [
-                                  603,
-                                  609
+                                  738,
+                                  744
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 33,
+                                    "line": 38,
                                     "column": 15
                                   },
                                   "end": {
-                                    "line": 33,
+                                    "line": 38,
                                     "column": 21
                                   }
                                 }
@@ -689,31 +689,31 @@
                                 "type": "Identifier",
                                 "name": "clone",
                                 "range": [
-                                  610,
-                                  615
+                                  745,
+                                  750
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 33,
+                                    "line": 38,
                                     "column": 22
                                   },
                                   "end": {
-                                    "line": 33,
+                                    "line": 38,
                                     "column": 27
                                   }
                                 }
                               },
                               "range": [
-                                603,
-                                615
+                                738,
+                                750
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 33,
+                                  "line": 38,
                                   "column": 15
                                 },
                                 "end": {
-                                  "line": 33,
+                                  "line": 38,
                                   "column": 27
                                 }
                               }
@@ -722,63 +722,63 @@
                               {
                                 "type": "ThisExpression",
                                 "range": [
-                                  616,
-                                  620
+                                  751,
+                                  755
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 33,
+                                    "line": 38,
                                     "column": 28
                                   },
                                   "end": {
-                                    "line": 33,
+                                    "line": 38,
                                     "column": 32
                                   }
                                 }
                               }
                             ],
                             "range": [
-                              603,
-                              621
+                              738,
+                              756
                             ],
                             "loc": {
                               "start": {
-                                "line": 33,
+                                "line": 38,
                                 "column": 15
                               },
                               "end": {
-                                "line": 33,
+                                "line": 38,
                                 "column": 33
                               }
                             }
                           },
                           "range": [
-                            596,
-                            622
+                            731,
+                            757
                           ],
                           "loc": {
                             "start": {
-                              "line": 33,
+                              "line": 38,
                               "column": 8
                             },
                             "end": {
-                              "line": 33,
+                              "line": 38,
                               "column": 34
                             }
                           }
                         }
                       ],
                       "range": [
-                        585,
-                        629
+                        720,
+                        764
                       ],
                       "loc": {
                         "start": {
-                          "line": 32,
+                          "line": 37,
                           "column": 38
                         },
                         "end": {
-                          "line": 34,
+                          "line": 39,
                           "column": 5
                         }
                       }
@@ -786,16 +786,16 @@
                     "generator": false,
                     "expression": false,
                     "range": [
-                      561,
-                      629
+                      696,
+                      764
                     ],
                     "loc": {
                       "start": {
-                        "line": 32,
+                        "line": 37,
                         "column": 14
                       },
                       "end": {
-                        "line": 34,
+                        "line": 39,
                         "column": 5
                       }
                     }
@@ -805,47 +805,47 @@
                   "shorthand": false,
                   "computed": true,
                   "range": [
-                    551,
-                    629
+                    686,
+                    764
                   ],
                   "loc": {
                     "start": {
-                      "line": 32,
+                      "line": 37,
                       "column": 4
                     },
                     "end": {
-                      "line": 34,
+                      "line": 39,
                       "column": 5
                     }
                   }
                 }
               ],
               "range": [
-                544,
-                632
+                679,
+                767
               ],
               "loc": {
                 "start": {
-                  "line": 31,
+                  "line": 36,
                   "column": 30
                 },
                 "end": {
-                  "line": 35,
+                  "line": 40,
                   "column": 1
                 }
               }
             },
             "range": [
-              527,
-              632
+              662,
+              767
             ],
             "loc": {
               "start": {
-                "line": 31,
+                "line": 36,
                 "column": 13
               },
               "end": {
-                "line": 35,
+                "line": 40,
                 "column": 1
               }
             }
@@ -853,26 +853,26 @@
         ],
         "kind": "const",
         "range": [
-          521,
-          633
+          656,
+          768
         ],
         "loc": {
           "start": {
-            "line": 31,
+            "line": 36,
             "column": 7
           },
           "end": {
-            "line": 35,
+            "line": 40,
             "column": 2
           }
         },
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\r\n * This is a mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n ",
+            "value": "*\r\n * A mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n *\r\n * @example\r\n * Object.assign(MyClass.prototype, cloneableMixin);\r\n * let myObject = new MyClass(),\r\n *     clone    = myObject[cloneSym]\r\n ",
             "range": [
               437,
-              512
+              647
             ],
             "loc": {
               "start": {
@@ -880,7 +880,7 @@
                 "column": 0
               },
               "end": {
-                "line": 30,
+                "line": 35,
                 "column": 3
               }
             }
@@ -891,26 +891,26 @@
       "specifiers": [],
       "source": null,
       "range": [
-        514,
-        633
+        649,
+        768
       ],
       "loc": {
         "start": {
-          "line": 31,
+          "line": 36,
           "column": 0
         },
         "end": {
-          "line": 35,
+          "line": 40,
           "column": 2
         }
       },
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\r\n * This is a mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n ",
+          "value": "*\r\n * A mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n *\r\n * @example\r\n * Object.assign(MyClass.prototype, cloneableMixin);\r\n * let myObject = new MyClass(),\r\n *     clone    = myObject[cloneSym]\r\n ",
           "range": [
             437,
-            512
+            647
           ],
           "loc": {
             "start": {
@@ -918,7 +918,7 @@
               "column": 0
             },
             "end": {
-              "line": 30,
+              "line": 35,
               "column": 3
             }
           }
@@ -929,7 +929,7 @@
   "sourceType": "module",
   "range": [
     0,
-    633
+    768
   ],
   "loc": {
     "start": {
@@ -937,7 +937,7 @@
       "column": 0
     },
     "end": {
-      "line": 35,
+      "line": 40,
       "column": 2
     }
   },
@@ -998,10 +998,10 @@
     },
     {
       "type": "Block",
-      "value": "*\r\n * This is a mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n ",
+      "value": "*\r\n * A mixin for Cloneable behavior.\r\n *\r\n * @type {Object}\r\n *\r\n * @example\r\n * Object.assign(MyClass.prototype, cloneableMixin);\r\n * let myObject = new MyClass(),\r\n *     clone    = myObject[cloneSym]\r\n ",
       "range": [
         437,
-        512
+        647
       ],
       "loc": {
         "start": {
@@ -1009,7 +1009,7 @@
           "column": 0
         },
         "end": {
-          "line": 30,
+          "line": 35,
           "column": 3
         }
       }

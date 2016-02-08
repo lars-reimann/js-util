@@ -1,4 +1,4 @@
-import {cloneSym} from "./Cloneable.js";
+import {cloneableSymbols} from "@ignavia/util";
 
 /**
  * A class to clone primitive values (type undefined, boolean, number, string,
@@ -243,7 +243,7 @@ export default class Cloner {
      * @private
      */
     isCloneable(p) {
-        return typeof p === "object" && typeof p[cloneSym] === "function";
+        return typeof p === "object" && typeof p[cloneableSymbols.clone] === "function";
     }
 
     /**
@@ -258,7 +258,7 @@ export default class Cloner {
      * @private
      */
     cloneCloneable(cloneable) {
-        return cloneable[cloneSym](this);
+        return cloneable[cloneableSymbols.clone](this);
     }
 
     /**

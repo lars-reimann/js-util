@@ -144,10 +144,10 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\r\n     * Returns a copy of this plugin. For indexes you usually do not want to\r\n     * copy its internal data structures but just the configuration so it can be\r\n     * added to a new object. By default this method returns this plugin.\r\n     *\r\n     * @return {Plugin}\r\n     * This object.\r\n     ",
+                  "value": "*\r\n     * Removes this plugin from the given object.\r\n     * \r\n     * @param {Object} o\r\n     * The object this plugin should be removed from.\r\n     *\r\n     * @abstract\r\n     ",
                   "range": [
                     306,
-                    607
+                    485
                   ],
                   "loc": {
                     "start": {
@@ -167,10 +167,10 @@
               "type": "MethodDefinition",
               "key": {
                 "type": "Identifier",
-                "name": "clone",
+                "name": "unregister",
                 "range": [
-                  613,
-                  618
+                  491,
+                  501
                 ],
                 "loc": {
                   "start": {
@@ -179,6 +179,142 @@
                   },
                   "end": {
                     "line": 26,
+                    "column": 14
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "name": "o",
+                    "range": [
+                      502,
+                      503
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 26,
+                        "column": 15
+                      },
+                      "end": {
+                        "line": 26,
+                        "column": 16
+                      }
+                    }
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [],
+                  "range": [
+                    505,
+                    507
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 26,
+                      "column": 18
+                    },
+                    "end": {
+                      "line": 26,
+                      "column": 20
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  501,
+                  507
+                ],
+                "loc": {
+                  "start": {
+                    "line": 26,
+                    "column": 14
+                  },
+                  "end": {
+                    "line": 26,
+                    "column": 20
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                491,
+                507
+              ],
+              "loc": {
+                "start": {
+                  "line": 26,
+                  "column": 4
+                },
+                "end": {
+                  "line": 26,
+                  "column": 20
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\r\n     * Removes this plugin from the given object.\r\n     * \r\n     * @param {Object} o\r\n     * The object this plugin should be removed from.\r\n     *\r\n     * @abstract\r\n     ",
+                  "range": [
+                    306,
+                    485
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 18,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 25,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\r\n     * Returns a copy of this plugin. For indexes you usually do not want to\r\n     * copy its internal data structures but just the configuration so it can be\r\n     * added to a new object. By default this method returns this plugin.\r\n     *\r\n     * @return {Plugin}\r\n     * This object.\r\n     ",
+                  "range": [
+                    515,
+                    816
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 28,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 35,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "clone",
+                "range": [
+                  822,
+                  827
+                ],
+                "loc": {
+                  "start": {
+                    "line": 36,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 36,
                     "column": 9
                   }
                 }
@@ -195,47 +331,47 @@
                       "argument": {
                         "type": "ThisExpression",
                         "range": [
-                          639,
-                          643
+                          848,
+                          852
                         ],
                         "loc": {
                           "start": {
-                            "line": 27,
+                            "line": 37,
                             "column": 15
                           },
                           "end": {
-                            "line": 27,
+                            "line": 37,
                             "column": 19
                           }
                         }
                       },
                       "range": [
-                        632,
-                        644
+                        841,
+                        853
                       ],
                       "loc": {
                         "start": {
-                          "line": 27,
+                          "line": 37,
                           "column": 8
                         },
                         "end": {
-                          "line": 27,
+                          "line": 37,
                           "column": 20
                         }
                       }
                     }
                   ],
                   "range": [
-                    621,
-                    651
+                    830,
+                    860
                   ],
                   "loc": {
                     "start": {
-                      "line": 26,
+                      "line": 36,
                       "column": 12
                     },
                     "end": {
-                      "line": 28,
+                      "line": 38,
                       "column": 5
                     }
                   }
@@ -243,16 +379,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  618,
-                  651
+                  827,
+                  860
                 ],
                 "loc": {
                   "start": {
-                    "line": 26,
+                    "line": 36,
                     "column": 9
                   },
                   "end": {
-                    "line": 28,
+                    "line": 38,
                     "column": 5
                   }
                 }
@@ -260,16 +396,16 @@
               "kind": "method",
               "computed": false,
               "range": [
-                613,
-                651
+                822,
+                860
               ],
               "loc": {
                 "start": {
-                  "line": 26,
+                  "line": 36,
                   "column": 4
                 },
                 "end": {
-                  "line": 28,
+                  "line": 38,
                   "column": 5
                 }
               },
@@ -278,16 +414,16 @@
                   "type": "Block",
                   "value": "*\r\n     * Returns a copy of this plugin. For indexes you usually do not want to\r\n     * copy its internal data structures but just the configuration so it can be\r\n     * added to a new object. By default this method returns this plugin.\r\n     *\r\n     * @return {Plugin}\r\n     * This object.\r\n     ",
                   "range": [
-                    306,
-                    607
+                    515,
+                    816
                   ],
                   "loc": {
                     "start": {
-                      "line": 18,
+                      "line": 28,
                       "column": 4
                     },
                     "end": {
-                      "line": 25,
+                      "line": 35,
                       "column": 7
                     }
                   }
@@ -298,7 +434,7 @@
           ],
           "range": [
             100,
-            654
+            863
           ],
           "loc": {
             "start": {
@@ -306,14 +442,14 @@
               "column": 28
             },
             "end": {
-              "line": 29,
+              "line": 39,
               "column": 1
             }
           }
         },
         "range": [
           87,
-          654
+          863
         ],
         "loc": {
           "start": {
@@ -321,7 +457,7 @@
             "column": 15
           },
           "end": {
-            "line": 29,
+            "line": 39,
             "column": 1
           }
         },
@@ -349,7 +485,7 @@
       },
       "range": [
         72,
-        654
+        863
       ],
       "loc": {
         "start": {
@@ -357,7 +493,7 @@
           "column": 0
         },
         "end": {
-          "line": 29,
+          "line": 39,
           "column": 1
         }
       },
@@ -386,7 +522,7 @@
   "sourceType": "module",
   "range": [
     72,
-    654
+    863
   ],
   "loc": {
     "start": {
@@ -394,7 +530,7 @@
       "column": 0
     },
     "end": {
-      "line": 29,
+      "line": 39,
       "column": 1
     }
   },
@@ -437,10 +573,10 @@
     },
     {
       "type": "Block",
-      "value": "*\r\n     * Returns a copy of this plugin. For indexes you usually do not want to\r\n     * copy its internal data structures but just the configuration so it can be\r\n     * added to a new object. By default this method returns this plugin.\r\n     *\r\n     * @return {Plugin}\r\n     * This object.\r\n     ",
+      "value": "*\r\n     * Removes this plugin from the given object.\r\n     * \r\n     * @param {Object} o\r\n     * The object this plugin should be removed from.\r\n     *\r\n     * @abstract\r\n     ",
       "range": [
         306,
-        607
+        485
       ],
       "loc": {
         "start": {
@@ -449,6 +585,24 @@
         },
         "end": {
           "line": 25,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n     * Returns a copy of this plugin. For indexes you usually do not want to\r\n     * copy its internal data structures but just the configuration so it can be\r\n     * added to a new object. By default this method returns this plugin.\r\n     *\r\n     * @return {Plugin}\r\n     * This object.\r\n     ",
+      "range": [
+        515,
+        816
+      ],
+      "loc": {
+        "start": {
+          "line": 28,
+          "column": 4
+        },
+        "end": {
+          "line": 35,
           "column": 7
         }
       }

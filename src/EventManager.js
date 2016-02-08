@@ -1,4 +1,4 @@
-import Event from "./Event.js";
+import {Event} from "@ignavia/util";
 
 /**
  * A helper class that can manage events and event listeners for other objects.
@@ -34,42 +34,74 @@ export default class EventManager {
     constructor() {
 
         /**
-         * The registered listeners ordered by event type.
+         * Maps from an event type to its listeners.
          *
-         * @type {Map<String, Function[]>}
+         * @type {Map<String, Set<Function>>}
          */
-        this.listeners = new Map();
+        this.typeToListeners = new Map();
+
+        /**
+         * Maps from a listener to the types of events it listens to.
+         * 
+         * @type {Map<Function, Set<String>}
+         */
+        this.listenerToTypes = new Map();
     }
 
     /**
      * Adds an event listener to this event manager.
      *
-     * @param {String|Iterator<String>} types
-     * The types of events the function should listen to.
-     *
      * @param {Function} f
      * The function that should be executed when the event fires.
      *
-     * @param {Object} [context]
-     * The object this should refer to inside f.
+     * @param {String|Iterator<String>} types
+     * The types of events the function should listen to.
      *
      * @return {EventManager}
      * This event manager to make the method chainable.
      */
-    addListener(types, f, context) {
+    addListener(f, types) {
         if (typeof types === "string") {
             types = [types];
         }
-        if (context) {
-            f = f.bind(context);
+
+        if (!this.listenerToTypes.has(f)) {
+            this.listenerToTypes.set(f, []);
+        }
+        for (let type of types) {
+            if (!this.typeToListeners.has(type)) {
+                this.typeToListeners.set(type, new Set());
+            }
+            this.typeToListeners.get(type).add(f);
+            this.listenerToTypes.get(f).add(type);
         }
 
+        return this;
+    }
+
+    /**
+     * Adds an event listener to this event manager.
+     *
+     * @param {Function} f
+     * The function that should be executed when the event fires.
+     *
+     * @param {String|Iterator<String>} [types]
+     * The types of events the function should listen to.
+     *
+     * @return {EventManager}
+     * This event manager to make the method chainable.
+     */
+    removeListener(f, types = this.listenerToTypes.get(f)) {
         for (let type of types) {
-            if (!this.listeners.has(type)) {
-                this.listeners.set(type, []);
+            this.typeToListeners.get(type).delete(f);
+            if (this.typeToListeners.get(type).size === 0) {
+                this.typeToListeners.delete(type);
             }
-            this.listeners.get(type).push(f);
+            this.listenerToTypes.get(f).delete(type);
         }
+
+        // Update listener -> types
+        this.listenerToTypes.delete(f);
 
         return this;
     }

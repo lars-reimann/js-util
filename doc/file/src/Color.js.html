@@ -44,7 +44,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneSym">cloneSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addMethodSym">addMethodSym</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addPluginSym">addPluginSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removeMethodSym">removeMethodSym</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removePluginSym">removePluginSym</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
 </ul>
 </div>
@@ -168,8 +172,8 @@ export default class Color {
      * @return {Object}
      * An RGBA representation of this color. The resulting object has the three
      * properties r, g and b for the red, green and blue channel respectively.
-     * Those are integers in the range [0, 255]. It also has an a property for
-     * the alpha value. This is a number in the range [0, 1]. 0 represents full
+     * Those are integers in the range [0, 255]. It also has a property for the
+     * alpha value. This is a number in the range [0, 1]. 0 represents full
      * transparency and 1 is full opacity.
      */
     toRGBA() {
@@ -186,7 +190,7 @@ export default class Color {
      * An HSLA representation of this color. The resulting object has the three
      * properties h, s and l for the hue, saturation and lightness respectively.
      * The hue is a number in the range [0, 360) and saturation and lightness
-     * are in the range [0, 1]. It also has an a property for the alpha value.
+     * are in the range [0, 1]. It also has a property for the alpha value.
      * This is a number in the range [0, 1]. 0 represents full transparency and
      * 1 is full opacity.
      */
@@ -224,10 +228,13 @@ export default class Color {
      * A textual representation of this color.
      */
     toString() {
-        `#${this.hex.toString(16)}`;
+        return `#${this.hex.toString(16).padStart(6, &quot;0&quot;)}`;
     }
 }
 
+/**
+ * Contains the colors CSS1, CSS2 and CSS3 define.
+ */
 export const predefinedColors = {
     black:                new Color(0x000000),
     silver:               new Color(0xc0c0c0),
@@ -374,6 +381,7 @@ export const predefinedColors = {
     wheat:                new Color(0xf5deb3),
     whitesmoke:           new Color(0xf5f5f5),
     yellowgreen:          new Color(0x9acd32),
+    rebeccapurple:        new Color(0x663399),
     transparent:          new Color(0x000000, 0)
 };
 </code></pre>
