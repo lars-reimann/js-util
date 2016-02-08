@@ -16,7 +16,7 @@
   },
   "jspmPackage": true,
   "registry": "npm",
-  "format": "esm",
+  "format": "cjs",
   "jspm": {
     "name": "@ignavia/util",
     "devDependencies": {
