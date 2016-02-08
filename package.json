@@ -3,7 +3,7 @@
   "description": "Some utility classes.",
   "keywords": "utility",
   "license": "MIT",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "main": "dist/util.js",
   "scripts": {
     "build": "jspm build ./src/util.js ./dist/util.js --format umd --global-name \"IGNAVIA_UTIL\" --global-deps \"{}\" --skip-source-maps --minify",
