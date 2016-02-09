@@ -4,7 +4,7 @@ import chai, {expect} from "chai";
 import chaiString     from "chai-string";
 chai.use(chaiString);
 
-import {IDGenerator} from "@ignavia/util";
+import {IDGenerator} from "../src/util.js";
 
 export default function() {
 

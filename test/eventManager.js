@@ -6,7 +6,7 @@ chai.use(chaiSinon);
 
 import sinon from "sinon";
 
-import {Event, EventManager, observableSymbols} from "@ignavia/util";
+import {Event, EventManager, observableSymbols} from "../src/util.js";
 const addListener    = observableSymbols.addListener,
       removeListener = observableSymbols.removeListener,
       fireEvent      = observableSymbols.fireEvent;

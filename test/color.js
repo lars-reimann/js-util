@@ -2,7 +2,7 @@
 /* global it */
 import {expect} from "chai";
 
-import {Color, predefinedColors} from "@ignavia/util";
+import {Color, predefinedColors} from "../src/util.js";
 
 export default function() {
 

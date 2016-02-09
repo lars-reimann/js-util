@@ -2,7 +2,7 @@
 /* global it */
 import {expect} from "chai";
 
-import {cloneableSymbols, cloneableMixin} from "@ignavia/util";
+import {cloneableSymbols, cloneableMixin} from "../src/util.js";
 const clone = cloneableSymbols.clone;
 
 export default function() {
