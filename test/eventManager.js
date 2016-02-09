@@ -1,6 +1,10 @@
 /* global describe */
 /* global it */
-import {expect} from "chai";
+import chai, {expect} from "chai";
+import chaiSinon      from "sinon-chai";
+chai.use(chaiSinon);
+
+import sinon from "sinon";
 
 import {Event, EventManager, observableSymbols} from "@ignavia/util";
 const addListener    = observableSymbols.addListener,
@@ -13,87 +17,95 @@ export default function () {
     describe("EventManager", function () {
 
         /** @test {EventManager#addListener} */
-        describe("EventManager#addListener", function () {
+        describe("#addListener", function () {
             it("should add an event listener", function () {
-                let r;
-                const em = new EventManager(),
-                      e  = new Event({source: this, type: "test"});
+                const em  = new EventManager(),
+                      e   = new Event({type: "test"}),
+                      spy = sinon.spy();
 
-                em[addListener]((e) => r = e, "test");
+                em[addListener](spy, "test");
                 em[fireEvent](e);
-                expect(r).to.equal(e);
+                expect(spy).to.have.been.calledOnce;
+                expect(spy).to.have.been.calledWith(e);
             });
         });
 
         /** @test {EventManager#removeListener} */
-        describe("EventManager#removeListener", function () {
+        describe("#removeListener", function () {
             it("should remove an event listener completely (no types parameter)", function () {
-                let r;
-                const em = new EventManager(),
-                      e  = new Event({source: this, type: "test"}),
-                      l  = (e) => r = e;
+                const em  = new EventManager(),
+                      e   = new Event({type: "test"}),
+                      spy = sinon.spy();
 
-                em[addListener](l, "test");
-                em[removeListener](l);
+                em[addListener](spy, "test");
+                em[removeListener](spy);
                 em[fireEvent](e);
-                expect(r).to.be.undefined;
+                expect(spy).to.not.have.been.called;
             });
 
             it("should remove an event listener only from specific event types (set types parameter)", function () {
-                let r;
-                const em = new EventManager(),
-                      e  = new Event({source: this, type: "test"}),
-                      l  = (e) => r = e;
+                const em  = new EventManager(),
+                      e0  = new Event({type: "test"}),
+                      e1  = new Event({type: "moreTests"}),
+                      spy = sinon.spy();
 
-                em[addListener](l, ["test", "moreTests"]);
-                em[removeListener](l, "moreTests");
-                em[fireEvent](e);
-                expect(r).to.equal(e);
+                em[addListener](spy, ["test", "moreTests"]);
+                em[removeListener](spy, "moreTests");
+                em[fireEvent](e0);
+                expect(spy).to.have.been.calledOnce;
+                expect(spy).to.have.been.calledWith(e0);
+
+                spy.reset();
+
+                em[fireEvent](e1);
+                expect(spy).to.not.have.been.called;
             });
 
             it("should continue when an event type does no exist", function () {
                 const em = new EventManager(),
-                      l  = (e) => e;
+                      l  = () => true;
 
                 em[addListener](l);
                 em[removeListener](l, "test");
             });
         });
 
-        describe("EventManager#fireEvent", function () {
-           it("should notify all listeners (event without type)", function () {
-                let r0, r1, r2;
-                const em = new EventManager(),
-                      e  = new Event(),
-                      l0 = (e) => r0 = e,
-                      l1 = (e) => r1 = e,
-                      l2 = (e) => r2 = e;
+        describe("#fireEvent", function () {
+            it("should notify all listeners (event without type)", function () {
+                const em   = new EventManager(),
+                      e    = new Event(),
+                      spy0 = sinon.spy(),
+                      spy1 = sinon.spy(),
+                      spy2 = sinon.spy();
 
-                em[addListener](l0);
-                em[addListener](l1, "test1");
-                em[addListener](l2, "test2");
+                em[addListener](spy0);
+                em[addListener](spy1, "test1");
+                em[addListener](spy2, "test2");
                 em[fireEvent](e);
-                expect(r0).to.equal(e);
-                expect(r1).to.equal(e);
-                expect(r2).to.equal(e);
-           });
+                expect(spy0).to.have.been.calledOnce;
+                expect(spy0).to.have.been.calledWith(e);
+                expect(spy1).to.have.been.calledOnce;
+                expect(spy1).to.have.been.calledWith(e);
+                expect(spy2).to.have.been.calledOnce;
+                expect(spy2).to.have.been.calledWith(e);
+            });
 
-           it("should notify all listeners of the specified event type (event with type)", function () {
-                let r0, r1, r2;
-                const em = new EventManager(),
-                      e  = new Event({type: "test2"}),
-                      l0 = (e) => r0 = e,
-                      l1 = (e) => r1 = e,
-                      l2 = (e) => r2 = e;
+            it("should notify all listeners of the specified event type (event with type)", function () {
+                const em   = new EventManager(),
+                      e    = new Event({type: "test2"}),
+                      spy0 = sinon.spy(),
+                      spy1 = sinon.spy(),
+                      spy2 = sinon.spy();
 
-                em[addListener](l0);
-                em[addListener](l1, "test1");
-                em[addListener](l2, "test2");
+                em[addListener](spy0);
+                em[addListener](spy1, "test1");
+                em[addListener](spy2, "test2");
                 em[fireEvent](e);
-                expect(r0).to.be.undefined;
-                expect(r1).to.be.undefined;
-                expect(r2).to.equal(e);
-           });
+                expect(spy0).to.not.have.been.called;
+                expect(spy1).to.not.have.been.called;
+                expect(spy2).to.have.been.calledOnce;
+                expect(spy2).to.have.been.calledWith(e);
+            });
         });
     });
 }

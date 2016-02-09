@@ -1,6 +1,10 @@
 /* global describe */
 /* global it */
-import {expect} from "chai";
+import chai, {expect} from "chai";
+import chaiSinon      from "sinon-chai";
+chai.use(chaiSinon);
+
+import sinon from "sinon";
 
 import {extensibleSymbols, extensibleMixin} from "@ignavia/util";
 const addMethod    = extensibleSymbols.addMethod,
@@ -26,24 +30,23 @@ export default function() {
         });
 
         it("should offer an addPlugin method as a mixin", function () {
-            const plugin = {
-                register:   (o) => o[addMethod]("toString", () => "Hi"),
-                unregister: (o) => o[removeMethod]("toString")
-            };
-            const o = Object.assign({}, extensibleMixin);
-            o[addPlugin](plugin);
-            expect(o.toString()).to.equal("Hi");
+            const o   = Object.assign({}, extensibleMixin),
+                  spy = sinon.spy();
+            
+            o[addPlugin]({register: spy});
+            expect(spy).to.have.been.calledOnce;
+            expect(spy).to.have.been.calledWith(o);
         });
 
         it("should offer a removePlugin method as a mixin", function () {
-            const plugin = {
-                register:   (o) => o[addMethod]("toString", () => "Hi"),
-                unregister: (o) => o[removeMethod]("toString")
-            };
-            const o = Object.assign({}, extensibleMixin);
+            const o      = Object.assign({}, extensibleMixin),
+                  spy    = sinon.spy(),
+                  plugin = {register: () => true, unregister: spy};
+            
             o[addPlugin](plugin);
             o[removePlugin](plugin);
-            expect(o.hasOwnProperty("toString")).to.equal(false);
+            expect(spy).to.have.been.calledOnce;
+            expect(spy).to.have.been.calledWith(o);
         });
     });
 }

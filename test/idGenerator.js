@@ -1,6 +1,8 @@
 /* global describe */
 /* global it */
-import {expect} from "chai";
+import chai, {expect} from "chai";
+import chaiString     from "chai-string";
+chai.use(chaiString);
 
 import {IDGenerator} from "@ignavia/util";
 
@@ -15,8 +17,7 @@ export default function() {
 
             it("should prefix IDs", function () {
                 const id0 = g.next();
-
-                expect(id0.startsWith("p")).to.equal(true);
+                expect(id0).to.startWith("p");
             });
 
             it("should return unique IDs", function () {
