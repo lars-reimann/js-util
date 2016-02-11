@@ -177,6 +177,8 @@ export default class Color {
 
 /**
  * Contains the colors CSS1, CSS2 and CSS3 define.
+ *
+ * @type {Object}
  */
 export const predefinedColors = {
     black:                new Color(0x000000),

@@ -48,6 +48,26 @@ export const extensibleMixin = {
     }
 };
 
+/**
+ * In addition to everything {@link extensibleMixin} offers this mixin also
+ * provides an easier to use interface. It adds methods with names that
+ * correspond to the keys in {@link extensibleSymbols}.
+ *
+ * @type {Object}
+ *
+ * @example
+ * Object.assign(MyClass.prototype, extensibleMixin);
+ * let myObject = new MyClass(),
+ * myObject.addMethod("toString", () => "Hi");
+ */
+export const extensibleExtendedMixin = Object.assign({
+    addMethod:    extensibleMixin[extensibleSymbols.addMethod],
+    removeMethod: extensibleMixin[extensibleSymbols.removeMethod],
+    addPlugin:    extensibleMixin[extensibleSymbols.addPlugin],
+    removePlugin: extensibleMixin[extensibleSymbols.removePlugin]
+}, extensibleMixin);
+
+
 // /**
 //  * An interface for every object that can be extended by plugins.
 //  *
@@ -90,7 +110,7 @@ export const extensibleMixin = {
 //     [extensibleSymbols.addPlugin](plugin) {}
 
 //     /**
-//      * Removes the given plugins from this object by calling the register method
+//      * Removes the given plugins from this object by calling the unregister method
 //      * on each plugin and passing this object as an argument.
 //      *
 //      * @param {Plugin} plugins

@@ -10,20 +10,37 @@ export const cloneableSymbols = {
 };
 
 /**
- * A mixin for Cloneable behavior.
+ * A mixin for Cloneable behavior. The keys of the methods are the symbols
+ * defined in {@link cloneableSymbols}.
  *
  * @type {Object}
  *
  * @example
  * Object.assign(MyClass.prototype, cloneableMixin);
  * let myObject = new MyClass(),
- *     clone    = myObject[cloneableSymbols.clone]
+ *     clone    = myObject[cloneableSymbols.clone];
  */
 export const cloneableMixin = {
     [cloneableSymbols.clone](cloner = new Cloner()) {
         return cloner.clone(this);
     }
 };
+
+/**
+ * In addition to everything {@link cloneableMixin} offers this mixin also
+ * provides an easier to use interface. It adds methods with names that
+ * correspond to the keys in {@link cloneableSymbols}.
+ *
+ * @type {Object}
+ *
+ * @example
+ * Object.assign(MyClass.prototype, cloneableExtendedMixin);
+ * let myObject = new MyClass(),
+ *     clone    = myObject.clone();
+ */
+export const cloneableExtendedMixin = Object.assign({
+    clone: cloneableMixin[cloneableSymbols.clone]
+}, cloneableMixin);
 
 // /**
 //  * An interface for every object that can be cloned.

@@ -15,6 +15,11 @@ export const observableSymbols = {
  * used to facade the use of an EventManager.
  *
  * @type {Object}
+ *
+ * @example
+ * Object.assign(MyClass.prototype, observableMixin);
+ * let myObject = new MyClass(),
+ * myObject[observableSymbols.addListener](() => console.log("Called"), "update");
  */
 export const observableMixin = {
     [observableSymbols.addListener](f, types) {
@@ -33,6 +38,24 @@ export const observableMixin = {
     }
 };
 
+/**
+ * In addition to everything {@link observableMixin} offers this mixin also
+ * provides an easier to use interface. It adds methods with names that
+ * correspond to the keys in {@link observableSymbols}.
+ *
+ * @type {Object}
+ *
+ * @example
+ * Object.assign(MyClass.prototype, observableExtendedMixin);
+ * let myObject = new MyClass(),
+ * myObject.addListener(() => console.log("Called"), "update");
+ */
+export const observableExtendedMixin = Object.assign({
+    addListener:    observableMixin[observableSymbols.addListener],
+    removeListener: observableMixin[observableSymbols.removeListener],
+    fireEvent:      observableMixin[observableSymbols.fireEvent]
+}, observableMixin);
+
 // /**
 //  * An interface for every object that allows listeners to be attached to it.
 //  *
@@ -43,24 +66,24 @@ export const observableMixin = {
 //     /**
 //      * Adds an event listener to this object.
 //      *
-//      * @param {String|Iterator<String>} types
-//      * The types of events the function should listen to.
-//      *
 //      * @param {Function} f
 //      * The function that should be executed when the event fires.
+//      *
+//      * @param {String|Iterator<String>} [types]
+//      * The types of events the function should listen to.
 //      *
 //      * @abstract
 //      */
 //     [observableSymbols.addListener](f, types) {}
 //
 //     /**
-//      * Adds an event listener to this object.
-//      *
-//      * @param {String|Iterator<String>} types
-//      * The types of events the function should listen to.
+//      * Removes an event listener from this object.
 //      *
 //      * @param {Function} f
-//      * The function that should be executed when the event fires.
+//      * The listener that should be removed.
+//      *
+//      * @param {String|Iterator<String>} [types]
+//      * The types of events the function should no longer listen to.
 //      *
 //      * @abstract
 //      */

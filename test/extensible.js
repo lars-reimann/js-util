@@ -6,43 +6,39 @@ chai.use(chaiSinon);
 
 import sinon from "sinon";
 
-import {extensibleSymbols, extensibleMixin} from "../src/util.js";
-const addMethod    = extensibleSymbols.addMethod,
-      removeMethod = extensibleSymbols.removeMethod,
-      addPlugin    = extensibleSymbols.addPlugin,
-      removePlugin = extensibleSymbols.removePlugin;
+import {extensibleExtendedMixin} from "../src/util.js";
 
 /** @test {extensibleMixin} */
 describe("extensibleMixin", function () {
     it("should offer an addMethod method as a mixin", function () {
-        const o = Object.assign({}, extensibleMixin);
-        o[addMethod]("toString", () => "Hi");
+        const o = Object.assign({}, extensibleExtendedMixin);
+        o.addMethod("toString", () => "Hi");
         expect(o.toString()).to.equal("Hi");
     });
 
     it("should offer a removeMethod method as a mixin", function () {
-        const o = Object.assign({}, extensibleMixin);
-        o[addMethod]("toString", () => "Hi");
-        o[removeMethod]("toString");
+        const o = Object.assign({}, extensibleExtendedMixin);
+        o.addMethod("toString", () => "Hi");
+        o.removeMethod("toString");
         expect(o.hasOwnProperty("toString")).to.equal(false);
     });
 
     it("should offer an addPlugin method as a mixin", function () {
-        const o   = Object.assign({}, extensibleMixin),
+        const o   = Object.assign({}, extensibleExtendedMixin),
               spy = sinon.spy();
 
-        o[addPlugin]({register: spy});
+        o.addPlugin({register: spy});
         expect(spy).to.have.been.calledOnce;
         expect(spy).to.have.been.calledWith(o);
     });
 
     it("should offer a removePlugin method as a mixin", function () {
-        const o      = Object.assign({}, extensibleMixin),
+        const o      = Object.assign({}, extensibleExtendedMixin),
               spy    = sinon.spy(),
               plugin = {register: () => true, unregister: spy};
 
-        o[addPlugin](plugin);
-        o[removePlugin](plugin);
+        o.addPlugin(plugin);
+        o.removePlugin(plugin);
         expect(spy).to.have.been.calledOnce;
         expect(spy).to.have.been.calledWith(o);
     });
