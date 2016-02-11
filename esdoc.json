@@ -1,8 +1,10 @@
 {
     "source": "./src",
     "destination": "./doc",
-    "access": ["public", "protected"],
-    "title": "JavaScript Utility",
     "index": "./README.md",
-    "package": "./package.json"
+    "package": "./package.json",
+    "title": "JavaScript Utility",
+    "manual": {
+        "changelog": ["CHANGELOG.md"]
+    }
 }

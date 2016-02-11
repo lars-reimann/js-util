@@ -1,3 +1,5 @@
+import "core-js"; // TODO remove when no longer needed
+
 export {cloneableSymbols, cloneableMixin}   from "./Cloneable.js";
 export {default as Cloner}                  from "./Cloner.js";
 export {default as Color, predefinedColors} from "./Color.js";
