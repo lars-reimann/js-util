@@ -210,7 +210,7 @@ export default class Cloner {
     cloneObject(obj) {
         let result = {};
         this.context.set(obj, result);
-        for (var [k, v] of Object.entries(obj)) {
+        for (let [k, v] of Object.entries(obj)) {
             result[k] = this.cloneChild(v);
         }
         return result;

@@ -66,6 +66,9 @@ export const extensibleExtendedMixin = Object.assign({
     addPlugin:    extensibleMixin[extensibleSymbols.addPlugin],
     removePlugin: extensibleMixin[extensibleSymbols.removePlugin]
 }, extensibleMixin);
+// for (let [k, v] of Object.entries(extensibleSymbols)) {
+//     extensibleExtendedMixin[k] = extensibleMixin[v];
+// }
 
 
 // /**
