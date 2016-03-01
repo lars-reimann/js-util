@@ -9,10 +9,10 @@ import {observableExtendedMixin} from "./Observable.js";
 export default class GumpSet {
 
     /**
-     * @param {Iterable} [iterable]
+     * @param {Iterable} [iterable=[]]
      * The initial values of the set.
      */
-    constructor(iterable) {
+    constructor(iterable = []) {
 
         /**
          * Contains the values of this set.

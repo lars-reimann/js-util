@@ -1,16 +1,25 @@
 import "babel-regenerator-runtime"; // TODO remove once babel bug is fixed
 
+import EventManager              from "./EventManager.js";
+import {observableExtendedMixin} from "./Observable.js";
+
 import GumpPath from "./GumpPath.js";
 import GumpSet  from "./GumpSet.js";
 
 export default class GumpMap {
 
-    constructor(iterable, fireEvents = true) {
-        this.map = new Map(iterable); // iterable does not work; loop over it
+    constructor(iterable = [], addToExisting = true) {
+        this.map = new Map();
         this.size = 0;
+
+        this.eventManager = new EventManager();
+
+        for (let [path, value] of iterable) {
+            this.set(path, value, addToExisting);
+        }
     }
 
-    set(path, value, addToExisting = false) {
+    set(path, value, addToExisting = true) {
         path = GumpPath.toGumpPath(path);
 
         if (!path.isEmpty()) {
@@ -24,10 +33,12 @@ export default class GumpMap {
             }
         }
 
+
+
         return this;
     }
 
-    setHere(key, value, addToExisting) {
+    setHere(key, value, addToExisting = true) {
         if (this.has(key) && addToExisting) {
             const oldValue = this.get(key);
             if (oldValue instanceof GumpSet) {
@@ -42,8 +53,8 @@ export default class GumpMap {
         }
     }
 
-    setDeeper(key, remainingPath, value, addToExisting) {
-        if (this.has.key(key)) {
+    setDeeper(key, remainingPath, value, addToExisting = true) {
+        if (this.has(key)) {
             this.get(key).set(remainingPath, value, addToExisting);
         } else {
             const nextLevel = new GumpMap();
@@ -104,16 +115,74 @@ export default class GumpMap {
         }
     }
 
-    entries() {
-        //return this.map.entries();
+    entries(deep = true) {
+        if (deep) {
+            return this.entriesDeep();
+        } else {
+            return this.entriesShallow();
+        }
     }
 
-    keys() {
-        //return this.map.keys(); // return paths
+    entriesShallow() {
+        return this.map.entries();
     }
 
-    values() {
-        //return this[Symbol.iterator]();
+    * entriesDeep() {
+        for (let [head, value] of this.map.entries()) {
+            if (value instanceof GumpMap) {
+                for (let [tail, primitive] of value.entries()) {
+                    yield [tail.prepend(head), primitive];
+                }
+            } else {
+                yield [new GumpPath([head]), value];
+            }
+        }
+    }
+
+    keys(deep = true) {
+        if (deep) {
+            return this.keysDeep();
+        } else {
+            return this.keysShallow();
+        }
+    }
+
+    keysShallow() {
+        return this.map.keys();
+    }
+
+    * keysDeep() {
+        for (let [head, value] of this.map.entries()) {
+            if (value instanceof GumpMap) {
+                for (let tail of value.keys()) {
+                    yield tail.prepend(head);
+                }
+            } else {
+                yield new GumpPath([head]);
+            }
+        }
+    }
+
+    values(deep = true) {
+        if (deep) {
+            return this.valuesDeep();
+        } else {
+            return this.valuesShallow();
+        }
+    }
+
+    valuesShallow() {
+        return this.map.values();
+    }
+
+    * valuesDeep() {
+        for (let value of this.map.values()) {
+            if (value instanceof GumpMap) {
+                yield* value.values();
+            } else {
+                yield value;
+            }
+        }
     }
 
     * [Symbol.iterator]() {
@@ -135,10 +204,15 @@ export default class GumpMap {
     }
 
     updateWithLiteral() {
-
+        // remove old
+        // add new
     }
 
     updateWithFunction() {
-
+        // remove old
+        // add new
     }
 }
+
+// Make GumpMap observable
+Object.assign(GumpMap.prototype, observableExtendedMixin);
