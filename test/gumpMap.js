@@ -4,7 +4,8 @@ chai.use(chaiSinon);
 
 import sinon from "sinon";
 
-import {GumpMap}  from "../src/util.js";
+import {GumpMap} from "../src/util.js";
+import {GumpSet} from "../src/util.js";
 
 describe("GumpSet", function () {
     beforeEach(function () {
@@ -127,90 +128,55 @@ describe("GumpSet", function () {
         });
     });
 
-    // describe("#clear", function () {
-    //     it("should remove all values from the set", function () {
-    //         this.s.clear();
-    //         expect(this.s.size).to.equal(0);
-    //     });
+    describe("#entries", function () {
+        it("should return the top level entries (deep = false)", function () {
+            const entries = [...this.map.entries(false)];
+            const keys    = entries.map(e => e[0].toString());
+            const values  = entries.map(e => e[1]);
+            expect(keys).to.have.members(["this", "is"]);
+            expect(values[0]).to.be.an.instanceof(GumpSet);
+            expect(values[1]).to.be.an.instanceof(GumpMap);
+            expect(values.length).to.equal(2);
+        });
 
-    //     it("should fire an event", function () {
-    //         const spy = sinon.spy();
-    //         this.s.addListener(spy, "clear");
-    //         this.s.clear();
+        it("should return all entries (deep = true)", function () {
+            const entries = [...this.map.entries(true)];
+            const keys    = entries.map(e => e[0].toString());
+            const values  = entries.map(e => e[1]);
+            expect(keys).to.have.members(["this", "is.a"]);
+            expect(values[0]).to.be.an.instanceof(GumpSet);
+            expect(values[1]).to.be.an.instanceof(GumpSet);
+            expect(values.length).to.equal(2);
+        });
+    });
 
-    //         expect(spy).to.have.been.calledOnce;
-    //         const e = spy.args[0][0];
-    //         expect(e.source).to.equal(this.s);
-    //         expect(e.type).to.equal("clear");
-    //         expect(e.data).to.have.members([1, 2]);
-    //     });
-    // });
+    describe("#keys", function () {
+        it("should return the top level keys (deep = false)", function () {
+            const keys = [...this.map.keys(false)].map(p => p.toString());
+            expect(keys).to.have.members(["this", "is"]);
+        });
 
-    // describe("#delete", function () {
-    //     it("should delete a given value from the set", function () {
-    //         this.s.delete(1);
-    //         expect(this.s.has(2)).to.be.true;
-    //         expect(this.s.size).to.equal(1);
-    //     });
+        it("should return all keys (deep = true)", function () {
+            const keys = [...this.map.keys(true)].map(p => p.toString());
+            expect(keys).to.have.members(["this", "is.a"]);
+        });
+    });
 
-    //     it("should leave the set unchanged if the value does not exist", function () {
-    //         this.s.delete(3);
-    //         expect(this.s.size).to.equal(2);
-    //     });
+    describe("#values", function () {
+        it("should return the top level values (deep = false)", function () {
+            const values = [...this.map.values(false)];
+            expect(values[0]).to.be.an.instanceof(GumpSet);
+            expect(values[1]).to.be.an.instanceof(GumpMap);
+            expect(values.length).to.equal(2);
+        });
 
-    //     it("should fire an event", function () {
-    //         const spy = sinon.spy();
-    //         this.s.addListener(spy, "delete");
-    //         this.s.delete(2);
-
-    //         expect(spy).to.have.been.calledOnce;
-    //         const e = spy.args[0][0];
-    //         expect(e.source).to.equal(this.s);
-    //         expect(e.type).to.equal("delete");
-    //         expect(e.data).to.equal(2);
-    //     });
-    // });
-
-    // describe("#updateWithLiteral", function () {
-    //     it("should replace a value with another value", function () {
-    //         this.s.updateWithLiteral(2, 3);
-    //         expect(this.s.has(2)).to.be.false;
-    //         expect(this.s.has(3)).to.be.true;
-    //         expect(this.s.size).to.equal(2);
-    //     });
-
-    //     it("should leave the set unchanged if the value does not exist", function () {
-    //         this.s.updateWithLiteral(3, 4);
-    //         expect(this.s.has(1)).to.be.true;
-    //         expect(this.s.has(2)).to.be.true;
-    //         expect(this.s.size).to.equal(2);
-    //     });
-    // });
-
-    // describe("#updateWithFunction", function () {
-    //     it("should replace a value with the result of calling a function on this value", function () {
-    //         this.s.updateWithFunction(x => x + 1, 2);
-    //         expect(this.s.has(2)).to.be.false;
-    //         expect(this.s.has(3)).to.be.true;
-    //         expect(this.s.size).to.equal(2);
-    //     });
-
-    //     it("should leave the set unchanged if the value does not exist", function () {
-    //         this.s.updateWithFunction(x => x + 1, 3);
-    //         expect(this.s.has(1)).to.be.true;
-    //         expect(this.s.has(2)).to.be.true;
-    //         expect(this.s.size).to.equal(2);
-    //     });
-
-
-    // });
-
-    // describe("#toString", function () {
-    //     it("should return a string representation of the set", function () {
-    //         const s = new GumpSet(["a", 1]).toString();
-    //         expect(s).to.be.a("string");
-    //     });
-    // });
+        it("should return all values (deep = true)", function () {
+            const values = [...this.map.values(true)];
+            expect(values[0]).to.be.an.instanceof(GumpSet);
+            expect(values[1]).to.be.an.instanceof(GumpSet);
+            expect(values.length).to.equal(2);
+        });
+    });
 
     after(function () {
         delete this.map;

@@ -152,8 +152,10 @@ export default class GumpMap {
         }
     }
 
-    entriesShallow() {
-        return this.map.entries();
+    * entriesShallow() {
+        for (let [k, v] of this.map.entries()) {
+            yield [GumpPath.toGumpPath(k), v];
+        }
     }
 
     * entriesDeep() {
@@ -163,7 +165,7 @@ export default class GumpMap {
                     yield [tail.prepend(head), primitive];
                 }
             } else {
-                yield [new GumpPath([head]), value];
+                yield [GumpPath.toGumpPath(head), value];
             }
         }
     }
@@ -176,8 +178,10 @@ export default class GumpMap {
         }
     }
 
-    keysShallow() {
-        return this.map.keys();
+    * keysShallow() {
+        for (let k of this.map.keys()) {
+            yield GumpPath.toGumpPath(k);
+        }
     }
 
     * keysDeep() {
@@ -187,7 +191,7 @@ export default class GumpMap {
                     yield tail.prepend(head);
                 }
             } else {
-                yield new GumpPath([head]);
+                yield GumpPath.toGumpPath(head);
             }
         }
     }
