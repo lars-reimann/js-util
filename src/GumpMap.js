@@ -3,8 +3,8 @@ import "babel-regenerator-runtime"; // TODO remove once babel bug is fixed
 import GumpSet from "./GumpSet.js";
 
 export default class GumpMap {
-    constructor(fireEvents = true) {
-        this.map = new Map();
+    constructor(iterable, fireEvents = true) {
+        this.map = new Map(iterable);
         this.size = 0;
     }
 
@@ -20,7 +20,7 @@ export default class GumpMap {
             }
         }
 
-        return this
+        return this;
     }
 
     setHere(key, value, addToExisting) {

@@ -19,8 +19,8 @@ describe("GumpPath", function () {
 
     describe("#head", function () {
         it("should return the first key in the path", function () {
-            const k = GumpPath.fromString("this.is.a.test");
-            expect(k.head()).to.equal("this");
+            const k = GumpPath.fromString("this.is.a.test").head();
+            expect(k).to.equal("this");
         });
     });
 
@@ -49,8 +49,8 @@ describe("GumpPath", function () {
     describe("#toString", function () {
         it("should return a string representation of the path", function () {
             const s0 = "this.is.a.test",
-                  s1 = GumpPath.fromString(s0).toString()
+                  s1 = GumpPath.fromString(s0).toString();
             expect(s1).to.equal(s0);
         });
-    })
+    });
 });
