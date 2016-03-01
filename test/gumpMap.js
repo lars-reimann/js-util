@@ -5,7 +5,6 @@ chai.use(chaiSinon);
 import sinon from "sinon";
 
 import {GumpMap}  from "../src/util.js";
-import {GumpPath} from "../src/util.js";
 
 describe("GumpSet", function () {
     beforeEach(function () {
@@ -32,6 +31,7 @@ describe("GumpSet", function () {
             expect(s1.has("the answer")).to.be.true;
             expect(s1.size).to.equal(1);
         });
+
         it("should add a given value on deeper levels", function () {
             this.map.add("is.a", "trick");
             expect(this.map.get("is")).to.be.an.instanceof(GumpMap);
@@ -91,6 +91,39 @@ describe("GumpSet", function () {
 
         it("should fire an event", function () {
 
+        });
+    });
+
+    describe("#get", function () {
+        it("should return a value if it exists", function () {
+            const s0 = this.map.get("this");
+            expect(s0.has(3)).to.be.true;
+            expect(s0.has(4)).to.be.true;
+            expect(s0.size).to.equal(2);
+
+            const s1 = this.map.get("is.a");
+            expect(s1.has("test")).to.be.true;
+            expect(s1.has("try")).to.be.true;
+            expect(s1.size).to.equal(2);
+        });
+
+        it("should return undefined if the path leads nowhere", function () {
+            expect(this.map.get([])).to.be.undefined;
+            expect(this.map.get(42)).to.be.undefined;
+            expect(this.map.get("for.real")).to.be.undefined;
+        });
+    });
+
+    describe("#has", function () {
+        it("should return true if a value exists", function () {
+            expect(this.map.has("this")).to.be.true;
+            expect(this.map.has("is.a")).to.be.true;
+            expect(this.map.has("this", 3)).to.be.true;
+        });
+
+        it("should return false if a value does not exist", function () {
+            expect(this.map.has(42)).to.be.false;
+            expect(this.map.has("is.a", "trick")).to.be.false;
         });
     });
 

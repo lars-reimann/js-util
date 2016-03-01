@@ -118,9 +118,9 @@ export default class GumpMap {
             return undefined;
         }
 
-        const key           = path.head(),
-              remainingPath = path.tail(),
-              nextLevel     = this.map.get(key);
+        const key           = path.head();
+        const remainingPath = path.tail();
+        const nextLevel     = this.map.get(key);
 
         if (remainingPath.isEmpty()) {
             return nextLevel;
@@ -134,10 +134,13 @@ export default class GumpMap {
     has(path, value = null) {
         path = GumpPath.toGumpPath(path);
 
+        const finalLevel = this.get(path);
         if (value === null) {
-            return this.get(path) !== undefined;
+            return finalLevel !== undefined;
+        } else if (finalLevel instanceof GumpSet) {
+            return finalLevel.has(value);
         } else {
-            return this.get(path) === value;
+            return false;
         }
     }
 
@@ -225,12 +228,12 @@ export default class GumpMap {
         }
     }
 
-    updateWithLiteral(newValue, path, oldValue) {
+    updateWithLiteral(newValue, path, oldValue = null) {
         // remove old
         // add new
     }
 
-    updateWithFunction(f, path, value) {
+    updateWithFunction(f, path, value = null) {
         // remove old
         // add new
     }
