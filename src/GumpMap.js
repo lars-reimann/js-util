@@ -1,14 +1,18 @@
 import "babel-regenerator-runtime"; // TODO remove once babel bug is fixed
 
-import GumpSet from "./GumpSet.js";
+import GumpPath from "./GumpPath.js";
+import GumpSet  from "./GumpSet.js";
 
 export default class GumpMap {
+
     constructor(iterable, fireEvents = true) {
-        this.map = new Map(iterable);
+        this.map = new Map(iterable); // iterable does not work; loop over it
         this.size = 0;
     }
 
     set(path, value, addToExisting = false) {
+        path = GumpPath.toGumpPath(path);
+
         if (!path.isEmpty()) {
             const key           = path.head(),
                   remainingPath = path.tail();
@@ -49,6 +53,8 @@ export default class GumpMap {
     }
 
     delete(path, value = null) {
+        path = GumpPath.toGumpPath(path);
+
         if (path.isEmpty()) {
             return false;
         }
@@ -69,6 +75,8 @@ export default class GumpMap {
     }
 
     get(path) {
+        path = GumpPath.toGumpPath(path);
+
         if (path.isEmpty()) {
             return undefined;
         }
@@ -87,6 +95,8 @@ export default class GumpMap {
     }
 
     has(path, value = null) {
+        path = GumpPath.toGumpPath(path);
+
         if (value === null) {
             return this.get(path) !== undefined;
         } else {
