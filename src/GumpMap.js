@@ -14,6 +14,10 @@ export default class GumpMap {
 
         this.eventManager = new EventManager();
 
+        this.bubbleEvent = (e) => {
+            console.log(e);
+        };
+
         for (let [path, value] of iterable) {
             this.add(path, value);
         }
@@ -38,12 +42,17 @@ export default class GumpMap {
 
     addHere(key, value) {
         let nextLevel = this.map.get(key);
-        if (nextLevel instanceof GumpSet) {
-            nextLevel.add(value); // add listener if value is gumpmap or gumpset
-        } else if (nextLevel === undefined) {
-            nextLevel = new GumpSet([value]); // add listener
-            this.map.set(key, nextLevel);
-            // fire event
+        if (!this.map.has(key)) {
+            if (value instanceof GumpMap || value instanceof GumpSet) {
+                this.map.set(key, value);
+                // add listener
+            } else {
+                value = new GumpSet([value]); // add listener
+                this.map.set(key, value);
+                // fire event
+            }
+        } else if (nextLevel instanceof GumpSet) {
+            nextLevel.add(value);
         } else {
             throw new Error(`Expected a GumpSet, but found ${nextLevel}.`);
         }
@@ -210,11 +219,7 @@ export default class GumpMap {
         return this.map.clear();
     }
 
-    forEach(f, context = null) {
-        if (context !== null) {
-            f = f.bind(context);
-        }
-
+    forEach(f) {
         for (let [key, value] of this) {
             f(value, key, this);
         }

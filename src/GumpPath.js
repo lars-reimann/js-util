@@ -4,22 +4,26 @@
 export default class GumpPath {
 
     /**
-     * Normalizes the given path. If it is already an instance of GumpPath, it
-     * is returned unchanged. If it is a string, it is converted to a GumpPath.
+     * Normalizes the given path. GumpPaths are used unchanged. Strings are
+     * converted using the fromString method with "." as separator. Iterables
+     * are translated using the normal constructor. Other values are wrapped
+     * into an iterable and again converted using the constructor.
      *
-     * @param {String|Iterable|GumpPath} path
+     * @param {GumpPath|String|Iterable|*} path
      * A representation of the path.
      *
      * @return {GumpPath}
      * The normalized path.
      */
     static toGumpPath(path) {
-        if (typeof path === "string") {
-            return GumpPath.fromString(path);
-        } else if (path instanceof GumpPath) {
+        if (path instanceof GumpPath) {
             return path;
-        } else if (path && path[Symbol.iterator]) {
+        } else if (typeof path === "string") {
+            return GumpPath.fromString(path);
+        } else if (path && path[Symbol.iterator] && typeof path !== "number") { // Number has to be excluded because it has [Symbol.iterator] (bug)
             return new GumpPath(path);
+        } else {
+            return new GumpPath([path]);
         }
     }
 

@@ -9,45 +9,47 @@ import {GumpPath} from "../src/util.js";
 
 describe("GumpSet", function () {
     beforeEach(function () {
-        this.m = new GumpMap([
+        this.map = new GumpMap([
             ["this", 3],
             ["this", 3],
             ["this", 4],
-            ["is.a", "test"]
+            ["is.a", "test"],
+            ["is.a", "try"]
         ]);
     });
 
     describe("#add", function () {
         it("should add a given value on the same level", function () {
-            this.m.add("this", 5);
-            const s0 = this.m.get("this");
+            this.map.add("this", 5);
+            const s0 = this.map.get("this");
             expect(s0.has(3)).to.be.true;
             expect(s0.has(4)).to.be.true;
             expect(s0.has(5)).to.be.true;
             expect(s0.size).to.equal(3);
 
-            this.m.add([42], "the answer");
-            const s1 = this.m.get([42]);
+            this.map.add(42, "the answer");
+            const s1 = this.map.get(42);
             expect(s1.has("the answer")).to.be.true;
             expect(s1.size).to.equal(1);
         });
         it("should add a given value on deeper levels", function () {
-            this.m.add("is.a", "trick");
-            expect(this.m.get("is")).to.be.an.instanceof(GumpMap);
-            const s = this.m.get("is.a");
+            this.map.add("is.a", "trick");
+            expect(this.map.get("is")).to.be.an.instanceof(GumpMap);
+            const s = this.map.get("is.a");
             expect(s.has("test")).to.be.true;
             expect(s.has("trick")).to.be.true;
-            expect(s.size).to.equal(2);
+            expect(s.has("try")).to.be.true;
+            expect(s.size).to.equal(3);
         });
 
         it("should fire an event", function () {
-            for (let key of this.m.keys()) {
+            for (let key of this.map.keys()) {
                 console.log("" + key);
             }
-            for (let value of this.m.values()) {
+            for (let value of this.map.values()) {
                 console.log("" + value);
             }
-            for (let [key, value] of this.m.entries()) {
+            for (let [key, value] of this.map.entries()) {
                 console.log("" + key, "" + value);
             }
             // const spy = sinon.spy();
@@ -59,6 +61,36 @@ describe("GumpSet", function () {
             // expect(e.source).to.equal(this.s);
             // expect(e.type).to.equal("add");
             // expect(e.data).to.equal(3);
+        });
+    });
+
+    describe("#delete", function () {
+        it("should remove a value on the same level (given value parameter)", function () {
+            this.map.delete("this", 3);
+            const s0 = this.map.get("this");
+            expect(s0.has(4)).to.be.true;
+            expect(s0.size).to.equal(1);
+        });
+
+        it("should remove all values on the same level ", function () {
+            this.map.delete("this");
+            expect(this.map.has("this")).to.be.false;
+        });
+
+        it("should remove a value on a deeper level (given value parameter)", function () {
+            this.map.delete("is.a", "test");
+            const s0 = this.map.get("is.a");
+            expect(s0.has("try")).to.be.true;
+            expect(s0.size).to.equal(1);
+        });
+
+        it("should remove all values on a deeper level", function () {
+            this.map.delete("is.a");
+            expect(this.map.has("is.a")).to.be.false;
+        });
+
+        it("should fire an event", function () {
+
         });
     });
 
@@ -148,6 +180,6 @@ describe("GumpSet", function () {
     // });
 
     after(function () {
-        delete this.m;
+        delete this.map;
     });
 });
