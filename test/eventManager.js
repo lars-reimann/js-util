@@ -1,5 +1,3 @@
-/* global describe */
-/* global it */
 import chai, {expect} from "chai";
 import chaiSinon      from "sinon-chai";
 chai.use(chaiSinon);
@@ -11,10 +9,8 @@ const addListener    = observableSymbols.addListener,
       removeListener = observableSymbols.removeListener,
       fireEvent      = observableSymbols.fireEvent;
 
-/** @test {EventManager} */
 describe("EventManager", function () {
 
-    /** @test {EventManager#addListener} */
     describe("#addListener", function () {
         it("should add an event listener", function () {
             const em  = new EventManager(),
@@ -28,7 +24,6 @@ describe("EventManager", function () {
         });
     });
 
-    /** @test {EventManager#removeListener} */
     describe("#removeListener", function () {
         it("should remove an event listener completely (no types parameter)", function () {
             const em  = new EventManager(),

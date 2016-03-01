@@ -1,13 +1,9 @@
-/* global describe */
-/* global it */
 import {expect} from "chai";
 
 import {Color, predefinedColors} from "../src/util.js";
 
-/** @test {Color} */
 describe("Color", function () {
 
-    /** @test {Color#fromRGBA} */
     describe("#fromRGBA", function () {
         it("should create a Color object for an RGBA color", function () {
             const r0 = Color.fromRGBA(0, 0, 0, 1); // black
@@ -32,7 +28,6 @@ describe("Color", function () {
         });
     });
 
-    /** @test {Color#fromHSLA} */
     describe("#fromHSLA", function () {
         it("should create a Color object for an HSLA color", function () {
             const r0 = Color.fromHSLA(0, 0, 0, 1); // black
@@ -57,7 +52,6 @@ describe("Color", function () {
         });
     });
 
-    /** @test {Color#toRGBA} */
     describe("#toRGBA", function () {
         it("should create an RGBA color from a Color object", function () {
 
@@ -93,7 +87,6 @@ describe("Color", function () {
         });
     });
 
-    /** @test {Color#toHSLA} */
     describe("#toHSLA", function () {
         it("should create an HSLA color from a Color object", function () {
 
@@ -129,7 +122,6 @@ describe("Color", function () {
         });
     });
 
-    /** @test {Color#toString} */
     describe("#toString", function () {
         it("should print a hex string for a Color object", function () {
             const r0 = predefinedColors.black.toString(); // black

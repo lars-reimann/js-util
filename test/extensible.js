@@ -1,5 +1,3 @@
-/* global describe */
-/* global it */
 import chai, {expect} from "chai";
 import chaiSinon      from "sinon-chai";
 chai.use(chaiSinon);
@@ -8,7 +6,6 @@ import sinon from "sinon";
 
 import {extensibleExtendedMixin} from "../src/util.js";
 
-/** @test {extensibleMixin} */
 describe("extensibleMixin", function () {
     it("should offer an addMethod method as a mixin", function () {
         const o = Object.assign({}, extensibleExtendedMixin);

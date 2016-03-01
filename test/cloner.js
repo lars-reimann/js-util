@@ -1,14 +1,10 @@
-/* global describe */
-/* global it */
 import {expect} from "chai";
 
 import {cloneableSymbols, Cloner} from "../src/util.js";
 
-/** @test {Cloner} */
 describe("Cloner", function () {
     const cloner = new Cloner();
 
-    /** @test {Cloner#clone} */
     describe("#clone", function() {
         it("should clone undefined", function () {
             const v = undefined,
