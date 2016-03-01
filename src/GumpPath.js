@@ -7,7 +7,7 @@ export default class GumpPath {
      * Normalizes the given path. If it is already an instance of GumpPath, it
      * is returned unchanged. If it is a string, it is converted to a GumpPath.
      *
-     * @param {String|GumpPath} path
+     * @param {String|Iterable|GumpPath} path
      * A representation of the path.
      *
      * @return {GumpPath}
@@ -18,6 +18,8 @@ export default class GumpPath {
             return GumpPath.fromString(path);
         } else if (path instanceof GumpPath) {
             return path;
+        } else if (path && path[Symbol.iterator]) {
+            return new GumpPath(path);
         }
     }
 

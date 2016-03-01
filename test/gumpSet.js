@@ -82,14 +82,14 @@ describe("GumpSet", function () {
 
     describe("#updateWithLiteral", function () {
         it("should replace a value with another value", function () {
-            this.s.updateWithLiteral(2, 3);
+            this.s.updateWithLiteral(3, 2);
             expect(this.s.has(2)).to.be.false;
             expect(this.s.has(3)).to.be.true;
             expect(this.s.size).to.equal(2);
         });
 
         it("should leave the set unchanged if the value does not exist", function () {
-            this.s.updateWithLiteral(3, 4);
+            this.s.updateWithLiteral(4, 3);
             expect(this.s.has(1)).to.be.true;
             expect(this.s.has(2)).to.be.true;
             expect(this.s.size).to.equal(2);

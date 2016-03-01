@@ -137,16 +137,16 @@ export default class GumpSet {
     /**
      * Replaces the old value in the set with the new one.
      *
-     * @param {*} oldValue
-     * The value to replace.
-     *
      * @param {*} newValue
      * The new value.
+     * 
+     * @param {*} oldValue
+     * The value to replace.
      *
      * @return {GumpSet}
      * This set to make the method chainable.
      */
-    updateWithLiteral(oldValue, newValue) {
+    updateWithLiteral(newValue, oldValue) {
         if (this.has(oldValue)) {
             this.delete(oldValue);
             this.add(newValue);
@@ -168,12 +168,7 @@ export default class GumpSet {
      * This set to make the method chainable.
      */
     updateWithFunction(f, value) {
-        if (this.has(value)) {
-            this.delete(value);
-            this.add(f(value));
-        }
-
-        return this;
+        return this.updateWithLiteral(f(value), value);
     }
 
     /**

@@ -8,18 +8,18 @@ import GumpSet  from "./GumpSet.js";
 
 export default class GumpMap {
 
-    constructor(iterable = [], addToExisting = true) {
+    constructor(iterable = []) {
         this.map = new Map();
         this.size = 0;
 
         this.eventManager = new EventManager();
 
         for (let [path, value] of iterable) {
-            this.set(path, value, addToExisting);
+            this.add(path, value);
         }
     }
 
-    set(path, value, addToExisting = true) {
+    add(path, value) {
         path = GumpPath.toGumpPath(path);
 
         if (!path.isEmpty()) {
@@ -27,40 +27,40 @@ export default class GumpMap {
                   remainingPath = path.tail();
 
             if (remainingPath.isEmpty()) {
-                this.setHere(key, value, addToExisting);
+                this.addHere(key, value);
             } else {
-                this.setDeeper(key, remainingPath, value, addToExisting);
+                this.addDeeper(key, remainingPath, value);
             }
         }
-
-
 
         return this;
     }
 
-    setHere(key, value, addToExisting = true) {
-        if (this.has(key) && addToExisting) {
-            const oldValue = this.get(key);
-            if (oldValue instanceof GumpSet) {
-                oldValue.add(value);
-            } else {
-                const nextLevel = new GumpSet();
-                nextLevel.add(oldValue).add(value);
-                this.map.set(key, nextLevel);
-            }
+    addHere(key, value) {
+        let nextLevel = this.map.get(key);
+        if (nextLevel instanceof GumpSet) {
+            nextLevel.add(value); // add listener if value is gumpmap or gumpset
+        } else if (nextLevel === undefined) {
+            nextLevel = new GumpSet([value]); // add listener
+            this.map.set(key, nextLevel);
+            // fire event
         } else {
-            this.map.set(key, value);
+            throw new Error(`Expected a GumpSet, but found ${nextLevel}.`);
         }
     }
 
-    setDeeper(key, remainingPath, value, addToExisting = true) {
-        if (this.has(key)) {
-            this.get(key).set(remainingPath, value, addToExisting);
-        } else {
-            const nextLevel = new GumpMap();
-            nextLevel.set(remainingPath, value, addToExisting);
+    addDeeper(key, remainingPath, value) {
+        let nextLevel = this.map.get(key);
+        if (nextLevel instanceof GumpMap) {
+            nextLevel.add(remainingPath, value);
+        } else if (nextLevel === undefined) {
+            nextLevel = new GumpMap([[remainingPath, value]]); // add listener
             this.map.set(key, nextLevel);
+        } else {
+            throw new Error(`Expected a GumpMap, but found ${nextLevel}.`);
         }
+
+        // bubble event; adjust path
     }
 
     delete(path, value = null) {
@@ -70,19 +70,36 @@ export default class GumpMap {
             return false;
         }
 
-        const key = path.head(),
+        const key           = path.head(),
               remainingPath = path.tail();
 
-
+        if (remainingPath.isEmpty()) {
+            return this.deleteHere(key, value);
+        } else {
+            return this.deleteDeeper(key, remainingPath, value);
+        }
     }
 
-    // value optional
     deleteHere(key, value = null) {
+        if (value === null) {
+            return this.map.delete(key);
+        }
 
+        const nextLevel = this.map.get(key);
+        if (nextLevel instanceof GumpSet) {
+            return nextLevel.delete(value);
+        } else {
+            throw new Error(`Expected a GumpSet, but found ${nextLevel}.`);
+        }
     }
 
     deleteDeeper(key, remainingPath, value = null) {
-
+        let nextLevel = this.map.get(key);
+        if (nextLevel instanceof GumpMap) {
+            return nextLevel.delete(remainingPath, value);
+        } else {
+            throw new Error(`Expected a GumpMap, but found ${nextLevel}.`);
+        }
     }
 
     get(path) {
@@ -92,9 +109,9 @@ export default class GumpMap {
             return undefined;
         }
 
-        const key = path.head(),
+        const key           = path.head(),
               remainingPath = path.tail(),
-              nextLevel = this.map.get(key);
+              nextLevel     = this.map.get(key);
 
         if (remainingPath.isEmpty()) {
             return nextLevel;
@@ -185,30 +202,30 @@ export default class GumpMap {
         }
     }
 
-    * [Symbol.iterator]() {
-        for (let [key, value] of this.map.entries()) {
-            if (value instanceof GumpMap || value instanceof GumpSet) {
-                yield* value;
-            } else {
-                yield value;
-            }
-        } // return values or entries????
+    [Symbol.iterator]() {
+        return this.entries();
     }
 
     clear() {
         return this.map.clear();
     }
 
-    forEach() {
+    forEach(f, context = null) {
+        if (context !== null) {
+            f = f.bind(context);
+        }
 
+        for (let [key, value] of this) {
+            f(value, key, this);
+        }
     }
 
-    updateWithLiteral() {
+    updateWithLiteral(newValue, path, oldValue) {
         // remove old
         // add new
     }
 
-    updateWithFunction() {
+    updateWithFunction(f, path, value) {
         // remove old
         // add new
     }

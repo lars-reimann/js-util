@@ -4,7 +4,8 @@ chai.use(chaiSinon);
 
 import sinon from "sinon";
 
-import {GumpMap} from "../src/util.js";
+import {GumpMap}  from "../src/util.js";
+import {GumpPath} from "../src/util.js";
 
 describe("GumpSet", function () {
     beforeEach(function () {
@@ -16,34 +17,27 @@ describe("GumpSet", function () {
         ]);
     });
 
-    describe("#set", function () {
-        it("should add a given value on the same level without overriding previous values (addToExisting = true)", function () {
-            this.m.set("this", 5, true);
-            const s = this.m.get("this");
-            expect(s.has(3)).to.be.true;
-            expect(s.has(4)).to.be.true;
-            expect(s.has(5)).to.be.true;
-            expect(s.size).to.equal(3);
-        });
+    describe("#add", function () {
+        it("should add a given value on the same level", function () {
+            this.m.add("this", 5);
+            const s0 = this.m.get("this");
+            expect(s0.has(3)).to.be.true;
+            expect(s0.has(4)).to.be.true;
+            expect(s0.has(5)).to.be.true;
+            expect(s0.size).to.equal(3);
 
-        it("should add a given value on the same level while overriding previous values (addToExisting = false)", function () {
-            this.m.set("this", 5, false);
-            expect(this.m.get("this")).to.equal(5);
+            this.m.add([42], "the answer");
+            const s1 = this.m.get([42]);
+            expect(s1.has("the answer")).to.be.true;
+            expect(s1.size).to.equal(1);
         });
-
-        it("should add a given value on deeper levels without overriding previous values (addToExisting = true)", function () {
-            this.m.set("is.a", "trick", true);
+        it("should add a given value on deeper levels", function () {
+            this.m.add("is.a", "trick");
             expect(this.m.get("is")).to.be.an.instanceof(GumpMap);
             const s = this.m.get("is.a");
             expect(s.has("test")).to.be.true;
             expect(s.has("trick")).to.be.true;
             expect(s.size).to.equal(2);
-        });
-
-        it("should add a given value on deeper levels while overriding previous values (addToExisting = false)", function () {
-            this.m.set("is.a", "trick", false);
-            expect(this.m.get("is")).to.be.an.instanceof(GumpMap);
-            expect(this.m.get("is.a")).to.equal("trick");
         });
 
         it("should fire an event", function () {
