@@ -53,7 +53,7 @@ export default class GumpSet {
             this.fireEvent(EventManager.makeEvent({
                 source: this,
                 type: "add",
-                data: value
+                data: { value }
             }));
         }
 
@@ -68,14 +68,14 @@ export default class GumpSet {
      * the type is "clear" and the data is an array with the deleted values.
      */
     clear() {
-        const previousSize = this.size;
+        const deleted = [...this.values()];
         this.children.clear();
 
-        if (previousSize > 0) {
+        if (deleted.length > 0) {
             this.fireEvent(EventManager.makeEvent({
                 source: this,
                 type: "clear",
-                data: previousSize
+                data: { deleted }
             }));
         }
     }
@@ -101,7 +101,7 @@ export default class GumpSet {
             this.fireEvent(EventManager.makeEvent({
                 source: this,
                 type: "delete",
-                data: value
+                data: { value, deleted: [value] }
             }));
         }
 

@@ -114,7 +114,11 @@ describe("GumpMap", function () {
             const e = spy.args[0][0];
             expect(e.source).to.equal(this.map);
             expect(e.type).to.equal("clear");
-            expect(e.data).to.equal(4);
+            expect(e.data.path.length).to.equal(0);
+            const paths   = e.data.deleted.map(e => e[0].toString());
+            const values  = e.data.deleted.map(e => e[1]);
+            expect(paths).to.have.members(["this", "this", "is.a", "is.a"]);
+            expect(values).to.have.members([3, 4, "test", "try"]);
         });
     });
 
@@ -144,7 +148,31 @@ describe("GumpMap", function () {
         });
 
         it("should fire an event", function () {
-            // TODO
+            const spy = sinon.spy();
+            this.map.addListener(spy, "delete");
+            this.map.add("hi", 3);
+            this.map.delete("hi");
+
+            expect(spy).to.have.been.calledOnce;
+            const e0 = spy.args[0][0];
+            expect(e0.source).to.equal(this.map);
+            expect(e0.type).to.equal("delete");
+            expect(e0.data.path.keyAt(0)).to.equal("hi");
+            expect(e0.data.path.length).to.equal(1);
+            expect(e0.data.value).to.be.undefined;
+
+            spy.reset();
+            this.map.add("hey.there", 4);
+            this.map.delete("hey.there", 4);
+
+            expect(spy).to.have.been.calledOnce;
+            const e1 = spy.args[0][0];
+            expect(e1.source).to.equal(this.map);
+            expect(e1.type).to.equal("delete");
+            expect(e1.data.path.keyAt(0)).to.equal("hey");
+            expect(e1.data.path.keyAt(1)).to.equal("there");
+            expect(e1.data.path.length).to.equal(2);
+            expect(e1.data.value).to.equal(4);
         });
     });
 
@@ -217,15 +245,15 @@ describe("GumpMap", function () {
         });
     });
 
-    describe("#keys", function () {
-        it("should return the top level keys (resolveMaps = false)", function () {
-            const keys = [...this.map.keys(false)].map(p => p.toString());
-            expect(keys).to.have.members(["this", "is"]);
+    describe("#paths", function () {
+        it("should return the top level paths (resolveMaps = false)", function () {
+            const paths = [...this.map.paths(false)].map(p => p.toString());
+            expect(paths).to.have.members(["this", "is"]);
         });
 
-        it("should return all keys (resolveMaps = true)", function () {
-            const keys = [...this.map.keys(true)].map(p => p.toString());
-            expect(keys).to.have.members(["this", "is.a"]);
+        it("should return all paths (resolveMaps = true)", function () {
+            const paths = [...this.map.paths(true)].map(p => p.toString());
+            expect(paths).to.have.members(["this", "is.a"]);
         });
     });
 
@@ -250,9 +278,42 @@ describe("GumpMap", function () {
         });
     });
 
-    // test updatewithliteral
+    describe("#updateWithLiteral", function () {
+        it("should replace a value with another value", function () {
+            this.map.updateWithLiteral(2, "this", 3);
+            const s0 = this.map.get("this");
+            expect(s0.has(3)).to.be.false;
+            expect(s0.has(2)).to.be.true;
+            expect(s0.size).to.equal(2);
+        });
 
-    // test updatewithfunction
+        it("should leave the set unchanged if the value does not exist", function () {
+            this.map.updateWithLiteral(2, "this", 1);
+            const s0 = this.map.get("this");
+            expect(s0.has(3)).to.be.true;
+            expect(s0.has(4)).to.be.true;
+            expect(s0.size).to.equal(2);
+        });
+    });
+
+    describe("#updateWithFunction", function () {
+        it("should replace a value with the result of calling a function on this value", function () {
+            this.map.updateWithFunction(x => x - 1, "this", 3);
+            const s0 = this.map.get("this");
+            expect(s0.has(3)).to.be.false;
+            expect(s0.has(2)).to.be.true;
+            expect(s0.size).to.equal(2);
+        });
+
+        it("should leave the set unchanged if the value does not exist", function () {
+            this.map.updateWithFunction(x => x - 1, "this", 1);
+            const s0 = this.map.get("this");
+            expect(s0.has(3)).to.be.true;
+            expect(s0.has(4)).to.be.true;
+            expect(s0.size).to.equal(2);
+        });
+    });
+
 
     after(function () {
         delete this.map;
