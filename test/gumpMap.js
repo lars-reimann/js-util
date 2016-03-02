@@ -7,7 +7,7 @@ import sinon from "sinon";
 import {GumpMap} from "../src/util.js";
 import {GumpSet} from "../src/util.js";
 
-describe("GumpSet", function () {
+describe("GumpMap", function () {
     beforeEach(function () {
         this.map = new GumpMap([
             ["this", 3],

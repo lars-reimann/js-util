@@ -14,8 +14,21 @@ export default class GumpMap {
 
         this.eventManager = new EventManager();
 
+        this.childToKey = new Map();
+
         this.bubbleEvent = (e) => {
-            console.log(e);
+            const key = this.childToKey.get(e.source);
+            const path = e.data.path ? e.data.path.prepend(key) : GumpPath.toGumpPath(key);
+            const data = e.data.value ? { path, value: e.data.value } : { path };
+            console.log(key, path, data);
+            this.fireEvent(EventManager.makeEvent({
+                source: this,
+                type:   e.type,
+                data:   data
+                // lookup path to event source (one step is enough)
+                // prepend key to path
+                // data is path + value
+            }));
         };
 
         for (let [path, value] of iterable) {
@@ -44,20 +57,19 @@ export default class GumpMap {
         if (this.map.has(key)) {
             const nextLevel = this.map.get(key);
             if (nextLevel instanceof GumpSet) {
-                nextLevel.add(value); // bubbleEvent
+                nextLevel.add(value);
             } else {
                 throw new Error(`Expected a GumpSet, but found ${nextLevel}.`);
             }
         } else {
             if (value instanceof GumpMap || value instanceof GumpSet) {
-                this.map.set(key, value);
-                // add listener
+                const nextLevel = value;
+                this.setNextLevel(key, nextLevel);
                 // fire event
             } else {
-                const nextLevel = new GumpSet(); // add listener
+                const nextLevel = new GumpSet();
+                this.setNextLevel(key, nextLevel);
                 nextLevel.add(value);
-                this.map.set(key, nextLevel);
-                // bubble event
             }
         }
     }
@@ -68,12 +80,18 @@ export default class GumpMap {
             nextLevel.add(remainingPath, value);
         } else if (nextLevel === undefined) {
             nextLevel = new GumpMap([[remainingPath, value]]); // add listener
-            this.map.set(key, nextLevel);
+            this.setNextLevel(key, nextLevel);
         } else {
             throw new Error(`Expected a GumpMap, but found ${nextLevel}.`);
         }
 
         // bubble event; adjust path
+    }
+
+    setNextLevel(key, nextLevel) {
+        nextLevel.addListener(this.bubbleEvent, ["add", "clear", "delete"]);
+        this.map.set(key, nextLevel);
+        this.childToKey.set(nextLevel, key);
     }
 
 
@@ -105,7 +123,7 @@ export default class GumpMap {
         }
     }
 
-    deleteHere(key, value = null) { // remove if nested structure becomes empty
+    deleteHere(key, value = null) { // remove if nested structure becomes empty; NO, clients might fill nested maps directly again
         if (value === null) {
             return this.map.delete(key);
         }

@@ -53,7 +53,7 @@ export default class GumpSet {
             this.fireEvent(EventManager.makeEvent({
                 source: this,
                 type: "add",
-                data: value
+                data: { value }
             }));
         }
 
@@ -75,7 +75,7 @@ export default class GumpSet {
             this.fireEvent(EventManager.makeEvent({
                 source: this,
                 type: "clear",
-                data: values
+                data: { value: values }
             }));
         }
     }
@@ -101,7 +101,7 @@ export default class GumpSet {
             this.fireEvent(EventManager.makeEvent({
                 source: this,
                 type: "delete",
-                data: value
+                data: { value }
             }));
         }
 
