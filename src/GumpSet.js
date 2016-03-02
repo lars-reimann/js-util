@@ -117,10 +117,6 @@ export default class GumpSet {
         return this.set.entries();
     }
 
-    forEach(callbackFn, thisArg) {
-        this.set.forEach(callbackFn, thisArg);
-    }
-
     has(value) {
         return this.set.has(value);
     }
@@ -139,7 +135,7 @@ export default class GumpSet {
      *
      * @param {*} newValue
      * The new value.
-     * 
+     *
      * @param {*} oldValue
      * The value to replace.
      *

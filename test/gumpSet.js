@@ -110,8 +110,6 @@ describe("GumpSet", function () {
             expect(this.set.has(2)).to.be.true;
             expect(this.set.size).to.equal(2);
         });
-
-
     });
 
     describe("#toString", function () {

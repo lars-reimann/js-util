@@ -44,15 +44,25 @@ describe("GumpSet", function () {
         });
 
         it("should fire an event", function () {
-            for (let key of this.map.keys()) {
-                console.log("" + key);
-            }
-            for (let value of this.map.values()) {
-                console.log("" + value);
-            }
-            for (let [key, value] of this.map.entries()) {
-                console.log("" + key, "" + value);
-            }
+            // const spy = sinon.spy();
+            // this.s.addListener(spy, "add");
+            // this.s.add(3);
+
+            // expect(spy).to.have.been.calledOnce;
+            // const e = spy.args[0][0];
+            // expect(e.source).to.equal(this.s);
+            // expect(e.type).to.equal("add");
+            // expect(e.data).to.equal(3);
+        });
+    });
+
+    describe("#clear", function () {
+        it("should empty the map completely", function () {
+            this.map.clear();
+            expect(this.map.size).to.equal(0);
+        });
+
+        it("should fire an event", function () {
             // const spy = sinon.spy();
             // this.s.addListener(spy, "add");
             // this.s.add(3);
@@ -129,8 +139,8 @@ describe("GumpSet", function () {
     });
 
     describe("#entries", function () {
-        it("should return the top level entries (deep = false)", function () {
-            const entries = [...this.map.entries(false)];
+        it("should return the top level entries (resolveMaps = resolveSets = false)", function () {
+            const entries = [...this.map.entries({resolveMaps: false, resolveSets: false})];
             const keys    = entries.map(e => e[0].toString());
             const values  = entries.map(e => e[1]);
             expect(keys).to.have.members(["this", "is"]);
@@ -139,44 +149,55 @@ describe("GumpSet", function () {
             expect(values.length).to.equal(2);
         });
 
-        it("should return all entries (deep = true)", function () {
-            const entries = [...this.map.entries(true)];
+        it("should resolve maps (resolveMaps = true)", function () {
+            const entries = [...this.map.entries()];
             const keys    = entries.map(e => e[0].toString());
-            const values  = entries.map(e => e[1]);
             expect(keys).to.have.members(["this", "is.a"]);
-            expect(values[0]).to.be.an.instanceof(GumpSet);
-            expect(values[1]).to.be.an.instanceof(GumpSet);
-            expect(values.length).to.equal(2);
+        });
+
+        it("should resolve sets (resolveSets = true)", function () {
+            const entries = [...this.map.entries()];
+            const values  = entries.map(e => e[1]);
+            expect(values).to.have.members(["test", "try", 3, 4]);
         });
     });
 
     describe("#keys", function () {
-        it("should return the top level keys (deep = false)", function () {
+        it("should return the top level keys (resolveMaps = false)", function () {
             const keys = [...this.map.keys(false)].map(p => p.toString());
             expect(keys).to.have.members(["this", "is"]);
         });
 
-        it("should return all keys (deep = true)", function () {
+        it("should return all keys (resolveMaps = true)", function () {
             const keys = [...this.map.keys(true)].map(p => p.toString());
             expect(keys).to.have.members(["this", "is.a"]);
         });
     });
 
     describe("#values", function () {
-        it("should return the top level values (deep = false)", function () {
-            const values = [...this.map.values(false)];
+        it("should return the top level values (resolveMaps = resolveSets = false)", function () {
+            const values = [...this.map.values({resolveMaps: false, resolveSets: false})];
             expect(values[0]).to.be.an.instanceof(GumpSet);
             expect(values[1]).to.be.an.instanceof(GumpMap);
             expect(values.length).to.equal(2);
         });
 
-        it("should return all values (deep = true)", function () {
-            const values = [...this.map.values(true)];
+        it("should resolve maps (resolveMaps = true)", function () {
+            const values = [...this.map.values({resolveMaps: true, resolveSets: false})];
             expect(values[0]).to.be.an.instanceof(GumpSet);
             expect(values[1]).to.be.an.instanceof(GumpSet);
             expect(values.length).to.equal(2);
         });
+
+        it("should resolve sets (resolveSets = true)", function () {
+            const values = [...this.map.values({resolveMaps: true, resolveSets: true})];
+            expect(values).to.have.members(["test", "try", 3, 4]);
+        });
     });
+
+    // test updatewithliteral
+
+    // test updatewithfunction
 
     after(function () {
         delete this.map;

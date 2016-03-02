@@ -41,20 +41,24 @@ export default class GumpMap {
     }
 
     addHere(key, value) {
-        let nextLevel = this.map.get(key);
-        if (!this.map.has(key)) {
+        if (this.map.has(key)) {
+            const nextLevel = this.map.get(key);
+            if (nextLevel instanceof GumpSet) {
+                nextLevel.add(value); // bubbleEvent
+            } else {
+                throw new Error(`Expected a GumpSet, but found ${nextLevel}.`);
+            }
+        } else {
             if (value instanceof GumpMap || value instanceof GumpSet) {
                 this.map.set(key, value);
                 // add listener
-            } else {
-                value = new GumpSet([value]); // add listener
-                this.map.set(key, value);
                 // fire event
+            } else {
+                const nextLevel = new GumpSet(); // add listener
+                nextLevel.add(value);
+                this.map.set(key, nextLevel);
+                // bubble event
             }
-        } else if (nextLevel instanceof GumpSet) {
-            nextLevel.add(value);
-        } else {
-            throw new Error(`Expected a GumpSet, but found ${nextLevel}.`);
         }
     }
 
@@ -70,6 +74,18 @@ export default class GumpMap {
         }
 
         // bubble event; adjust path
+    }
+
+
+    /**
+     * Empties the map completely.
+     */
+    clear() {
+        this.map.clear();
+        this.size = 0;
+
+        // fire event
+        // remove event listeners from nested gumpmaps/sets
     }
 
     delete(path, value = null) {
@@ -89,7 +105,7 @@ export default class GumpMap {
         }
     }
 
-    deleteHere(key, value = null) {
+    deleteHere(key, value = null) { // remove if nested structure becomes empty
         if (value === null) {
             return this.map.delete(key);
         }
@@ -144,92 +160,64 @@ export default class GumpMap {
         }
     }
 
-    entries(deep = true) {
-        if (deep) {
-            return this.entriesDeep();
-        } else {
-            return this.entriesShallow();
-        }
-    }
-
-    * entriesShallow() {
+    * entries({resolveMaps = true, resolveSets = true} = {}) {
         for (let [k, v] of this.map.entries()) {
-            yield [GumpPath.toGumpPath(k), v];
-        }
-    }
-
-    * entriesDeep() {
-        for (let [head, value] of this.map.entries()) {
-            if (value instanceof GumpMap) {
-                for (let [tail, primitive] of value.entries()) {
-                    yield [tail.prepend(head), primitive];
-                }
+            if (resolveMaps && v instanceof GumpMap) {
+                yield* this.entriesResolveMap(k, v, {resolveMaps, resolveSets});
+            } else if (resolveSets && v instanceof GumpSet) {
+                yield* this.entriesResolveSet(k, v);
             } else {
-                yield [GumpPath.toGumpPath(head), value];
+                yield [GumpPath.toGumpPath(k), v];
             }
         }
     }
 
-    keys(deep = true) {
-        if (deep) {
-            return this.keysDeep();
-        } else {
-            return this.keysShallow();
+    * entriesResolveMap(k, map, conf) {
+        for (let [tail, primitive] of map.entries(conf)) {
+            yield [tail.prepend(k), primitive];
         }
     }
 
-    * keysShallow() {
-        for (let k of this.map.keys()) {
-            yield GumpPath.toGumpPath(k);
+    * entriesResolveSet(k, set) {
+        for (let primitive of set.values()) {
+            yield [GumpPath.toGumpPath(k), primitive];
         }
     }
 
-    * keysDeep() {
-        for (let [head, value] of this.map.entries()) {
-            if (value instanceof GumpMap) {
-                for (let tail of value.keys()) {
-                    yield tail.prepend(head);
-                }
+    * keys(resolveMaps = true) {
+        for (let [k, v] of this.map.entries()) {
+            if (resolveMaps && v instanceof GumpMap) {
+                yield* this.keysResolveMap(k, v, resolveMaps);
             } else {
-                yield GumpPath.toGumpPath(head);
+                yield GumpPath.toGumpPath(k);
             }
         }
     }
 
-    values(deep = true) {
-        if (deep) {
-            return this.valuesDeep();
-        } else {
-            return this.valuesShallow();
+    * keysResolveMap(k, map, resolveMaps) {
+        for (let tail of map.keys(resolveMaps)) {
+            yield tail.prepend(k);
         }
     }
 
-    valuesShallow() {
-        return this.map.values();
-    }
-
-    * valuesDeep() {
-        for (let value of this.map.values()) {
-            if (value instanceof GumpMap) {
-                yield* value.values();
+    * values({resolveMaps = true, resolveSets = true} = {}) {
+        for (let v of this.map.values()) {
+            if (resolveMaps && v instanceof GumpMap) {
+                yield* v.values({resolveMaps, resolveSets});
+            } else if (resolveSets && v instanceof GumpSet) {
+                yield* v.values();
             } else {
-                yield value;
+                yield v;
             }
         }
     }
 
+    /**
+     * Loops over all key-value-pairs in the map. Nested GumpMaps and GumpSets
+     * are resolved.
+     */
     [Symbol.iterator]() {
         return this.entries();
-    }
-
-    clear() {
-        return this.map.clear();
-    }
-
-    forEach(f) {
-        for (let [key, value] of this) {
-            f(value, key, this);
-        }
     }
 
     updateWithLiteral(newValue, path, oldValue = null) {
