@@ -17,17 +17,12 @@ export default class GumpMap {
         this.childToKey = new Map();
 
         this.bubbleEvent = (e) => {
-            const key = this.childToKey.get(e.source);
+            const key  = this.childToKey.get(e.source);
             const path = e.data.path ? e.data.path.prepend(key) : GumpPath.toGumpPath(key);
-            const data = e.data.value ? { path, value: e.data.value } : { path };
-            console.log(key, path, data);
             this.fireEvent(EventManager.makeEvent({
                 source: this,
                 type:   e.type,
-                data:   data
-                // lookup path to event source (one step is enough)
-                // prepend key to path
-                // data is path + value
+                data:   { path, value: e.data.value }
             }));
         };
 
@@ -55,22 +50,33 @@ export default class GumpMap {
 
     addHere(key, value) {
         if (this.map.has(key)) {
-            const nextLevel = this.map.get(key);
-            if (nextLevel instanceof GumpSet) {
-                nextLevel.add(value);
-            } else {
-                throw new Error(`Expected a GumpSet, but found ${nextLevel}.`);
-            }
+            this.addHereExisting(key, value);
         } else {
-            if (value instanceof GumpMap || value instanceof GumpSet) {
-                const nextLevel = value;
-                this.setNextLevel(key, nextLevel);
-                // fire event
-            } else {
-                const nextLevel = new GumpSet();
-                this.setNextLevel(key, nextLevel);
-                nextLevel.add(value);
-            }
+            this.addHereNew(key, value);
+        }
+    }
+
+    addHereExisting(key, value) {
+        const nextLevel = this.map.get(key);
+        if (nextLevel instanceof GumpSet) {
+            nextLevel.add(value);
+        } else {
+            throw new Error(`Expected a GumpSet, but found ${nextLevel}.`);
+        }
+    }
+
+    addHereNew(key, value) {
+        if (value instanceof GumpMap || value instanceof GumpSet) {
+            this.setNextLevel(key, value);
+            this.fireEvent(EventManager.makeEvent({
+                source: this,
+                type:   "add",
+                data:   { path: GumpPath.toGumpPath(key), value }
+            }));
+        } else {
+            const nextLevel = new GumpSet();
+            this.setNextLevel(key, nextLevel);
+            nextLevel.add(value);
         }
     }
 
