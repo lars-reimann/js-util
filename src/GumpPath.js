@@ -107,6 +107,19 @@ export default class GumpPath {
     }
 
     /**
+     * Returns the key at the given position.
+     *
+     * @param {Number} index
+     * The index of the key.
+     *
+     * @return {*}
+     * The key at the given position.
+     */
+    keyAt(index) {
+        return this.keys[index];
+    }
+
+    /**
      * Returns a new path with the given key added to the end of this path.
      *
      * @param {*} key
@@ -152,19 +165,6 @@ export default class GumpPath {
             key,
             ...this.keys.slice(index)
         ]);
-    }
-
-    /**
-     * Returns the key at the given position.
-     *
-     * @param {Number} index
-     * The index of the key.
-     *
-     * @return {*}
-     * The key at the given position.
-     */
-    keyAt(index) {
-        return this.keys[index];
     }
 
     /**

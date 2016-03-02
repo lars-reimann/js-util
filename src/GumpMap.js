@@ -48,8 +48,9 @@ export default class GumpMap {
         this.eventManager = new EventManager();
 
         this.bubbleAddEvent = (e) => {
-            const key  = this.childToKey.get(e.source);
-            const path = e.data.path ? e.data.path.prepend(key) : GumpPath.toGumpPath(key);
+            const key   = this.childToKey.get(e.source);
+            const path  = e.data.path ? e.data.path.prepend(key) : GumpPath.toGumpPath(key);
+            const value = e.data.value ? e.data.value : e.data;
 
             if (e.data.value instanceof GumpMap || e.data.value instanceof GumpSet) {
                 this.size += e.data.value.size;
@@ -60,7 +61,7 @@ export default class GumpMap {
             this.fireEvent(EventManager.makeEvent({
                 source: this,
                 type:   e.type,
-                data:   { path, value: e.data.value }
+                data:   { path, value }
             }));
         }
 

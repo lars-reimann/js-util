@@ -66,15 +66,29 @@ describe("GumpMap", function () {
         });
 
         it("should fire an event", function () {
-            // const spy = sinon.spy();
-            // this.s.addListener(spy, "add");
-            // this.s.add(3);
+            const spy = sinon.spy();
+            this.map.addListener(spy, "add");
+            this.map.add("hi", 3);
 
-            // expect(spy).to.have.been.calledOnce;
-            // const e = spy.args[0][0];
-            // expect(e.source).to.equal(this.s);
-            // expect(e.type).to.equal("add");
-            // expect(e.data).to.equal(3);
+            expect(spy).to.have.been.calledOnce;
+            const e0 = spy.args[0][0];
+            expect(e0.source).to.equal(this.map);
+            expect(e0.type).to.equal("add");
+            expect(e0.data.path.keyAt(0)).to.equal("hi");
+            expect(e0.data.path.length).to.equal(1);
+            expect(e0.data.value).to.equal(3);
+
+            spy.reset();
+            this.map.add("hey.there", 4);
+
+            expect(spy).to.have.been.calledOnce;
+            const e1 = spy.args[0][0];
+            expect(e1.source).to.equal(this.map);
+            expect(e1.type).to.equal("add");
+            expect(e1.data.path.keyAt(0)).to.equal("hey");
+            expect(e1.data.path.keyAt(1)).to.equal("there");
+            expect(e1.data.path.length).to.equal(2);
+            expect(e1.data.value).to.equal(4);
         });
     });
 
