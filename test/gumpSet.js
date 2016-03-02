@@ -51,7 +51,7 @@ describe("GumpSet", function () {
             const e = spy.args[0][0];
             expect(e.source).to.equal(this.set);
             expect(e.type).to.equal("clear");
-            expect(e.data).to.have.members([1, 2]);
+            expect(e.data).to.equal(2);
         });
     });
 

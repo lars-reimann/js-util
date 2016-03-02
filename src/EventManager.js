@@ -98,7 +98,9 @@ export default class EventManager {
      * This event manager to make the method chainable.
      */
     [observableSymbols.removeListener](f, types = this.listenerToTypes.get(f)) {
-        if (typeof types === "string") {
+        if (types === undefined) {
+            return this;
+        } else if (typeof types === "string") {
             types = [types];
         }
 

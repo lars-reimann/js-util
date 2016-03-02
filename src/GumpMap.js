@@ -48,8 +48,6 @@ export default class GumpMap {
         this.eventManager = new EventManager();
 
         this.bubbleAddEvent = (e) => {
-            const key   = this.childToKey.get(e.source);
-            const path  = e.data.path ? e.data.path.prepend(key) : GumpPath.toGumpPath(key);
             const value = e.data.value ? e.data.value : e.data;
 
             if (e.data.value instanceof GumpMap || e.data.value instanceof GumpSet) {
@@ -58,12 +56,27 @@ export default class GumpMap {
                 this.size++;
             }
 
+            const key   = this.childToKey.get(e.source);
+            const path  = e.data.path ? e.data.path.prepend(key) : GumpPath.toGumpPath(key);
             this.fireEvent(EventManager.makeEvent({
                 source: this,
                 type:   e.type,
                 data:   { path, value }
             }));
-        }
+        };
+
+        this.bubbleClearEvent = (e) => {
+            const value = e.data.value ? e.data.value : e.data;
+            this.size -= e.data;
+
+            const key   = this.childToKey.get(e.source);
+            const path  = e.data.path ? e.data.path.prepend(key) : GumpPath.toGumpPath(key);
+            this.fireEvent(EventManager.makeEvent({
+                source: this,
+                type:   e.type,
+                data:   { path, value }
+            }));
+        };
 
         /**
          * The function used to handle events emitted by children of this map.
@@ -271,8 +284,9 @@ export default class GumpMap {
      * @private
      */
     setNextLevel(key, nextLevel) {
-        nextLevel.addListener(this.bubbleAddEvent, ["add"]);
-        nextLevel.addListener(this.bubbleEvent, ["clear", "delete"]); // TODO
+        nextLevel.addListener(this.bubbleAddEvent, "add");
+        nextLevel.addListener(this.bubbleClearEvent, "clear");
+        nextLevel.addListener(this.bubbleEvent, "delete"); // TODO
         this.children.set(key, nextLevel);
         this.childToKey.set(nextLevel, key);
     }
@@ -281,12 +295,42 @@ export default class GumpMap {
     /**
      * Empties the map completely.
      */
-    clear() {
+    clear(path = []) {
+        path = GumpPath.toGumpPath(path);
+
+        if (path.isEmpty()) {
+            this.clearHere();
+        } else {
+            this.clearDeeper(path);
+        }
+        // fire event
+        // remove event listeners from nested gumpmaps/sets !!!!!
+    }
+
+    clearHere() {
+        const previousSize = this.size;
+
+        for (const v of this.values({resolveMaps: false, resolveSets: false})) {
+            v.removeListener(this.bubbleAddEvent);
+            v.removeListener(this.bubbleClearEvent);
+            v.removeListener(this.bubbleEvent); // TODO
+        }
+
         this.children.clear();
         this.size = 0;
 
-        // fire event
-        // remove event listeners from nested gumpmaps/sets
+        this.fireEvent(EventManager.makeEvent({
+            source: this,
+            type:   "clear",
+            data:   previousSize
+        }));
+    }
+
+    clearDeeper(path) {
+        const finalLevel = this.get(path);
+        if (finalLevel) {
+            finalLevel.clear();
+        }
     }
 
     delete(path, value = null) {
@@ -328,11 +372,24 @@ export default class GumpMap {
         }
     }
 
+    /**
+     * Deletes all references to empty GumpMaps or GumpSets in this map.
+     */
+    purgeEmptyContainers() {
+        for (const [path, v] of this.entries({resolveMaps: false, resolveSets: false})) {
+            if (v.size === 0) {
+                this.delete(path);
+            } else if (v instanceof GumpMap) {
+                v.purgeEmptyContainers();
+            }
+        }
+    }
+
     get(path) {
         path = GumpPath.toGumpPath(path);
 
         if (path.isEmpty()) {
-            return undefined;
+            return this;
         }
 
         const key           = path.head();

@@ -68,14 +68,14 @@ export default class GumpSet {
      * the type is "clear" and the data is an array with the deleted values.
      */
     clear() {
-        const values = [...this.values()];
+        const previousSize = this.size;
         this.children.clear();
 
-        if (values.length > 0) {
+        if (previousSize > 0) {
             this.fireEvent(EventManager.makeEvent({
                 source: this,
                 type: "clear",
-                data: values
+                data: previousSize
             }));
         }
     }

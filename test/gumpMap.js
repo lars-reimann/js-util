@@ -93,21 +93,28 @@ describe("GumpMap", function () {
     });
 
     describe("#clear", function () {
-        it("should empty the map completely", function () {
+        it("should empty the map completely (empty path)", function () {
             this.map.clear();
             expect(this.map.size).to.equal(0);
         });
 
-        it("should fire an event", function () {
-            // const spy = sinon.spy();
-            // this.s.addListener(spy, "add");
-            // this.s.add(3);
+        it("should clear the nested map/set (given path)", function () {
+            this.map.add("hey", new GumpSet([1, 2]));
+            this.map.clear("hey");
+            expect(this.map.has("hey")).to.be.true;
+            expect(this.map.size).to.equal(4);
+        });
 
-            // expect(spy).to.have.been.calledOnce;
-            // const e = spy.args[0][0];
-            // expect(e.source).to.equal(this.s);
-            // expect(e.type).to.equal("add");
-            // expect(e.data).to.equal(3);
+        it("should fire an event", function () {
+            const spy = sinon.spy();
+            this.map.addListener(spy, "clear");
+            this.map.clear();
+
+            expect(spy).to.have.been.calledOnce;
+            const e = spy.args[0][0];
+            expect(e.source).to.equal(this.map);
+            expect(e.type).to.equal("clear");
+            expect(e.data).to.equal(4);
         });
     });
 
@@ -137,12 +144,25 @@ describe("GumpMap", function () {
         });
 
         it("should fire an event", function () {
+            // TODO
+        });
+    });
 
+    describe("#purgeEmptyContainers", function () {
+        it("should remove all nested maps and sets with size 0", function () {
+            this.map.add("hey", new GumpSet([1, 2]));
+            this.map.add("yo",  new GumpMap());
+            this.map.clear("hey");
+            this.map.purgeEmptyContainers();
+            expect(this.map.has("hey")).to.be.false;
+            expect(this.map.has("yo")).to.be.false;
         });
     });
 
     describe("#get", function () {
         it("should return a value if it exists", function () {
+            expect(this.map.get([])).to.equal(this.map);
+
             const s0 = this.map.get("this");
             expect(s0.has(3)).to.be.true;
             expect(s0.has(4)).to.be.true;
@@ -155,7 +175,6 @@ describe("GumpMap", function () {
         });
 
         it("should return undefined if the path leads nowhere", function () {
-            expect(this.map.get([])).to.be.undefined;
             expect(this.map.get(42)).to.be.undefined;
             expect(this.map.get("for.real")).to.be.undefined;
         });
