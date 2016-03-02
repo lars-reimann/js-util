@@ -8,7 +8,13 @@ import GumpSet  from "./GumpSet.js";
 
 export default class GumpMap {
 
-    constructor(iterable = []) {
+    /**
+     * @param {Iterable} [iterable=[]]
+     * An iterable object containing the initial values of this map. Each value
+     * in this array is expected to match [path, value], where path is the place
+     * where the value should be added.
+     */
+    constructor(initialValues = []) {
 
         /**
          * Stores the size of this map.
@@ -23,7 +29,7 @@ export default class GumpMap {
          * @type {Map}
          * @private
          */
-        this.map = new Map();
+        this.children = new Map();
 
         /**
          * Maps from a direct child to the key used to access it.
@@ -33,10 +39,37 @@ export default class GumpMap {
          */
         this.childToKey = new Map();
 
+        /**
+         * Handles listeners.
+         *
+         * @type {EventManager}
+         * @private
+         */
         this.eventManager = new EventManager();
 
+        this.bubbleAddEvent = (e) => {
+            const key  = this.childToKey.get(e.source);
+            const path = e.data.path ? e.data.path.prepend(key) : GumpPath.toGumpPath(key);
 
+            if (e.data.value instanceof GumpMap || e.data.value instanceof GumpSet) {
+                this.size += e.data.value.size;
+            } else {
+                this.size++;
+            }
 
+            this.fireEvent(EventManager.makeEvent({
+                source: this,
+                type:   e.type,
+                data:   { path, value: e.data.value }
+            }));
+        }
+
+        /**
+         * The function used to handle events emitted by children of this map.
+         *
+         * @type {Function}
+         * @private
+         */
         this.bubbleEvent = (e) => {
             const key  = this.childToKey.get(e.source);
             const path = e.data.path ? e.data.path.prepend(key) : GumpPath.toGumpPath(key);
@@ -47,7 +80,8 @@ export default class GumpMap {
             }));
         };
 
-        for (let [path, value] of iterable) {
+        // Add initial values
+        for (let [path, value] of initialValues) {
             this.add(path, value);
         }
     }
@@ -91,7 +125,7 @@ export default class GumpMap {
      * @private
      */
     addHere(key, value) {
-        if (this.map.has(key)) {
+        if (this.children.has(key)) {
             this.addHereExisting(key, value);
         } else {
             this.addHereNew(key, value);
@@ -114,7 +148,7 @@ export default class GumpMap {
      * @private
      */
     addHereExisting(key, value) {
-        const nextLevel = this.map.get(key);
+        const nextLevel = this.children.get(key);
         if (nextLevel instanceof GumpSet) {
             nextLevel.add(value);
         } else {
@@ -143,6 +177,7 @@ export default class GumpMap {
     addHereNew(key, value) {
         if (value instanceof GumpMap || value instanceof GumpSet) {
             this.setNextLevel(key, value);
+            this.size += value.size;
             this.fireEvent(EventManager.makeEvent({
                 source: this,
                 type:   "add",
@@ -170,7 +205,7 @@ export default class GumpMap {
      * @private
      */
     addDeeper(key, remainingPath, value) {
-        if (this.map.has(key)) {
+        if (this.children.has(key)) {
             this.addDeeperExisting(key, remainingPath, value);
         } else {
             this.addDeeperNew(key, remainingPath, value);
@@ -193,7 +228,7 @@ export default class GumpMap {
      * @private
      */
     addDeeperExisting(key, remainingPath, value) {
-        const nextLevel = this.map.get(key);
+        const nextLevel = this.children.get(key);
         if (nextLevel instanceof GumpMap) {
             nextLevel.add(remainingPath, value);
         } else {
@@ -222,9 +257,22 @@ export default class GumpMap {
         nextLevel.add(remainingPath, value);
     }
 
+    /**
+     * A helper function that adds a GumpSet or GumpMap to this map under the
+     * given key.
+     *
+     * @param {*} key
+     * Where it should added.
+     *
+     * @param {GumpMap|GumpSet} nextLevel
+     * What should be added.
+     *
+     * @private
+     */
     setNextLevel(key, nextLevel) {
-        nextLevel.addListener(this.bubbleEvent, ["add", "clear", "delete"]);
-        this.map.set(key, nextLevel);
+        nextLevel.addListener(this.bubbleAddEvent, ["add"]);
+        nextLevel.addListener(this.bubbleEvent, ["clear", "delete"]); // TODO
+        this.children.set(key, nextLevel);
         this.childToKey.set(nextLevel, key);
     }
 
@@ -233,7 +281,7 @@ export default class GumpMap {
      * Empties the map completely.
      */
     clear() {
-        this.map.clear();
+        this.children.clear();
         this.size = 0;
 
         // fire event
@@ -259,10 +307,10 @@ export default class GumpMap {
 
     deleteHere(key, value = null) { // remove if nested structure becomes empty; NO, clients might fill nested maps directly again
         if (value === null) {
-            return this.map.delete(key);
+            return this.children.delete(key);
         }
 
-        const nextLevel = this.map.get(key);
+        const nextLevel = this.children.get(key);
         if (nextLevel instanceof GumpSet) {
             return nextLevel.delete(value);
         } else {
@@ -271,7 +319,7 @@ export default class GumpMap {
     }
 
     deleteDeeper(key, remainingPath, value = null) {
-        let nextLevel = this.map.get(key);
+        let nextLevel = this.children.get(key);
         if (nextLevel instanceof GumpMap) {
             return nextLevel.delete(remainingPath, value);
         } else {
@@ -288,7 +336,7 @@ export default class GumpMap {
 
         const key           = path.head();
         const remainingPath = path.tail();
-        const nextLevel     = this.map.get(key);
+        const nextLevel     = this.children.get(key);
 
         if (remainingPath.isEmpty()) {
             return nextLevel;
@@ -313,7 +361,7 @@ export default class GumpMap {
     }
 
     * entries({resolveMaps = true, resolveSets = true} = {}) {
-        for (let [k, v] of this.map.entries()) {
+        for (let [k, v] of this.children.entries()) {
             if (resolveMaps && v instanceof GumpMap) {
                 yield* this.entriesResolveMap(k, v, {resolveMaps, resolveSets});
             } else if (resolveSets && v instanceof GumpSet) {
@@ -337,7 +385,7 @@ export default class GumpMap {
     }
 
     * keys(resolveMaps = true) {
-        for (let [k, v] of this.map.entries()) {
+        for (let [k, v] of this.children.entries()) {
             if (resolveMaps && v instanceof GumpMap) {
                 yield* this.keysResolveMap(k, v, resolveMaps);
             } else {
@@ -353,7 +401,7 @@ export default class GumpMap {
     }
 
     * values({resolveMaps = true, resolveSets = true} = {}) {
-        for (let v of this.map.values()) {
+        for (let v of this.children.values()) {
             if (resolveMaps && v instanceof GumpMap) {
                 yield* v.values({resolveMaps, resolveSets});
             } else if (resolveSets && v instanceof GumpSet) {

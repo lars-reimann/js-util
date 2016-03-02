@@ -9,10 +9,10 @@ import {observableExtendedMixin} from "./Observable.js";
 export default class GumpSet {
 
     /**
-     * @param {Iterable} [iterable=[]]
+     * @param {Iterable} [initialValues=[]]
      * The initial values of the set.
      */
-    constructor(iterable = []) {
+    constructor(initialValues = []) {
 
         /**
          * Contains the values of this set.
@@ -20,7 +20,7 @@ export default class GumpSet {
          * @type {Set}
          * @private
          */
-        this.set = new Set(iterable); // TODO remove this.set with super once subclassing is supported
+        this.children = new Set(initialValues); // TODO remove this.children with super once subclassing is supported
 
         /**
          * Handles listeners.
@@ -46,7 +46,7 @@ export default class GumpSet {
      */
     add(value) {
         const sizeBefore = this.size;
-        this.set.add(value);
+        this.children.add(value);
         const sizeAfter = this.size;
 
         if (sizeBefore !== sizeAfter) {
@@ -69,7 +69,7 @@ export default class GumpSet {
      */
     clear() {
         const values = [...this.values()];
-        this.set.clear();
+        this.children.clear();
 
         if (values.length > 0) {
             this.fireEvent(EventManager.makeEvent({
@@ -95,7 +95,7 @@ export default class GumpSet {
      * set, the type is "delete" and the data is the deleted value.
      */
     delete(value) {
-        const hasChanged = this.set.delete(value);
+        const hasChanged = this.children.delete(value);
 
         if (hasChanged) {
             this.fireEvent(EventManager.makeEvent({
@@ -110,23 +110,23 @@ export default class GumpSet {
 
     // ------ Begin remove once subclassing set is supported
     get size() {
-        return this.set.size;
+        return this.children.size;
     }
 
     entries() {
-        return this.set.entries();
+        return this.children.entries();
     }
 
     has(value) {
-        return this.set.has(value);
+        return this.children.has(value);
     }
 
     keys() {
-        return this.set.keys();
+        return this.children.keys();
     }
 
     values() {
-        return this.set.values();
+        return this.children.values();
     }
     // ------ End remove
 

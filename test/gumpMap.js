@@ -43,6 +43,28 @@ describe("GumpMap", function () {
             expect(s.size).to.equal(3);
         });
 
+        it("should update the size property", function () {
+            expect(this.map.size).to.equal(4);
+
+            this.map.add("this", 3);
+            expect(this.map.size).to.equal(4);
+
+            this.map.add("this", 1);
+            expect(this.map.size).to.equal(5);
+
+            this.map.add("that", 42);
+            expect(this.map.size).to.equal(6);
+
+            this.map.add("another.map", new GumpMap([
+                ["one", "entry"],
+                ["two", "entries"]
+            ]));
+            expect(this.map.size).to.equal(8);
+
+            this.map.add("a_set", new GumpSet([1, 2]));
+            expect(this.map.size).to.equal(10);
+        });
+
         it("should fire an event", function () {
             // const spy = sinon.spy();
             // this.s.addListener(spy, "add");
