@@ -9,12 +9,33 @@ import GumpSet  from "./GumpSet.js";
 export default class GumpMap {
 
     constructor(iterable = []) {
-        this.map = new Map();
+
+        /**
+         * Stores the size of this map.
+         *
+         * @type {Number}
+         */
         this.size = 0;
+
+        /**
+         * Stores the values of this map.
+         *
+         * @type {Map}
+         * @private
+         */
+        this.map = new Map();
+
+        /**
+         * Maps from a direct child to the key used to access it.
+         *
+         * @type {Map}
+         * @private
+         */
+        this.childToKey = new Map();
 
         this.eventManager = new EventManager();
 
-        this.childToKey = new Map();
+
 
         this.bubbleEvent = (e) => {
             const key  = this.childToKey.get(e.source);
@@ -31,12 +52,22 @@ export default class GumpMap {
         }
     }
 
+    /**
+     * Adds the given value to this map under the given path.
+     *
+     * @param {*} path
+     * Where the value should be added. It must be understood by the
+     * {@link GumpPath.toGumpPath} method.
+     *
+     * @param {*} value
+     * The value to add.
+     */
     add(path, value) {
         path = GumpPath.toGumpPath(path);
 
         if (!path.isEmpty()) {
-            const key           = path.head(),
-                  remainingPath = path.tail();
+            const key           = path.head();
+            const remainingPath = path.tail();
 
             if (remainingPath.isEmpty()) {
                 this.addHere(key, value);
@@ -48,6 +79,17 @@ export default class GumpMap {
         return this;
     }
 
+    /**
+     * Adds a value directly under this map using the given key.
+     *
+     * @param {*} key
+     * Where the value should be added.
+     *
+     * @param {*} value
+     * The value to add.
+     *
+     * @private
+     */
     addHere(key, value) {
         if (this.map.has(key)) {
             this.addHereExisting(key, value);
@@ -56,6 +98,21 @@ export default class GumpMap {
         }
     }
 
+    /**
+     * Adds the given value to the GumpSet accessible via the given key. If the
+     * value under the key is no GumpSet, an error is thrown.
+     *
+     * @param {*} key
+     * The key of the GumpSet.
+     *
+     * @param {*} value
+     * The value to add to the GumpSet.
+     *
+     * @throws {Error}
+     * If the value under the given key is no GumpSet.
+     *
+     * @private
+     */
     addHereExisting(key, value) {
         const nextLevel = this.map.get(key);
         if (nextLevel instanceof GumpSet) {
@@ -65,6 +122,24 @@ export default class GumpMap {
         }
     }
 
+    /**
+     * Adds the given value to this map under the given key. If it is already
+     * an instance of GumpMap or GumpSet the value is used directly, otherwise
+     * it is wrapped in a GumpSet.
+     *
+     * @param {*} key
+     * Where the value should be added.
+     *
+     * @param {*} value
+     * The value to add.
+     *
+     * @emits {Event}
+     * If the value is used directly a new event is fired. The source is this
+     * map, the type is "add" and the data is an object containing the path to
+     * the value and the value itself.
+     *
+     * @private
+     */
     addHereNew(key, value) {
         if (value instanceof GumpMap || value instanceof GumpSet) {
             this.setNextLevel(key, value);
@@ -80,18 +155,71 @@ export default class GumpMap {
         }
     }
 
+    /**
+     * Adds the value to a GumpMap listed under the given key.
+     *
+     * @param {*} key
+     * The GumpMap to add the value to.
+     *
+     * @param {GumpPath} remainingPath
+     * Where in that GumpMap the value should be placed.
+     *
+     * @param {*} value
+     * The value to add.
+     *
+     * @private
+     */
     addDeeper(key, remainingPath, value) {
-        let nextLevel = this.map.get(key);
+        if (this.map.has(key)) {
+            this.addDeeperExisting(key, remainingPath, value);
+        } else {
+            this.addDeeperNew(key, remainingPath, value);
+        }
+    }
+
+    /**
+     * Adds the value to the GumpMap accessible via the given key. If the value
+     * under this key is no GumpMap, an error is thrown.
+     *
+     * @param {*} key
+     * The key of the GumpMap.
+     *
+     * @param {GumpPath} remainingPath
+     * Where the value should be added in the GumpMap under key.
+     *
+     * @throw {Error}
+     * If the value under key is no GumpMap.
+     *
+     * @private
+     */
+    addDeeperExisting(key, remainingPath, value) {
+        const nextLevel = this.map.get(key);
         if (nextLevel instanceof GumpMap) {
             nextLevel.add(remainingPath, value);
-        } else if (nextLevel === undefined) {
-            nextLevel = new GumpMap([[remainingPath, value]]); // add listener
-            this.setNextLevel(key, nextLevel);
         } else {
             throw new Error(`Expected a GumpMap, but found ${nextLevel}.`);
         }
+    }
 
-        // bubble event; adjust path
+    /**
+     * Creates a new GumpMap under the given key and add the value at the
+     * position specified by remainingPath.+
+     *
+     * @param {*} key
+     * The key of the GumpMap.
+     *
+     * @param {GumpPath} remainingPath
+     * Where the value should be added in the GumpMap under key.
+     *
+     * @param {*} value
+     * The value to add.
+     *
+     * @private
+     */
+    addDeeperNew(key, remainingPath, value) {
+        const nextLevel = new GumpMap();
+        this.setNextLevel(key, nextLevel);
+        nextLevel.add(remainingPath, value);
     }
 
     setNextLevel(key, nextLevel) {
