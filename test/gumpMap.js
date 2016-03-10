@@ -18,6 +18,31 @@ describe("GumpMap", function () {
         ]);
     });
 
+    describe("fromObject", function () {
+        it("should convert a plain object to a GumpMap", function () {
+            const m0 = GumpMap.fromObject({
+                this: {
+                    is: "just",
+                    a:  "test"
+                }
+            });
+            const s0 = m0.get("this.is");
+            expect(s0.has("just")).to.be.true;
+            const s1 = m0.get("this.a");
+            expect(s1.has("test")).to.be.true;
+        });
+
+        it("should convert nested arrays to GumpSets", function () {
+            const m0 = GumpMap.fromObject({
+                this: {
+                    is: ["just", "a", "test"]
+                }
+            });
+            const s0 = m0.get("this.is");
+            expect([...s0]).to.have.members(["just", "a", "test"]);
+        });
+    });
+
     describe("#add", function () {
         it("should add a given value on the same level", function () {
             this.map.add("this", 5);
@@ -90,6 +115,16 @@ describe("GumpMap", function () {
             expect(e1.data.path.length).to.equal(2);
             expect(e1.data.value).to.equal(4);
         });
+
+        it("should fail if a path is too short and ends on a GumpMap", function () {
+            const f = () => this.map.add("is", 5);
+            expect(f).to.throw();
+        });
+
+        it("should fail id a path is too long and extends past a GumpSet", function () {
+            const f = () => this.map.add("this.throws", 10);
+            expect(f).to.throw();
+        });
     });
 
     describe("#clear", function () {
@@ -147,6 +182,13 @@ describe("GumpMap", function () {
             expect(this.map.has("is.a")).to.be.false;
         });
 
+        it("should return whether the map changed", function () {
+            expect(this.map.delete([])).to.be.false;
+            expect(this.map.delete("that")).to.be.false;
+            expect(this.map.delete("this", 10)).to.be.false;
+            expect(this.map.delete("this")).to.be.true;
+        });
+
         it("should fire an event", function () {
             const spy = sinon.spy();
             this.map.addListener(spy, "delete");
@@ -159,7 +201,7 @@ describe("GumpMap", function () {
             expect(e0.type).to.equal("delete");
             expect(e0.data.path.keyAt(0)).to.equal("hi");
             expect(e0.data.path.length).to.equal(1);
-            expect(e0.data.value).to.be.undefined;
+            expect(e0.data.deleted).to.have.members([3]);
 
             spy.reset();
             this.map.add("hey.there", 4);
@@ -172,7 +214,7 @@ describe("GumpMap", function () {
             expect(e1.data.path.keyAt(0)).to.equal("hey");
             expect(e1.data.path.keyAt(1)).to.equal("there");
             expect(e1.data.path.length).to.equal(2);
-            expect(e1.data.value).to.equal(4);
+            expect(e1.data.deleted).to.have.members([4]);
         });
     });
 
@@ -209,15 +251,16 @@ describe("GumpMap", function () {
     });
 
     describe("#has", function () {
-        it("should return true if a value exists", function () {
+        it("should return true if an entry exists", function () {
             expect(this.map.has("this")).to.be.true;
             expect(this.map.has("is.a")).to.be.true;
             expect(this.map.has("this", 3)).to.be.true;
         });
 
-        it("should return false if a value does not exist", function () {
+        it("should return false if an entry does not exist", function () {
             expect(this.map.has(42)).to.be.false;
             expect(this.map.has("is.a", "trick")).to.be.false;
+            expect(this.map.has("this.fails", 3)).to.be.false;
         });
     });
 

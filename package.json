@@ -18,13 +18,14 @@
     "url": "https://github.com/Ignavia/js-util.git"
   },
   "scripts": {
-    "build": "jspm build ./src/util.js ./dist/util.js --format cjs --skip-source-maps --minify",
+    "build": "jspm build ./src/util.js - babel-regenerator-runtime - lodash ./dist/util.js --format cjs --skip-source-maps --minify",
     "coverage": "babel-node node_modules/isparta/bin/isparta cover --report text --report html node_modules/mocha/bin/_mocha -- --reporter dot",
     "doc": "esdoc -c esdoc.json",
     "test": "mocha --compilers js:babel-register"
   },
   "dependencies": {
-    "babel-regenerator-runtime": "^6.5.0"
+    "babel-regenerator-runtime": "^6.5.0",
+    "lodash": "^4.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
@@ -36,6 +37,7 @@
     "chai-string": "^1.1.6",
     "core-js": "^2.1.0",
     "esdoc": "^0.4.4",
+    "esdoc-es7-plugin": "0.0.3",
     "isparta": "^4.0.0",
     "jspm": "^0.17.0-beta.6",
     "mocha": "^2.4.5",
@@ -48,7 +50,8 @@
   "jspm": {
     "name": "@ignavia/util",
     "dependencies": {
-      "babel-regenerator-runtime": "^6.5.0"
+      "babel-regenerator-runtime": "^6.5.0",
+      "lodash": "^4.6.1"
     },
     "devDependencies": {
       "babel-preset-stage-0": "^6.5.0",

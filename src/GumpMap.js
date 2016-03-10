@@ -1,16 +1,57 @@
 import "babel-regenerator-runtime"; // TODO remove once babel bug is fixed
 
+import "core-js/fn/object/entries";
+
+import _ from "lodash/fp";
+
 import EventManager              from "./EventManager.js";
 import {observableExtendedMixin} from "./Observable.js";
 
 import GumpPath from "./GumpPath.js";
 import GumpSet  from "./GumpSet.js";
 
+/**
+ * Signalizes that a parameter was not supplied.
+ *
+ * @ignore
+ */
+const EMPTY = Symbol("default");
+
+/**
+ * A data structure consisting of nested maps and sets. It provides easy access
+ * to nested properties and monitors its children for any changes.
+ */
 export default class GumpMap {
 
     /**
-     * @param {Iterable} [iterable=[]]
-     * An iterable object containing the initial values of this map. Each value
+     * Converts the given object to a GumpMap. Nested objects are also
+     * transformed into GumpMaps and nested arrays become GumpSets.
+     *
+     * @param {Object} o
+     * The object to convert.
+     *
+     * @return {GumpMap}
+     * The converted object.
+     */
+    static fromObject(o) {
+        const result = new GumpMap();
+
+        for (let [k, v] of Object.entries(o)) {
+            if (_.isArray(v)) {
+                result.add(k, new GumpSet(v));
+            } else if (_.isPlainObject(v)) {
+                result.add(k, GumpMap.fromObject(v));
+            } else {
+                result.add(k, v);
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * @param {Iterable} [initialValues=[]]
+     * An iterable object containing the initial values of this map. Each entry
      * in this array is expected to match [path, value], where path is the place
      * where the value should be added.
      */
@@ -47,6 +88,12 @@ export default class GumpMap {
          */
         this.eventManager = new EventManager();
 
+        /**
+         * Bubbles an add event.
+         *
+         * @type {Function}
+         * @private
+         */
         this.bubbleAddEvent = (e) => {
             const value = e.data.value;
 
@@ -59,12 +106,24 @@ export default class GumpMap {
             this.bubbleEvent(e, { value });
         };
 
+        /**
+         * Bubbles a clear event.
+         *
+         * @type {Function}
+         * @private
+         */
         this.bubbleClearEvent = (e) => {
             const deleted = e.data.deleted;
             this.size -= deleted.length;
             this.bubbleEvent(e, { deleted });
         };
 
+        /**
+         * Bubbles a delete event.
+         *
+         * @type {Function}
+         * @private
+         */
         this.bubbleDeleteEvent = (e) => {
             const value   = e.data.value;
             const deleted = e.data.deleted;
@@ -230,7 +289,7 @@ export default class GumpMap {
 
     /**
      * Creates a new GumpMap under the given key and add the value at the
-     * position specified by remainingPath.+
+     * position specified by remainingPath.
      *
      * @param {*} key
      * The key of the GumpMap.
@@ -267,20 +326,12 @@ export default class GumpMap {
         this.childToKey.set(nextLevel, key);
     }
 
-    setupListeners(v) {
-        v.addListener(this.bubbleAddEvent, "add");
-        v.addListener(this.bubbleClearEvent, "clear");
-        v.addListener(this.bubbleDeleteEvent, "delete"); // TODO
-    }
-
-    takeDownListeners(v) {
-        v.removeListener(this.bubbleAddEvent);
-        v.removeListener(this.bubbleClearEvent);
-        v.removeListener(this.bubbleDeleteEvent); // TODO
-    }
-
     /**
-     * Empties the map completely.
+     * Empties the container under the given path completely.
+     *
+     * @param {*} [path=[]]
+     * Where to find the container to empty. It must be understood by the
+     * {@link GumpPath.toGumpPath} method.
      */
     clear(path = []) {
         path = GumpPath.toGumpPath(path);
@@ -290,27 +341,47 @@ export default class GumpMap {
         } else {
             this.clearDeeper(path);
         }
-        // fire event
-        // remove event listeners from nested gumpmaps/sets !!!!!
     }
 
+    /**
+     * Clears this map.
+     *
+     * @emits {Event}
+     * If this map actually had any entries an event is fired. Its source is
+     * this map, the type is "clear" and data is an object. That object has a
+     * path property, which is the path from this map to the cleared data
+     * structure (it is thus the empty path). It also has another property
+     * deleted which lists the deleted entries.
+     *
+     * @private
+     */
     clearHere() {
-        const deleted = [...this.entries()];
+        if (this.size > 0) {
+            const deleted = [...this.entries()];
 
-        for (const v of this.values({resolveMaps: false, resolveSets: false})) {
-            this.takeDownListeners(v);
+            for (const v of this.values({resolveMaps: false, resolveSets: false})) {
+                this.takeDownListeners(v);
+            }
+
+            this.children.clear();
+            this.size = 0;
+
+            this.fireEvent(EventManager.makeEvent({
+                source: this,
+                type:   "clear",
+                data:   { path: GumpPath.toGumpPath([]), deleted }
+            }));
         }
-
-        this.children.clear();
-        this.size = 0;
-
-        this.fireEvent(EventManager.makeEvent({
-            source: this,
-            type:   "clear",
-            data:   { path: GumpPath.toGumpPath([]), deleted }
-        }));
     }
 
+    /**
+     * Clears the container under the given path.
+     *
+     * @param {GumpPath} path
+     * Where to find the container to delete.
+     *
+     * @private
+     */
     clearDeeper(path) {
         const finalLevel = this.get(path);
         if (finalLevel) {
@@ -318,7 +389,21 @@ export default class GumpMap {
         }
     }
 
-    delete(path, value) {
+    /**
+     * Deletes the value under the given path. If no value is given, the
+     * complete data structure found under path is removed.
+     *
+     * @param {*} path
+     * Where to find the value or container to delete. It must be understood by
+     * the {@link GumpPath.toGumpPath} method.
+     *
+     * @param {*} [value]
+     * The value to delete.
+     *
+     * @return {Boolean}
+     * Whether something was removed.
+     */
+    delete(path, value = EMPTY) {
         path = GumpPath.toGumpPath(path);
 
         if (path.isEmpty()) {
@@ -335,23 +420,59 @@ export default class GumpMap {
         }
     }
 
-    deleteHere(key, value) {
+    /**
+     * Removes the value from the container found under the given key. If no
+     * value is given, the complete container is removed.
+     *
+     * @param {*} key
+     * The key of the container.
+     *
+     * @param {*} value
+     * The value to delete.
+     *
+     * @return {Boolean}
+     * Whether something was removed.
+     *
+     * @private
+     */
+    deleteHere(key, value = EMPTY) {
         const nextLevel = this.children.get(key);
         if (nextLevel) {
-            if (value === undefined) {
+            if (value === EMPTY) {
                 return this.deleteHereContainer(key, nextLevel);
             } else if (nextLevel instanceof GumpSet) {
                 return nextLevel.delete(value);
-            } else {
-                throw new Error(`Expected a GumpSet, but found ${nextLevel}.`);
             }
         }
 
         return false;
     }
 
+    /**
+     * Removes the container nextLevel that can be under the given key.
+     *
+     * @param {*} key
+     * The key of nextLevel.
+     *
+     * @param {GumpMap|GumpSet} nextLevel
+     * The container to remove.
+     *
+     * @return {Boolean}
+     * Whether the container was successfully removed. The return value
+     * should always be true.
+     *
+     * @emits {Event}
+     * The source is this map, the type is "delete" and the data is an object
+     * with two properties. The first property path is a GumpPath containing
+     * the given key. The second property deleted lists all entries/values of
+     * the removed container, depending on whether it was a GumpMap or a
+     * GumpSet.
+     *
+     * @private
+     */
     deleteHereContainer(key, nextLevel) {
-        const deleted = [...nextLevel.entries()];
+        const deleted = nextLevel instanceof GumpMap ?
+            [...nextLevel.entries()] : [...nextLevel.values()];
 
         this.takeDownListeners(nextLevel);
         this.fireEvent(EventManager.makeEvent({
@@ -362,13 +483,33 @@ export default class GumpMap {
         return this.children.delete(key);
     }
 
-    deleteDeeper(key, remainingPath, value) {
+    /**
+     * Tries to delete the given value in the data structure listed under the
+     * given key. The location relative to that child is specified by
+     * remainingPath.
+     *
+     * @param {*} key
+     * The key of the child.
+     *
+     * @param {GumpPath} remainingPath
+     * The path relative to the child.
+     *
+     * @param {*} [value]
+     * The value to delete. If it is left empty, the whole data structure is
+     * removed.
+     *
+     * @return {Boolean}
+     * Whether something was deleted.
+     *
+     * @private
+     */
+    deleteDeeper(key, remainingPath, value = EMPTY) {
         let nextLevel = this.children.get(key);
         if (nextLevel instanceof GumpMap) {
             return nextLevel.delete(remainingPath, value);
-        } else {
-            throw new Error(`Expected a GumpMap, but found ${nextLevel}.`);
         }
+
+        return false;
     }
 
     /**
@@ -384,6 +525,16 @@ export default class GumpMap {
         }
     }
 
+    /**
+     * Returns the value under the given path or undefined if the path leads nowhere.
+     *
+     * @param {*} path
+     * Where to look for the value. It must be understood by the
+     * {@link GumpPath.toGumpPath} method.
+     *
+     * @return {*}
+     * The found value.
+     */
     get(path) {
         path = GumpPath.toGumpPath(path);
 
@@ -404,11 +555,22 @@ export default class GumpMap {
         }
     }
 
-    has(path, value = null) {
+    /**
+     * Tests if the given value can be found under the given path. If no value
+     * is specified the method just tests if the path leads somewhere.
+     *
+     * @param {*} path
+     * Where to look for the value. It must be understood by the
+     * {@link GumpPath.toGumpPath} method.
+     *
+     * @param {*} [value]
+     * The value to test.
+     */
+    has(path, value = EMPTY) {
         path = GumpPath.toGumpPath(path);
 
         const finalLevel = this.get(path);
-        if (value === null) {
+        if (value === EMPTY) {
             return finalLevel !== undefined;
         } else if (finalLevel instanceof GumpSet) {
             return finalLevel.has(value);
@@ -417,6 +579,21 @@ export default class GumpMap {
         }
     }
 
+    /**
+     * Yields all [path, value] entries of this GumpMap. The  parameters control
+     * what is considered a value.
+     *
+     * @param {Object} conf
+     * The configuration object.
+     *
+     * @param {Boolean} [conf.resolveMaps=true]
+     * If this parameter is true, nested GumpMaps are also traversed. Otherwise
+     * they are regarded as basic values.
+     *
+     * @param {Boolean} [conf.resolveSets=true]
+     * If this parameter is true, GumpSets are split into the values they
+     * contain. Otherwise they are viewed as basic values.
+     */
     * entries({resolveMaps = true, resolveSets = true} = {}) {
         for (let [k, v] of this.children.entries()) {
             if (resolveMaps && v instanceof GumpMap) {
@@ -429,34 +606,95 @@ export default class GumpMap {
         }
     }
 
-    * entriesResolveMap(k, map, conf) {
+    /**
+     * Yields all entries of the given map. They paths are prepended by the
+     * given key so they are relative to this map.
+     *
+     * @param {*} key
+     * The key of the GumpMap.
+     *
+     * @param {GumpMap} map
+     * The GumpMap to traverse.
+     *
+     * @param {Object} conf
+     * The configuration object.
+     *
+     * @private
+     */
+    * entriesResolveMap(key, map, conf) {
         for (let [tail, primitive] of map.entries(conf)) {
-            yield [tail.prepend(k), primitive];
+            yield [tail.prepend(key), primitive];
         }
     }
 
-    * entriesResolveSet(k, set) {
+    /**
+     * Loops over all values of the given set and returns [key, value] entries.
+     *
+     * @param {*} key
+     * The key of the given GumpSet.
+     *
+     * @param {GumpSet} set
+     * The GumpSet to resolve.
+     *
+     * @private
+     */
+    * entriesResolveSet(key, set) {
         for (let primitive of set.values()) {
-            yield [GumpPath.toGumpPath(k), primitive];
+            yield [GumpPath.toGumpPath(key), primitive];
         }
     }
 
-    * paths(resolveMaps = true) { // rename to paths
+    /**
+     * Yields all paths of this map.
+     *
+     * @param {Boolean} [resolveMaps=true]
+     * If this parameter is true, nested GumpMaps are also traversed and this
+     * method yields the paths to the basic values. Otherwise only one level is
+     * resolved and this method acts more like the keys method on normal maps.
+     */
+    * paths(resolveMaps = true) {
         for (let [k, v] of this.children.entries()) {
             if (resolveMaps && v instanceof GumpMap) {
-                yield* this.pathsResolveMap(k, v, resolveMaps);
+                yield* this.pathsResolveMap(k, v);
             } else {
                 yield GumpPath.toGumpPath(k);
             }
         }
     }
 
-    * pathsResolveMap(k, map, resolveMaps) {
-        for (let tail of map.paths(resolveMaps)) {
-            yield tail.prepend(k);
+    /**
+     * Yields all paths to values of the given map. The given key is prepended
+     * to each one so they are relative to this GumpMap.
+     *
+     * @param {*} key
+     * The key of the given GumpMap.
+     *
+     * @param {GumpMap} map
+     * The GumpMap to resolve.
+     *
+     * @private
+     */
+    * pathsResolveMap(key, map) {
+        for (let tail of map.paths(true)) {
+            yield tail.prepend(key);
         }
     }
 
+    /**
+     * Yields all values of this map. The parameters configure what is
+     * considered a value.
+     *
+     * @param {Object} [conf={}]
+     * The configuration object.
+     *
+     * @param {Boolean} [conf.resolveMaps=true]
+     * If this parameter is true, the values method of nested GumpMaps is used
+     * to retrieve their values. Otherwise they are regarded as basic values.
+     *
+     * @param {Boolean} [conf.resolveSets=true]
+     * If this parameter is true, the values method of nested GumpSets is used
+     * to retrieve their values. Otherwise they are regarded as basic values.
+     */
     * values({resolveMaps = true, resolveSets = true} = {}) {
         for (let v of this.children.values()) {
             if (resolveMaps && v instanceof GumpMap) {
@@ -470,16 +708,33 @@ export default class GumpMap {
     }
 
     /**
-     * Loops over all key-value-pairs in the map. Nested GumpMaps and GumpSets
-     * are resolved.
+     * Yields all path-value-pairs in the map. Nested GumpMaps and GumpSets are
+     * resolved.
      */
     [Symbol.iterator]() {
         return this.entries();
     }
 
-    updateWithLiteral(newValue, path, oldValue = null) {
+    /**
+     * Replaces the given oldValue with the newValue. This change occurs at the
+     * position specified by path.
+     *
+     * @param {*} newValue
+     * The new value.
+     *
+     * @param {*} path
+     * The location of the value. It must be understood by the
+     * {@link GumpPath.toGumpPath} method.
+     *
+     * @param {*} [oldValue]
+     * The old value.
+     *
+     * @return {GumpMap}
+     * This map to make the method chainable.
+     */
+    updateWithLiteral(newValue, path, oldValue = EMPTY) {
         path = GumpPath.toGumpPath(path);
-        
+
         if (this.has(path, oldValue)) {
             this.delete(path, oldValue);
             this.add(path, newValue);
@@ -488,10 +743,55 @@ export default class GumpMap {
         return this;
     }
 
+    /**
+     * Replaces the given value with the result of calling f on that value.
+     * This change occurs at the position specified by path.
+     *
+     * @param {Function} f
+     * The update function.
+     *
+     * @param {*} path
+     * The location of the value. It must be understood by the
+     * {@link GumpPath.toGumpPath} method.
+     *
+     * @param {*} value
+     * The value to update.
+     *
+     * @return {GumpMap}
+     * This map to make the method chainable.
+     */
     updateWithFunction(f, path, value) {
         path = GumpPath.toGumpPath(path);
 
         return this.updateWithLiteral(f(value), path, value);
+    }
+
+    /**
+     * Adds listeners to the given object.
+     *
+     * @param {Observable} obj
+     * The object to add the listeners to.
+     *
+     * @private
+     */
+    setupListeners(obj) {
+        obj.addListener(this.bubbleAddEvent, "add");
+        obj.addListener(this.bubbleClearEvent, "clear");
+        obj.addListener(this.bubbleDeleteEvent, "delete");
+    }
+
+    /**
+     * Removes listeners from the given object.
+     *
+     * @param {Observable} obj
+     * The object to remove the listeners from.
+     *
+     * @private
+     */
+    takeDownListeners(obj) {
+        obj.removeListener(this.bubbleAddEvent);
+        obj.removeListener(this.bubbleClearEvent);
+        obj.removeListener(this.bubbleDeleteEvent);
     }
 
     /**

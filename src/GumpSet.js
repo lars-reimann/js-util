@@ -68,10 +68,10 @@ export default class GumpSet {
      * the type is "clear" and the data is an array with the deleted values.
      */
     clear() {
-        const deleted = [...this.values()];
-        this.children.clear();
+        if (this.size > 0) {
+            const deleted = [...this.values()];
+            this.children.clear();
 
-        if (deleted.length > 0) {
             this.fireEvent(EventManager.makeEvent({
                 source: this,
                 type: "clear",
@@ -109,24 +109,47 @@ export default class GumpSet {
     }
 
     // ------ Begin remove once subclassing set is supported
+
+    /**
+     *
+     */
     get size() {
         return this.children.size;
     }
 
+    /**
+     *
+     */
     entries() {
         return this.children.entries();
     }
 
+    /**
+     *
+     */
     has(value) {
         return this.children.has(value);
     }
 
+    /**
+     *
+     */
     keys() {
         return this.children.keys();
     }
 
+    /**
+     *
+     */
     values() {
         return this.children.values();
+    }
+
+    /**
+     *
+     */
+    [Symbol.iterator]() {
+        return this.children[Symbol.iterator]();
     }
     // ------ End remove
 

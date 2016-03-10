@@ -6,5 +6,8 @@
     "title": "JavaScript Utility",
     "manual": {
         "changelog": ["CHANGELOG.md"]
-    }
+    },
+    "plugins": [
+        {"name": "esdoc-es7-plugin"}
+    ]
 }

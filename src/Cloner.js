@@ -1,3 +1,5 @@
+import _ from "lodash/fp";
+
 import {cloneableSymbols} from "./Cloneable.js";
 
 /**
@@ -49,13 +51,13 @@ export default class Cloner {
             result = p;
         } else if (this.context.has(p)) {
             result = this.context.get(p);
-        } else if (this.isDate(p)) {
+        } else if (_.isDate(p)) {
             result = this.cloneDate(p);
-        } else if (this.isRegExp(p)) {
+        } else if (_.isRegExp(p)) {
             result = this.cloneRegExp(p);
-        } else if (this.isArray(p)) {
+        } else if (_.isArray(p)) {
             result = this.cloneArray(p);
-        } else if (this.isObject(p)) {
+        } else if (_.isObject(p)) {
             result = this.cloneObject(p);
         } else {
             throw new Error(`${p} cannot be cloned.`);
@@ -83,21 +85,6 @@ export default class Cloner {
     }
 
     /**
-     * Tests if the given parameter is a Date object.
-     *
-     * @param {*} p
-     * The parameter to test.
-     *
-     * @return {Boolean}
-     * If the given parameter is a Date object.
-     *
-     * @private
-     */
-    isDate(p) {
-        return p instanceof Date;
-    }
-
-    /**
      * Clones a Date object
      *
      * @param {Date} date
@@ -112,21 +99,6 @@ export default class Cloner {
         let result = new Date(date.getTime());
         this.context.set(date, result);
         return result;
-    }
-
-    /**
-     * Tests if the given parameter is a RegExp object.
-     *
-     * @param {*} p
-     * The parameter to test.
-     *
-     * @return {Boolean}
-     * If the given parameter is a RegExp object.
-     *
-     * @private
-     */
-    isRegExp(p) {
-        return p instanceof RegExp;
     }
 
     /**
@@ -147,21 +119,6 @@ export default class Cloner {
     }
 
     /**
-     * Tests if the given parameter is an array.
-     *
-     * @param {*} p
-     * The parameter to test.
-     *
-     * @return {Boolean}
-     * If the given parameter is an array.
-     *
-     * @private
-     */
-    isArray(p) {
-        return Array.isArray(p);
-    }
-
-    /**
      * Clones an array.
      *
      * @param {Array} arr
@@ -179,21 +136,6 @@ export default class Cloner {
             result.push(this.cloneChild(v));
         }
         return result;
-    }
-
-    /**
-     * Tests if the given parameter is an object.
-     *
-     * @param {*} p
-     * The parameter to test.
-     *
-     * @return {Boolean}
-     * If the given parameter is an object.
-     *
-     * @private
-     */
-    isObject(p) {
-        return p instanceof Object;
     }
 
     /**

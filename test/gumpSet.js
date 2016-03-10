@@ -67,6 +67,14 @@ describe("GumpSet", function () {
             expect(this.set.size).to.equal(2);
         });
 
+        it("should return whether the set changed", function () {
+            const r0 = this.set.delete(3);
+            expect(r0).to.be.false;
+
+            const r1 = this.set.delete(1);
+            expect(r1).to.be.true;
+        });
+
         it("should fire an event", function () {
             const spy = sinon.spy();
             this.set.addListener(spy, "delete");
