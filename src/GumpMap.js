@@ -1,7 +1,5 @@
 import "babel-regenerator-runtime"; // TODO remove once babel bug is fixed
 
-import "core-js/fn/object/entries";
-
 import _ from "lodash/fp";
 
 import EventManager              from "./EventManager.js";
@@ -735,8 +733,7 @@ export default class GumpMap {
     updateWithLiteral(newValue, path, oldValue = EMPTY) {
         path = GumpPath.toGumpPath(path);
 
-        if (this.has(path, oldValue)) {
-            this.delete(path, oldValue);
+        if (this.delete(path, oldValue)) {
             this.add(path, newValue);
         }
 
@@ -764,6 +761,29 @@ export default class GumpMap {
         path = GumpPath.toGumpPath(path);
 
         return this.updateWithLiteral(f(value), path, value);
+    }
+    
+    /**
+     * Sets the value at the given location. If the entry exists already it is
+     * replaced, otherwise a new entry is created.
+     * 
+     * @param {*} path
+     * Where to place the value. It must be understood by the
+     * {@link GumpPath.toGumpPath} method.
+     * 
+     * @param {*} value
+     * The value of the new entry.
+     * 
+     * @return {GumpMap}
+     * This map to make the method chainable.
+     */
+    set(path, value) {
+        path = GumpPath.toGumpPath(path);
+
+        this.delete(path);
+        this.add(path, value);
+        
+        return this;
     }
 
     /**

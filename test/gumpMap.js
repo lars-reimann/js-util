@@ -357,6 +357,21 @@ describe("GumpMap", function () {
         });
     });
 
+    describe("#set", function () {
+        it("should replace an existing value", function () {
+            this.map.set("this", 1);
+            const s0 = this.map.get("this");
+            expect(s0.has(1)).to.be.true;
+            expect(s0.size).to.equal(1);
+        });
+        
+        it("should add a new entry if no value exists at this location", function () {
+            this.map.set("hello", "world");
+            const s0 = this.map.get("hello");
+            expect(s0.has("world")).to.be.true;
+            expect(s0.size).to.equal(1);
+        });
+    });
 
     after(function () {
         delete this.map;
