@@ -177,21 +177,44 @@ export default class TolkienMap {
         throw new Error("Calling an abstract method.");
     }
 
+    /**
+     * Removes the entries with the given x- and y-value. At least one of them
+     * must be provided.
+     *
+     * @param {Object} conf
+     * The configuration object.
+     *
+     * @param {*} [conf.x]
+     * The x-value.
+     *
+     * @param {*} [conf.y]
+     * The y-value.
+     *
+     * @emits {Event}
+     * If the map was changed by this operation and event is triggered. Its
+     * source is this map, the type is "delete" and the data is an object. It
+     * contains the given x- and y-values and it has a property deleted listing
+     * the removed entries.
+     */
     delete({x = EMPTY, y = EMPTY} = {}) {
-        let hasChanged;
+        const data = {};
         if (x === EMPTY) {
-            hasChanged = this.deleteY(y);
+            data.y = y;
+            data.deleted = this.deleteY(y);
         } else if (y === EMPTY) {
-            hasChanged = this.deleteX(x);
+            data.x = x;
+            data.deleted = this.deleteX(x);
         } else {
-            hasChanged = this.deletePair(x, y);
+            data.x = x;
+            data.y = y;
+            data.deleted = this.deletePair(x, y);
         }
 
-        if (hasChanged) {
+        if (data.deleted) {
             this.fireEvent(EventManager.makeEvent({
                 source: this,
                 type:   "delete",
-                data:   {} // TODO: should include the deleted entries and the x and y params if specified.
+                data:   data
             }));
         }
     }
@@ -265,6 +288,19 @@ export default class TolkienMap {
         throw new Error("Calling an abstract method.");
     }
 
+    /**
+     * Tests if an entry with the given x- and y-values exists. At least one of
+     * them must be provided.
+     *
+     * @param {Object} conf
+     * The configuration object.
+     *
+     * @param {*} [conf.x]
+     * The x-value.
+     *
+     * @param {*} [conf.y]
+     * The y-value.
+     */
     has({x = EMPTY, y = EMPTY} = {}) {
         if (x === EMPTY) {
             return this.hasY(y);

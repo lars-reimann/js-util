@@ -75,7 +75,42 @@ describe("Tolkien1To1Map", function () {
     });
 
     describe("#delete", function () {
+        it("should remove entries with the given x-value", function () {
+            this.map.delete({x: "x"});
 
+            const r = this.map.has({x: "x"});
+            expect(r).to.be.false;
+        });
+
+        it("should remove entries with the given y-value", function () {
+            this.map.delete({y: "y"});
+
+            const r = this.map.has({y: "y"});
+            expect(r).to.be.false;
+        });
+
+        it("should remove entries with the given x- and y-values", function () {
+            this.map.delete({x: "x", y: "y"});
+
+            const r = this.map.has({x: "x", y: "y"});
+            expect(r).to.be.false;
+        });
+
+        it("should fire an event", function () {
+            const spy = sinon.spy();
+            this.map.addListener(spy, "delete");
+            this.map.delete({x: "x"});
+
+            expect(spy).to.have.been.calledOnce;
+            const e = spy.args[0][0];
+            expect(e.source).to.equal(this.map);
+            expect(e.type).to.equal("delete");
+
+            const keys   = e.data.deleted.map(entry => entry[0]);
+            const values = e.data.deleted.map(entry => entry[1]);
+            expect(keys).to.have.members(["x"]);
+            expect(values).to.have.members(["y"]);
+        });
     });
 
     describe("#convertXToY", function () {

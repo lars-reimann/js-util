@@ -37,7 +37,7 @@ export default class Tolkien1ToNMap extends TolkienMap {
             for (const y of ys) {
                 this.yToX.delete(y);
             }
-        }
+        }// TODO return
     }
 
     /**
@@ -49,7 +49,7 @@ export default class Tolkien1ToNMap extends TolkienMap {
             const x = this.convertYToX(y);
             this.xToY.delete(x);
             this.yToX.delete(y);
-        }
+        }// TODO return
     }
 
     /**
@@ -60,7 +60,7 @@ export default class Tolkien1ToNMap extends TolkienMap {
         if (this.hasPair(x, y)) {
             this.xToY.delete(x, y);
             this.yToX.delete(y);
-        }
+        } // TODO return
     }
 
     /**

@@ -35,9 +35,8 @@ export default class Tolkien1To1Map extends TolkienMap {
             const [y] = this.convertXToY(x);
             this.xToY.delete(x);
             this.yToX.delete(y);
-            return true;
+            return [[x, y]];
         }
-        return false;
     }
 
     /**
@@ -49,9 +48,8 @@ export default class Tolkien1To1Map extends TolkienMap {
             const [x] = this.convertYToX(y);
             this.xToY.delete(x);
             this.yToX.delete(y);
-            return true;
+            return [[x, y]];
         }
-        return false;
     }
 
     /**
@@ -62,9 +60,8 @@ export default class Tolkien1To1Map extends TolkienMap {
         if (this.hasPair(x, y)) {
             this.xToY.delete(x);
             this.yToX.delete(y);
-            return true;
+            return [[x, y]];
         }
-        return false;
     }
 
     /**

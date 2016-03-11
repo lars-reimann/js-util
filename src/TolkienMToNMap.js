@@ -35,7 +35,7 @@ export default class TolkienMToNMap extends TolkienMap {
             for (const y of ys) {
                 this.yToX.delete(y);
             }
-        }
+        }// TODO return
     }
 
     /**
@@ -49,7 +49,7 @@ export default class TolkienMToNMap extends TolkienMap {
             for (const x of xs) {
                 this.xToY.delete(x);
             }
-        }
+        }// TODO return
     }
 
     /**
@@ -60,7 +60,7 @@ export default class TolkienMToNMap extends TolkienMap {
         if (this.hasPair(x, y)) {
             this.xToY.delete(x, y);
             this.yToX.delete(y, x);
-        }
+        }// TODO return
     }
 
     /**
