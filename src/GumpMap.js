@@ -578,7 +578,7 @@ export default class GumpMap {
     }
 
     /**
-     * Yields all [path, value] entries of this GumpMap. The  parameters control
+     * Yields all [path, value] entries of this GumpMap. The parameters control
      * what is considered a value.
      *
      * @param {Object} conf
@@ -762,18 +762,18 @@ export default class GumpMap {
 
         return this.updateWithLiteral(f(value), path, value);
     }
-    
+
     /**
      * Sets the value at the given location. If the entry exists already it is
      * replaced, otherwise a new entry is created.
-     * 
+     *
      * @param {*} path
      * Where to place the value. It must be understood by the
      * {@link GumpPath.toGumpPath} method.
-     * 
+     *
      * @param {*} value
      * The value of the new entry.
-     * 
+     *
      * @return {GumpMap}
      * This map to make the method chainable.
      */
@@ -782,7 +782,7 @@ export default class GumpMap {
 
         this.delete(path);
         this.add(path, value);
-        
+
         return this;
     }
 
