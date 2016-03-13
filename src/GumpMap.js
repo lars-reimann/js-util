@@ -473,6 +473,7 @@ export default class GumpMap {
             [...nextLevel.entries()] : [...nextLevel.values()];
 
         this.takeDownListeners(nextLevel);
+        this.size -= deleted.length;
         this.fireEvent(EventManager.makeEvent({
             source: this,
             type:   "delete",

@@ -25,7 +25,6 @@ export default class TolkienMToNMap extends TolkienMap {
     }
 
     /**
-     * @private
      * @override
      */
     deleteX(x) {
@@ -35,11 +34,11 @@ export default class TolkienMToNMap extends TolkienMap {
             for (const y of ys) {
                 this.yToX.delete(y);
             }
-        }// TODO return
+            return ys.map(y => [x, y]);
+        }
     }
 
     /**
-     * @private
      * @override
      */
     deleteY(y) {
@@ -49,36 +48,36 @@ export default class TolkienMToNMap extends TolkienMap {
             for (const x of xs) {
                 this.xToY.delete(x);
             }
-        }// TODO return
+            return xs.map(x => [x, y]); 
+        }
     }
 
     /**
-     * @private
      * @override
      */
     deletePair(x, y) {
         if (this.hasPair(x, y)) {
             this.xToY.delete(x, y);
             this.yToX.delete(y, x);
-        }// TODO return
+            return [[x, y]];
+        }
     }
 
     /**
      * @override
      */
     convertXToY(x) {
-        return this.xToY.get(x);
+        return [...this.xToY.get(x)];
     }
 
     /**
      * @override
      */
     convertYToX(y) {
-        return this.yToX.get(y);
+        return [...this.yToX.get(y)];
     }
 
     /**
-     * @private
      * @override
      */
     hasPair(x, y) {
@@ -89,7 +88,7 @@ export default class TolkienMToNMap extends TolkienMap {
      * @override
      */
     * xs() {
-        for (let xPath of this.xToY.keys()) {
+        for (let xPath of this.xToY.paths()) {
             yield xPath.head();
         }
     }

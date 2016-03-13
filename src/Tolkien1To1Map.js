@@ -19,15 +19,14 @@ export default class Tolkien1To1Map extends TolkienMap {
      * @override
      */
     addImp(x, y) {
-        this.delete({x});
-        this.delete({y});
+        this.deleteX(x);
+        this.deleteY(y);
 
         this.xToY.set(x, y);
         this.yToX.set(y, x);
     }
 
     /**
-     * @private
      * @override
      */
     deleteX(x) {
@@ -40,7 +39,6 @@ export default class Tolkien1To1Map extends TolkienMap {
     }
 
     /**
-     * @private
      * @override
      */
     deleteY(y) {
@@ -53,7 +51,6 @@ export default class Tolkien1To1Map extends TolkienMap {
     }
 
     /**
-     * @private
      * @override
      */
     deletePair(x, y) {
@@ -83,7 +80,6 @@ export default class Tolkien1To1Map extends TolkienMap {
     }
 
     /**
-     * @private
      * @override
      */
     hasPair(x, y) {

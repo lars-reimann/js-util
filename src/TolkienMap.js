@@ -15,17 +15,17 @@ const EMPTY = Symbol("default");
 export default class TolkienMap {
 
     /**
-     * @param {Function} xCon
+     * @param {Function} XCon
      * The constructor to use for the xToY map.
      *
-     * @param {Function} yCon
+     * @param {Function} YCon
      * The constructor to use for the yToX map.
      *
      * @param {Array} initialValues
      * The initial entries of the map. Those are added to the map in the order
      * specified by the array.
      */
-    constructor(xCon, yCon, initialValues) {
+    constructor(XCon, YCon, initialValues) {
 
         /**
          * Maps from x-values to y-values.
@@ -33,7 +33,7 @@ export default class TolkienMap {
          * @type {Map|GumpMap}
          * @private
          */
-        this.xToY = new xCon();
+        this.xToY = new XCon();
 
         /**
          * Maps from y-values to x-values.
@@ -41,7 +41,7 @@ export default class TolkienMap {
          * @type {Map|GumpMap}
          * @private
          */
-        this.yToX = new yCon();
+        this.yToX = new YCon();
 
         /**
          * Handles events and listeners.
@@ -84,7 +84,7 @@ export default class TolkienMap {
      * x and y parameters.
      */
     add(x, y) {
-        if (!this.has({x, y})) {
+        if (!this.hasPair(x, y)) {
             this.addImp(x, y);
             this.fireEvent(EventManager.makeEvent({
                 source: this,
@@ -141,7 +141,6 @@ export default class TolkienMap {
      * @param {*} x
      * The x-value.
      *
-     * @private
      * @abstract
      */
     deleteX(x) {
@@ -154,7 +153,6 @@ export default class TolkienMap {
      * @param {*} y
      * The y-value.
      *
-     * @private
      * @abstract
      */
     deleteY(y) {
@@ -170,7 +168,6 @@ export default class TolkienMap {
      * @param {*} y
      * The y-value.
      *
-     * @private
      * @abstract
      */
     deletePair(x, y) {
@@ -254,8 +251,9 @@ export default class TolkienMap {
      *
      * @param {*} x
      * The x-value.
-     *
-     * @private
+     * 
+     * @return {Boolean}
+     * If an entry with the given x-value exists.
      */
     hasX(x) {
         return this.xToY.has(x);
@@ -267,7 +265,8 @@ export default class TolkienMap {
      * @param {*} y
      * The y-value.
      *
-     * @private
+     * @return {Boolean}
+     * If an entry with the given y-value exists.
      */
     hasY(y) {
         return this.yToX.has(y);
@@ -282,10 +281,27 @@ export default class TolkienMap {
      * @param {*} y
      * The y-value.
      *
-     * @private
+     * @return {Boolean}
+     * If an entry with the given x- and y-value exists.
      */
     hasPair(x, y) {
         throw new Error("Calling an abstract method.");
+    }
+    
+    /**
+     * Tests if an entry with the given x-value or the given y-value exists.
+     * 
+     * @param {*} x
+     * The x-value.
+     * 
+     * @param {*} y
+     * The y-value.
+     * 
+     * @return {Boolean}
+     * If an entry with the given x-value or the given y-value exists.
+     */
+    hasEither(x, y) {
+        return this.hasX(x) || this.hasY(y);
     }
 
     /**
@@ -300,6 +316,9 @@ export default class TolkienMap {
      *
      * @param {*} [conf.y]
      * The y-value.
+     * 
+     * @return {Boolean}
+     * If an entry with the given x- and y-values exists.
      */
     has({x = EMPTY, y = EMPTY} = {}) {
         if (x === EMPTY) {
@@ -322,8 +341,8 @@ export default class TolkienMap {
      * The y-value.
      */
     set(x, y) {
-        this.delete({x});
-        this.delete({y});
+        this.deleteX(x);
+        this.deleteY(y);
         this.add(x, y);
     }
 

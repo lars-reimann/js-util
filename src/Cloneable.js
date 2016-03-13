@@ -17,8 +17,8 @@ export const cloneableSymbols = {
  *
  * @example
  * Object.assign(MyClass.prototype, cloneableMixin);
- * let myObject = new MyClass(),
- *     clone    = myObject[cloneableSymbols.clone];
+ * const myObject = new MyClass();
+ * const clone    = myObject[cloneableSymbols.clone];
  */
 export const cloneableMixin = {
     [cloneableSymbols.clone](cloner = new Cloner()) {
@@ -35,8 +35,8 @@ export const cloneableMixin = {
  *
  * @example
  * Object.assign(MyClass.prototype, cloneableExtendedMixin);
- * let myObject = new MyClass(),
- *     clone    = myObject.clone();
+ * const myObject = new MyClass();
+ * const clone    = myObject.clone();
  */
 export const cloneableExtendedMixin = Object.assign({
     clone: cloneableMixin[cloneableSymbols.clone]
