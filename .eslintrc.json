@@ -16,7 +16,7 @@
 
     "extends": "eslint:recommended",
     "rules": {
-        "indent": 0,
+        "no-constant-condition": 0,
         "semi": [2, "always"]
     }
 }
