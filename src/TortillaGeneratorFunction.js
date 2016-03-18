@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 export default class TortillaGeneratorFunction {
 
     static empty = new TortillaGeneratorFunction(function* () {});
@@ -49,7 +51,7 @@ export default class TortillaGeneratorFunction {
     }
 
     without(values, ...params) {
-        return this.filter(x => )
+        return this.reject(x => values.includes(x), ...params);
     }
 
     compact(...params) {
@@ -122,7 +124,7 @@ export default class TortillaGeneratorFunction {
     }
 
     reject(predicate, ...params) {
-
+        return this.filter(_.negate(predicate), ...params);
     }
 
     map(iteratee, ...params) {
@@ -130,6 +132,15 @@ export default class TortillaGeneratorFunction {
         return new TortillaGeneratorFunction(function* () {
             for (let value of that.f(...params)) {
                 yield iteratee(value);
+            }
+        });
+    }
+
+    flatten(...params) {
+        const that = this;
+        return new TortillaGeneratorFunction(function* () {
+            for (let value of that.f(...params)) {
+                yield* _.castArray(value);
             }
         });
     }
@@ -145,4 +156,12 @@ export default class TortillaGeneratorFunction {
     [Symbol.iterator]() {
         return this.f();
     }
+
+    /*
+    concat
+    zip
+    unzip
+    zipWith
+    unzipWith
+    */
 }

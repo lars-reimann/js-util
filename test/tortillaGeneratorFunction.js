@@ -102,7 +102,7 @@ describe("TortillaGeneratorFunction", function () {
             expect(r0).to.equal(2);
         });
 
-        it("should remove all falsy values (infinite)", function () {
+        it("should remove all falsy values (finite)", function () {
             const r0 = [...this.fin.compact()];
             expect(r0).to.eql(["A", "B", "C"]);
         });
@@ -113,6 +113,26 @@ describe("TortillaGeneratorFunction", function () {
 
             const r1 = this.inf.compact().head();
             expect(r1).to.equal(1);
+        });
+    });
+
+    describe("without", function () {
+        it("should remove all matching values (infinite)", function () {
+            const r0 = this.inf.without([4], 4).head();
+            expect(r0).to.equal(5);
+        });
+
+        it("should remove all matching values (finite)", function () {
+            const r0 = [...this.fin.without(["B"])];
+            expect(r0).to.eql(["A", "C"]);
+        });
+
+        it("should allow multiple invocations", function () {
+            const r0 = this.inf.without([0, 1]).head();
+            expect(r0).to.equal(2);
+
+            const r1 = this.inf.without([0, 1]).head();
+            expect(r1).to.equal(2);
         });
     });
 
@@ -236,6 +256,26 @@ describe("TortillaGeneratorFunction", function () {
         });
     });
 
+    describe("reject", function () {
+        it("should yield only matching values (infinite)", function () {
+            const r0 = this.inf.reject(x => x <= 4, 2).head();
+            expect(r0).to.equal(5);
+        });
+
+        it("should yield only matching values (finite)", function () {
+            const r0 = [...this.fin.reject(x => x === "B")];
+            expect(r0).to.eql(["A", "C"]);
+        });
+
+        it("should allow multiple invocations", function () {
+            const r0 = this.inf.reject(x => x <= 3).head();
+            expect(r0).to.equal(4);
+
+            const r1 = this.inf.reject(x => x <= 3).head();
+            expect(r1).to.equal(4);
+        });
+    });
+
     describe("map", function () {
         it("should apply the function on each value and yield the results (infinite)", function () {
             const r0 = this.inf.map(x => x * 2, 4).head();
@@ -252,6 +292,26 @@ describe("TortillaGeneratorFunction", function () {
             expect(r0).to.equal(0);
 
             const r1 = this.inf.map(x => x * 3).head();
+            expect(r1).to.equal(0);
+        });
+    });
+
+    describe("flatten", function () {
+        it("should yield the values of array separately (infinite)", function () {
+            const r0 = this.inf.apply(4).chunk(3).flatten().head();
+            expect(r0).to.equal(4);
+        });
+
+        it("should yield the values of array separately (finite)", function () {
+            const r0 = [...this.fin.chunk(3).flatten()];
+            expect(r0).to.eql(["A", "B", "C"]);
+        });
+
+        it("should allow multiple invocations", function () {
+            const r0 = this.inf.chunk(3).flatten().head();
+            expect(r0).to.equal(0);
+
+            const r1 = this.inf.chunk(3).flatten().head();
             expect(r1).to.equal(0);
         });
     });
