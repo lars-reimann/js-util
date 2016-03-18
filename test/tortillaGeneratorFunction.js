@@ -76,6 +76,66 @@ describe("TortillaGeneratorFunction", function () {
         });
     });
 
+    describe("#chunk", function () {
+        it("should yield chunks of the given size (infinite)", function () {
+            const r0 = this.inf.chunk(2, 3).head();
+            expect(r0).to.eql([3, 4]);
+        });
+
+        it("should yield chunks of the given size (finite)", function () {
+            const r0 = [...this.fin.chunk(2)];
+            expect(r0).to.eql([["A", "B"], ["C"]]);
+        });
+
+        it("should allow multiple invocations", function () {
+            const r0 = this.inf.chunk(2).head();
+            expect(r0).to.eql([0, 1]);
+
+            const r1 = this.inf.chunk(2).head();
+            expect(r1).to.eql([0, 1]);
+        });
+    });
+
+    describe("compact", function () {
+        it("should remove all falsy values (infinite)", function () {
+            const r0 = this.inf.compact(2).head();
+            expect(r0).to.equal(2);
+        });
+
+        it("should remove all falsy values (infinite)", function () {
+            const r0 = [...this.fin.compact()];
+            expect(r0).to.eql(["A", "B", "C"]);
+        });
+
+        it("should allow multiple invocations", function () {
+            const r0 = this.inf.compact().head();
+            expect(r0).to.equal(1);
+
+            const r1 = this.inf.compact().head();
+            expect(r1).to.equal(1);
+        });
+    });
+
+    describe("slice", function () {
+        it("should only yield values in the given range (infinite)", function () {
+            const r0 = [...this.inf.slice(2, 4, 4)];
+            expect(r0).to.eql([6, 7]);
+        });
+
+        it("should only yield values in the given range (finite)", function () {
+            const r0 = [...this.fin.slice(1, 2)];
+            expect(r0).to.eql(["B"]);
+        });
+
+        it("should allow multiple invocations", function () {
+            const r0 = [...this.inf.slice(1, 3)];
+            expect(r0).to.eql([1, 2]);
+
+            const r1 = [...this.inf.slice(1, 3)];
+            expect(r1).to.eql([1, 2]);
+        });
+    });
+
     describe("#drop", function () {
         it("should drop the first n values (infinite)", function () {
             const r0 = this.inf.drop(2, 2).head();

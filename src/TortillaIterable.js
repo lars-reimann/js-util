@@ -97,9 +97,7 @@ _.flatten
 _.flattenDeep
 _.flattenDepth
 _.fromPairs
-_.head
 _.indexOf
-_.initial
 _.intersection
 _.intersectionBy
 _.intersectionWith
@@ -112,11 +110,7 @@ _.pullAllBy
 _.pullAllWith
 _.pullAt
 _.remove
-_.reverse
 _.slice
-_.takeRight
-_.takeRightWhile
-_.takeWhile
 _.uniq
 _.uniqBy
 _.uniqWith

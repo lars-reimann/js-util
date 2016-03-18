@@ -10,9 +10,9 @@ export default class TortillaGeneratorFunction {
         });
     }
 
-    static range(start = 0, stop = Number.POSITIVE_INFINITY, step = 1) {
+    static range(start = 0, end = Number.POSITIVE_INFINITY, step = 1) {
         return new TortillaGeneratorFunction(function* () {
-            for (let i = start; i < stop; i += step) {
+            for (let i = start; i < end; i += step) {
                 yield i;
             }
         });
@@ -29,6 +29,35 @@ export default class TortillaGeneratorFunction {
 
     tail(...params) {
         return this.drop(1, ...params);
+    }
+
+    chunk(n, ...params) {
+        const that = this;
+        return new TortillaGeneratorFunction(function* () {
+            const iterator = that.f(...params);
+            while (true) {
+                const chunk = [];
+                for (let i = 0; i < n; i++) {
+                    const {value, done} = iterator.next();
+                    if (done) break;
+                    chunk.push(value);
+                }
+                if (chunk.length === 0) return;
+                yield chunk;
+            }
+        });
+    }
+
+    without(values, ...params) {
+        return this.filter(x => )
+    }
+
+    compact(...params) {
+        return this.filter(x => x, ...params);
+    }
+
+    slice(start, end, ...params) {
+        return this.apply(...params).drop(start).take(end - start);
     }
 
     drop(n, ...params) {
@@ -90,6 +119,10 @@ export default class TortillaGeneratorFunction {
                 }
             }
         });
+    }
+
+    reject(predicate, ...params) {
+
     }
 
     map(iteratee, ...params) {
