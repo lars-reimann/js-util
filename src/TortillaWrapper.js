@@ -1,27 +1,16 @@
 import _ from "lodash/fp";
 
-import TortillaWrapper from "./TortillaWrapper.js";
+import TortillaGeneratorFunction from "./TortillaGeneratorFunction.js";
 
 /**
- * A wrapper for iterables.
+ * A wrapper for iterables, iterators and generator functions.
  */
-export default class TortillaIterable {
+export default class TortillaWrapper {
 
     /**
-     * @param {Iterable} iterable
-     * The iterable to wrap.
+     *
      */
-    constructor(iterable) {
-       // super();
-
-        /**
-         * The wrapped iterable.
-         *
-         * @type {Iterable}
-         * @private
-         */
-        this.iterable = iterable;
-    }
+    constructor() {}
 
     /**
      * Returns the first value.
@@ -30,14 +19,14 @@ export default class TortillaIterable {
      * The first value.
      */
     head() {
-        const [value] = this.iterable;
+        const [value] = this[Symbol.iterator]();
         return value;
     }
 
     /**
      * Drops the first value.
      *
-     * @return {TortillaGeneratorFunction}
+     * @return {TortillaWrapper}
      * The new wrapper.
      */
     tail() {
@@ -50,13 +39,13 @@ export default class TortillaIterable {
      * @param {Number} n
      * How many values to wrap.
      *
-     * @return {TortillaGeneratorFunction}
+     * @return {TortillaWrapper}
      * The new wrapper.
      */
     chunk(n) {
         const that = this;
         return new TortillaGeneratorFunction(function* () {
-            const iterator = that.iterable[Symbol.iterator]();
+            const iterator = that[Symbol.iterator]();
             while (true) {
                 const chunk = [];
                 for (let i = 0; i < n; i++) {
@@ -76,7 +65,7 @@ export default class TortillaIterable {
      * @param {*} values
      * The values to remove.
      *
-     * @return {TortillaGeneratorFunction}
+     * @return {TortillaWrapper}
      * The new wrapper.
      */
     without(values) {
@@ -86,7 +75,7 @@ export default class TortillaIterable {
     /**
      * Removes all falsy values.
      *
-     * @return {TortillaGeneratorFunction}
+     * @return {TortillaWrapper}
      * The new wrapper.
      */
     compact() {
@@ -102,7 +91,7 @@ export default class TortillaIterable {
      * @param {Number} end
      * The index of the first value to drop again.
      *
-     * @return {TortillaGeneratorFunction}
+     * @return {TortillaWrapper}
      * The new wrapper.
      */
     slice(start, end) {
@@ -115,7 +104,7 @@ export default class TortillaIterable {
      * @param {Number} n
      * How many values to drop.
      *
-     * @return {TortillaGeneratorFunction}
+     * @return {TortillaWrapper}
      * The new wrapper.
      */
     drop(n) {
@@ -136,7 +125,7 @@ export default class TortillaIterable {
      * @param {Function} predicate
      * The testing function.
      *
-     * @return {TortillaGeneratorFunction}
+     * @return {TortillaWrapper}
      * The new wrapper.
      */
     dropWhile(predicate) {
@@ -159,7 +148,7 @@ export default class TortillaIterable {
      * @param {Number} n
      * How many values to keep.
      *
-     * @return {TortillaGeneratorFunction}
+     * @return {TortillaWrapper}
      * The new wrapper.
      */
     take(n) {
@@ -180,7 +169,7 @@ export default class TortillaIterable {
      * @param {Function} predicate
      * The testing function.
      *
-     * @return {TortillaGeneratorFunction}
+     * @return {TortillaWrapper}
      * The new wrapper.
      */
     takeWhile(predicate) {
@@ -201,7 +190,7 @@ export default class TortillaIterable {
      * @param {Function} predicate
      * The testing function.
      *
-     * @return {TortillaGeneratorFunction}
+     * @return {TortillaWrapper}
      * The new wrapper.
      */
     filter(predicate) {
@@ -221,7 +210,7 @@ export default class TortillaIterable {
      * @param {Function} predicate
      * The testing function.
      *
-     * @return {TortillaGeneratorFunction}
+     * @return {TortillaWrapper}
      * The new wrapper.
      */
     reject(predicate) {
@@ -234,7 +223,7 @@ export default class TortillaIterable {
      * @param {Function} iteratee
      * The mapping function.
      *
-     * @return {TortillaGeneratorFunction}
+     * @return {TortillaWrapper}
      * The new wrapper.
      */
     map(iteratee) {
@@ -249,7 +238,7 @@ export default class TortillaIterable {
     /**
      * Yields values of an array separately.
      *
-     * @return {TortillaGeneratorFunction}
+     * @return {TortillaWrapper}
      * The new wrapper.
      */
     flatten() {
@@ -262,11 +251,12 @@ export default class TortillaIterable {
     }
 
     /**
-     * Turns this wrapper into an iterator. For this to work, the wrapped
-     * function must not expect any more parameters.
+     * Turns this wrapper into an iterator.
+     *
+     * @abstract
      */
     [Symbol.iterator]() {
-        return this[Symbol.iterator]();
+        throw new Error("Calling an abstract function.");
     }
 
     /*

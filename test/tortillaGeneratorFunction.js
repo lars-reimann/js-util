@@ -17,33 +17,33 @@ describe("TortillaGeneratorFunction", function () {
         });
     });
 
-    describe("#empty", function () {
-        it("should not yield any values", function () {
-            const r0 = [...TortillaGeneratorFunction.empty];
-            expect(r0).to.be.empty;
-        });
-    });
+    // describe("#empty", function () {
+    //     it("should not yield any values", function () {
+    //         const r0 = [...TortillaGeneratorFunction.empty];
+    //         expect(r0).to.be.empty;
+    //     });
+    // });
 
-    describe("#constant", function () {
-        it("should yield the same value forever", function () {
-            const r0 = [...TortillaGeneratorFunction.constant("A").take(3)];
-            expect(r0).to.eql(["A", "A", "A"]);
-        });
-    });
+    // describe("#constant", function () {
+    //     it("should yield the same value forever", function () {
+    //         const r0 = [...TortillaGeneratorFunction.constant("A").take(3)];
+    //         expect(r0).to.eql(["A", "A", "A"]);
+    //     });
+    // });
 
-    describe("#range", function () {
-        it("should yield all values in the given range", function () {
-            const r0 = [...TortillaGeneratorFunction.range(0, 5, 2)];
-            expect(r0).to.eql([0, 2, 4]);
+    // describe("#range", function () {
+    //     it("should yield all values in the given range", function () {
+    //         const r0 = [...TortillaGeneratorFunction.range(0, 5, 2)];
+    //         expect(r0).to.eql([0, 2, 4]);
 
-            const r1 = [...TortillaGeneratorFunction.range().take(4)];
-            expect(r1).to.eql([0, 1, 2, 3]);
-        });
-    });
+    //         const r1 = [...TortillaGeneratorFunction.range().take(4)];
+    //         expect(r1).to.eql([0, 1, 2, 3]);
+    //     });
+    // });
 
     describe("#head", function() {
         it("should return the first value (infinite)", function () {
-            expect(this.inf.head(2)).to.equal(2);
+            expect(this.inf.head()).to.equal(0);
         });
 
         it("should return the first value (finite)", function () {
@@ -58,8 +58,8 @@ describe("TortillaGeneratorFunction", function () {
 
     describe("#tail", function () {
         it("should drop the first value (infinite)", function () {
-            const r0 = this.inf.tail(2).head();
-            expect(r0).to.equal(3);
+            const r0 = this.inf.tail().head();
+            expect(r0).to.equal(1);
         });
 
         it("should drop the first value (finite)", function () {
@@ -78,8 +78,8 @@ describe("TortillaGeneratorFunction", function () {
 
     describe("#chunk", function () {
         it("should yield chunks of the given size (infinite)", function () {
-            const r0 = this.inf.chunk(2, 3).head();
-            expect(r0).to.eql([3, 4]);
+            const r0 = this.inf.chunk(2).head();
+            expect(r0).to.eql([0, 1]);
         });
 
         it("should yield chunks of the given size (finite)", function () {
@@ -98,8 +98,8 @@ describe("TortillaGeneratorFunction", function () {
 
     describe("compact", function () {
         it("should remove all falsy values (infinite)", function () {
-            const r0 = this.inf.compact(2).head();
-            expect(r0).to.equal(2);
+            const r0 = this.inf.compact().head();
+            expect(r0).to.equal(1);
         });
 
         it("should remove all falsy values (finite)", function () {
@@ -118,8 +118,8 @@ describe("TortillaGeneratorFunction", function () {
 
     describe("without", function () {
         it("should remove all matching values (infinite)", function () {
-            const r0 = this.inf.without([4], 4).head();
-            expect(r0).to.equal(5);
+            const r0 = this.inf.without([0, 1]).head();
+            expect(r0).to.equal(2);
         });
 
         it("should remove all matching values (finite)", function () {
@@ -138,8 +138,8 @@ describe("TortillaGeneratorFunction", function () {
 
     describe("slice", function () {
         it("should only yield values in the given range (infinite)", function () {
-            const r0 = [...this.inf.slice(2, 4, 4)];
-            expect(r0).to.eql([6, 7]);
+            const r0 = [...this.inf.slice(1, 3)];
+            expect(r0).to.eql([1, 2]);
         });
 
         it("should only yield values in the given range (finite)", function () {
@@ -158,8 +158,8 @@ describe("TortillaGeneratorFunction", function () {
 
     describe("#drop", function () {
         it("should drop the first n values (infinite)", function () {
-            const r0 = this.inf.drop(2, 2).head();
-            expect(r0).to.equal(4);
+            const r0 = this.inf.drop(2).head();
+            expect(r0).to.equal(2);
         });
 
         it("should drop the first n values (finite)", function () {
@@ -178,7 +178,7 @@ describe("TortillaGeneratorFunction", function () {
 
     describe("#dropWhile", function () {
         it("should drop all values until the predicate is true (infinite)", function () {
-            const r0 = this.inf.dropWhile(x => x < 2, -1).head();
+            const r0 = this.inf.dropWhile(x => x < 2).head();
             expect(r0).to.equal(2);
         });
 
@@ -198,8 +198,8 @@ describe("TortillaGeneratorFunction", function () {
 
     describe("#take", function () {
         it("should yield only the first n values (infinite)", function () {
-            const r0 = [...this.inf.take(5, 5)];
-            expect(r0).to.eql([5, 6, 7, 8, 9]);
+            const r0 = [...this.inf.take(5)];
+            expect(r0).to.eql([0, 1, 2, 3, 4]);
         });
 
         it("should yield only the first n values (finite)", function () {
@@ -218,8 +218,8 @@ describe("TortillaGeneratorFunction", function () {
 
     describe("#takeWhile", function () {
         it("should yield only the first value until the predicate is false (infinite)", function () {
-            const r0 = [...this.inf.takeWhile(x => x < 7, 5)];
-            expect(r0).to.eql([5, 6]);
+            const r0 = [...this.inf.takeWhile(x => x < 5)];
+            expect(r0).to.eql([0, 1, 2, 3, 4]);
         });
 
         it("should yield only the first value until the predicate is false (finite)", function () {
@@ -238,8 +238,8 @@ describe("TortillaGeneratorFunction", function () {
 
     describe("filter", function () {
         it("should yield only matching values (infinite)", function () {
-            const r0 = this.inf.filter(x => x > 4, 2).head();
-            expect(r0).to.equal(5);
+            const r0 = this.inf.filter(x => x > 3).head();
+            expect(r0).to.equal(4);
         });
 
         it("should yield only matching values (finite)", function () {
@@ -258,8 +258,8 @@ describe("TortillaGeneratorFunction", function () {
 
     describe("reject", function () {
         it("should yield only matching values (infinite)", function () {
-            const r0 = this.inf.reject(x => x <= 4, 2).head();
-            expect(r0).to.equal(5);
+            const r0 = this.inf.reject(x => x <= 3).head();
+            expect(r0).to.equal(4);
         });
 
         it("should yield only matching values (finite)", function () {
@@ -278,8 +278,8 @@ describe("TortillaGeneratorFunction", function () {
 
     describe("map", function () {
         it("should apply the function on each value and yield the results (infinite)", function () {
-            const r0 = this.inf.map(x => x * 2, 4).head();
-            expect(r0).to.equal(8);
+            const r0 = this.inf.map(x => x * 3).head();
+            expect(r0).to.equal(0);
         });
 
         it("should apply the function on each value and yield the results (finite)", function () {
@@ -298,8 +298,8 @@ describe("TortillaGeneratorFunction", function () {
 
     describe("flatten", function () {
         it("should yield the values of array separately (infinite)", function () {
-            const r0 = this.inf.apply(4).chunk(3).flatten().head();
-            expect(r0).to.equal(4);
+            const r0 = this.inf.chunk(3).flatten().head();
+            expect(r0).to.equal(0);
         });
 
         it("should yield the values of array separately (finite)", function () {
