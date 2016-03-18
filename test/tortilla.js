@@ -15,6 +15,10 @@ describe("tortilla", function () {
             yield "B";
             yield "C";
         });
+
+        this.iterable = tortilla("Hello");
+
+        this.iterator = tortilla("world"[Symbol.iterator]());
     });
 
     // describe("#empty", function () {
@@ -41,18 +45,24 @@ describe("tortilla", function () {
     //     });
     // });
 
+    // TODO: infinite, finite generator, multiple invocations on iterator, iterables
+
     describe("#head", function() {
-        it("should return the first value (infinite)", function () {
+        it("should return the first value (infinite generator)", function () {
             expect(this.inf.head()).to.equal(0);
         });
 
-        it("should return the first value (finite)", function () {
+        it("should return the first value (finite generator)", function () {
             expect(this.fin.head()).to.equal("A");
         });
 
-        it("should allow multiple invocations", function () {
-            expect(this.inf.head()).to.equal(0);
-            expect(this.inf.head()).to.equal(0);
+        it("should return the first value (iterable)", function () {
+            expect(this.iterable.head()).to.equal("H");
+        });
+
+        it("should return the first value (iterator)", function () {
+            expect(this.iterator.head()).to.equal("w");
+            expect(this.iterator.head()).to.equal("w");
         });
     });
 

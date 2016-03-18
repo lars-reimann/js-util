@@ -22,10 +22,9 @@ export default class TortillaIterable extends TortillaWrapper {
     }
 
     /**
-     * Turns this wrapper into an iterator. For this to work, the wrapped
-     * function must not expect any more parameters.
+     * Turns this wrapper into an iterator.
      */
     [Symbol.iterator]() {
-        return this[Symbol.iterator]();
+        return this.iterable[Symbol.iterator]();
     }
 }

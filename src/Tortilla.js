@@ -3,22 +3,79 @@ import TortillaIterable          from "./TortillaIterable.js";
 import TortillaIterator          from "./TortillaIterator.js";
 import TortillaWrapper           from "./TortillaWrapper.js";
 
+/**
+ * Tests if the given value is wrapped already.
+ *
+ * @param {*} v
+ * The value to test.
+ *
+ * @return {Boolean}
+ * Whether the given value is wrapped already.
+ *
+ * @ignore
+ */
 const isWrapped = function (v) {
     return v instanceof TortillaWrapper;
 };
 
+/**
+ * Tests if the given value is a function returning an iterator.
+ *
+ * @param {*} v
+ * The value to test.
+ *
+ * @return {Boolean}
+ * Whether the given value is a generator function.
+ *
+ * @ignore
+ */
 const isGeneratorFunction = function (v) {
-    return v()[Symbol.iterator];
+    return typeof v === "function" && v()[Symbol.iterator];
 };
 
+/**
+ * Tests if the given value is an iterable.
+ *
+ * @param {*} v
+ * The value to test.
+ *
+ * @return {Boolean}
+ * Whether the given value is an iterable.
+ *
+ * @ignore
+ */
 const isIterable = function (v) {
     return v[Symbol.iterator] && v[Symbol.iterator]() !== v;
 };
 
+/**
+ * Tests if the given value is an iterator. While those are usually also
+ * iterable, they cannot be reset.
+ *
+ * @param {*} v
+ * The value to test.
+ *
+ * @return {Boolean}
+ * Whether the given value is an iterator.
+ *
+ * @ignore
+ */
 const isIterator = function (v) {
     return v[Symbol.iterator] && v[Symbol.iterator]() === v;
 };
 
+/**
+ * Wraps the given value into an appropriate wrapper.
+ *
+ * @param {*} toWrap
+ * The value to wrap.
+ *
+ * @return {TortillaWrapper}
+ * The wrapped value.
+ *
+ * @throws {Error}
+ * If the value cannot be wrapped.
+ */
 export const tortilla = function (toWrap) {
     if (isWrapped(toWrap)) {
         return toWrap;
