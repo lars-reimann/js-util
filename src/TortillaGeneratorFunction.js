@@ -10,8 +10,12 @@ export default class TortillaGeneratorFunction {
         });
     }
 
-    static range(start = 0, stop, step = 1) {
-        // TODO
+    static range(start = 0, stop = Number.POSITIVE_INFINITY, step = 1) {
+        return new TortillaGeneratorFunction(function* () {
+            for (let i = start; i < stop; i += step) {
+                yield i;
+            }
+        });
     }
 
     constructor(f) {
@@ -32,19 +36,21 @@ export default class TortillaGeneratorFunction {
         return new TortillaGeneratorFunction(function* () {
             const iterator = that.f(...params);
             for (let i = 0; i < n; i++) {
-                iterator.next();
+                const {done} = iterator.next();
+                if (done) return;
             }
             yield* iterator;
         });
     }
-// TODO: problem finite generators
+
     dropWhile(predicate, ...params) {
         const that = this;
         return new TortillaGeneratorFunction(function* () {
             const iterator = that.f(...params);
-            let value;
+            let value, done;
             do {
-                ({value} = iterator.next());
+                ({value, done} = iterator.next());
+                if (done) return;
             } while (predicate(value));
             yield value;
             yield* iterator;
@@ -56,7 +62,8 @@ export default class TortillaGeneratorFunction {
         return new TortillaGeneratorFunction(function* () {
             const iterator = that.f(...params);
             for (let i = 0; i < n; i++) {
-                const {value} = iterator.next();
+                const {value, done} = iterator.next();
+                if (done) return;
                 yield value;
             }
         });
@@ -67,12 +74,9 @@ export default class TortillaGeneratorFunction {
         return new TortillaGeneratorFunction(function* () {
             const iterator = that.f(...params);
             while (true) {
-                const {value} = iterator.next();
-                if (predicate(value)) {
-                    yield value;
-                } else {
-                    break;
-                }
+                const {value, done} = iterator.next();
+                if (done || !predicate(value)) return;
+                yield value;
             }
         });
     }
@@ -88,28 +92,24 @@ export default class TortillaGeneratorFunction {
         });
     }
 
-    map(f, ...params) {
+    map(iteratee, ...params) {
         const that = this;
         return new TortillaGeneratorFunction(function* () {
             for (let value of that.f(...params)) {
-                yield f(value);
+                yield iteratee(value);
             }
         });
     }
 
-    // apply method (partially)
-
-    apply(...params) {
-
-    }
-
-    toIterator(...params) {
-
+    apply(...outer) {
+        const that = this;
+        return new TortillaGeneratorFunction(function* (...inner) {
+            const params = outer.concat(inner);
+            yield* that.f(...params);
+        });
     }
 
     [Symbol.iterator]() {
         return this.f();
     }
-
-    // concat, zip
 }
