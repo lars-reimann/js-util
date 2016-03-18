@@ -1,16 +1,14 @@
-import TortillaWrapper           from "./TortillaWrapper.js";
 import TortillaGeneratorFunction from "./TortillaGeneratorFunction.js";
 import TortillaIterable          from "./TortillaIterable.js";
 import TortillaIterator          from "./TortillaIterator.js";
-
-const GeneratorFunction = function* () {};
+import TortillaWrapper           from "./TortillaWrapper.js";
 
 const isWrapped = function (v) {
     return v instanceof TortillaWrapper;
 };
 
 const isGeneratorFunction = function (v) {
-    return v instanceof GeneratorFunction;
+    return v()[Symbol.iterator];
 };
 
 const isIterable = function (v) {
@@ -21,7 +19,7 @@ const isIterator = function (v) {
     return v[Symbol.iterator] && v[Symbol.iterator]() === v;
 };
 
-const tortilla = function (toWrap) {
+export const tortilla = function (toWrap) {
     if (isWrapped(toWrap)) {
         return toWrap;
     } else if (isGeneratorFunction(toWrap)) {
@@ -83,4 +81,42 @@ tortilla.range = function (start = 0, end = Number.POSITIVE_INFINITY, step = 1) 
     });
 };
 
-export default tortilla;
+tortilla.concat = function (toConcat) {
+    return new TortillaGeneratorFunction(function* () {
+        for (let iterable of toConcat) {
+            yield* iterable;
+        }
+    });
+};
+
+tortilla.zip = function (toZip) {
+    return tortilla.zipWith((...xs) => xs, toZip);
+};
+
+tortilla.zipWith = function (iteratee, toZip) {
+    const iterators = toZip.map(x => x[Symbol.iterator]());
+    return new TortillaGeneratorFunction(function* () {
+        while (true) {
+            const results = iterators.map(x => x.next());
+            if (results.some(x => x.done)) return;
+            yield iteratee(...results.map(x => x.values));
+        }
+    });
+};
+
+tortilla.unzip = function (toUnzip) {
+    // const wrapped = tortilla(toUnzip);
+    // const iterator = toUnzip[Symbol.iterator]();
+    // let {value, done} = iterator.next();
+    // const length = value.length();
+    // if (done) return;
+    // const result = [];
+    // for (let i = 0; i < length; i++) {
+    //     result[i] =
+    // }
+    // return result;
+};
+
+tortilla.unzipWith = function () {
+    // TODO
+};

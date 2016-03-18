@@ -1,16 +1,16 @@
 import {expect} from "chai";
 
-import {TortillaGeneratorFunction} from "../src/util.js";
+import {tortilla} from "../src/util.js";
 
-describe("TortillaGeneratorFunction", function () {
+describe("tortilla", function () {
     beforeEach(function () {
-        this.inf = new TortillaGeneratorFunction(function* (first = 0) {
+        this.inf = tortilla(function* (first = 0) {
             for (let n = first; ; n++) {
                 yield n;
             }
         });
 
-        this.fin = new TortillaGeneratorFunction(function* () {
+        this.fin = tortilla(function* () {
             yield "A";
             yield "B";
             yield "C";

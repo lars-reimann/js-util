@@ -1,5 +1,3 @@
-import _ from "lodash/fp";
-
 import TortillaWrapper from "./TortillaWrapper.js";
 
 /**
@@ -29,7 +27,7 @@ export default class TortillaGeneratorFunction extends TortillaWrapper {
      * @param {...*} outer
      * The parameters to apply.
      *
-     * @return {TortillaGeneratorFunction}
+     * @return {TortillaWrapper}
      * The new wrapper.
      */
     apply(...outer) {

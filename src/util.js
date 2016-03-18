@@ -15,5 +15,4 @@ export Plugin                                                        from "./Plu
 export Tolkien1To1Map                                                from "./Tolkien1To1Map.js";
 export Tolkien1ToNMap                                                from "./Tolkien1ToNMap.js";
 export TolkienMToNMap                                                from "./TolkienMToNMap.js";
-export TortillaGeneratorFunction                                     from "./TortillaGeneratorFunction.js";
-export TortillaIterable                                              from "./TortillaIterable.js";
+export {tortilla}                                                    from "./Tortilla.js";

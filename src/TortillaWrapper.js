@@ -258,14 +258,4 @@ export default class TortillaWrapper {
     [Symbol.iterator]() {
         throw new Error("Calling an abstract function.");
     }
-
-    /*
-    TODO
-
-    concat
-    zip
-    unzip
-    zipWith
-    unzipWith
-    */
 }
