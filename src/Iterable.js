@@ -1,17 +1,34 @@
 import _ from "lodash/fp";
 
+import IterableIterator from "./IterableIterator.js";
+
 export default class Iterable {
+    static isIterator(iterable) {
+        return iterable[Symbol.iterator]() === iterable;
+    }
+
+// TODO: an additional class for generator constructors?
+
     constructor(iterable) {
         this.before = [];
-        this.iterable = iterable();
+        this.iterable = iterable;
         this.current = 0;
 
         // TODO: maybe use a pointer to mark the current position
         // allow resetting this iterable
     }
 
+    call constructor(iterable) {
+        if (Iterable.isIterator(iterable)) {
+            return new IterableIterator(iterable);
+        } else {
+            return new Iterable(iterable);
+        }
+    }
+
     head() {
-        return this.peak();
+        const [value] = this.iterable;
+        return value;
     }
 
     drop(n) {
@@ -28,6 +45,10 @@ export default class Iterable {
         });
     }
 
+    tail() {
+        return this.drop(1);
+    }
+
     concat({before = [], after = []} = {}) {
         const that = this;
         return new Iterable(function* () {
@@ -37,23 +58,22 @@ export default class Iterable {
         });
     }
 
-    peak() {
-        if (this.before.length > 0) {
-            return this.before[0];
+    peek(index) {
+        if (this.before.length > index) {
+            return this.before[index];
         }
 
         const iterator = this.iterable[Symbol.iterator]();
-        const {value} = iterator.next();
+
+       // while ()
+
+        const [value] = iterator;
 
         if (iterator === this.iterable) {
             this.before.push(value);
         }
 
         return value;
-    }
-
-    next() {
-
     }
 
     value() {
