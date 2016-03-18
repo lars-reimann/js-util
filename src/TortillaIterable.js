@@ -1,6 +1,6 @@
 import _ from "lodash/fp";
 
-import IterableIterator from "./IterableIterator.js";
+import TortillaIterator from "./TortillaIterator.js";
 
 export default class Iterable {
     static isIterator(iterable) {
@@ -20,7 +20,7 @@ export default class Iterable {
 
     call constructor(iterable) {
         if (Iterable.isIterator(iterable)) {
-            return new IterableIterator(iterable);
+            return new Iterator(iterable);
         } else {
             return new Iterable(iterable);
         }
@@ -90,10 +90,6 @@ export const IterableFP = {};
 
 _.chunk
 _.compact
-
-_.dropRight
-_.dropRightWhile
-_.dropWhile
 _.fill
 _.findIndex
 _.findLastIndex

@@ -1,10 +1,10 @@
 import {expect} from "chai";
 
-import {Iterable} from "../src/util.js";
+import {TortillaIterable} from "../src/util.js";
 
-describe("Iterable", function () {
+describe("TortillaIterable", function () {
     beforeEach(function () {
-        this.s = Iterable("Hello, world");
+        this.s = TortillaIterable("Hello, world");
     });
 
     describe("#head", function() {

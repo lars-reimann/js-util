@@ -10,9 +10,10 @@ export GumpMap                                                       from "./Gum
 export GumpPath                                                      from "./GumpPath.js";
 export GumpSet                                                       from "./GumpSet.js";
 export IDGenerator                                                   from "./IDGenerator.js";
-export Iterable                                                      from "./Iterable.js";
 export {observableSymbols, observableMixin, observableExtendedMixin} from "./Observable.js";
 export Plugin                                                        from "./Plugin.js";
 export Tolkien1To1Map                                                from "./Tolkien1To1Map.js";
 export Tolkien1ToNMap                                                from "./Tolkien1ToNMap.js";
 export TolkienMToNMap                                                from "./TolkienMToNMap.js";
+export TortillaGeneratorFunction                                     from "./TortillaGeneratorFunction.js";
+export TortillaIterable                                              from "./TortillaIterable.js";
