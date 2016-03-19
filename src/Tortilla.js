@@ -195,20 +195,3 @@ tortilla.zipWith = function (iteratee, iterables) {
         }
     });
 };
-
-tortilla.unzip = function (toUnzip) {
-    // const wrapped = tortilla(toUnzip);
-    // const iterator = toUnzip[Symbol.iterator]();
-    // let {value, done} = iterator.next();
-    // const length = value.length();
-    // if (done) return;
-    // const result = [];
-    // for (let i = 0; i < length; i++) {
-    //     result[i] =
-    // }
-    // return result;
-};
-
-tortilla.unzipWith = function () {
-    // TODO
-};
