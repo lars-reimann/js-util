@@ -45,7 +45,10 @@ const isGeneratorFunction = function (v) {
  * @ignore
  */
 const isIterable = function (v) {
-    return v[Symbol.iterator] && v[Symbol.iterator]() !== v;
+    return v !== undefined &&
+           v !== null &&
+           typeof v[Symbol.iterator] === "function" &&
+           v[Symbol.iterator]() !== v;
 };
 
 /**
@@ -61,7 +64,10 @@ const isIterable = function (v) {
  * @ignore
  */
 const isIterator = function (v) {
-    return v[Symbol.iterator] && v[Symbol.iterator]() === v;
+    return v !== undefined &&
+           v !== null &&
+           typeof v[Symbol.iterator] === "function" &&
+           v[Symbol.iterator]() === v;
 };
 
 /**
