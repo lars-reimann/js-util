@@ -127,7 +127,7 @@ tortilla.constant = function (value) {
  * @param {Number} [step=1]
  * The size of each step.
  *
- * @return {TortillaGeneratorFunction}
+ * @return {TortillaWrapper}
  * The wrapper.
  */
 tortilla.range = function (start = 0, end = Number.POSITIVE_INFINITY, step = 1) {
@@ -138,25 +138,60 @@ tortilla.range = function (start = 0, end = Number.POSITIVE_INFINITY, step = 1) 
     });
 };
 
-tortilla.concat = function (toConcat) {
+/**
+ * Concatenates the given iterables. First the results of the first iterable are
+ * yielded, then the ones of the next and so forth.
+ *
+ * @param {Iterable} iterables
+ * An iterable containing the iterables to concatenate.
+ *
+ * @return {TortillaWrapper}
+ * The resulting wrapper.
+ */
+tortilla.concat = function (iterables) {
     return new TortillaGeneratorFunction(function* () {
-        for (let iterable of toConcat) {
+        for (let iterable of iterables) {
             yield* iterable;
         }
     });
 };
 
-tortilla.zip = function (toZip) {
-    return tortilla.zipWith((...xs) => xs, toZip);
+/**
+ * Combines the results of the given iterables in an array. At index 0, the
+ * results of the first iterable are yielded, at index 1 the ones of the next
+ * and so forth.
+ *
+ * @param {Iterable} iterables
+ * An iterable containing the iterables to zip.
+ *
+ * @return {TortillaWrapper}
+ * The resulting wrapper.
+ */
+tortilla.zip = function (iterables) {
+    return tortilla.zipWith((...xs) => xs, iterables);
 };
 
-tortilla.zipWith = function (iteratee, toZip) {
-    const iterators = toZip.map(x => x[Symbol.iterator]());
+/**
+ * Combines the results of the given iterables using the given function. The
+ * first argument of the function are the results of the first iterable, the
+ * second argument is determined by the second iterable and so forth.
+ *
+ * @param {Function} iteratee
+ * The function to use for zipping.
+ *
+ * @param {Iterable} iterables
+ * An iterable containing the iterables to zip.
+ *
+ * @return {TortillaWrapper}
+ * The resulting wrapper.
+ */
+tortilla.zipWith = function (iteratee, iterables) {
+    const iterators = iterables.map(x => x[Symbol.iterator]());
     return new TortillaGeneratorFunction(function* () {
         while (true) {
             const results = iterators.map(x => x.next());
             if (results.some(x => x.done)) return;
-            yield iteratee(...results.map(x => x.values));
+            yield iteratee(...results.map(x => x.value));
         }
     });
 };

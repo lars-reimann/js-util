@@ -21,32 +21,6 @@ describe("TortillaWrapper", function () {
         this.iterator = tortilla("world"[Symbol.iterator]());
     });
 
-    // describe("#empty", function () {
-    //     it("should not yield any values", function () {
-    //         const r0 = [...TortillaGeneratorFunction.empty];
-    //         expect(r0).to.be.empty;
-    //     });
-    // });
-
-    // describe("#constant", function () {
-    //     it("should yield the same value forever", function () {
-    //         const r0 = [...TortillaGeneratorFunction.constant("A").take(3)];
-    //         expect(r0).to.eql(["A", "A", "A"]);
-    //     });
-    // });
-
-    // describe("#range", function () {
-    //     it("should yield all values in the given range", function () {
-    //         const r0 = [...TortillaGeneratorFunction.range(0, 5, 2)];
-    //         expect(r0).to.eql([0, 2, 4]);
-
-    //         const r1 = [...TortillaGeneratorFunction.range().take(4)];
-    //         expect(r1).to.eql([0, 1, 2, 3]);
-    //     });
-    // });
-
-    // TODO: infinite, finite generator, multiple invocations on iterator, iterables
-
     describe("#head", function() {
         it("should return the first value (infinite generator)", function () {
             expect(this.inf.head()).to.equal(0);
@@ -116,7 +90,7 @@ describe("TortillaWrapper", function () {
         });
     });
 
-    describe("compact", function () {
+    describe("#compact", function () {
         it("should remove all falsy values (infinite)", function () {
             const r0 = this.inf.compact().head();
             expect(r0).to.equal(1);
@@ -141,7 +115,7 @@ describe("TortillaWrapper", function () {
         });
     });
 
-    describe("without", function () {
+    describe("#without", function () {
         it("should remove all matching values (infinite)", function () {
             const r0 = this.inf.without([0, 1]).head();
             expect(r0).to.equal(2);
@@ -166,7 +140,7 @@ describe("TortillaWrapper", function () {
         });
     });
 
-    describe("slice", function () {
+    describe("#slice", function () {
         it("should only yield values in the given range (infinite)", function () {
             const r0 = [...this.inf.slice(1, 3)];
             expect(r0).to.eql([1, 2]);
@@ -291,7 +265,7 @@ describe("TortillaWrapper", function () {
         });
     });
 
-    describe("filter", function () {
+    describe("#filter", function () {
         it("should yield only matching values (infinite)", function () {
             const r0 = this.inf.filter(x => x > 3).head();
             expect(r0).to.equal(4);
@@ -316,7 +290,7 @@ describe("TortillaWrapper", function () {
         });
     });
 
-    describe("reject", function () {
+    describe("#reject", function () {
         it("should yield only matching values (infinite)", function () {
             const r0 = this.inf.reject(x => x <= 3).head();
             expect(r0).to.equal(4);
@@ -341,7 +315,7 @@ describe("TortillaWrapper", function () {
         });
     });
 
-    describe("map", function () {
+    describe("#map", function () {
         it("should apply the function on each value and yield the results (infinite)", function () {
             const r0 = this.inf.map(x => x * 3).head();
             expect(r0).to.equal(0);
@@ -366,7 +340,7 @@ describe("TortillaWrapper", function () {
         });
     });
 
-    describe("flatten", function () {
+    describe("#flatten", function () {
         it("should yield the values of arrays separately (infinite)", function () {
             const r0 = this.inf.chunk(3).flatten().head();
             expect(r0).to.equal(0);
@@ -391,7 +365,7 @@ describe("TortillaWrapper", function () {
         });
     });
 
-    describe("apply", function () {
+    describe("#apply", function () {
         it("should partially apply the given parameters (generator function)", function () {
             const r0 = this.inf.apply(4).head();
             expect(r0).to.equal(4);
@@ -403,5 +377,58 @@ describe("TortillaWrapper", function () {
 
     after(function () {
         delete this.f;
+    });
+});
+
+describe("tortilla", function () {
+    describe("#empty", function () {
+        it("should not yield any values", function () {
+            const r0 = [...tortilla.empty];
+            expect(r0).to.be.empty;
+        });
+    });
+
+    describe("#constant", function () {
+        it("should yield the same value forever", function () {
+            const r0 = [...tortilla.constant("A").take(3)];
+            expect(r0).to.eql(["A", "A", "A"]);
+        });
+    });
+
+    describe("#range", function () {
+        it("should yield all values in the given range", function () {
+            const r0 = [...tortilla.range(0, 5, 2)];
+            expect(r0).to.eql([0, 2, 4]);
+
+            const r1 = [...tortilla.range().take(4)];
+            expect(r1).to.eql([0, 1, 2, 3]);
+        });
+    });
+
+    describe("#concat", function () {
+        it("should concatenate the given iterables", function () {
+            const r0 = [...tortilla.concat(["Hello", " ",  tortilla("world")])].join("");
+            expect(r0).to.equal("Hello world");
+        });
+    });
+
+    describe("#zip", function () {
+        it("should yield arrays containing the results of all iterables", function () {
+            const r0 = [...tortilla.zip([tortilla.range(), "Hello"])];
+            expect(r0).to.eql([
+                [0, "H"],
+                [1, "e"],
+                [2, "l"],
+                [3, "l"],
+                [4, "o"]
+            ]);
+        });
+    });
+
+    describe("#zipWith", function () {
+        it("should apply the function to the results of all iterables", function () {
+            const r0 = [...tortilla.zipWith((x, y) => x + y, [tortilla.range(), "Hello"])];
+            expect(r0).to.eql(["0H", "1e", "2l", "3l", "4o"]);
+        });
     });
 });
