@@ -1,5 +1,3 @@
-import "babel-regenerator-runtime"; // TODO remove once babel bug is fixed
-
 import _ from "lodash/fp";
 
 import EventManager              from "./EventManager.js";

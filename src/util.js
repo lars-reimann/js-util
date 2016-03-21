@@ -1,4 +1,5 @@
-import "core-js"; // TODO remove when no longer needed
+import "babel-regenerator-runtime";
+import "core-js";
 
 export {cloneableSymbols, cloneableMixin, cloneableExtendedMixin}    from "./Cloneable.js";
 export Cloner                                                        from "./Cloner.js";

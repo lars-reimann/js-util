@@ -13,6 +13,16 @@ export default class TortillaWrapper {
     constructor() {}
 
     /**
+     * Tests if any values are contained.
+     *
+     * @return {Boolean}
+     * If any values are contained.
+     */
+    isEmpty() {
+        return this.head() === undefined;
+    }
+
+    /**
      * Returns the first value.
      *
      * @return {*}

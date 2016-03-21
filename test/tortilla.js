@@ -21,6 +21,26 @@ describe("TortillaWrapper", function () {
         this.iterator = tortilla("world"[Symbol.iterator]());
     });
 
+    describe("#isEmpty", function() {
+        it("should test if any values are contained (infinite generator)", function () {
+            expect(this.inf.isEmpty()).to.be.false;
+        });
+
+        it("should test if any values are contained (finite generator)", function () {
+            expect(this.fin.isEmpty()).to.be.false;
+        });
+
+        it("should test if any values are contained (iterable)", function () {
+            expect(this.iterable.isEmpty()).to.be.false;
+            expect(tortilla.empty.isEmpty()).to.be.true;
+        });
+
+        it("should test if any values are contained (iterator)", function () {
+            expect(this.iterator.isEmpty()).to.be.false;
+            expect(this.iterator.isEmpty()).to.be.false;
+        });
+    });
+
     describe("#head", function() {
         it("should return the first value (infinite generator)", function () {
             expect(this.inf.head()).to.equal(0);
