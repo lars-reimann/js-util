@@ -82,7 +82,7 @@ const isIterator = function (v) {
  * @throws {Error}
  * If the value cannot be wrapped.
  */
-export const tortilla = function (toWrap) {
+export default function tortilla(toWrap) {
     if (isWrapped(toWrap)) {
         return toWrap;
     } else if (isGeneratorFunction(toWrap)) {
