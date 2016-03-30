@@ -120,6 +120,9 @@ describe("Tolkien1To1Map", function () {
 
             const r1 = this.map.convertXToY("number");
             expect(r1).to.have.members([42]);
+
+            const r2 = this.map.convertXToY("1");
+            expect(r2).to.be.empty;
         });
     });
 
@@ -130,6 +133,9 @@ describe("Tolkien1To1Map", function () {
 
             const r1 = this.map.convertYToX(42);
             expect(r1).to.have.members(["number"]);
+
+            const r2 = this.map.convertYToX("1");
+            expect(r2).to.be.empty;
         });
     });
 

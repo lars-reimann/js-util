@@ -30,7 +30,7 @@ describe("TolkienMToNMap", function () {
             const r1 = this.map.has({x: "x", y: "y"});
             expect(r1).to.be.true;
         });
-        
+
         it("should add new entries even if the y-value was used before", function () {
             const r2 = this.map.has({x: "answer", y: 42});
             expect(r2).to.be.true;
@@ -122,6 +122,9 @@ describe("TolkienMToNMap", function () {
 
             const r1 = this.map.convertXToY("number");
             expect(r1).to.have.members([42]);
+
+            const r2 = this.map.convertXToY("1");
+            expect(r2).to.be.empty;
         });
     });
 
@@ -132,6 +135,9 @@ describe("TolkienMToNMap", function () {
 
             const r1 = this.map.convertYToX(42);
             expect(r1).to.have.members(["number", "answer"]);
+
+            const r2 = this.map.convertYToX("1");
+            expect(r2).to.be.empty;
         });
     });
 

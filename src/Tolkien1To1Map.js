@@ -65,18 +65,14 @@ export default class Tolkien1To1Map extends TolkienMap {
      * @override
      */
     convertXToY(x) {
-        if (this.hasX(x)) {
-            return [this.xToY.get(x)];
-        }
+        return this.hasX(x) ? [this.xToY.get(x)] : [];
     }
 
     /**
      * @override
      */
     convertYToX(y) {
-        if (this.hasY(y)) {
-            return [this.yToX.get(y)];
-        }
+        return this.hasY(y) ? [this.yToX.get(y)] : [];
     }
 
     /**

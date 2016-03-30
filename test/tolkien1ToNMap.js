@@ -22,13 +22,13 @@ describe("Tolkien1ToNMap", function () {
             const r = this.map.has({x: "key", y: "value"});
             expect(r).to.be.true;
         });
-        
+
         it("should add new entries even if the x-value was used before", function () {
             const r0 = this.map.has({x: "x", y: "z"});
             expect(r0).to.be.true;
 
             const r1 = this.map.has({x: "x", y: "y"});
-            expect(r1).to.be.true;            
+            expect(r1).to.be.true;
         });
 
         it("should override entries with the same y-value", function () {
@@ -122,6 +122,9 @@ describe("Tolkien1ToNMap", function () {
 
             const r1 = this.map.convertXToY("number");
             expect(r1).to.have.members([42]);
+
+            const r2 = this.map.convertXToY("1");
+            expect(r2).to.be.empty;
         });
     });
 
@@ -132,6 +135,9 @@ describe("Tolkien1ToNMap", function () {
 
             const r1 = this.map.convertYToX(42);
             expect(r1).to.have.members(["number"]);
+
+            const r2 = this.map.convertYToX("1");
+            expect(r2).to.be.empty;
         });
     });
 
