@@ -1,12 +1,10 @@
 # Changelog
 
-##
-
 ## 1.2.0 (2016-03-30)
 
 * Added the classes GumpMap, GumpSet and GumpPath. Those make it easy to structure data hierarchically by providing access to nested values from the top level container.
 * Building on that the classes Tolkien1To1Map, Tolkien1ToNMap and TolkienMToNMap can be used to express relations between entities.
-* Added a wrapper for
+* Added a wrapper for iterables, iterators and generator functions providing combinators.
 
 ## 1.1.7 (2016-02-11)
 
