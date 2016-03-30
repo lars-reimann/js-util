@@ -1,6 +1,6 @@
 {
   "name": "@ignavia/util",
-  "version": "1.1.7",
+  "version": "1.2.0",
   "description": "Some utility classes.",
   "keywords": [
     "utility"
@@ -71,4 +71,4 @@
       "process": "github:jspm/nodelibs-process@^0.2.0-alpha"
     }
   }
-}
+}
