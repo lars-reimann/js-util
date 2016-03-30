@@ -6,11 +6,11 @@ import TolkienMap from "./TolkienMap.js";
 export default class Tolkien1To1Map extends TolkienMap {
 
     /**
-     * @param {Array} initialValues
+     * @param {Array} [initialValues=[]]
      * The initial entries of the map. Those are added to the map in the order
      * specified by the array.
      */
-    constructor(initialValues) {
+    constructor(initialValues = []) {
         super(Map, Map, initialValues);
     }
 

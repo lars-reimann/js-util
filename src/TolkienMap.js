@@ -21,11 +21,11 @@ export default class TolkienMap {
      * @param {Function} YCon
      * The constructor to use for the yToX map.
      *
-     * @param {Array} initialValues
+     * @param {Array} [initialValues=[]]
      * The initial entries of the map. Those are added to the map in the order
      * specified by the array.
      */
-    constructor(XCon, YCon, initialValues) {
+    constructor(XCon, YCon, initialValues = []) {
 
         /**
          * Maps from x-values to y-values.
@@ -251,7 +251,7 @@ export default class TolkienMap {
      *
      * @param {*} x
      * The x-value.
-     * 
+     *
      * @return {Boolean}
      * If an entry with the given x-value exists.
      */
@@ -287,16 +287,16 @@ export default class TolkienMap {
     hasPair(x, y) {
         throw new Error("Calling an abstract method.");
     }
-    
+
     /**
      * Tests if an entry with the given x-value or the given y-value exists.
-     * 
+     *
      * @param {*} x
      * The x-value.
-     * 
+     *
      * @param {*} y
      * The y-value.
-     * 
+     *
      * @return {Boolean}
      * If an entry with the given x-value or the given y-value exists.
      */
@@ -316,7 +316,7 @@ export default class TolkienMap {
      *
      * @param {*} [conf.y]
      * The y-value.
-     * 
+     *
      * @return {Boolean}
      * If an entry with the given x- and y-values exists.
      */

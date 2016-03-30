@@ -7,11 +7,11 @@ import TolkienMap from "./TolkienMap.js";
 export default class TolkienMToNMap extends TolkienMap {
 
     /**
-     * @param {Array} initialValues
+     * @param {Array} [initialValues[]]
      * The initial entries of the map. Those are added to the map in the order
      * specified by the array.
      */
-    constructor(initialValues) {
+    constructor(initialValues = []) {
         super(GumpMap, GumpMap, initialValues);
     }
 
@@ -48,7 +48,7 @@ export default class TolkienMToNMap extends TolkienMap {
             for (const x of xs) {
                 this.xToY.delete(x);
             }
-            return xs.map(x => [x, y]); 
+            return xs.map(x => [x, y]);
         }
     }
 
