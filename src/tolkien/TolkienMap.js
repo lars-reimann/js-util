@@ -1,5 +1,5 @@
-import EventManager              from "./EventManager.js";
-import {observableExtendedMixin} from "./Observable.js";
+import EventManager              from "../EventManager.js";
+import {observableExtendedMixin} from "../Observable.js";
 
 /**
  * Signalizes that a parameter was not supplied.

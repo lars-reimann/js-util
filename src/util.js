@@ -7,13 +7,9 @@ export Color, {predefinedColors}                                     from "./Col
 export Event                                                         from "./Event.js";
 export EventManager                                                  from "./EventManager.js";
 export {extensibleSymbols, extensibleMixin, extensibleExtendedMixin} from "./Extensible.js";
-export GumpMap                                                       from "./GumpMap.js";
-export GumpPath                                                      from "./GumpPath.js";
-export GumpSet                                                       from "./GumpSet.js";
+export *                                                             from "./gump/gump.js";
 export IDGenerator                                                   from "./IDGenerator.js";
 export {observableSymbols, observableMixin, observableExtendedMixin} from "./Observable.js";
 export Plugin                                                        from "./Plugin.js";
-export Tolkien1To1Map                                                from "./Tolkien1To1Map.js";
-export Tolkien1ToNMap                                                from "./Tolkien1ToNMap.js";
-export TolkienMToNMap                                                from "./TolkienMToNMap.js";
-export tortilla                                                      from "./tortilla.js";
+export *                                                             from "./tolkien/tolkien.js";
+export tortilla                                                      from "./tortilla/tortilla.js";

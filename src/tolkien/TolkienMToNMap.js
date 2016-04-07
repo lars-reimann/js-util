@@ -1,4 +1,4 @@
-import GumpMap    from "./GumpMap.js";
+import {GumpMap}  from "../gump/gump.js";
 import TolkienMap from "./TolkienMap.js";
 
 /**

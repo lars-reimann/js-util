@@ -1,7 +1,7 @@
 import _ from "lodash/fp";
 
-import EventManager              from "./EventManager.js";
-import {observableExtendedMixin} from "./Observable.js";
+import EventManager              from "../EventManager.js";
+import {observableExtendedMixin} from "../Observable.js";
 
 import GumpPath from "./GumpPath.js";
 import GumpSet  from "./GumpSet.js";
