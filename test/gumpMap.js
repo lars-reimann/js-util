@@ -191,14 +191,16 @@ describe("GumpMap", function () {
 
         it("should remove containers when they become empty and the corresponding flag is set", function () {
             const map = new GumpMap({
-                initialValues:            [["this", 3], ["this", 4]],
+                initialValues:            [["this.a", 3], ["this.a", 4]],
                 autoPurgeEmptyContainers: true
             });
-            map.delete("this", 3);
+            map.delete("this.a", 3);
             expect(map.has("this")).to.be.true;
+            expect(map.has("this.a")).to.be.true;
 
-            map.delete("this", 4);
+            map.delete("this.a", 4);
             expect(map.has("this")).to.be.false;
+            expect(map.has("this.a")).to.be.false;
         });
 
         it("should fire an event", function () {

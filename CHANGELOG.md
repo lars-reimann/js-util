@@ -4,6 +4,7 @@
 
 * Added a way to set the counter on the idGenerator. This can be used to skip some IDs that might be used already.
 * Added a method to get the top-level keys of a GumpMap.
+* Added an option to GumpMaps to automatically delete containers once the become empty.
 
 ## 1.2.0 (2016-03-30)
 
