@@ -34,4 +34,14 @@ export default class IDGenerator {
     next() {
         return this.prefix + (this.counter++);
     }
+
+    /**
+     * Sets the counter to the given value.
+     *
+     * @param {Number} n
+     * The new value of the counter.
+     */
+    setCounter(n) {
+        this.counter = n;
+    }
 }

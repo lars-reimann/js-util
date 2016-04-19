@@ -10,8 +10,8 @@ describe("IDGenerator", function () {
         const g = new IDGenerator("p");
 
         it("should prefix IDs", function () {
-            const id0 = g.next();
-            expect(id0).to.startWith("p");
+            const id = g.next();
+            expect(id).to.startWith("p");
         });
 
         it("should return unique IDs", function () {
@@ -19,6 +19,16 @@ describe("IDGenerator", function () {
                   id1 = g.next();
 
             expect(id0).to.not.equal(id1);
+        });
+    });
+
+    describe("#setCounter", function() {
+        const g = new IDGenerator("p");
+
+        it("should set the counter to the given value", function () {
+            g.setCounter(10);
+            const id = g.next();
+            expect(id).to.equal("p10");
         });
     });
 });
