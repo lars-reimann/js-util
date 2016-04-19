@@ -3,6 +3,7 @@
 ## 1.3.0 (2016-04-19)
 
 * Added a way to set the counter on the idGenerator. This can be used to skip some IDs that might be used already.
+* Added a method to get the top-level keys of a GumpMap.
 
 ## 1.2.0 (2016-03-30)
 

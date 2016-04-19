@@ -642,6 +642,13 @@ export default class GumpMap {
     }
 
     /**
+     * Yields all keys of the top-level map.
+     */
+    keys() {
+        return this.children.keys();
+    }
+
+    /**
      * Yields all paths of this map.
      *
      * @param {Boolean} [resolveMaps=true]

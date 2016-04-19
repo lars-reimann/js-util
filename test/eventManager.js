@@ -10,7 +10,6 @@ const addListener    = observableSymbols.addListener,
       fireEvent      = observableSymbols.fireEvent;
 
 describe("EventManager", function () {
-
     describe("#addListener", function () {
         it("should add an event listener", function () {
             const em  = new EventManager(),

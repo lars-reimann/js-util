@@ -265,7 +265,7 @@ describe("GumpMap", function () {
     });
 
     describe("#entries", function () {
-        it("should return the top level entries (resolveMaps = resolveSets = false)", function () {
+        it("should return the top-level entries (resolveMaps = resolveSets = false)", function () {
             const entries = [...this.map.entries({resolveMaps: false, resolveSets: false})];
             const keys    = entries.map(e => e[0].toString());
             const values  = entries.map(e => e[1]);
@@ -288,8 +288,15 @@ describe("GumpMap", function () {
         });
     });
 
+    describe("#keys", function () {
+        it("should return the keys of the top-level map", function () {
+            const keys = [...this.map.keys()];
+            expect(keys).to.have.members(["this", "is"]);
+        });
+    });
+
     describe("#paths", function () {
-        it("should return the top level paths (resolveMaps = false)", function () {
+        it("should return the top-level paths (resolveMaps = false)", function () {
             const paths = [...this.map.paths(false)].map(p => p.toString());
             expect(paths).to.have.members(["this", "is"]);
         });
@@ -301,7 +308,7 @@ describe("GumpMap", function () {
     });
 
     describe("#values", function () {
-        it("should return the top level values (resolveMaps = resolveSets = false)", function () {
+        it("should return the top-level values (resolveMaps = resolveSets = false)", function () {
             const values = [...this.map.values({resolveMaps: false, resolveSets: false})];
             expect(values[0]).to.be.an.instanceof(GumpSet);
             expect(values[1]).to.be.an.instanceof(GumpMap);
@@ -364,7 +371,7 @@ describe("GumpMap", function () {
             expect(s0.has(1)).to.be.true;
             expect(s0.size).to.equal(1);
         });
-        
+
         it("should add a new entry if no value exists at this location", function () {
             this.map.set("hello", "world");
             const s0 = this.map.get("hello");
