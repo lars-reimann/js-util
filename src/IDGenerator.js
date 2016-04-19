@@ -36,12 +36,12 @@ export default class IDGenerator {
     }
 
     /**
-     * Sets the counter to the given value.
+     * Sets the counter to the maximum of the given value and its current value.
      *
      * @param {Number} n
-     * The new value of the counter.
+     * The new minimal value of the counter.
      */
-    setCounter(n) {
-        this.counter = n;
+    increaseToAtLeast(n) {
+        this.counter = Math.max(this.counter, n);
     }
 }
