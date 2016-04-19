@@ -9,13 +9,13 @@ import {GumpSet} from "../src/util.js";
 
 describe("GumpMap", function () {
     beforeEach(function () {
-        this.map = new GumpMap([
+        this.map = new GumpMap({ initialValues: [
             ["this", 3],
             ["this", 3],
             ["this", 4],
             ["is.a", "test"],
             ["is.a", "try"]
-        ]);
+        ] });
     });
 
     describe("fromObject", function () {
@@ -80,10 +80,10 @@ describe("GumpMap", function () {
             this.map.add("that", 42);
             expect(this.map.size).to.equal(6);
 
-            this.map.add("another.map", new GumpMap([
+            this.map.add("another.map", new GumpMap({ initialValues: [
                 ["one", "entry"],
                 ["two", "entries"]
-            ]));
+            ] }));
             expect(this.map.size).to.equal(8);
 
             this.map.add("a_set", new GumpSet([1, 2]));
@@ -187,6 +187,18 @@ describe("GumpMap", function () {
             expect(this.map.delete("that")).to.be.false;
             expect(this.map.delete("this", 10)).to.be.false;
             expect(this.map.delete("this")).to.be.true;
+        });
+
+        it("should remove containers when they become empty and the corresponding flag is set", function () {
+            const map = new GumpMap({
+                initialValues:            [["this", 3], ["this", 4]],
+                autoPurgeEmptyContainers: true
+            });
+            map.delete("this", 3);
+            expect(map.has("this")).to.be.true;
+
+            map.delete("this", 4);
+            expect(map.has("this")).to.be.false;
         });
 
         it("should fire an event", function () {

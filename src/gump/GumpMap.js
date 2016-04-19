@@ -30,7 +30,7 @@ export default class GumpMap {
      * The converted object.
      */
     static fromObject(o) {
-        const result = new GumpMap();
+        const result = new GumpMap({ autoPurgeEmptyContainers: this.autoPurgeEmptyContainers });
 
         for (let [k, v] of Object.entries(o)) {
             if (_.isArray(v)) {
@@ -46,12 +46,19 @@ export default class GumpMap {
     }
 
     /**
-     * @param {Iterable} [initialValues=[]]
+     * @param {Object} obj
+     * The configuration object.
+     *
+     * @param {Iterable} [obj.initialValues=[]]
      * An iterable object containing the initial values of this map. Each entry
      * in this array is expected to match [path, value], where path is the place
      * where the value should be added.
+     *
+     * @param {Boolean} [obj.autPurgeEmptyContainers=false]
+     * Whether a container should be deleted when it becomes empty after one of
+     * its entries was deleted.
      */
-    constructor(initialValues = []) {
+    constructor({ initialValues = [], autoPurgeEmptyContainers = false } = {}) {
 
         /**
          * Stores the size of this map.
@@ -59,6 +66,15 @@ export default class GumpMap {
          * @type {Number}
          */
         this.size = 0;
+
+        /**
+         * Whether a container should be deleted when it becomes empty after one of
+         * its entries was deleted.
+         *
+         * @type {Boolean}
+         * @private
+         */
+        this.autoPurgeEmptyContainers = autoPurgeEmptyContainers;
 
         /**
          * Stores the values of this map.
@@ -125,6 +141,11 @@ export default class GumpMap {
             const deleted = e.data.deleted;
             this.size -= deleted.length;
             this.bubbleEvent(e, { value, deleted });
+
+            if (this.autoPurgeEmptyContainers && e.source.size === 0) {
+                const key = this.childToKey.get(e.source);
+                this.delete(key);
+            }
         };
 
         // Add initial values
@@ -299,7 +320,7 @@ export default class GumpMap {
      * @private
      */
     addDeeperNew(key, remainingPath, value) {
-        const nextLevel = new GumpMap();
+        const nextLevel = new GumpMap({ autoPurgeEmptyContainers: this.autoPurgeEmptyContainers });
         this.setNextLevel(key, nextLevel);
         nextLevel.add(remainingPath, value);
     }
@@ -406,8 +427,8 @@ export default class GumpMap {
             return false;
         }
 
-        const key           = path.head(),
-              remainingPath = path.tail();
+        const key           = path.head();
+        const remainingPath = path.tail();
 
         if (remainingPath.isEmpty()) {
             return this.deleteHere(key, value);
