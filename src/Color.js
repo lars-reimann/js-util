@@ -6,16 +6,16 @@ export default class Color {
     /**
      * Converts an RGBA color value to a Color object.
      *
-     * @param {Number} r
+     * @param {number} r
      * The red channel. This is an integer in the range [0, 255].
      *
-     * @param {Number} g
+     * @param {number} g
      * The green channel. This is an integer in the range [0, 255].
      *
-     * @param {Number} b
+     * @param {number} b
      * The blue channel. This is an integer in the range [0, 255].
      *
-     * @param {Number} a
+     * @param {number} a
      * The alpha value. This is a number in the range [0, 1]. 0 represents full
      * transparency and 1 is full opacity.
      *
@@ -30,16 +30,16 @@ export default class Color {
     /**
      * Converts an HSLA color value to a Color object.
      *
-     * @param {Number} h
+     * @param {number} h
      * The hue. This is a number in the range [0, 360).
      *
-     * @param {Number} s
+     * @param {number} s
      * The saturation. This is a number in the range [0, 1].
      *
-     * @param {Number} l
+     * @param {number} l
      * The lightness. This is a number in the range [0, 1].
      *
-     * @param {Number} a
+     * @param {number} a
      * The alpha value. This is a number in the range [0, 1]. 0 represents full
      * transparency and 1 is full opacity.
      *
@@ -84,10 +84,10 @@ export default class Color {
     }
 
     /**
-     * @param {Number} hex
+     * @param {number} hex
      * The hex value.
      *
-     * @param  {Number} [alpha=1]
+     * @param  {number} [alpha=1]
      * The alpha value. This is a number in the range [0, 1]. 0 represents full
      * transparency and 1 is full opacity.
      */
@@ -96,7 +96,7 @@ export default class Color {
         /**
          * The hex value of this color.
          *
-         * @type {Number}
+         * @type {number}
          */
         this.hex = hex;
 
@@ -104,7 +104,7 @@ export default class Color {
          * The alpha value of this color. This is a number in the range [0, 1].
          * 0 represents full transparency and 1 is full opacity.
          *
-         * @type {Number}
+         * @type {number}
          */
         this.alpha = alpha;
     }
@@ -167,7 +167,7 @@ export default class Color {
     /**
      * Returns a textual representation of this color.
      *
-     * @return {String}
+     * @return {string}
      * A textual representation of this color.
      */
     toString() {

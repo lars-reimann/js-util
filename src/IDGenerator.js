@@ -4,7 +4,7 @@
 export default class IDGenerator {
 
     /**
-     * @param {String} [prefix=""]
+     * @param {string} [prefix=""]
      * The prefix IDs should use.
      */
     constructor(prefix = "") {
@@ -12,14 +12,14 @@ export default class IDGenerator {
         /**
          * The prefix IDs should use.
          *
-         * @type {String}
+         * @type {string}
          */
         this.prefix = prefix;
 
         /**
          * An automatically incremented counter used to generate IDs.
          *
-         * @type {Number}
+         * @type {number}
          * @private
          */
         this.counter = 0;
@@ -28,7 +28,7 @@ export default class IDGenerator {
     /**
      * Returns an ID.
      *
-     * @return {String}
+     * @return {string}
      * An ID.
      */
     next() {
@@ -36,10 +36,27 @@ export default class IDGenerator {
     }
 
     /**
-     * Sets the counter to the maximum of the given value and its current value.
+     * Ensures that the given ID is not going to be generated.
      *
-     * @param {Number} n
+     * @param {string} id
+     * The ID to avoid.
+     */
+    avoid(id) {
+        const regex = new RegExp(`^${this.prefix}([0-9]+)$`);
+        if (id && regex.test(id)) {
+            const [, counter] = regex.exec(id);
+            this.counter = Math.max(this.counter, counter + 1);
+        }
+    }
+
+    /**
+     * Sets the counter to the maximum of the given value and its current value.
+     * This method is going to be removed in favor of the avoid method.
+     *
+     * @param {number} n
      * The new minimal value of the counter.
+     *
+     * @deprecated
      */
     increaseToAtLeast(n) {
         this.counter = Math.max(this.counter, n);

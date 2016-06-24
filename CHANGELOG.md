@@ -1,8 +1,12 @@
 # Changelog
 
+## 1.4.0 (2016-06-24)
+
+* Added a method to avoid specific IDs to IDGenerator. The `increaseToAtLeast` method is now deprecated.
+
 ## 1.3.0 (2016-04-19)
 
-* Added a way to set the counter on the idGenerator. This can be used to skip some IDs that might be used already.
+* Added a way to set the counter to the IDGenerator. This can be used to skip some IDs that might be used already.
 * Added a method to get the top-level keys of a GumpMap.
 * Added an option to GumpMaps to automatically delete containers once the become empty.
 
