@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/tortilla/TortillaWrapper.js | JavaScript Utility API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/Ignavia/js-util.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Cloner.js~Cloner.html">Cloner</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Color.js~Color.html">Color</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Event.js~Event.html">Event</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/IDGenerator.js~IDGenerator.html">IDGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableExtendedMixin">cloneableExtendedMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableSymbols">cloneableSymbols</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleExtendedMixin">extensibleExtendedMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleSymbols">extensibleSymbols</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableExtendedMixin">observableExtendedMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableSymbols">observableSymbols</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">gump</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/gump/GumpMap.js~GumpMap.html">GumpMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/gump/GumpPath.js~GumpPath.html">GumpPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/gump/GumpSet.js~GumpSet.html">GumpSet</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">tolkien</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/Tolkien1To1Map.js~Tolkien1To1Map.html">Tolkien1To1Map</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/Tolkien1ToNMap.js~Tolkien1ToNMap.html">Tolkien1ToNMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/TolkienMToNMap.js~TolkienMToNMap.html">TolkienMToNMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/TolkienMap.js~TolkienMap.html">TolkienMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-compose">compose</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">tortilla</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaGeneratorFunction.js~TortillaGeneratorFunction.html">TortillaGeneratorFunction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaIterable.js~TortillaIterable.html">TortillaIterable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaIterator.js~TortillaIterator.html">TortillaIterator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaWrapper.js~TortillaWrapper.html">TortillaWrapper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tortilla">tortilla</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/tortilla/TortillaWrapper.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import _ from &quot;lodash/fp&quot;;
+
+import TortillaGeneratorFunction from &quot;./TortillaGeneratorFunction.js&quot;;
+
+/**
+ * A wrapper for iterables, iterators and generator functions.
+ */
+export default class TortillaWrapper {
+
+    /**
+     *
+     */
+    constructor() {}
+
+    /**
+     * Tests if any values are contained.
+     *
+     * @return {Boolean}
+     * If any values are contained.
+     */
+    isEmpty() {
+        return this.head() === undefined;
+    }
+
+    /**
+     * Returns the first value.
+     *
+     * @return {*}
+     * The first value.
+     */
+    head() {
+        const [value] = this[Symbol.iterator]();
+        return value;
+    }
+
+    /**
+     * Drops the first value.
+     *
+     * @return {TortillaWrapper}
+     * The new wrapper.
+     */
+    tail() {
+        return this.drop(1);
+    }
+
+    /**
+     * Bundles n values at a time in an array.
+     *
+     * @param {Number} n
+     * How many values to wrap.
+     *
+     * @return {TortillaWrapper}
+     * The new wrapper.
+     */
+    chunk(n) {
+        const that = this;
+        return new TortillaGeneratorFunction(function* () {
+            const iterator = that[Symbol.iterator]();
+            while (true) {
+                const chunk = [];
+                for (let i = 0; i &lt; n; i++) {
+                    const {value, done} = iterator.next();
+                    if (done) break;
+                    chunk.push(value);
+                }
+                if (chunk.length === 0) return;
+                yield chunk;
+            }
+        });
+    }
+
+    /**
+     * Removes all values matching the given values.
+     *
+     * @param {*} values
+     * The values to remove.
+     *
+     * @return {TortillaWrapper}
+     * The new wrapper.
+     */
+    without(values) {
+        return this.reject(x =&gt; values.includes(x));
+    }
+
+    /**
+     * Removes all falsy values.
+     *
+     * @return {TortillaWrapper}
+     * The new wrapper.
+     */
+    compact() {
+        return this.filter(x =&gt; x);
+    }
+
+    /**
+     * Keeps only the values in the given range.
+     *
+     * @param {Number} start
+     * The index of the first value to keep.
+     *
+     * @param {Number} end
+     * The index of the first value to drop again.
+     *
+     * @return {TortillaWrapper}
+     * The new wrapper.
+     */
+    slice(start, end) {
+        return this.drop(start).take(end - start);
+    }
+
+    /**
+     * Drops the first n values.
+     *
+     * @param {Number} n
+     * How many values to drop.
+     *
+     * @return {TortillaWrapper}
+     * The new wrapper.
+     */
+    drop(n) {
+        const that = this;
+        return new TortillaGeneratorFunction(function* () {
+            const iterator = that[Symbol.iterator]();
+            for (let i = 0; i &lt; n; i++) {
+                const {done} = iterator.next();
+                if (done) return;
+            }
+            yield* iterator;
+        });
+    }
+
+    /**
+     * Drops the values until the predicate is false.
+     *
+     * @param {Function} predicate
+     * The testing function.
+     *
+     * @return {TortillaWrapper}
+     * The new wrapper.
+     */
+    dropWhile(predicate) {
+        const that = this;
+        return new TortillaGeneratorFunction(function* () {
+            const iterator = that[Symbol.iterator]();
+            let value, done;
+            do {
+                ({value, done} = iterator.next());
+                if (done) return;
+            } while (predicate(value));
+            yield value;
+            yield* iterator;
+        });
+    }
+
+    /**
+     * Keeps only the first n values.
+     *
+     * @param {Number} n
+     * How many values to keep.
+     *
+     * @return {TortillaWrapper}
+     * The new wrapper.
+     */
+    take(n) {
+        const that = this;
+        return new TortillaGeneratorFunction(function* () {
+            const iterator = that[Symbol.iterator]();
+            for (let i = 0; i &lt; n; i++) {
+                const {value, done} = iterator.next();
+                if (done) return;
+                yield value;
+            }
+        });
+    }
+
+    /**
+     * Keeps the values until the predicate is false.
+     *
+     * @param {Function} predicate
+     * The testing function.
+     *
+     * @return {TortillaWrapper}
+     * The new wrapper.
+     */
+    takeWhile(predicate) {
+        const that = this;
+        return new TortillaGeneratorFunction(function* () {
+            const iterator = that[Symbol.iterator]();
+            while (true) {
+                const {value, done} = iterator.next();
+                if (done || !predicate(value)) return;
+                yield value;
+            }
+        });
+    }
+
+    /**
+     * Keeps only value for which the predicate is true.
+     *
+     * @param {Function} predicate
+     * The testing function.
+     *
+     * @return {TortillaWrapper}
+     * The new wrapper.
+     */
+    filter(predicate) {
+        const that = this;
+        return new TortillaGeneratorFunction(function* () {
+            for (let value of that) {
+                if (predicate(value)) {
+                    yield value;
+                }
+            }
+        });
+    }
+
+    /**
+     * Drops all values for which the predicate is true.
+     *
+     * @param {Function} predicate
+     * The testing function.
+     *
+     * @return {TortillaWrapper}
+     * The new wrapper.
+     */
+    reject(predicate) {
+        return this.filter(_.negate(predicate));
+    }
+
+    /**
+     * Applies the given function to a value before yielding it.
+     *
+     * @param {Function} iteratee
+     * The mapping function.
+     *
+     * @return {TortillaWrapper}
+     * The new wrapper.
+     */
+    map(iteratee) {
+        const that = this;
+        return new TortillaGeneratorFunction(function* () {
+            for (let value of that) {
+                yield iteratee(value);
+            }
+        });
+    }
+
+    /**
+     * Yields values of an array separately.
+     *
+     * @return {TortillaWrapper}
+     * The new wrapper.
+     */
+    flatten() {
+        const that = this;
+        return new TortillaGeneratorFunction(function* () {
+            for (let value of that) {
+                yield* _.castArray(value);
+            }
+        });
+    }
+
+    /**
+     * Turns this wrapper into an iterator.
+     *
+     * @abstract
+     */
+    [Symbol.iterator]() {
+        throw new Error(&quot;Calling an abstract function.&quot;);
+    }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

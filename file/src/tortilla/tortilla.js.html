@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/tortilla/tortilla.js | JavaScript Utility API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/Ignavia/js-util.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Cloner.js~Cloner.html">Cloner</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Color.js~Color.html">Color</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Event.js~Event.html">Event</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/IDGenerator.js~IDGenerator.html">IDGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableExtendedMixin">cloneableExtendedMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableSymbols">cloneableSymbols</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleExtendedMixin">extensibleExtendedMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleSymbols">extensibleSymbols</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableExtendedMixin">observableExtendedMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableSymbols">observableSymbols</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">gump</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/gump/GumpMap.js~GumpMap.html">GumpMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/gump/GumpPath.js~GumpPath.html">GumpPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/gump/GumpSet.js~GumpSet.html">GumpSet</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">tolkien</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/Tolkien1To1Map.js~Tolkien1To1Map.html">Tolkien1To1Map</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/Tolkien1ToNMap.js~Tolkien1ToNMap.html">Tolkien1ToNMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/TolkienMToNMap.js~TolkienMToNMap.html">TolkienMToNMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/TolkienMap.js~TolkienMap.html">TolkienMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-compose">compose</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">tortilla</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaGeneratorFunction.js~TortillaGeneratorFunction.html">TortillaGeneratorFunction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaIterable.js~TortillaIterable.html">TortillaIterable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaIterator.js~TortillaIterator.html">TortillaIterator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaWrapper.js~TortillaWrapper.html">TortillaWrapper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tortilla">tortilla</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/tortilla/tortilla.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import TortillaGeneratorFunction from &quot;./TortillaGeneratorFunction.js&quot;;
+import TortillaIterable          from &quot;./TortillaIterable.js&quot;;
+import TortillaIterator          from &quot;./TortillaIterator.js&quot;;
+import TortillaWrapper           from &quot;./TortillaWrapper.js&quot;;
+
+/**
+ * Tests if the given value is wrapped already.
+ *
+ * @param {*} v
+ * The value to test.
+ *
+ * @return {Boolean}
+ * Whether the given value is wrapped already.
+ *
+ * @ignore
+ */
+const isWrapped = function (v) {
+    return v instanceof TortillaWrapper;
+};
+
+/**
+ * Tests if the given value is a function returning an iterator.
+ *
+ * @param {*} v
+ * The value to test.
+ *
+ * @return {Boolean}
+ * Whether the given value is a generator function.
+ *
+ * @ignore
+ */
+const isGeneratorFunction = function (v) {
+    return typeof v === &quot;function&quot; &amp;&amp; v()[Symbol.iterator];
+};
+
+/**
+ * Tests if the given value is an iterable.
+ *
+ * @param {*} v
+ * The value to test.
+ *
+ * @return {Boolean}
+ * Whether the given value is an iterable.
+ *
+ * @ignore
+ */
+const isIterable = function (v) {
+    return v !== undefined &amp;&amp;
+           v !== null &amp;&amp;
+           typeof v[Symbol.iterator] === &quot;function&quot; &amp;&amp;
+           v[Symbol.iterator]() !== v;
+};
+
+/**
+ * Tests if the given value is an iterator. While those are usually also
+ * iterable, they cannot be reset.
+ *
+ * @param {*} v
+ * The value to test.
+ *
+ * @return {Boolean}
+ * Whether the given value is an iterator.
+ *
+ * @ignore
+ */
+const isIterator = function (v) {
+    return v !== undefined &amp;&amp;
+           v !== null &amp;&amp;
+           typeof v[Symbol.iterator] === &quot;function&quot; &amp;&amp;
+           v[Symbol.iterator]() === v;
+};
+
+/**
+ * Wraps the given value into an appropriate wrapper.
+ *
+ * @param {*} toWrap
+ * The value to wrap.
+ *
+ * @return {TortillaWrapper}
+ * The wrapped value.
+ *
+ * @throws {Error}
+ * If the value cannot be wrapped.
+ */
+export default function tortilla(toWrap) {
+    if (isWrapped(toWrap)) {
+        return toWrap;
+    } else if (isGeneratorFunction(toWrap)) {
+        return new TortillaGeneratorFunction(toWrap);
+    } else if (isIterable(toWrap)) {
+        return new TortillaIterable(toWrap);
+    } else if (isIterator(toWrap)) {
+        return new TortillaIterator(toWrap);
+    } else {
+        return new TortillaIterable([]);
+    }
+};
+
+/**
+ * Does not yield any values.
+ *
+ * @type {TortillaWrapper}
+ */
+tortilla.empty = new TortillaIterable([]);
+
+/**
+ * An infinite generator that always yields the same value.
+ *
+ * @param {*} value
+ * The value to yield.
+ *
+ * @return {TortillaWrapper}
+ * The wrapper.
+ */
+tortilla.constant = function (value) {
+    return new TortillaGeneratorFunction(function* () {
+        while (true) {
+            yield value;
+        }
+    });
+};
+
+/**
+ * Yields the values start, start + step, start + 2 * step, ... while they
+ * are less than end.
+ *
+ * @param {Number} [start=0]
+ * The starting value.
+ *
+ * @param {Number} [end=Infinity]
+ * The final, not included value.
+ *
+ * @param {Number} [step=1]
+ * The size of each step.
+ *
+ * @return {TortillaWrapper}
+ * The wrapper.
+ */
+tortilla.range = function (start = 0, end = Number.POSITIVE_INFINITY, step = 1) {
+    return new TortillaGeneratorFunction(function* () {
+        for (let i = start; i &lt; end; i += step) {
+            yield i;
+        }
+    });
+};
+
+/**
+ * Concatenates the given iterables. First the results of the first iterable are
+ * yielded, then the ones of the next and so forth.
+ *
+ * @param {Iterable} iterables
+ * An iterable containing the iterables to concatenate.
+ *
+ * @return {TortillaWrapper}
+ * The resulting wrapper.
+ */
+tortilla.concat = function (iterables) {
+    return new TortillaGeneratorFunction(function* () {
+        for (let iterable of iterables) {
+            yield* iterable;
+        }
+    });
+};
+
+/**
+ * Combines the results of the given iterables in an array. At index 0, the
+ * results of the first iterable are yielded, at index 1 the ones of the next
+ * and so forth.
+ *
+ * @param {Iterable} iterables
+ * An iterable containing the iterables to zip.
+ *
+ * @return {TortillaWrapper}
+ * The resulting wrapper.
+ */
+tortilla.zip = function (iterables) {
+    return tortilla.zipWith((...xs) =&gt; xs, iterables);
+};
+
+/**
+ * Combines the results of the given iterables using the given function. The
+ * first argument of the function are the results of the first iterable, the
+ * second argument is determined by the second iterable and so forth.
+ *
+ * @param {Function} iteratee
+ * The function to use for zipping.
+ *
+ * @param {Iterable} iterables
+ * An iterable containing the iterables to zip.
+ *
+ * @return {TortillaWrapper}
+ * The resulting wrapper.
+ */
+tortilla.zipWith = function (iteratee, iterables) {
+    const iterators = iterables.map(x =&gt; x[Symbol.iterator]());
+    return new TortillaGeneratorFunction(function* () {
+        while (true) {
+            const results = iterators.map(x =&gt; x.next());
+            if (results.some(x =&gt; x.done)) return;
+            yield iteratee(...results.map(x =&gt; x.value));
+        }
+    });
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

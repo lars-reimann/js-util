@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/Extensible.js | JavaScript Utility API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/Ignavia/js-util.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Cloner.js~Cloner.html">Cloner</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Color.js~Color.html">Color</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Event.js~Event.html">Event</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/IDGenerator.js~IDGenerator.html">IDGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableExtendedMixin">cloneableExtendedMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableSymbols">cloneableSymbols</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleExtendedMixin">extensibleExtendedMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleSymbols">extensibleSymbols</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableExtendedMixin">observableExtendedMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableSymbols">observableSymbols</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">gump</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/gump/GumpMap.js~GumpMap.html">GumpMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/gump/GumpPath.js~GumpPath.html">GumpPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/gump/GumpSet.js~GumpSet.html">GumpSet</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">tolkien</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/Tolkien1To1Map.js~Tolkien1To1Map.html">Tolkien1To1Map</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/Tolkien1ToNMap.js~Tolkien1ToNMap.html">Tolkien1ToNMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/TolkienMToNMap.js~TolkienMToNMap.html">TolkienMToNMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/TolkienMap.js~TolkienMap.html">TolkienMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-compose">compose</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">tortilla</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaGeneratorFunction.js~TortillaGeneratorFunction.html">TortillaGeneratorFunction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaIterable.js~TortillaIterable.html">TortillaIterable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaIterator.js~TortillaIterator.html">TortillaIterator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaWrapper.js~TortillaWrapper.html">TortillaWrapper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tortilla">tortilla</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/Extensible.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Contains symbols for the methods of the Extensible interface.
+ *
+ * @type {Object}
+ */
+export const extensibleSymbols = {
+    addMethod:    Symbol(&quot;addMethod&quot;),
+    removeMethod: Symbol(&quot;removeMethod&quot;),
+    addPlugin:    Symbol(&quot;addPlugin&quot;),
+    removePlugin: Symbol(&quot;removePlugin&quot;)
+};
+
+/**
+ * A mixin for Extensible behavior.
+ *
+ * @type {Object}
+ *
+ * @example
+ * Object.assign(MyClass.prototype, extensibleMixin);
+ * let myObject = new MyClass(),
+ * myObject[extensibleSymbols.addMethod](&quot;toString&quot;, () =&gt; &quot;Hi&quot;);
+ */
+export const extensibleMixin = {
+    [extensibleSymbols.addMethod](name, f, override = false) {
+        if (!override &amp;&amp; this.hasOwnProperty(name)) {
+            throw new Error(`A property ${name} exists already on ${this}.`);
+        }
+        this[name] = f;
+        return this;
+    },
+
+    [extensibleSymbols.removeMethod](name) {
+        if (!this[name]) {
+            throw new Error(`A property ${name} does not exist on ${this}.`);
+        }
+        delete this[name];
+        return this;
+    },
+
+    [extensibleSymbols.addPlugin](plugin) {
+        plugin.register(this);
+        return this;
+    },
+
+    [extensibleSymbols.removePlugin](plugin) {
+        plugin.unregister(this);
+        return this;
+    }
+};
+
+/**
+ * In addition to everything {@link extensibleMixin} offers this mixin also
+ * provides an easier to use interface. It adds methods with names that
+ * correspond to the keys in {@link extensibleSymbols}.
+ *
+ * @type {Object}
+ *
+ * @example
+ * Object.assign(MyClass.prototype, extensibleMixin);
+ * let myObject = new MyClass(),
+ * myObject.addMethod(&quot;toString&quot;, () =&gt; &quot;Hi&quot;);
+ */
+export const extensibleExtendedMixin = Object.assign({
+    addMethod:    extensibleMixin[extensibleSymbols.addMethod],
+    removeMethod: extensibleMixin[extensibleSymbols.removeMethod],
+    addPlugin:    extensibleMixin[extensibleSymbols.addPlugin],
+    removePlugin: extensibleMixin[extensibleSymbols.removePlugin]
+}, extensibleMixin);
+// for (let [k, v] of Object.entries(extensibleSymbols)) {
+//     extensibleExtendedMixin[k] = extensibleMixin[v];
+// }
+
+
+// /**
+//  * An interface for every object that can be extended by plugins.
+//  *
+//  * @interface
+//  */
+// class Extensible {
+
+//     /**
+//      * Adds the given method to this object.
+//      *
+//      * @param {String|Symbol} name
+//      * The name of the method.
+//      *
+//      * @param {Function} f
+//      * The function to execute.
+//      *
+//      * @abstract
+//      */
+//     [extensibleSymbols.addMethod](name, f) {}
+
+//     /**
+//      * Removes the method with the given name from this object.
+//      *
+//      * @param {String|Symbol} name
+//      * The name of the function to remove.
+//      *
+//      * @abstract
+//      */
+//     [extensibleSymbols.removeMethod](name) {}
+
+//     /**
+//      * Adds the given plugins to this object by calling the register method on
+//      * each plugin and passing this object as an argument.
+//      *
+//      * @param {Plugin} plugins
+//      * The plugins to add.
+//      *
+//      * @abstract
+//      */
+//     [extensibleSymbols.addPlugin](plugin) {}
+
+//     /**
+//      * Removes the given plugins from this object by calling the unregister method
+//      * on each plugin and passing this object as an argument.
+//      *
+//      * @param {Plugin} plugins
+//      * The plugins to remove.
+//      *
+//      * @abstract
+//      */
+//     [extensibleSymbols.removePlugin](plugin) {}
+// }</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/gump/GumpSet.js | JavaScript Utility API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/Ignavia/js-util.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Cloner.js~Cloner.html">Cloner</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Color.js~Color.html">Color</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Event.js~Event.html">Event</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/IDGenerator.js~IDGenerator.html">IDGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableExtendedMixin">cloneableExtendedMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableSymbols">cloneableSymbols</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleExtendedMixin">extensibleExtendedMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleSymbols">extensibleSymbols</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableExtendedMixin">observableExtendedMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableSymbols">observableSymbols</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">gump</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/gump/GumpMap.js~GumpMap.html">GumpMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/gump/GumpPath.js~GumpPath.html">GumpPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/gump/GumpSet.js~GumpSet.html">GumpSet</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">tolkien</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/Tolkien1To1Map.js~Tolkien1To1Map.html">Tolkien1To1Map</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/Tolkien1ToNMap.js~Tolkien1ToNMap.html">Tolkien1ToNMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/TolkienMToNMap.js~TolkienMToNMap.html">TolkienMToNMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/TolkienMap.js~TolkienMap.html">TolkienMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-compose">compose</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">tortilla</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaGeneratorFunction.js~TortillaGeneratorFunction.html">TortillaGeneratorFunction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaIterable.js~TortillaIterable.html">TortillaIterable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaIterator.js~TortillaIterator.html">TortillaIterator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaWrapper.js~TortillaWrapper.html">TortillaWrapper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tortilla">tortilla</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/gump/GumpSet.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import EventManager              from &quot;../EventManager.js&quot;;
+import {observableExtendedMixin} from &quot;../Observable.js&quot;;
+
+/**
+ * Bundles multiples possible values into one.
+ *
+ * @implements {Observable}
+ */
+export default class GumpSet {
+
+    /**
+     * @param {Iterable} [initialValues=[]]
+     * The initial values of the set.
+     */
+    constructor(initialValues = []) {
+
+        /**
+         * Contains the values of this set.
+         *
+         * @type {Set}
+         * @private
+         */
+        this.children = new Set(initialValues); // TODO remove this.children with super once subclassing is supported
+
+        /**
+         * Handles listeners.
+         *
+         * @type {EventManager}
+         * @private
+         */
+        this.eventManager = new EventManager();
+    }
+
+    /**
+     * Adds the given value to this set.
+     *
+     * @param {*} value
+     * The value to add.
+     *
+     * @return {GumpSet}
+     * This set to make the method chainable.
+     *
+     * @emits {Event}
+     * If the set was changed by this operation, an event is fired. The source
+     * is set to this set, the type is &quot;add&quot; and the data is the added value.
+     */
+    add(value) {
+        const sizeBefore = this.size;
+        this.children.add(value);
+        const sizeAfter = this.size;
+
+        if (sizeBefore !== sizeAfter) {
+            this.fireEvent(EventManager.makeEvent({
+                source: this,
+                type: &quot;add&quot;,
+                data: { value }
+            }));
+        }
+
+        return this;
+    }
+
+    /**
+     * Empties the complete set.
+     *
+     * @emits {Event}
+     * If the set was changed, an event is fired. The source is set to this set,
+     * the type is &quot;clear&quot; and the data is an array with the deleted values.
+     */
+    clear() {
+        if (this.size &gt; 0) {
+            const deleted = [...this.values()];
+            this.children.clear();
+
+            this.fireEvent(EventManager.makeEvent({
+                source: this,
+                type: &quot;clear&quot;,
+                data: { deleted }
+            }));
+        }
+    }
+
+    /**
+     * Removes the given value from this set.
+     *
+     * @param {*} value
+     * The value to remove.
+     *
+     * @return {Boolean}
+     * Whether the set was changed by this operation. If the given value did
+     * not exist in the set false is returned. Otherwise the result is true.
+     *
+     * @emits {Event}
+     * If the set was changed, an event is fired. The source is set to this
+     * set, the type is &quot;delete&quot; and the data is the deleted value.
+     */
+    delete(value) {
+        const hasChanged = this.children.delete(value);
+
+        if (hasChanged) {
+            this.fireEvent(EventManager.makeEvent({
+                source: this,
+                type: &quot;delete&quot;,
+                data: { value, deleted: [value] }
+            }));
+        }
+
+        return hasChanged;
+    }
+
+    // ------ Begin remove once subclassing set is supported
+
+    /**
+     *
+     */
+    get size() {
+        return this.children.size;
+    }
+
+    /**
+     *
+     */
+    entries() {
+        return this.children.entries();
+    }
+
+    /**
+     *
+     */
+    has(value) {
+        return this.children.has(value);
+    }
+
+    /**
+     *
+     */
+    keys() {
+        return this.children.keys();
+    }
+
+    /**
+     *
+     */
+    values() {
+        return this.children.values();
+    }
+
+    /**
+     *
+     */
+    [Symbol.iterator]() {
+        return this.children[Symbol.iterator]();
+    }
+    // ------ End remove
+
+    /**
+     * Replaces the old value in the set with the new one.
+     *
+     * @param {*} newValue
+     * The new value.
+     *
+     * @param {*} oldValue
+     * The value to replace.
+     *
+     * @return {GumpSet}
+     * This set to make the method chainable.
+     */
+    updateWithLiteral(newValue, oldValue) {
+        if (this.has(oldValue)) {
+            this.delete(oldValue);
+            this.add(newValue);
+        }
+
+        return this;
+    }
+
+    /**
+     * Replaces the given value with the result of calling f on it.
+     *
+     * @param {Function} f
+     * The update function.
+     *
+     * @param {*} [value]
+     * The value to change.
+     *
+     * @return {GumpSet}
+     * This set to make the method chainable.
+     */
+    updateWithFunction(f, value) {
+        return this.updateWithLiteral(f(value), value);
+    }
+
+    /**
+     * Returns a string representing the set.
+     *
+     * @return {String}
+     * A string representation of this set.
+     */
+    toString() {
+        let s = &quot;{&quot;;
+
+        let i = this.size - 1;
+        for (let v of this.values()) {
+            s += v + (i === 0 ? &quot;&quot; : &quot;, &quot;);
+            i--;
+        }
+
+        return s + &quot;}&quot;;
+    }
+}
+
+// Make GumpSets observable
+Object.assign(GumpSet.prototype, observableExtendedMixin);
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

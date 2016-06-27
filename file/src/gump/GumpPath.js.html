@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/gump/GumpPath.js | JavaScript Utility API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/Ignavia/js-util.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Cloner.js~Cloner.html">Cloner</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Color.js~Color.html">Color</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Event.js~Event.html">Event</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/EventManager.js~EventManager.html">EventManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/IDGenerator.js~IDGenerator.html">IDGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Plugin.js~Plugin.html">Plugin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableExtendedMixin">cloneableExtendedMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableMixin">cloneableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cloneableSymbols">cloneableSymbols</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-predefinedColors">predefinedColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleExtendedMixin">extensibleExtendedMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleMixin">extensibleMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-extensibleSymbols">extensibleSymbols</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableExtendedMixin">observableExtendedMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableMixin">observableMixin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-observableSymbols">observableSymbols</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">gump</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/gump/GumpMap.js~GumpMap.html">GumpMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/gump/GumpPath.js~GumpPath.html">GumpPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/gump/GumpSet.js~GumpSet.html">GumpSet</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">tolkien</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/Tolkien1To1Map.js~Tolkien1To1Map.html">Tolkien1To1Map</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/Tolkien1ToNMap.js~Tolkien1ToNMap.html">Tolkien1ToNMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/TolkienMToNMap.js~TolkienMToNMap.html">TolkienMToNMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tolkien/TolkienMap.js~TolkienMap.html">TolkienMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-compose">compose</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">tortilla</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaGeneratorFunction.js~TortillaGeneratorFunction.html">TortillaGeneratorFunction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaIterable.js~TortillaIterable.html">TortillaIterable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaIterator.js~TortillaIterator.html">TortillaIterator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tortilla/TortillaWrapper.js~TortillaWrapper.html">TortillaWrapper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tortilla">tortilla</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/gump/GumpPath.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Represents paths for nested map/set structures.
+ */
+export default class GumpPath {
+
+    /**
+     * Normalizes the given path. GumpPaths are used unchanged. Strings are
+     * converted using the fromString method with &quot;.&quot; as separator. Iterables
+     * are translated using the normal constructor. Other values are wrapped
+     * into an iterable and again converted using the constructor.
+     *
+     * @param {GumpPath|String|Iterable|*} path
+     * A representation of the path.
+     *
+     * @return {GumpPath}
+     * The normalized path.
+     */
+    static toGumpPath(path) {
+        if (path instanceof GumpPath) {
+            return path;
+        } else if (path                     &amp;&amp;
+                   path[Symbol.iterator]    &amp;&amp;
+                   typeof path !== &quot;string&quot; &amp;&amp;
+                   typeof path !== &quot;number&quot;) { // Number has to be excluded because it has [Symbol.iterator] (bug)
+            return new GumpPath(path);
+        } else {
+            return new GumpPath([path]);
+        }
+    }
+
+    /**
+     * Creates a GumpPath from a string.
+     *
+     * @param {String} s
+     * The string describing the path. If s is empty the resulting path is not
+     * going to be empty. It has length 1 and contains the empty string as key.
+     *
+     * @param {String} [separator=&quot;.&quot;]
+     * The string used to split s into keys.
+     */
+    static fromString(s, separator = &quot;.&quot;) {
+        const keys = s.split(separator);
+        return new GumpPath(keys);
+    }
+
+    /**
+     * @param {Iterable} keys
+     * Yields the keys the path is made of.
+     */
+    constructor(keys) {
+
+        /**
+         * The keys of this path.
+         *
+         * @type {Array&lt;*&gt;}
+         * @private
+         */
+        this.keys = [...keys];
+    }
+
+    /**
+     * The number of keys of this path.
+     *
+     * @type {Number}
+     */
+    get length() {
+        return this.keys.length;
+    }
+
+    /**
+     * Returns the first key of this path.
+     *
+     * @return {*}
+     * The first key of this path.
+     */
+    head() {
+        return this.keys[0];
+    }
+
+    /**
+     * Returns path with every key of this path but the first.
+     *
+     * @return {GumpPath}
+     * The created path.
+     */
+    tail() {
+        return new GumpPath(this.keys.slice(1));
+    }
+
+    /**
+     * Returns the last key of this path.
+     *
+     * @return {*}
+     * The last key of this path.
+     */
+    last() {
+        return this.keys[this.keys.length - 1];
+    }
+
+    /**
+     * Returns path with every key of this path but the last.
+     *
+     * @return {GumpPath}
+     * The remaining path.
+     */
+    init() {
+        return new GumpPath(this.keys.slice(0, -1));
+    }
+
+    /**
+     * Returns the key at the given position.
+     *
+     * @param {Number} index
+     * The index of the key.
+     *
+     * @return {*}
+     * The key at the given position.
+     */
+    keyAt(index) {
+        return this.keys[index];
+    }
+
+    /**
+     * Returns a new path with the given key added to the end of this path.
+     *
+     * @param {*} key
+     * The key to add.
+     *
+     * @return {GumpPath}
+     * The created path.
+     */
+    append(key) {
+        return new GumpPath([...this.keys, key]);
+    }
+
+    /**
+     * Returns a new path with the given key added to the beginning of this
+     * path.
+     *
+     * @param {*} key
+     * The key to add.
+     *
+     * @return {GumpPath}
+     * The created path.
+     */
+    prepend(key) {
+        return new GumpPath([key, ...this.keys]);
+    }
+
+    /**
+     * Returns a new path with the given key at the specified position. The
+     * keys of this path are placed around it.
+     *
+     * @param {*} key
+     * The key to add.
+     *
+     * @param {Number} index
+     * The position of the new key.
+     *
+     * @return {GumpPath}
+     * The created path.
+     */
+    insertAt(key, index) {
+        return new GumpPath([
+            ...this.keys.slice(0, index),
+            key,
+            ...this.keys.slice(index)
+        ]);
+    }
+
+    /**
+     * Tests if this path has length 0.
+     *
+     * @return {Boolean}
+     * If this path has length 0.
+     */
+    isEmpty() {
+        return this.keys.length === 0;
+    }
+
+    /**
+     * Returns a string representing this path.
+     *
+     * @return {String}
+     * A string representation of this path.
+     */
+    toString() {
+        return this.keys.join(&quot;.&quot;);
+    }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
