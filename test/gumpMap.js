@@ -13,8 +13,8 @@ describe("GumpMap", function () {
             ["this", 3],
             ["this", 3],
             ["this", 4],
-            ["is.a", "test"],
-            ["is.a", "try"]
+            [["is", "a"], "test"],
+            [["is", "a"], "try"]
         ] });
     });
 
@@ -26,9 +26,9 @@ describe("GumpMap", function () {
                     a:  "test"
                 }
             });
-            const s0 = m0.get("this.is");
+            const s0 = m0.get(["this", "is"]);
             expect(s0.has("just")).to.be.true;
-            const s1 = m0.get("this.a");
+            const s1 = m0.get(["this", "a"]);
             expect(s1.has("test")).to.be.true;
         });
 
@@ -38,7 +38,7 @@ describe("GumpMap", function () {
                     is: ["just", "a", "test"]
                 }
             });
-            const s0 = m0.get("this.is");
+            const s0 = m0.get(["this", "is"]);
             expect([...s0]).to.have.members(["just", "a", "test"]);
         });
     });
@@ -59,9 +59,9 @@ describe("GumpMap", function () {
         });
 
         it("should add a given value on deeper levels", function () {
-            this.map.add("is.a", "trick");
+            this.map.add(["is", "a"], "trick");
             expect(this.map.get("is")).to.be.an.instanceof(GumpMap);
-            const s = this.map.get("is.a");
+            const s = this.map.get(["is", "a"]);
             expect(s.has("test")).to.be.true;
             expect(s.has("trick")).to.be.true;
             expect(s.has("try")).to.be.true;
@@ -104,7 +104,7 @@ describe("GumpMap", function () {
             expect(e0.data.value).to.equal(3);
 
             spy.reset();
-            this.map.add("hey.there", 4);
+            this.map.add(["hey", "there"], 4);
 
             expect(spy).to.have.been.calledOnce;
             const e1 = spy.args[0][0];
@@ -121,8 +121,8 @@ describe("GumpMap", function () {
             expect(f).to.throw();
         });
 
-        it("should fail id a path is too long and extends past a GumpSet", function () {
-            const f = () => this.map.add("this.throws", 10);
+        it("should fail if a path is too long and extends past a GumpSet", function () {
+            const f = () => this.map.add(["this", "throws"], 10);
             expect(f).to.throw();
         });
     });
@@ -171,15 +171,15 @@ describe("GumpMap", function () {
         });
 
         it("should remove a value on a deeper level (given value parameter)", function () {
-            this.map.delete("is.a", "test");
-            const s0 = this.map.get("is.a");
+            this.map.delete(["is", "a"], "test");
+            const s0 = this.map.get(["is", "a"]);
             expect(s0.has("try")).to.be.true;
             expect(s0.size).to.equal(1);
         });
 
         it("should remove all values on a deeper level", function () {
-            this.map.delete("is.a");
-            expect(this.map.has("is.a")).to.be.false;
+            this.map.delete(["is", "a"]);
+            expect(this.map.has(["is", "a"])).to.be.false;
         });
 
         it("should return whether the map changed", function () {
@@ -191,16 +191,16 @@ describe("GumpMap", function () {
 
         it("should remove containers when they become empty and the corresponding flag is set", function () {
             const map = new GumpMap({
-                initialValues:            [["this.a", 3], ["this.a", 4]],
+                initialValues: [[["this", "a"], 3], [["this", "a"], 4]],
                 autoPurgeEmptyContainers: true
             });
-            map.delete("this.a", 3);
+            map.delete(["this", "a"], 3);
             expect(map.has("this")).to.be.true;
-            expect(map.has("this.a")).to.be.true;
+            expect(map.has(["this", "a"])).to.be.true;
 
-            map.delete("this.a", 4);
+            map.delete(["this", "a"], 4);
             expect(map.has("this")).to.be.false;
-            expect(map.has("this.a")).to.be.false;
+            expect(map.has(["this", "a"])).to.be.false;
         });
 
         it("should fire an event", function () {
@@ -218,8 +218,8 @@ describe("GumpMap", function () {
             expect(e0.data.deleted).to.have.members([3]);
 
             spy.reset();
-            this.map.add("hey.there", 4);
-            this.map.delete("hey.there", 4);
+            this.map.add(["hey", "there"], 4);
+            this.map.delete(["hey", "there"], 4);
 
             expect(spy).to.have.been.calledOnce;
             const e1 = spy.args[0][0];
@@ -252,7 +252,7 @@ describe("GumpMap", function () {
             expect(s0.has(4)).to.be.true;
             expect(s0.size).to.equal(2);
 
-            const s1 = this.map.get("is.a");
+            const s1 = this.map.get(["is", "a"]);
             expect(s1.has("test")).to.be.true;
             expect(s1.has("try")).to.be.true;
             expect(s1.size).to.equal(2);
@@ -260,21 +260,21 @@ describe("GumpMap", function () {
 
         it("should return undefined if the path leads nowhere", function () {
             expect(this.map.get(42)).to.be.undefined;
-            expect(this.map.get("for.real")).to.be.undefined;
+            expect(this.map.get(["for", "real"])).to.be.undefined;
         });
     });
 
     describe("#has", function () {
         it("should return true if an entry exists", function () {
             expect(this.map.has("this")).to.be.true;
-            expect(this.map.has("is.a")).to.be.true;
+            expect(this.map.has(["is", "a"])).to.be.true;
             expect(this.map.has("this", 3)).to.be.true;
         });
 
         it("should return false if an entry does not exist", function () {
             expect(this.map.has(42)).to.be.false;
-            expect(this.map.has("is.a", "trick")).to.be.false;
-            expect(this.map.has("this.fails", 3)).to.be.false;
+            expect(this.map.has(["is", "a"], "trick")).to.be.false;
+            expect(this.map.has(["this", "fails"], 3)).to.be.false;
         });
     });
 

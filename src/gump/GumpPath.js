@@ -18,9 +18,10 @@ export default class GumpPath {
     static toGumpPath(path) {
         if (path instanceof GumpPath) {
             return path;
-        } else if (typeof path === "string") {
-            return GumpPath.fromString(path);
-        } else if (path && path[Symbol.iterator] && typeof path !== "number") { // Number has to be excluded because it has [Symbol.iterator] (bug)
+        } else if (path                     &&
+                   path[Symbol.iterator]    &&
+                   typeof path !== "string" &&
+                   typeof path !== "number") { // Number has to be excluded because it has [Symbol.iterator] (bug)
             return new GumpPath(path);
         } else {
             return new GumpPath([path]);

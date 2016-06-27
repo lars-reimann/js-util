@@ -15,12 +15,6 @@ describe("GumpPath", function () {
             expect(r0.length).to.equal(4);
         });
 
-        it("should convert string objects", function () {
-            const r0 = GumpPath.toGumpPath("this.is.a.test");
-            expect(r0.keyAt(0)).to.equal("this");
-            expect(r0.length).to.equal(4);
-        });
-
         it("should convert iterable objects", function () {
             const r0 = GumpPath.toGumpPath(["this", "is", "a", "test"]);
             expect(r0.keyAt(0)).to.equal("this");

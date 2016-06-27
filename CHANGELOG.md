@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.0 (2016-06-27)
+
+* Strings with dots are no longer split automatically when converting them to GumpPaths.
+
 ## 1.4.0 (2016-06-24)
 
 * Added a method to avoid specific IDs to IDGenerator. The `increaseToAtLeast` method is now deprecated.
