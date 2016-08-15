@@ -54,7 +54,6 @@ describe("Color", function () {
 
     describe("#toRGBA", function () {
         it("should create an RGBA color from a Color object", function () {
-
             const r0 = predefinedColors.black.toRGBA(); // black
             expect(r0.r).to.equal(0);
             expect(r0.g).to.equal(0);

@@ -17,8 +17,8 @@ describe("IDGenerator", function () {
         });
 
         it("should return unique IDs", function () {
-            const id0 = this.gen.next(),
-                  id1 = this.gen.next();
+            const id0 = this.gen.next();
+            const id1 = this.gen.next();
 
             expect(id0).to.not.equal(id1);
         });
@@ -31,7 +31,6 @@ describe("IDGenerator", function () {
             expect(id).to.equal("p1");
         });
     });
-
 
     describe("#increaseToAtLeast", function() {
         it("should set to the maximum of the current value and the given one", function () {
