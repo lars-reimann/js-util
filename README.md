@@ -2,6 +2,8 @@
 
 [![npm version](https://badge.fury.io/js/%40ignavia%2Futil.svg)](https://badge.fury.io/js/%40ignavia%2Futil) [![Build Status](https://travis-ci.org/Ignavia/js-util.svg?branch=master)](https://travis-ci.org/Ignavia/js-util)
 
+**This project is not maintained anymore.**
+
 Some JavaScript utility classes.
 
 ### API Documentation
